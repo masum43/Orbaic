@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_forget_password.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_forget_password.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/itemview_for_ref.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/itemview_for_ref.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_user_register.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_user_register.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_login_layout.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_login_layout.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_home.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/app_bar.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/app_bar.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_mining_rules.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_mining_rules.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/contain_main.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/contain_main.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_faq.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_faq.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_firebase_dynamic_link.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_firebase_dynamic_link.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/ref.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/ref.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/item.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/item.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_web_view_content.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_web_view_content.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_white_paper.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_white_paper.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/header_layout.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/header_layout.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_main.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_profile.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_referral_data.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_referral_data.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_withdrawal.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_withdrawal.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/fragment_team_referral.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/fragment_team_referral.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/item_view.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/item_view.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_learn_earn_activtity.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_learn_earn_activtity.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-60:/layout/activity_main2.xml",
+        "source": "com.orbaic.miner.app-main-63:/layout/activity_main2.xml"
+    }
+]

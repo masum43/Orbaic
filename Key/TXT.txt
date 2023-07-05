@@ -1,0 +1,9 @@
+Password: orbaic
+Alias: key0
+Password: orbaic
+first & last name: Asaduzzaman sarker
+Organization: Orbaic
+Organization Unit: Orbaic Miner
+city: dhaka
+state: dhaka
+country code: BD

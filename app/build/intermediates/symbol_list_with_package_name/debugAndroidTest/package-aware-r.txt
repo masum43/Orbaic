@@ -1,0 +1,3 @@
+com.orbaic.miner.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
