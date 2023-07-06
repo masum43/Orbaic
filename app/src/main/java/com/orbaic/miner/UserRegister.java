@@ -49,8 +49,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 public class UserRegister extends AppCompatActivity {
@@ -60,8 +62,8 @@ public class UserRegister extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     int userTotal;
-
     private Context context;
+    String country;
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -79,7 +81,6 @@ public class UserRegister extends AppCompatActivity {
 
         //cunntry Lock
         getLocationPermission();
-        System.out.println(getUserCountry(this));
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -203,20 +204,22 @@ public class UserRegister extends AppCompatActivity {
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("users");
-                            myRef.child(mAuth.getUid()).child("point").setValue("0");
-                            myRef.child(mAuth.getUid()).child("phone").setValue("0");
-                            myRef.child(mAuth.getUid()).child("click").setValue("0");
-                            myRef.child(mAuth.getUid()).child("country").setValue("0");
-                            myRef.child(mAuth.getUid()).child("birthdate").setValue("0");
-                            myRef.child(mAuth.getUid()).child("referral").setValue(code);
-                            myRef.child(mAuth.getUid()).child("referralButton").setValue("ON");
-                            myRef.child(mAuth.getUid()).child("type").setValue("0");
-                            myRef.child(mAuth.getUid()).child("id").setValue(userID);
-                            myRef.child(mAuth.getUid()).child("extra1").setValue("0");
-                            myRef.child(mAuth.getUid()).child("extra2").setValue("0");
-                            myRef.child(mAuth.getUid()).child("extra3").setValue("0");
-                            myRef.child(mAuth.getUid()).child("name").setValue(name);
-                            myRef.child(mAuth.getUid()).child("email").setValue(email);
+                            Map<String, String> map = new HashMap<>();
+                            map.put("point","0");
+                            map.put("phone","0");
+                            map.put("click","0");
+                            map.put("country",country);
+                            map.put("birthdate","0");
+                            map.put("referral",code);
+                            map.put("referralButton","ON");
+                            map.put("type","0");
+                            map.put("name",name);
+                            map.put("email",email);
+                            map.put("id",userID);
+                            map.put("extra1","0");
+                            map.put("extra2","0");
+                            map.put("extra3","0");
+                            myRef.child(mAuth.getUid()).setValue(map);
 
                             DatabaseReference reference = database.getReference("userId");
                             reference.child("totalUserId").setValue(userID);
@@ -280,25 +283,33 @@ public class UserRegister extends AppCompatActivity {
                             String code = String.valueOf(b) + String.valueOf(c);
 
                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
+                            if (account == null){
+                                return;
+                            }
                             String name = account.getDisplayName();
                             String email = account.getEmail();
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("users");
-                            myRef.child(mAuth.getUid()).child("point").setValue("0");
-                            myRef.child(mAuth.getUid()).child("phone").setValue("0");
-                            myRef.child(mAuth.getUid()).child("click").setValue("0");
-                            myRef.child(mAuth.getUid()).child("country").setValue("0");
-                            myRef.child(mAuth.getUid()).child("birthdate").setValue("0");
-                            myRef.child(mAuth.getUid()).child("referral").setValue(code);
-                            myRef.child(mAuth.getUid()).child("id").setValue(userID);
-                            myRef.child(mAuth.getUid()).child("referralButton").setValue("ON");
-                            myRef.child(mAuth.getUid()).child("type").setValue("0");
-                            myRef.child(mAuth.getUid()).child("extra1").setValue("0");
-                            myRef.child(mAuth.getUid()).child("extra2").setValue("0");
-                            myRef.child(mAuth.getUid()).child("extra3").setValue("0");
-                            myRef.child(mAuth.getUid()).child("name").setValue(name);
-                            myRef.child(mAuth.getUid()).child("email").setValue(email);
+                            Map<String, String> map = new HashMap<>();
+                            map.put("point","0");
+                            map.put("phone","0");
+                            map.put("click","0");
+                            map.put("country",country);
+                            map.put("birthdate","0");
+                            map.put("referral",code);
+                            map.put("referralButton","ON");
+                            map.put("type","0");
+                            map.put("name",name);
+                            map.put("email",email);
+                            map.put("id",userID);
+                            map.put("extra1","0");
+                            map.put("extra2","0");
+                            map.put("extra3","0");
+                            if (mAuth.getUid() == null){
+                                return;
+                            }
+                            myRef.child(mAuth.getUid()).setValue(map);
 
                             DatabaseReference reference = database.getReference("userId");
                             reference.child("totalUserId").setValue(userID);
@@ -336,9 +347,7 @@ public class UserRegister extends AppCompatActivity {
                     android.Manifest.permission.ACCESS_COARSE_LOCATION
             }, REQUEST_LOCATION_PERMISSION);
         } else {
-            // Permission already granted
-            // You can proceed with using the location
-            // ...
+            getUserCountry(context);
         }
 
     }
@@ -349,17 +358,17 @@ public class UserRegister extends AppCompatActivity {
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "Location Permission is granted", Toast.LENGTH_SHORT).show();
+                getUserCountry(context);
             } else {
-                dialogShowing();
+                dialogShowing("Location Permission is denied","Orbaic has not user location permission. So that, It is happening");
             }
         }
     }
 
-    private void dialogShowing() {
+    private void dialogShowing(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Location Permission is denied");
-        builder.setMessage("Orbaic has not user location permission. So that, It is happening");
+        builder.setTitle(title);
+        builder.setMessage(msg);
         builder.setCancelable(false);
         builder.setPositiveButton("Back", new DialogInterface.OnClickListener() {
             @Override
@@ -370,7 +379,7 @@ public class UserRegister extends AppCompatActivity {
         builder.create().show();
     }
 
-    public String getUserCountry(Context context) {
+    public void getUserCountry(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         String country = "";
 
@@ -384,7 +393,6 @@ public class UserRegister extends AppCompatActivity {
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
-                    return "";
                 }
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
@@ -398,8 +406,12 @@ public class UserRegister extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        this.country = country;
 
-        return country;
+        if (country.equals("Philippines")){
+            dialogShowing("Not Available", "We are stop to create account from Philippines");
+        }
+
     }
 
 }
