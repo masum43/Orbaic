@@ -203,8 +203,7 @@ public class UserRegister extends AppCompatActivity {
                             reference.child("totalUserId").setValue(userID);
                             progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(UserRegister.this, MainActivity2.class);
-                            startActivity(intent);
+                            updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
                             register_fail.setVisibility(View.VISIBLE);
@@ -301,6 +300,7 @@ public class UserRegister extends AppCompatActivity {
     private void updateUI() {
         Intent i = new Intent(UserRegister.this,MainActivity2.class);
         startActivity(i);
+        finish();
     }
 
 

@@ -134,6 +134,7 @@ id l12
 id l3
 id learnAndEarn
 id learnAndEarnHeader
+id learnAvailable
 id learn_ans_submit
 id learn_questions
 id linearLayout

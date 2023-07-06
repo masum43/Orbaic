@@ -74,6 +74,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ConstraintLayout learnAndEarn;
 
   @NonNull
+  public final TextView learnAvailable;
+
+  @NonNull
   public final LinearLayout linearLayout;
 
   @NonNull
@@ -122,10 +125,11 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull ImageView imageView10, @NonNull ImageView imageView110,
       @NonNull ImageView imageView6, @NonNull ImageView imageView9, @NonNull ImageView imageView91,
       @NonNull ImageView instagramH, @NonNull CoordinatorLayout l12, @NonNull LinearLayout l3,
-      @NonNull ConstraintLayout learnAndEarn, @NonNull LinearLayout linearLayout,
-      @NonNull LinearLayout linearLayout11, @NonNull LinearLayout linearLayout111,
-      @NonNull LinearLayout linearLayout2, @NonNull LinearLayout linearLayout3,
-      @NonNull ImageView mining, @NonNull RecyclerView recyclerView, @NonNull ImageView refe,
+      @NonNull ConstraintLayout learnAndEarn, @NonNull TextView learnAvailable,
+      @NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout11,
+      @NonNull LinearLayout linearLayout111, @NonNull LinearLayout linearLayout2,
+      @NonNull LinearLayout linearLayout3, @NonNull ImageView mining,
+      @NonNull RecyclerView recyclerView, @NonNull ImageView refe,
       @NonNull RelativeLayout relativeLayout, @NonNull ImageView telegramH,
       @NonNull TextView textView4, @NonNull ConstraintLayout trans, @NonNull ImageView twitterH,
       @NonNull ImageView whitePaper) {
@@ -146,6 +150,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.l12 = l12;
     this.l3 = l3;
     this.learnAndEarn = learnAndEarn;
+    this.learnAvailable = learnAvailable;
     this.linearLayout = linearLayout;
     this.linearLayout11 = linearLayout11;
     this.linearLayout111 = linearLayout111;
@@ -285,6 +290,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.learnAvailable;
+      TextView learnAvailable = ViewBindings.findChildViewById(rootView, id);
+      if (learnAvailable == null) {
+        break missingId;
+      }
+
       id = R.id.linearLayout;
       LinearLayout linearLayout = ViewBindings.findChildViewById(rootView, id);
       if (linearLayout == null) {
@@ -372,9 +383,9 @@ public final class FragmentHomeBinding implements ViewBinding {
       return new FragmentHomeBinding((RelativeLayout) rootView, aciCoin, cardView2,
           constraintLayout, constraintLayout1, constraintLayout3, facebookIconH, hourFragment,
           imageView10, imageView110, imageView6, imageView9, imageView91, instagramH, l12, l3,
-          learnAndEarn, linearLayout, linearLayout11, linearLayout111, linearLayout2, linearLayout3,
-          mining, recyclerView, refe, relativeLayout, telegramH, textView4, trans, twitterH,
-          whitePaper);
+          learnAndEarn, learnAvailable, linearLayout, linearLayout11, linearLayout111,
+          linearLayout2, linearLayout3, mining, recyclerView, refe, relativeLayout, telegramH,
+          textView4, trans, twitterH, whitePaper);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

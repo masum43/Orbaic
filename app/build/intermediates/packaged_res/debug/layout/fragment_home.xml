@@ -361,6 +361,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center">
                     <ImageView
+                        android:scaleType="fitXY"
                         android:layout_width="120dp"
                         android:layout_height="60dp"
                         android:src="@drawable/start_mining"
@@ -412,6 +413,19 @@
 
 
                     </LinearLayout>
+
+                    <TextView
+                        android:visibility="invisible"
+                        android:id="@+id/learnAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Available"
+                        android:textColor="@color/green_pastel"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                        app:layout_constraintHorizontal_bias="0.491"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout11"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView9"

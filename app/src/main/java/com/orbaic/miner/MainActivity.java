@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, LoginLayout.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
+                                finish();
                             }
                         }else {
                             Toast.makeText(MainActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();

@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('/home/rmtp/new file/Orbaic2/Key/key.jks')
+            storeFile file('C:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\Key\\key.jks')
             storePassword 'orbaic'
             keyAlias 'key0'
             keyPassword 'orbaic'

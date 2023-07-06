@@ -126,6 +126,7 @@ public class LoginLayout extends AppCompatActivity {
     private void reload() {
         Intent intent = new Intent(LoginLayout.this, MainActivity2.class);
         startActivity(intent);
+        finish();
     }
 
     private void sign_function() {
@@ -247,5 +248,6 @@ public class LoginLayout extends AppCompatActivity {
     private void updateUI() {
         Intent intent = new Intent(LoginLayout.this, MainActivity2.class);
         startActivity(intent);
+        finish();
     }
 }
