@@ -2,10 +2,19 @@ package com.orbaic.miner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,6 +34,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.analytics.FirebaseAnalytics.UserProperty;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,19 +47,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class UserRegister extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 9001;
+    private static final int REQUEST_LOCATION_PERMISSION = 101;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     int userTotal;
 
+    private Context context;
+
 
     private GoogleSignInClient mGoogleSignInClient;
-
 
 
     @Override
@@ -58,7 +74,12 @@ public class UserRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //id create
+        context = this;
         idCreate();
+
+        //cunntry Lock
+        getLocationPermission();
+        System.out.println(getUserCountry(this));
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -70,35 +91,33 @@ public class UserRegister extends AppCompatActivity {
 
         //facebook login
         ImageView facebookLogin = findViewById(R.id.facebookImageRegister);
-        facebookLogin.setOnClickListener(v->{
+        facebookLogin.setOnClickListener(v -> {
             Toast.makeText(UserRegister.this, "Coming soon", Toast.LENGTH_LONG).show();
         });
 
 
         //google login
         ImageView googleLogin = findViewById(R.id.googleImageRegister);
-        googleLogin.setOnClickListener(v->{
+        googleLogin.setOnClickListener(v -> {
 
-               sign_in();
+            sign_in();
 
         });
 
 
-
-            //login page
+        //login page
         TextView loginPage = findViewById(R.id.sign_up);
-        loginPage.setOnClickListener(v->{
+        loginPage.setOnClickListener(v -> {
             Intent intent = new Intent(UserRegister.this, LoginLayout.class);
             startActivity(intent);
         });
 
         //forget password
         TextView forgetPassword = findViewById(R.id.forget_password_registration);
-        forgetPassword.setOnClickListener(v->{
+        forgetPassword.setOnClickListener(v -> {
             Intent intent = new Intent(UserRegister.this, ForgetPassword.class);
             startActivity(intent);
         });
-
 
 
         EditText user_name = (EditText) findViewById(R.id.user_name_registration);
@@ -108,17 +127,17 @@ public class UserRegister extends AppCompatActivity {
 
         //Sign Up with Password & Email
         Button signUp = findViewById(R.id.register_button);
-        signUp.setOnClickListener(v->{
+        signUp.setOnClickListener(v -> {
             register_fail.setVisibility(View.GONE);
-            if (TextUtils.isEmpty(user_name.getText().toString())){
+            if (TextUtils.isEmpty(user_name.getText().toString())) {
                 user_name.setError("Enter a  Username");
                 return;
             }
-            if (TextUtils.isEmpty(register_email.getText().toString())){
+            if (TextUtils.isEmpty(register_email.getText().toString())) {
                 register_email.setError("Please Enter the Email");
                 return;
             }
-            if (TextUtils.isEmpty(register_password.getText().toString())){
+            if (TextUtils.isEmpty(register_password.getText().toString())) {
                 register_password.setError("Please Enter 6 character Password");
                 return;
             }
@@ -145,7 +164,7 @@ public class UserRegister extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(""+ error.getMessage());
+                System.out.println("" + error.getMessage());
 
             }
         });
@@ -153,7 +172,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void sign_in() {
         Intent intent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(intent,RC_SIGN_IN);
+        startActivityForResult(intent, RC_SIGN_IN);
     }
 
     private void sign_up() {
@@ -173,13 +192,13 @@ public class UserRegister extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            int id = userTotal +1;
+                            int id = userTotal + 1;
                             String userID = String.valueOf(id);
 
                             Random a = new Random();
                             int b = a.nextInt(9999);
                             int c = a.nextInt(9999);
-                            String code = String.valueOf(b)+String.valueOf(c);
+                            String code = String.valueOf(b) + String.valueOf(c);
 
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -221,7 +240,7 @@ public class UserRegister extends AppCompatActivity {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            Toast.makeText(UserRegister.this,"code successful",Toast.LENGTH_LONG).show();
+            Toast.makeText(UserRegister.this, "code successful", Toast.LENGTH_LONG).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
             progressDialog = new ProgressDialog(UserRegister.this);
@@ -252,13 +271,13 @@ public class UserRegister extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            int id = userTotal +1;
+                            int id = userTotal + 1;
                             String userID = String.valueOf(id);
 
                             Random a = new Random();
                             int b = a.nextInt(9999);
                             int c = a.nextInt(9999);
-                            String code = String.valueOf(b)+String.valueOf(c);
+                            String code = String.valueOf(b) + String.valueOf(c);
 
                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
                             String name = account.getDisplayName();
@@ -284,13 +303,13 @@ public class UserRegister extends AppCompatActivity {
                             DatabaseReference reference = database.getReference("userId");
                             reference.child("totalUserId").setValue(userID);
 
-                            Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserRegister.this, "token Successful", Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             updateUI();
                         } else {
 
-                            Toast.makeText(UserRegister.this,"token Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserRegister.this, "token Error", Toast.LENGTH_LONG).show();
                             // If sign in fails, display a message to the user.
                         }
                     }
@@ -298,12 +317,89 @@ public class UserRegister extends AppCompatActivity {
     }
 
     private void updateUI() {
-        Intent i = new Intent(UserRegister.this,MainActivity2.class);
+        Intent i = new Intent(UserRegister.this, MainActivity2.class);
         startActivity(i);
         finish();
     }
 
 
     // [END auth_with_google]
+
+
+    //user location permission
+    private void getLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // If permission is not granted, request it
+            ActivityCompat.requestPermissions(this, new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+            }, REQUEST_LOCATION_PERMISSION);
+        } else {
+            // Permission already granted
+            // You can proceed with using the location
+            // ...
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, "Location Permission is granted", Toast.LENGTH_SHORT).show();
+            } else {
+                dialogShowing();
+            }
+        }
+    }
+
+    private void dialogShowing() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Location Permission is denied");
+        builder.setMessage("Orbaic has not user location permission. So that, It is happening");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Back", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                UserRegister.super.onBackPressed();
+            }
+        });
+        builder.create().show();
+    }
+
+    public String getUserCountry(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        String country = "";
+
+        if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            try {
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return "";
+                }
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (location != null) {
+                    Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    if (addresses.size() > 0) {
+                        country = addresses.get(0).getCountryName();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return country;
+    }
 
 }
