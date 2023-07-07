@@ -421,9 +421,9 @@ public class UserRegister extends AppCompatActivity {
         }
         this.country = country;
 
-        if (country.equals("Philippines")){
+       /* if (country.equals("Philippines")){
             dialogShowing("Not Available", "We are stop to create account from Philippines");
-        }
+        }*/
 
     }
 
