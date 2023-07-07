@@ -5,12 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -42,6 +44,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,6 +83,8 @@ public class Home extends Fragment {
      TextView hr,AciCoin, available;
     private ImageView referral,white,facebook,twitter,telegram,instagram, mining;
     private RecyclerView postList;
+
+    FirebaseUser currentUser;
 
     String referralStatus,referralBy;
     private List<Post> postItemList;
@@ -123,9 +128,14 @@ public class Home extends Fragment {
         postList = view.findViewById(R.id.recyclerView);
 
 
-
+        //Mining Start button
         mining.setOnClickListener(v->{
-            if (mobAds.getButton().equals("ON")){
+            mobAds.showRewardedVideo();
+            mining.setVisibility(View.GONE);
+            runClock();
+            setActiveStatus();
+            tastFunction();
+            /*if (mobAds.getButton().equals("ON")){
                 mobAds.showRewardedVideo();
                 mining.setVisibility(View.GONE);
                 runClock();
@@ -133,13 +143,29 @@ public class Home extends Fragment {
                 tastFunction();
             }else {
                 Toast.makeText(getContext(), "Please wait Sometime", Toast.LENGTH_SHORT).show();
-            }
+            }*/
         });
+
+        //user email verification
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        boolean vri = currentUser.isEmailVerified();
+        System.out.println(vri);
+        if (currentUser == null){
+            Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
+        }
+        if (vri) {
+
+        }else {
+
+        }
+
+
 
         transfer.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
         });
 
+        //learn and earn
         long currentTime = System.currentTimeMillis();
         if (currentTime > endTime){
             available.setVisibility(View.VISIBLE);
@@ -155,6 +181,8 @@ public class Home extends Fragment {
             }
 
         });
+
+        //user referral activity
         referral.setOnClickListener(v->{
             Fragment newFragment = new  TeamReferral();
             FragmentManager fragmentManager = getFragmentManager();
@@ -213,6 +241,7 @@ public class Home extends Fragment {
 
     }
 
+    //user team referral user active status
     private void setActiveStatus() {
         long active = System.currentTimeMillis() + START_TIME_IN_MILLIS;
         String s = String.valueOf(active);
@@ -226,6 +255,7 @@ public class Home extends Fragment {
         }
     }
 
+    //news from wordpress blog
     private void setListContent(boolean withProgress) {
 
         WordpressData api = RetrofitClient.getApiService();
@@ -275,6 +305,7 @@ public class Home extends Fragment {
 
     }
 
+    // Mining system
     private void tastFunction() {
         timerTask = new TimerTask() {
                 @Override
@@ -294,6 +325,7 @@ public class Home extends Fragment {
 
     }
 
+    //stop timer and timer task
     private void stop() {
         timerTask.cancel();
         System.out.println("error");
@@ -301,6 +333,7 @@ public class Home extends Fragment {
         //Toast.makeText(getContext(),"Internet error", Toast.LENGTH_SHORT).show();
     }
 
+    //mining time countdown
     private void runClock() {
 
         count = new CountDownTimer(START_TIME_IN_MILLIS,1000){
@@ -318,6 +351,7 @@ public class Home extends Fragment {
         }.start();
     }
 
+    //countdown time update in text which is in left side of top
     private void updateText() {
         int hour = (int) (timeLeftInMillis / 1000) / 3600;
         int minute = (int) ((timeLeftInMillis / 1000) % 3600) /60;
@@ -474,7 +508,31 @@ public class Home extends Fragment {
 
     }
 
-
+    private void dialogShow(String title, String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setCancelable(false);
+        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser == null){
+                    Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
+                }else if (!currentUser.isEmailVerified()) {
+                    dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                }
+            }
+        });
+        builder.setNegativeButton("Send Email", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                currentUser.sendEmailVerification();
+                dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+            }
+        });
+        builder.create().show();
+    }
 
 
 

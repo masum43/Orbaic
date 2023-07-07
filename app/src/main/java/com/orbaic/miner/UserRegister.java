@@ -219,7 +219,14 @@ public class UserRegister extends AppCompatActivity {
                             map.put("extra1","0");
                             map.put("extra2","0");
                             map.put("extra3","0");
+                            if (mAuth.getUid() == null){
+                                return;
+                            }
                             myRef.child(mAuth.getUid()).setValue(map);
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            if (currentUser != null) {
+                                currentUser.sendEmailVerification();
+                            }
 
                             DatabaseReference reference = database.getReference("userId");
                             reference.child("totalUserId").setValue(userID);
@@ -309,6 +316,12 @@ public class UserRegister extends AppCompatActivity {
                             if (mAuth.getUid() == null){
                                 return;
                             }
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            if (currentUser != null) {
+                                currentUser.sendEmailVerification();
+                            }
+
+                            mAuth.getCurrentUser().sendEmailVerification();
                             myRef.child(mAuth.getUid()).setValue(map);
 
                             DatabaseReference reference = database.getReference("userId");
