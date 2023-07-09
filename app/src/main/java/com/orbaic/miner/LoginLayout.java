@@ -322,6 +322,7 @@ public class LoginLayout extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Void unused) {
                                                         updateUI();
+                                                        progressDialog.dismiss();
                                                     }
                                                 });
 
@@ -329,12 +330,14 @@ public class LoginLayout extends AppCompatActivity {
                                     }else {
                                         Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
                                         updateUI();
+                                        progressDialog.dismiss();
                                     }
                                 }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     Toast.makeText(LoginLayout.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                 }
                             });
                             /*if (uid != null){
@@ -346,6 +349,7 @@ public class LoginLayout extends AppCompatActivity {
                         } else {
 
                             Toast.makeText(LoginLayout.this,"token Error",Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                             // If sign in fails, display a message to the user.
                         }
                     }

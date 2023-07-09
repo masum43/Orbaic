@@ -33,6 +33,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.analytics.FirebaseAnalytics.UserProperty;
@@ -192,53 +193,105 @@ public class UserRegister extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            int id = userTotal + 1;
-                            String userID = String.valueOf(id);
-
-                            Random a = new Random();
-                            int b = a.nextInt(9999);
-                            int c = a.nextInt(9999);
-                            String code = String.valueOf(b) + String.valueOf(c);
-
-
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("users");
-                            Map<String, String> map = new HashMap<>();
-                            map.put("point","0");
-                            map.put("phone","0");
-                            map.put("click","0");
-                            map.put("country",country);
-                            map.put("birthdate","0");
-                            map.put("referral",code);
-                            map.put("referralButton","ON");
-                            map.put("type","0");
-                            map.put("name",name);
-                            map.put("email",email);
-                            map.put("id",userID);
-                            map.put("extra1","0");
-                            map.put("extra2","0");
-                            map.put("extra3","0");
-                            if (mAuth.getUid() == null){
-                                return;
-                            }
-                            myRef.child(mAuth.getUid()).setValue(map);
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            if (currentUser != null) {
-                                currentUser.sendEmailVerification();
-                            }
-
-                            DatabaseReference reference = database.getReference("userId");
-                            reference.child("totalUserId").setValue(userID);
-                            progressDialog.dismiss();
+                            Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
-                            updateUI();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            register_fail.setVisibility(View.VISIBLE);
-                            register_password.setError("Enter minimum 6 character Password");
-                            progressDialog.dismiss();
+                            FirebaseUser uid = mAuth.getCurrentUser();
+                            Map<String, Object> userInfo = new HashMap<>();
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+                            ref.child(uid.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    System.out.println("work");
+                                    String point = "1";
+                                    for (DataSnapshot userData : snapshot.getChildren()){
+                                        String key = userData.getKey();
+                                        Object value = userData.getValue();
 
+                                        userInfo.put(key, value);
+                                    }
+
+                                    point = String.valueOf(userInfo.get("point"));
+                                    System.out.println(point);
+                                    if (point.equals("1") | point.equals("null")){
+                                        Toast.makeText(UserRegister.this, "You have created a new account ", Toast.LENGTH_SHORT).show();
+                                        int id = userTotal + 1;
+                                        String userID = String.valueOf(id);
+
+                                        Random a = new Random();
+                                        int b = a.nextInt(9999);
+                                        int c = a.nextInt(9999);
+                                        String code = String.valueOf(b) + String.valueOf(c);
+
+                                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
+                                        if (account == null){
+                                            return;
+                                        }
+                                        String name = account.getDisplayName();
+                                        String email = account.getEmail();
+
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference myRef = database.getReference("users");
+                                        Map<String, String> map = new HashMap<>();
+                                        map.put("point","0");
+                                        map.put("phone","0");
+                                        map.put("click","0");
+                                        map.put("country",country);
+                                        map.put("birthdate","0");
+                                        map.put("referral",code);
+                                        map.put("referralButton","ON");
+                                        map.put("type","0");
+                                        map.put("name",name);
+                                        map.put("email",email);
+                                        map.put("id",userID);
+                                        map.put("extra1","0");
+                                        map.put("extra2","0");
+                                        map.put("extra3","0");
+                                        if (mAuth.getUid() == null){
+                                            return;
+                                        }
+                                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                                        if (currentUser != null) {
+                                            currentUser.sendEmailVerification();
+                                        }
+
+                                        mAuth.getCurrentUser().sendEmailVerification();
+                                        myRef.child(mAuth.getUid()).setValue(map);
+
+                                        DatabaseReference reference = database.getReference("userId");
+                                        reference.child("totalUserId").setValue(userID)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        updateUI();
+                                                        progressDialog.dismiss();
+                                                    }
+                                                });
+
+                                        Toast.makeText(UserRegister.this, "token Successful", Toast.LENGTH_LONG).show();
+                                    }else {
+                                        Toast.makeText(UserRegister.this, " You have already an account", Toast.LENGTH_SHORT).show();
+                                        updateUI();
+                                        progressDialog.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(UserRegister.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            });
+                            /*if (uid != null){
+                                progressDialog.dismiss();
+                                updateUI();
+                            }else {
+                                Toast.makeText(LoginLayout.this, "Please create a new account", Toast.LENGTH_SHORT).show();
+                            }*/
+                        } else {
+
+                            Toast.makeText(UserRegister.this,"token Error",Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                            // If sign in fails, display a message to the user.
                         }
                     }
                 });
