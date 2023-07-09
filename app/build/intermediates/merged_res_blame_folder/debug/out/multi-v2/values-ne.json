@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-59:/values-ne/values-ne.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-61:/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\57c721176de24237e51da49092373f21\\transformed\\navigation-ui-2.6.0\\res\\values-ne\\values-ne.xml",

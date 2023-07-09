@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-59:/values-mk/values-mk.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-mk/values-mk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\26b28e7209e49f16a73fb180afbeeced\\transformed\\appcompat-1.6.1\\res\\values-mk\\values-mk.xml",

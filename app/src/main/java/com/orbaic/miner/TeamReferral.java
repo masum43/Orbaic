@@ -234,7 +234,7 @@ public class TeamReferral extends Fragment {
 
                             System.out.println("error!");
 
-                            Toast.makeText(getContext(), "Code not Found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Code not Found"  , Toast.LENGTH_SHORT).show();
 
                         }
                     });

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-59:/values-vi/values-vi.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-61:/values-vi/values-vi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\a8a9f841e3f0e7743e5261cfa9d0f046\\transformed\\material-1.9.0\\res\\values-vi\\values-vi.xml",

@@ -1,13 +1,13 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.orbaic.miner"
-4    android:versionCode="8"
-5    android:versionName="1.0.8" >
+4    android:versionCode="10"
+5    android:versionName="1.1.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
 8-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml
-9        android:targetSdkVersion="33" />
+9        android:targetSdkVersion="34" />
 9-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
@@ -266,7 +266,7 @@
 142            android:name="com.google.firebase.components.ComponentDiscoveryService"
 142-->[com.google.firebase:firebase-dynamic-links-ktx:21.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\3a73060df45942e6ae904f126bac5bc8\transformed\firebase-dynamic-links-ktx-21.1.0\AndroidManifest.xml:25:13-84
 143            android:directBootAware="true"
-143-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:34:13-43
+143-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:34:13-43
 144            android:exported="false" >
 144-->[com.google.firebase:firebase-dynamic-links-ktx:21.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\3a73060df45942e6ae904f126bac5bc8\transformed\firebase-dynamic-links-ktx-21.1.0\AndroidManifest.xml:26:13-37
 145            <meta-data
@@ -336,11 +336,11 @@
 177                android:value="com.google.firebase.components.ComponentRegistrar" />
 177-->[com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:19:17-82
 178            <meta-data
-178-->[com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:14:13-16:85
+178-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:14:13-16:85
 179                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
-179-->[com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:15:17-113
+179-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:15:17-113
 180                android:value="com.google.firebase.components.ComponentRegistrar" />
-180-->[com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:16:17-82
+180-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:16:17-82
 181            <meta-data
 181-->[com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:12:13-14:85
 182                android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar"
@@ -458,17 +458,17 @@
 244                android:value="androidx.startup" />
 244-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ruhul\.gradle\caches\transforms-3\7b287c446d5baee01c533293918bacac\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
 245            <meta-data
-245-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:42:13-44:52
+245-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:42:13-44:52
 246                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-246-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:43:17-78
+246-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:43:17-78
 247                android:value="androidx.startup" />
-247-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:44:17-49
+247-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:44:17-49
 248            <meta-data
-248-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:45:13-47:52
+248-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:45:13-47:52
 249                android:name="com.unity3d.services.core.configuration.AdsSdkInitializer"
-249-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:46:17-89
+249-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:46:17-89
 250                android:value="androidx.startup" />
-250-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:47:17-49
+250-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:47:17-49
 251            <meta-data
 251-->[androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:36:13-38:52
 252                android:name="androidx.work.WorkManagerInitializer"
@@ -549,74 +549,74 @@
 294-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\f56f10b7a0bc74aacf6213ea0019ae7f\transformed\play-services-measurement-21.3.0\AndroidManifest.xml:43:13-69
 295
 296        <provider
-296-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:25:9-30:39
+296-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
 297            android:name="com.google.firebase.provider.FirebaseInitProvider"
-297-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:26:13-77
+297-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:26:13-77
 298            android:authorities="com.orbaic.miner.firebaseinitprovider"
-298-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:27:13-72
+298-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:27:13-72
 299            android:directBootAware="true"
-299-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:28:13-43
+299-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:28:13-43
 300            android:exported="false"
-300-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:29:13-37
+300-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:29:13-37
 301            android:initOrder="100" />
-301-->[com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:30:13-36
+301-->[com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:30:13-36
 302
 303        <activity
-303-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-304            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-304-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-305            android:exported="false"
-305-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-306            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-306-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-307        <activity
-307-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:13:9-18:74
-308            android:name="com.unity3d.services.ads.adunit.AdUnitActivity"
-308-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:14:13-74
-309            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-309-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:15:13-170
-310            android:exported="false"
-310-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:16:13-37
-311            android:hardwareAccelerated="true"
-311-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:17:13-47
-312            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-312-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:18:13-71
-313        <activity
-313-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:19:9-24:86
-314            android:name="com.unity3d.services.ads.adunit.AdUnitTransparentActivity"
-314-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:20:13-85
-315            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-315-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:21:13-170
-316            android:exported="false"
-316-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:22:13-37
-317            android:hardwareAccelerated="true"
-317-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:23:13-47
-318            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-318-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:24:13-83
-319        <activity
-319-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:25:9-30:86
-320            android:name="com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity"
-320-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:26:13-93
-321            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-321-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:27:13-170
-322            android:exported="false"
-322-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:28:13-37
-323            android:hardwareAccelerated="false"
-323-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:29:13-48
-324            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-324-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:30:13-83
-325        <activity
-325-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:31:9-36:74
-326            android:name="com.unity3d.services.ads.adunit.AdUnitSoftwareActivity"
-326-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:32:13-82
-327            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-327-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:33:13-170
-328            android:exported="false"
-328-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:34:13-37
-329            android:hardwareAccelerated="false"
-329-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:35:13-48
-330            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
-330-->[com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:36:13-71
+303-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:13:9-18:74
+304            android:name="com.unity3d.services.ads.adunit.AdUnitActivity"
+304-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:14:13-74
+305            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+305-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:15:13-170
+306            android:exported="false"
+306-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:16:13-37
+307            android:hardwareAccelerated="true"
+307-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:17:13-47
+308            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+308-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:18:13-71
+309        <activity
+309-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:19:9-24:86
+310            android:name="com.unity3d.services.ads.adunit.AdUnitTransparentActivity"
+310-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:20:13-85
+311            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+311-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:21:13-170
+312            android:exported="false"
+312-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:22:13-37
+313            android:hardwareAccelerated="true"
+313-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:23:13-47
+314            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+314-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:24:13-83
+315        <activity
+315-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:25:9-30:86
+316            android:name="com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity"
+316-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:26:13-93
+317            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+317-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:27:13-170
+318            android:exported="false"
+318-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:28:13-37
+319            android:hardwareAccelerated="false"
+319-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:29:13-48
+320            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+320-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:30:13-83
+321        <activity
+321-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:31:9-36:74
+322            android:name="com.unity3d.services.ads.adunit.AdUnitSoftwareActivity"
+322-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:32:13-82
+323            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+323-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:33:13-170
+324            android:exported="false"
+324-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:34:13-37
+325            android:hardwareAccelerated="false"
+325-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:35:13-48
+326            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+326-->[com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:36:13-71
+327        <activity
+327-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+328            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+328-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+329            android:exported="false"
+329-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+330            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+330-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
 331        <activity
 331-->[com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:53:9-58:43
 332            android:name="com.google.android.gms.ads.AdActivity"

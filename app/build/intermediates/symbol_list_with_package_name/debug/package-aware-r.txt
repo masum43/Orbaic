@@ -4118,6 +4118,8 @@ mipmap ic_launcher_round
 mipmap telegram
 plurals mtrl_badge_content_description
 raw firebase_common_keep
+raw keep_cronet_api
+string CronetProviderClassName
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

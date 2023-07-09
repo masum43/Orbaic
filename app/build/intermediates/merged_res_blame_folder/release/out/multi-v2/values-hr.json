@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-59:/values-hr/values-hr.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\7db79fc6b3b160cc4fa77cea59d3d602\\transformed\\play-services-basement-18.2.0\\res\\values-hr\\values.xml",

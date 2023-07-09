@@ -43,6 +43,8 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -84,8 +86,9 @@ public class Home extends Fragment {
     private ImageView referral,white,facebook,twitter,telegram,instagram, mining;
     private RecyclerView postList;
 
-    FirebaseUser currentUser;
+    Task<Void> currentUser;
 
+    FirebaseUser user;
     String referralStatus,referralBy;
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
@@ -147,17 +150,22 @@ public class Home extends Fragment {
         });
 
         //user email verification
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        boolean vri = currentUser.isEmailVerified();
-        System.out.println(vri);
-        if (currentUser == null){
-            Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
-        }
-        if (vri) {
 
-        }else {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
 
-        }
+
+        currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println(user.isEmailVerified());
+                if (user.isEmailVerified()) {
+                    Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
+                }else {
+                    dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                }
+            }
+        });
 
 
 
@@ -516,18 +524,32 @@ public class Home extends Fragment {
         builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (currentUser == null){
                     Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
-                }else if (!currentUser.isEmailVerified()) {
-                    dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                 }
+                currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
+
+
+                currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        System.out.println(user.isEmailVerified());
+                        if (user.isEmailVerified()) {
+                            Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
+                        }else {
+                            dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                        }
+                    }
+                });
+
+
             }
         });
         builder.setNegativeButton("Send Email", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                currentUser.sendEmailVerification();
+                user.sendEmailVerification();
                 dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
             }
         });

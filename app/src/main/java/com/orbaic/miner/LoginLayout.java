@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
@@ -14,6 +15,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,16 +44,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 
 public class LoginLayout extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100;
+
+    private int REQUEST_LOCATION_PERMISSION = 101;
+
+    Context context;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     private GoogleSignInClient mGoogleSignInClient;
+    private String country = "";
+    private int userTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +82,8 @@ public class LoginLayout extends AppCompatActivity {
             Intent intent = new Intent(LoginLayout.this, UserRegister.class);
             startActivity(intent);
         });
+
+        context = this;
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -89,7 +113,8 @@ public class LoginLayout extends AppCompatActivity {
             FirebaseData data = new FirebaseData();
             data.readData();
             reload();
-
+        }else {
+            getLocationPermission();
         }
 
         //firebase login
@@ -206,7 +231,7 @@ public class LoginLayout extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInAnonymously()
+       /* mAuth.signInAnonymously()
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
@@ -221,8 +246,8 @@ public class LoginLayout extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(LoginLayout.this, "You have no account. To create a new account Please clear App data", Toast.LENGTH_SHORT).show();
                     }
-                });
-        /*mAuth.signInWithCredential(credential)
+                });*/
+        mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -230,24 +255,173 @@ public class LoginLayout extends AppCompatActivity {
                             Toast.makeText(LoginLayout.this,"token Successful",Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser uid = mAuth.getCurrentUser();
-                            if (uid != null){
+                            Map<String, Object> userInfo = new HashMap<>();
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+                            ref.child(uid.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    System.out.println("work");
+                                    String point = "1";
+                                    for (DataSnapshot userData : snapshot.getChildren()){
+                                        String key = userData.getKey();
+                                        Object value = userData.getValue();
+
+                                        userInfo.put(key, value);
+                                    }
+
+                                    point = String.valueOf(userInfo.get("point"));
+                                    System.out.println(point);
+                                    if (point.equals("1") | point.equals("null")){
+                                        Toast.makeText(LoginLayout.this, "You have created a new account ", Toast.LENGTH_SHORT).show();
+                                        int id = userTotal + 1;
+                                        String userID = String.valueOf(id);
+
+                                        Random a = new Random();
+                                        int b = a.nextInt(9999);
+                                        int c = a.nextInt(9999);
+                                        String code = String.valueOf(b) + String.valueOf(c);
+
+                                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
+                                        if (account == null){
+                                            return;
+                                        }
+                                        String name = account.getDisplayName();
+                                        String email = account.getEmail();
+
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference myRef = database.getReference("users");
+                                        Map<String, String> map = new HashMap<>();
+                                        map.put("point","0");
+                                        map.put("phone","0");
+                                        map.put("click","0");
+                                        map.put("country",country);
+                                        map.put("birthdate","0");
+                                        map.put("referral",code);
+                                        map.put("referralButton","ON");
+                                        map.put("type","0");
+                                        map.put("name",name);
+                                        map.put("email",email);
+                                        map.put("id",userID);
+                                        map.put("extra1","0");
+                                        map.put("extra2","0");
+                                        map.put("extra3","0");
+                                        if (mAuth.getUid() == null){
+                                            return;
+                                        }
+                                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                                        if (currentUser != null) {
+                                            currentUser.sendEmailVerification();
+                                        }
+
+                                        mAuth.getCurrentUser().sendEmailVerification();
+                                        myRef.child(mAuth.getUid()).setValue(map);
+
+                                        DatabaseReference reference = database.getReference("userId");
+                                        reference.child("totalUserId").setValue(userID)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        updateUI();
+                                                    }
+                                                });
+
+                                        Toast.makeText(LoginLayout.this, "token Successful", Toast.LENGTH_LONG).show();
+                                    }else {
+                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
+                                        updateUI();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(LoginLayout.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            /*if (uid != null){
                                 progressDialog.dismiss();
                                 updateUI();
                             }else {
                                 Toast.makeText(LoginLayout.this, "Please create a new account", Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
                         } else {
 
                             Toast.makeText(LoginLayout.this,"token Error",Toast.LENGTH_LONG).show();
                             // If sign in fails, display a message to the user.
                         }
                     }
-                });*/
+                });
     }
 
     private void updateUI() {
         Intent intent = new Intent(LoginLayout.this, MainActivity2.class);
         startActivity(intent);
         finish();
+    }
+
+    private void getLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // If permission is not granted, request it
+            ActivityCompat.requestPermissions(this, new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+            }, REQUEST_LOCATION_PERMISSION);
+        } else {
+            getUserCountry(context);
+        }
+
+    }
+
+    public void getUserCountry(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        String country = "";
+
+        if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            try {
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                }
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (location != null) {
+                    Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    if (addresses.size() > 0) {
+                        country = addresses.get(0).getCountryName();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        this.country = country;
+
+       /* if (country.equals("Philippines")){
+            dialogShowing("Not Available", "We are stop to create account from Philippines");
+        }*/
+
+    }
+
+    private void idCreate() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("userId");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String id = snapshot.child("totalUserId").getValue().toString();
+                userTotal = Integer.parseInt(id);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("" + error.getMessage());
+
+            }
+        });
     }
 }

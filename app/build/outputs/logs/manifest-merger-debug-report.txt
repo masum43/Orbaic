@@ -54,17 +54,18 @@ MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] C:\Users\ruhul\
 MERGED from [com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ruhul\.gradle\caches\transforms-3\e725db180590694f7d500f0ee444ae17\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:15:1-33:12
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:17:1-37:12
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:2:1-23:12
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:2:1-20:12
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:2:1-18:12
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\d42992a7218142da1b858faa2b64b715\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\277979145ad8edf6b8559579866fa6b2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\3200d56448af8a0def77d65561975cfa\transformed\play-services-appset-16.0.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:2:1-55:12
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\bd2de6aa8d58bdfb9e7216cb6707ba51\transformed\play-services-cronet-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2456e187491b44a5d4127cc72a24044a\transformed\firebase-installations-interop-17.1.0\AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2a9b406b88333c9868574d3c3281fd8e\transformed\firebase-iid-interop-17.1.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:2:1-13:12
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:2:1-51:12
 MERGED from [androidx.fragment:fragment-ktx:1.6.0] C:\Users\ruhul\.gradle\caches\transforms-3\bcced56e7dec1df5e2a1d67e3c9e3a32\transformed\fragment-ktx-1.6.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\f1ddcaa4ceff0cbbfe247fa89c1ac4a7\transformed\activity-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity-ktx:1.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\383a2f004172768da888b544dcc1799e\transformed\activity-ktx-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -129,6 +130,7 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\ruhul\.gradle\caches\transform
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2eb5edce098c90c8272d590933890408\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\56eae117fac1c099e80a9cd809e90947\transformed\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\c12c8482bce74504cdd9e8319afd0ddd\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\bd17239e8586bf26db572de471c0f680\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\ruhul\.gradle\caches\transforms-3\54ba7de186a5859ab66fd9ee0a87d98e\transformed\rxandroid-2.0.2\AndroidManifest.xml:15:1-21:12
 INJECTED from C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:2:1-98:12
@@ -170,10 +172,10 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Use
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:9:5-67
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:9:5-67
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:8:5-67
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:8:5-67
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:9:5-67
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:9:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:24:5-67
 MERGED from [com.facebook.android:audience-network-sdk:6.14.0] C:\Users\ruhul\.gradle\caches\transforms-3\e6f21c366835244c781fa580dab942b2\transformed\audience-network-sdk-6.14.0\AndroidManifest.xml:15:5-67
@@ -184,6 +186,8 @@ MERGED from [com.vungle:publisher-sdk-android:6.12.1] C:\Users\ruhul\.gradle\cac
 MERGED from [com.vungle:publisher-sdk-android:6.12.1] C:\Users\ruhul\.gradle\caches\transforms-3\c0efcbb8b3cc587a4f45f80c11a2f552\transformed\publisher-sdk-android-6.12.1\AndroidManifest.xml:12:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ruhul\.gradle\caches\transforms-3\e18445c922ea4361c0a5f8d94c6cf435\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ruhul\.gradle\caches\transforms-3\e18445c922ea4361c0a5f8d94c6cf435\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:19:5-66
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:19:5-66
 	android:name
 		ADDED from C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
@@ -208,10 +212,10 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Use
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:9:5-79
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:8:5-79
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:7:5-79
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:8:5-79
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:25:5-79
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:26:5-79
@@ -226,6 +230,8 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Us
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ruhul\.gradle\caches\transforms-3\e18445c922ea4361c0a5f8d94c6cf435\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ruhul\.gradle\caches\transforms-3\6d7680cc2d10662dfdb2dc390f21ffa6\transformed\transport-runtime-3.1.8\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ruhul\.gradle\caches\transforms-3\6d7680cc2d10662dfdb2dc390f21ffa6\transformed\transport-runtime-3.1.8\AndroidManifest.xml:22:5-79
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:20:5-78
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:20:5-78
 	android:name
 		ADDED from C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.ACCESS_WIFI_STATE
@@ -292,22 +298,24 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Use
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:13:5-21:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:10:5-18:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:10:5-16:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:10:5-16:19
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:24:5-37:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\d42992a7218142da1b858faa2b64b715\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:23:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\d42992a7218142da1b858faa2b64b715\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:23:5-20
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\3200d56448af8a0def77d65561975cfa\transformed\play-services-appset-16.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\3200d56448af8a0def77d65561975cfa\transformed\play-services-appset-16.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:12:5-53:19
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:12:5-53:19
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\bd2de6aa8d58bdfb9e7216cb6707ba51\transformed\play-services-cronet-18.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\bd2de6aa8d58bdfb9e7216cb6707ba51\transformed\play-services-cronet-18.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2a9b406b88333c9868574d3c3281fd8e\transformed\firebase-iid-interop-17.1.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2a9b406b88333c9868574d3c3281fd8e\transformed\firebase-iid-interop-17.1.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:12:5-49:19
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:12:5-49:19
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:50:5-78:19
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:50:5-78:19
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:30:5-143:19
@@ -586,18 +594,22 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Use
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\d42992a7218142da1b858faa2b64b715\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\d42992a7218142da1b858faa2b64b715\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\277979145ad8edf6b8559579866fa6b2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\277979145ad8edf6b8559579866fa6b2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\3200d56448af8a0def77d65561975cfa\transformed\play-services-appset-16.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\3200d56448af8a0def77d65561975cfa\transformed\play-services-appset-16.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:6:5-44
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\bd2de6aa8d58bdfb9e7216cb6707ba51\transformed\play-services-cronet-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\bd2de6aa8d58bdfb9e7216cb6707ba51\transformed\play-services-cronet-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2456e187491b44a5d4127cc72a24044a\transformed\firebase-installations-interop-17.1.0\AndroidManifest.xml:18:5-20:41
@@ -606,8 +618,6 @@ MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\ruhul\.gr
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\2a9b406b88333c9868574d3c3281fd8e\transformed\firebase-iid-interop-17.1.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\ruhul\.gradle\caches\transforms-3\04f29c0754d0b60a6773a7a7dd6cfb62\transformed\play-services-cloud-messaging-17.0.1\AndroidManifest.xml:5:5-44
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:6:5-44
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:6:5-44
 MERGED from [androidx.fragment:fragment-ktx:1.6.0] C:\Users\ruhul\.gradle\caches\transforms-3\bcced56e7dec1df5e2a1d67e3c9e3a32\transformed\fragment-ktx-1.6.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment-ktx:1.6.0] C:\Users\ruhul\.gradle\caches\transforms-3\bcced56e7dec1df5e2a1d67e3c9e3a32\transformed\fragment-ktx-1.6.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\f1ddcaa4ceff0cbbfe247fa89c1ac4a7\transformed\activity-1.6.1\AndroidManifest.xml:20:5-44
@@ -736,6 +746,8 @@ MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\ruhul\.gradle\caches\transfo
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\56eae117fac1c099e80a9cd809e90947\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\c12c8482bce74504cdd9e8319afd0ddd\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\c12c8482bce74504cdd9e8319afd0ddd\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:18:5-74
+MERGED from [org.chromium.net:cronet-api:72.3626.96] C:\Users\ruhul\.gradle\caches\transforms-3\74a2a52acc623e7f779a90fa088f7483\transformed\cronet-api-72.3626.96\AndroidManifest.xml:18:5-74
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\bd17239e8586bf26db572de471c0f680\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\bd17239e8586bf26db572de471c0f680\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\ruhul\.gradle\caches\transforms-3\54ba7de186a5859ab66fd9ee0a87d98e\transformed\rxandroid-2.0.2\AndroidManifest.xml:19:5-43
@@ -774,18 +786,18 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Use
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:28:9-34:19
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:14:9-20:19
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:11:9-17:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:11:9-15:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:11:9-15:19
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:32:9-36:35
 	android:exported
 		ADDED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\3a73060df45942e6ae904f126bac5bc8\transformed\firebase-dynamic-links-ktx-21.1.0\AndroidManifest.xml:26:13-37
 	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:36:13-32
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:36:13-32
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:34:13-43
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:34:13-43
 	android:name
 		ADDED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\3a73060df45942e6ae904f126bac5bc8\transformed\firebase-dynamic-links-ktx-21.1.0\AndroidManifest.xml:25:13-84
 meta-data#com.google.firebase.components:com.google.firebase.dynamiclinks.ktx.FirebaseDynamicLinksKtxRegistrar
@@ -876,8 +888,8 @@ ADDED from [com.google.firebase:firebase-database:20.2.2] C:\Users\ruhul\.gradle
 		ADDED from [com.google.firebase:firebase-database:20.2.2] C:\Users\ruhul\.gradle\caches\transforms-3\75522f08930d3769106886c12d5f5236\transformed\firebase-database-20.2.2\AndroidManifest.xml:32:17-109
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ruhul\.gradle\caches\transforms-3\7b287c446d5baee01c533293918bacac\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:38:9-48:20
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:38:9-48:20
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:38:9-52:20
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:38:9-52:20
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:31:9-39:20
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:31:9-39:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\332f2f115195a1d3aedef54648897583\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:24:9-32:20
@@ -998,8 +1010,8 @@ uses-permission#com.google.android.gms.permission.AD_ID
 ADDED from [com.google.android.gms:play-services-measurement-impl:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\5bc15c5cfe9bf4b3f1cfadacbf178d29\transformed\play-services-measurement-impl-21.3.0\AndroidManifest.xml:27:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\ruhul\.gradle\caches\transforms-3\759eff87edd16070998827b588a4e358\transformed\play-services-measurement-api-21.3.0\AndroidManifest.xml:25:5-79
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:10:5-79
-MERGED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:10:5-79
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:10:5-79
+MERGED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:10:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\60a2aeafc173ff08fc7af49c1abdf8ed\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:23:5-79
@@ -1041,11 +1053,11 @@ ADDED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.g
 	android:name
 		ADDED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\ruhul\.gradle\caches\transforms-3\930a57538dc7a5a1ee85be9f7dc481ef\transformed\firebase-installations-17.1.3\AndroidManifest.xml:18:17-127
 meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar
-ADDED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:14:13-16:85
+ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:14:13-16:85
 	android:value
-		ADDED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:16:17-82
+		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:16:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-common-ktx:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9e600f27f57c3f37b8097718b493dd38\transformed\firebase-common-ktx-20.3.2\AndroidManifest.xml:15:17-113
+		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\36dd626ac2c6ce9829527d7a6fdfde0c\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:15:17-113
 meta-data#com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar
 ADDED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:12:13-14:85
 	android:value
@@ -1053,17 +1065,87 @@ ADDED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\cach
 	android:name
 		ADDED from [com.google.firebase:firebase-abt:21.1.1] C:\Users\ruhul\.gradle\caches\transforms-3\c63353d43fda1e66b0c070e9f33f8a1e\transformed\firebase-abt-21.1.1\AndroidManifest.xml:13:17-109
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:25:9-30:39
+ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:27:13-72
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:27:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:29:13-37
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:29:13-37
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:28:13-43
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:28:13-43
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:30:13-36
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:30:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\38899d1616c6e5732e84cec0232e0792\transformed\firebase-common-20.3.2\AndroidManifest.xml:26:13-77
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\ruhul\.gradle\caches\transforms-3\2694e403857b1b08c33359a706e6dbb5\transformed\firebase-common-20.3.3\AndroidManifest.xml:26:13-77
+activity#com.unity3d.services.ads.adunit.AdUnitActivity
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:13:9-18:74
+	android:hardwareAccelerated
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:17:13-47
+	android:exported
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:16:13-37
+	android:configChanges
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:15:13-170
+	android:theme
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:18:13-71
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:14:13-74
+activity#com.unity3d.services.ads.adunit.AdUnitTransparentActivity
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:19:9-24:86
+	android:hardwareAccelerated
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:23:13-47
+	android:exported
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:22:13-37
+	android:configChanges
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:21:13-170
+	android:theme
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:24:13-83
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:20:13-85
+activity#com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:25:9-30:86
+	android:hardwareAccelerated
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:29:13-48
+	android:exported
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:28:13-37
+	android:configChanges
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:27:13-170
+	android:theme
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:30:13-83
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:26:13-93
+activity#com.unity3d.services.ads.adunit.AdUnitSoftwareActivity
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:31:9-36:74
+	android:hardwareAccelerated
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:35:13-48
+	android:exported
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:34:13-37
+	android:configChanges
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:33:13-170
+	android:theme
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:36:13-71
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:32:13-82
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:42:13-44:52
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\332f2f115195a1d3aedef54648897583\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\332f2f115195a1d3aedef54648897583\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:44:17-49
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:43:17-78
+meta-data#com.unity3d.services.core.configuration.AdsSdkInitializer
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:45:13-47:52
+	android:value
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:47:17-49
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:46:17-89
+meta-data#com.unity3d.services.core.network.core.CronetInitializer
+ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:48:13-51:39
+	tools:node
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:51:17-36
+	android:value
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:50:17-49
+	android:name
+		ADDED from [com.unity3d.ads:unity-ads:4.8.0] C:\Users\ruhul\.gradle\caches\transforms-3\d5add1bb924be4977b753bd3f7d219d6\transformed\unity-ads-4.8.0\AndroidManifest.xml:49:17-88
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
 	android:exported
@@ -1072,68 +1154,6 @@ ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gr
 		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
 	android:name
 		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\0fe2471882af32d462f6155083e385ac\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-activity#com.unity3d.services.ads.adunit.AdUnitActivity
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:13:9-18:74
-	android:hardwareAccelerated
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:17:13-47
-	android:exported
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:16:13-37
-	android:configChanges
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:15:13-170
-	android:theme
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:18:13-71
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:14:13-74
-activity#com.unity3d.services.ads.adunit.AdUnitTransparentActivity
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:19:9-24:86
-	android:hardwareAccelerated
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:23:13-47
-	android:exported
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:22:13-37
-	android:configChanges
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:21:13-170
-	android:theme
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:24:13-83
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:20:13-85
-activity#com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:25:9-30:86
-	android:hardwareAccelerated
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:29:13-48
-	android:exported
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:28:13-37
-	android:configChanges
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:27:13-170
-	android:theme
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:30:13-83
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:26:13-93
-activity#com.unity3d.services.ads.adunit.AdUnitSoftwareActivity
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:31:9-36:74
-	android:hardwareAccelerated
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:35:13-48
-	android:exported
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:34:13-37
-	android:configChanges
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:33:13-170
-	android:theme
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:36:13-71
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:32:13-82
-meta-data#androidx.lifecycle.ProcessLifecycleInitializer
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:42:13-44:52
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\332f2f115195a1d3aedef54648897583\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ruhul\.gradle\caches\transforms-3\332f2f115195a1d3aedef54648897583\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-	android:value
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:44:17-49
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:43:17-78
-meta-data#com.unity3d.services.core.configuration.AdsSdkInitializer
-ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:45:13-47:52
-	android:value
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:47:17-49
-	android:name
-		ADDED from [com.unity3d.ads:unity-ads:4.7.1] C:\Users\ruhul\.gradle\caches\transforms-3\4489d2438f97dcb8f3475a7183847bc6\transformed\unity-ads-4.7.1\AndroidManifest.xml:46:17-89
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:27:5-29:31
 REJECTED from [androidx.work:work-runtime:2.7.0] C:\Users\ruhul\.gradle\caches\transforms-3\9e766a9f6365e249fc8ddf22558dd62d\transformed\work-runtime-2.7.0\AndroidManifest.xml:27:5-81

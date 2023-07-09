@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-59:/values-bn/values-bn.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-61:/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\539c0f5009f4f6941cbe7f851e39ce57\\transformed\\browser-1.4.0\\res\\values-bn\\values-bn.xml",

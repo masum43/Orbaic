@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-59:/values-sl/values-sl.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-sl/values-sl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ruhul\\.gradle\\caches\\transforms-3\\a8a9f841e3f0e7743e5261cfa9d0f046\\transformed\\material-1.9.0\\res\\values-sl\\values-sl.xml",
