@@ -43,6 +43,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.orbaic.miner.wordpress.Post;
 import com.orbaic.miner.wordpress.PostAdapter;
 import com.orbaic.miner.wordpress.RetrofitClient;
@@ -170,7 +172,15 @@ public class Home extends Fragment {
 
 
         transfer.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+            PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    String token = task.getResult();
+                    notificationExtra.sendNotification(token, "Test", "body");
+                }
+            });
+            /*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*/
         });
 
         //learn and earn
@@ -555,6 +565,8 @@ public class Home extends Fragment {
         });
         builder.create().show();
     }
+
+
 
 
 

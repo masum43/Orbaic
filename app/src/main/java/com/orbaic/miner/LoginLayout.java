@@ -112,6 +112,7 @@ public class LoginLayout extends AppCompatActivity {
         if (currentUser != null) {
             FirebaseData data = new FirebaseData();
             data.readData();
+
             reload();
         }else {
             getLocationPermission();
@@ -376,6 +377,33 @@ public class LoginLayout extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getUserCountry(context);
+            } else {
+                dialogShowing("Location Permission is denied","Orbaic has not user location permission. So that, It is happening");
+            }
+        }
+    }
+
+    private void dialogShowing(String title, String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setCancelable(false);
+        builder.setPositiveButton("Back", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                LoginLayout.super.onBackPressed();
+            }
+        });
+        builder.create().show();
+    }
+
     public void getUserCountry(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         String country = "";
@@ -397,6 +425,7 @@ public class LoginLayout extends AppCompatActivity {
                     List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     if (addresses.size() > 0) {
                         country = addresses.get(0).getCountryName();
+                        System.out.println(country);
                     }
                 }
             } catch (IOException e) {
