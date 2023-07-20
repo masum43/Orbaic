@@ -37,27 +37,27 @@
 20        <intent>
 20-->[com.google.firebase:firebase-inappmessaging-display:20.3.2] C:\Users\ruhul\.gradle\caches\transforms-3\9aa52645c1f9ffb87daee3e54199b960\transformed\firebase-inappmessaging-display-20.3.2\AndroidManifest.xml:13:9-17:18
 21            <action android:name="android.intent.action.VIEW" />
-21-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:17-69
-21-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:25-66
+21-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:17-69
+21-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:25-66
 22
 23            <data android:scheme="https" />
-23-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:35:17-37:46
-23-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-43
+23-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:17-38:46
+23-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:38:21-43
 24        </intent>
 25        <!-- For browser content -->
 26        <intent>
 26-->[com.google.android.gms:play-services-ads-lite:22.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\fb37c40c5a33179fb0cc1172f8ea4a99\transformed\play-services-ads-lite-22.1.0\AndroidManifest.xml:35:9-41:18
 27            <action android:name="android.intent.action.VIEW" />
-27-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:17-69
-27-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:25-66
+27-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:17-69
+27-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:25-66
 28
 29            <category android:name="android.intent.category.BROWSABLE" />
-29-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-78
-29-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-75
+29-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:17-78
+29-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:27-75
 30
 31            <data android:scheme="https" />
-31-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:35:17-37:46
-31-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-43
+31-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:17-38:46
+31-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:38:21-43
 32        </intent> <!-- End of browser content -->
 33        <!-- For CustomTabsService -->
 34        <intent>
@@ -100,7 +100,7 @@
 51-->[androidx.core:core:1.9.0] C:\Users\ruhul\.gradle\caches\transforms-3\605ae55e9a00607eec9e74e1268a8988\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 52
 53    <application
-53-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:13:5-99:19
+53-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:13:5-100:19
 54        android:allowBackup="true"
 54-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:14:9-35
 55        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -124,146 +124,148 @@
 65        android:theme="@style/Theme.Orbaic" >
 65-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:21:9-44
 66        <activity
-66-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:23:9-25:40
+66-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:24:9-26:40
 67            android:name="com.orbaic.miner.LearnEarnActivity"
-67-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:24:13-46
+67-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:25:13-46
 68            android:exported="false" />
-68-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:25:13-37
+68-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:26:13-37
 69        <activity
-69-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:26:9-39:20
+69-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:27:9-40:20
 70            android:name="com.orbaic.miner.FirebaseDynamicLink"
-70-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:27:13-48
+70-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:28:13-48
 71            android:exported="true" >
-71-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:28:13-36
+71-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:29:13-36
 72            <intent-filter>
-72-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:29:13-38:29
+72-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:13-39:29
 73                <action android:name="android.intent.action.VIEW" />
-73-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:17-69
-73-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:25-66
+73-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:17-69
+73-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:25-66
 74
 75                <category android:name="android.intent.category.DEFAULT" />
-75-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:17-76
-75-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:27-73
+75-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-76
+75-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-73
 76                <category android:name="android.intent.category.BROWSABLE" />
-76-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-78
-76-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-75
+76-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:17-78
+76-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:27-75
 77
 78                <data
-78-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:35:17-37:46
+78-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:17-38:46
 79                    android:host="orbaic.com"
-79-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:21-46
+79-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-46
 80                    android:scheme="https" />
-80-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-43
+80-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:38:21-43
 81            </intent-filter>
 82        </activity>
 83        <activity
-83-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:40:9-42:40
+83-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:41:9-43:40
 84            android:name="com.orbaic.miner.ReferralData"
-84-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:41:13-41
+84-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:42:13-41
 85            android:exported="false" />
-85-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:42:13-37
+85-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:43:13-37
 86        <activity
-86-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:43:9-45:40
+86-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:44:9-46:40
 87            android:name="com.orbaic.miner.WebViewContent"
-87-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:44:13-43
+87-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:45:13-43
 88            android:exported="false" />
-88-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:45:13-37
+88-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:46:13-37
 89        <activity
-89-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:46:9-54:20
+89-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:47:9-55:20
 90            android:name="com.orbaic.miner.MainActivity2"
-90-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:47:13-42
+90-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:48:13-42
 91            android:exported="false"
-91-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:48:13-37
+91-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:49:13-37
 92            android:label="@string/title_activity_main2"
-92-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:49:13-57
+92-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:50:13-57
 93            android:theme="@style/Theme.Orbaic.NoActionBar" >
-93-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:50:13-60
+93-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:51:13-60
 94            <meta-data
-94-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:51:13-53:36
+94-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:13-54:36
 95                android:name="android.app.lib_name"
-95-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:17-52
+95-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-52
 96                android:value="" />
-96-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-33
+96-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:54:17-33
 97        </activity>
 98        <activity
-98-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:55:9-58:20
+98-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:56:9-59:20
 99            android:name="com.orbaic.miner.ForgetPassword"
-99-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:56:13-43
+99-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:57:13-43
 100            android:exported="false" >
-100-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:57:13-37
+100-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:58:13-37
 101        </activity>
 102        <activity
-102-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:59:9-65:20
+102-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:60:9-66:20
 103            android:name="com.orbaic.miner.UserRegister"
-103-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:60:13-41
+103-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:61:13-41
 104            android:exported="false" >
-104-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:61:13-37
+104-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:62:13-37
 105            <meta-data
-105-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:51:13-53:36
+105-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:13-54:36
 106                android:name="android.app.lib_name"
-106-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:17-52
+106-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-52
 107                android:value="" />
-107-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-33
+107-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:54:17-33
 108        </activity>
 109        <activity
-109-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:66:9-72:20
+109-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:67:9-73:20
 110            android:name="com.orbaic.miner.LoginLayout"
-110-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:67:13-40
+110-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:68:13-40
 111            android:exported="false" >
-111-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:68:13-37
+111-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:69:13-37
 112            <meta-data
-112-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:51:13-53:36
+112-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:13-54:36
 113                android:name="android.app.lib_name"
-113-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:17-52
+113-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-52
 114                android:value="" />
-114-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-33
+114-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:54:17-33
 115        </activity>
 116        <activity
-116-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:73:9-85:20
+116-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:74:9-86:20
 117            android:name="com.orbaic.miner.MainActivity"
-117-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:74:13-41
+117-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:75:13-41
 118            android:exported="true" >
-118-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:75:13-36
+118-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:76:13-36
 119            <intent-filter>
-119-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:76:13-80:29
+119-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:77:13-81:29
 120                <action android:name="android.intent.action.MAIN" />
-120-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:77:17-69
-120-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:77:25-66
+120-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:78:17-69
+120-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:78:25-66
 121
 122                <category android:name="android.intent.category.LAUNCHER" />
-122-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:79:17-77
-122-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:79:27-74
+122-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:80:17-77
+122-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:80:27-74
 123            </intent-filter>
 124
 125            <meta-data
-125-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:51:13-53:36
+125-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:13-54:36
 126                android:name="android.app.lib_name"
-126-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:52:17-52
+126-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-52
 127                android:value="" />
-127-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:53:17-33
+127-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:54:17-33
 128        </activity>
 129
 130        <service
-130-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:87:9-94:19
+130-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:88:9-95:19
 131            android:name="com.orbaic.miner.FirebasePushNotification"
-131-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:88:13-53
+131-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:89:13-53
 132            android:exported="true" >
-132-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:89:13-36
+132-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:90:13-36
 133            <intent-filter>
-133-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:90:13-93:29
+133-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:91:13-94:29
 134                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-134-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:91:17-78
-134-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:91:25-75
-135                <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+134-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:92:17-78
+134-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:92:25-75
+135                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+135-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:93:17-80
+135-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:93:25-77
 136            </intent-filter>
 137        </service>
 138
 139        <meta-data
-139-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:96:9-98:70
+139-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:97:9-99:70
 140            android:name="com.google.android.gms.ads.APPLICATION_ID"
-140-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:97:13-69
+140-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:98:13-69
 141            android:value="ca-app-pub-9323045181924630~1237231879" />
-141-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:98:13-67
+141-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:99:13-67
 142
 143        <service
 143-->[com.google.firebase:firebase-dynamic-links-ktx:21.1.0] C:\Users\ruhul\.gradle\caches\transforms-3\3a73060df45942e6ae904f126bac5bc8\transformed\firebase-dynamic-links-ktx-21.1.0\AndroidManifest.xml:24:9-30:19
@@ -393,23 +395,23 @@
 209            <intent-filter>
 209-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\eacc8d8d8153f206aa616fccbd5db5e5\transformed\firebase-auth-22.0.0\AndroidManifest.xml:35:13-45:29
 210                <action android:name="android.intent.action.VIEW" />
-210-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:17-69
-210-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:25-66
+210-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:17-69
+210-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:25-66
 211
 212                <category android:name="android.intent.category.DEFAULT" />
-212-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:17-76
-212-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:27-73
+212-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-76
+212-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-73
 213                <category android:name="android.intent.category.BROWSABLE" />
-213-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-78
-213-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-75
+213-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:17-78
+213-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:27-75
 214
 215                <data
-215-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:35:17-37:46
+215-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:17-38:46
 216                    android:host="firebase.auth"
-216-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:21-46
+216-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-46
 217                    android:path="/"
 218                    android:scheme="genericidp" />
-218-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-43
+218-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:38:21-43
 219            </intent-filter>
 220        </activity>
 221        <activity
@@ -427,23 +429,23 @@
 227            <intent-filter>
 227-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\ruhul\.gradle\caches\transforms-3\eacc8d8d8153f206aa616fccbd5db5e5\transformed\firebase-auth-22.0.0\AndroidManifest.xml:53:13-63:29
 228                <action android:name="android.intent.action.VIEW" />
-228-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:17-69
-228-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:30:25-66
+228-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:17-69
+228-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:31:25-66
 229
 230                <category android:name="android.intent.category.DEFAULT" />
-230-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:17-76
-230-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:32:27-73
+230-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-76
+230-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-73
 231                <category android:name="android.intent.category.BROWSABLE" />
-231-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:17-78
-231-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:33:27-75
+231-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:17-78
+231-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:34:27-75
 232
 233                <data
-233-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:35:17-37:46
+233-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:17-38:46
 234                    android:host="firebase.auth"
-234-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:36:21-46
+234-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-46
 235                    android:path="/"
 236                    android:scheme="recaptcha" />
-236-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:37:21-43
+236-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:38:21-43
 237            </intent-filter>
 238        </activity>
 239
@@ -515,10 +517,11 @@
 276            android:exported="false" >
 276-->[com.google.firebase:firebase-messaging:23.1.2] C:\Users\ruhul\.gradle\caches\transforms-3\aec35156ccd4d7b8276c9dc604f3ac02\transformed\firebase-messaging-23.1.2\AndroidManifest.xml:47:13-37
 277            <intent-filter android:priority="-500" >
-277-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:90:13-93:29
+277-->[com.google.firebase:firebase-messaging:23.1.2] C:\Users\ruhul\.gradle\caches\transforms-3\aec35156ccd4d7b8276c9dc604f3ac02\transformed\firebase-messaging-23.1.2\AndroidManifest.xml:48:13-50:29
+277-->[com.google.firebase:firebase-messaging:23.1.2] C:\Users\ruhul\.gradle\caches\transforms-3\aec35156ccd4d7b8276c9dc604f3ac02\transformed\firebase-messaging-23.1.2\AndroidManifest.xml:48:28-51
 278                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-278-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:91:17-78
-278-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:91:25-75
+278-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:92:17-78
+278-->C:\Users\ruhul\AndroidStudioProjects\Orbaic2\app\src\main\AndroidManifest.xml:92:25-75
 279            </intent-filter>
 280        </service>
 281

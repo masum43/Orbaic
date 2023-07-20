@@ -60,8 +60,13 @@ import com.orbaic.miner.wordpress.RetrofitClient;
 import com.orbaic.miner.wordpress.WordpressData;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -176,7 +181,25 @@ public class Home extends Fragment {
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
                 @Override
                 public void onComplete(@NonNull Task<String> task) {
+                    //get token
+                    String uid = FirebaseAuth.getInstance().getUid();
                     String token = task.getResult();
+                    System.out.println("Device Token : " +token);
+
+                    //get Time
+                    LocalDateTime currentTime = LocalDateTime.now().plusDays(1);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String oneDayPlus = currentTime.format(formatter);
+
+                    //token and timestamp map
+                    Map<String, String> fcmData = new HashMap<>();
+                    fcmData.put("fcmToken", token);
+                    fcmData.put("timestamp", oneDayPlus);
+                    System.out.println(fcmData);
+
+                    //send FCM token and Timestamp
+                    SendDataFirebaseDatabase database = new SendDataFirebaseDatabase();
+                    database.sendUserData(uid, fcmData);
                     notificationExtra.sendNotification(token, "Test", "body");
                 }
             });

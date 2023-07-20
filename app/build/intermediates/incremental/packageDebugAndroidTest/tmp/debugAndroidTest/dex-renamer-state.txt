@@ -1,8 +1,8 @@
-#Mon Jun 12 14:09:39 BDT 2023
-base.0=/home/rmtp/new file/Orbaic2/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
-base.1=/home/rmtp/new file/Orbaic2/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
-base.2=/home/rmtp/new file/Orbaic2/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/10/classes.dex
-base.3=/home/rmtp/new file/Orbaic2/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/2/classes.dex
+#Wed Jul 12 00:08:58 BDT 2023
+base.0=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.2=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\10\\classes.dex
+base.3=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\2\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex
