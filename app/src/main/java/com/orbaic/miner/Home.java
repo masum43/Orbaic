@@ -167,7 +167,7 @@ public class Home extends Fragment {
             public void onSuccess(Void unused) {
                 System.out.println(user.isEmailVerified());
                 if (user.isEmailVerified()) {
-                    Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
+                   /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
                 }else {
                     dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                 }
