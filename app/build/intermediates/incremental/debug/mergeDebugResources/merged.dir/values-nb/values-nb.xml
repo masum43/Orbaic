@@ -119,6 +119,9 @@
     <string name="native_media_view">Medieinnhold</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Naviger opp"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Åpne uttrekksmenyen"</string>
+    <string name="notifications_permission_confirm">Tillat</string>
+    <string name="notifications_permission_decline">Ikke tillat</string>
+    <string name="notifications_permission_title">Vil du la appen sende deg varsler?</string>
     <string name="offline_notification_text">Trykk for å åpne annonsen</string>
     <string name="offline_notification_title">Se annonsen du lagret mens du var uten nett</string>
     <string name="offline_opt_in_confirm">OK</string>

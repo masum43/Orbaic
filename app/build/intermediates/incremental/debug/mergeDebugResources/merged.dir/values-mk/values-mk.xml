@@ -119,6 +119,9 @@
     <string name="native_media_view">Преглед на аудиовизуелни содржини</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Оди нагоре"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Отворете ја фиоката за навигација"</string>
+    <string name="notifications_permission_confirm">Дозволи</string>
+    <string name="notifications_permission_decline">Не дозволувај</string>
+    <string name="notifications_permission_title">Дозволи апликацијата да ти испраќа известувања?</string>
     <string name="offline_notification_text">Допрете за да ја отворите рекламата</string>
     <string name="offline_notification_title">Прегледајте ја рекламата што ја зачувавте кога бевте офлајн</string>
     <string name="offline_opt_in_confirm">Во ред</string>

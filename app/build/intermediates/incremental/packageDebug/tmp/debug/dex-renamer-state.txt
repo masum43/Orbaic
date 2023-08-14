@@ -1,12 +1,12 @@
-#Wed Jul 12 00:09:26 BDT 2023
-base.0=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.3=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.4=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.5=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.6=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
-base.7=C\:\\Users\\ruhul\\AndroidStudioProjects\\Orbaic2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes4.dex
+#Mon Aug 14 22:57:17 BDT 2023
+base.0=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.3=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.4=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.5=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.6=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
+base.7=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=15/classes.dex

@@ -119,6 +119,9 @@
     <string name="native_media_view">Медиа көрінісі</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Жоғары қарай жылжу"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Навигация тартпасын ашу"</string>
+    <string name="notifications_permission_confirm">Рұқсат беру</string>
+    <string name="notifications_permission_decline">Рұқсат бермеу</string>
+    <string name="notifications_permission_title">Қолданбаның хабарландырулар жіберуіне рұқсат берілсін бе?</string>
     <string name="offline_notification_text">Жарнаманы ашу үшін түртіңіз.</string>
     <string name="offline_notification_title">Офлайн режимге өткенде, сақталған жарнамаңызды көріңіз</string>
     <string name="offline_opt_in_confirm">Жарайды</string>

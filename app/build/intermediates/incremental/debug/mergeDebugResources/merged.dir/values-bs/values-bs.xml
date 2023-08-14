@@ -120,6 +120,9 @@
     <string name="native_media_view">Prikaz medija</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Idi gore"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Otvaranje ladice za navigaciju"</string>
+    <string name="notifications_permission_confirm">Dozvoli</string>
+    <string name="notifications_permission_decline">Nemoj dozvoliti</string>
+    <string name="notifications_permission_title">Dozvoliti aplikaciji da vam šalje obavještenja?</string>
     <string name="offline_notification_text">Dodirnite da otvorite oglas</string>
     <string name="offline_notification_title">Pogledajte sačuvani oglas kada ponovo budete online</string>
     <string name="offline_opt_in_confirm">UREDU</string>

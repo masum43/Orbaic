@@ -119,6 +119,9 @@
     <string name="native_media_view">Προβολή μέσων</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Πλοήγηση προς τα επάνω"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Άνοιγμα συρταριού πλοήγησης"</string>
+    <string name="notifications_permission_confirm">Να επιτρέπεται</string>
+    <string name="notifications_permission_decline">Να μην επιτρέπεται</string>
+    <string name="notifications_permission_title">Να επιτρέπεται στην εφαρμογή να σας στέλνει ειδοποιήσεις;</string>
     <string name="offline_notification_text">Πατήστε για να ανοίξετε τη διαφήμιση.</string>
     <string name="offline_notification_title">Δείτε τη διαφήμιση που αποθηκεύσατε ενώ ήσασταν εκτός σύνδεσης</string>
     <string name="offline_opt_in_confirm">ΟΚ</string>

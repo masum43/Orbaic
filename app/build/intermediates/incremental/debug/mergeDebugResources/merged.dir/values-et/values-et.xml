@@ -119,6 +119,9 @@
     <string name="native_media_view">Meediavaade</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Navigeeri üles"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Navigeerimissahtli avamine"</string>
+    <string name="notifications_permission_confirm">Luba</string>
+    <string name="notifications_permission_decline">Ära luba</string>
+    <string name="notifications_permission_title">Kas lubada rakendusel teile märguandeid saata?</string>
     <string name="offline_notification_text">Puudutage reklaami avamiseks</string>
     <string name="offline_notification_title">Vaadake reklaami, mille salvestasite siis, kui teil puudus võrguühendus</string>
     <string name="offline_opt_in_confirm">OK</string>

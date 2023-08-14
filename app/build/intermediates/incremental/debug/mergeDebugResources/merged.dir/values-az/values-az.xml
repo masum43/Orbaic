@@ -119,6 +119,9 @@
     <string name="native_media_view">Media Paneli</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Yuxarı keçin"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Naviqasiya panelini açın"</string>
+    <string name="notifications_permission_confirm">İcazə verin</string>
+    <string name="notifications_permission_decline">İcazə verməyin</string>
+    <string name="notifications_permission_title">Tətbiqə sizə bildirişlər göndərmək icazəsi verilsin?</string>
     <string name="offline_notification_text">Reklamı açmaq üçün toxunun</string>
     <string name="offline_notification_title">Oflayn olduqda yadda saxladığınız reklama baxın</string>
     <string name="offline_opt_in_confirm">OK</string>

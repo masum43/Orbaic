@@ -119,6 +119,9 @@
     <string name="native_media_view">મીડિયા વ્યૂ</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"ઉપર નૅવિગેટ કરો"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"નૅવિગેશન ડ્રૉઅર ખોલો"</string>
+    <string name="notifications_permission_confirm">મંજૂરી આપો</string>
+    <string name="notifications_permission_decline">મંજૂરી આપશો નહીં</string>
+    <string name="notifications_permission_title">શું ઍપને તમને નોટિફિકેશન મોકલવાની મંજૂરી આપીએ?</string>
     <string name="offline_notification_text">જાહેરાત ખોલવા માટે ટૅપ કરો</string>
     <string name="offline_notification_title">તમે ઑફલાઇન હતા, ત્યારે તમે સાચવેલી જાહેરાત જુઓ</string>
     <string name="offline_opt_in_confirm">ઓકે</string>

@@ -119,6 +119,9 @@
     <string name="native_media_view">मिडिया दृश्य</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"माथि नेभिगेट गर्नुहोस्"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
+    <string name="notifications_permission_confirm">अनुमति दिनुहोस्</string>
+    <string name="notifications_permission_decline">अनुमति नदिनुहोस्</string>
+    <string name="notifications_permission_title">यो एपलाई तपाईंलाई सूचनाहरू पठाउने अनुमति दिने हो?</string>
     <string name="offline_notification_text">विज्ञापन खोल्न ट्याप गर्नुहोस्</string>
     <string name="offline_notification_title">आफूले अफलाइन हुँदा सुरक्षित गरेको विज्ञापन हेर्नुहोस्</string>
     <string name="offline_opt_in_confirm">ठिक छ</string>

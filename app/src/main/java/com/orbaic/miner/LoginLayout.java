@@ -119,8 +119,8 @@ public class LoginLayout extends AppCompatActivity {
         }
 
         //firebase login
-        EditText username = (EditText) findViewById(R.id.user_login_email);
-        EditText Login_password = (EditText) findViewById(R.id.login_password);
+        EditText username = findViewById(R.id.user_login_email);
+        EditText Login_password = findViewById(R.id.login_password);
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v->{
@@ -217,7 +217,7 @@ public class LoginLayout extends AppCompatActivity {
             progressDialog.setMessage("Loading...");
             progressDialog.create();
             progressDialog.setCancelable(false);
-            progressDialog.show();
+//            progressDialog.show();
         }
     }
 

@@ -119,6 +119,9 @@
     <string name="native_media_view">Nội dung nghe nhìn</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Di chuyển lên"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Mở ngăn điều hướng"</string>
+    <string name="notifications_permission_confirm">Cho phép</string>
+    <string name="notifications_permission_decline">Không cho phép</string>
+    <string name="notifications_permission_title">Cho phép ứng dụng gửi thông báo cho bạn?</string>
     <string name="offline_notification_text">Nhấn để mở quảng cáo</string>
     <string name="offline_notification_title">Xem quảng cáo đã lưu khi bạn không có kết nối mạng</string>
     <string name="offline_opt_in_confirm">OK</string>

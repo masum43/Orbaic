@@ -119,6 +119,9 @@
     <string name="native_media_view">मीडिया व्ह्यू</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"वर नेव्‍हिगेट करा"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"नेव्हिगेशन ड्रॉवर उघडा"</string>
+    <string name="notifications_permission_confirm">अनुमती द्या</string>
+    <string name="notifications_permission_decline">अनुमती देऊ नका</string>
+    <string name="notifications_permission_title">अ‍ॅपला तुम्हाला सूचना पाठवण्याची अनुमती द्यायची आहे का?</string>
     <string name="offline_notification_text">जाहिरात उघडण्यासाठी टॅप करा</string>
     <string name="offline_notification_title">तुम्ही ऑफलाइन असताना तुम्ही सेव्ह केलेली जाहिरात पहा</string>
     <string name="offline_opt_in_confirm">ओके</string>

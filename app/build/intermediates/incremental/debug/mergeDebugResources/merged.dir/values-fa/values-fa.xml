@@ -119,6 +119,9 @@
     <string name="native_media_view">بازدید از رسانه</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"پیمایش به بالا"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"باز کردن کشوی پیمایش"</string>
+    <string name="notifications_permission_confirm">اجازه دادن</string>
+    <string name="notifications_permission_decline">اجازه ندادن</string>
+    <string name="notifications_permission_title">به برنامه اجازه می‌دهید برای شما اعلان ارسال کند؟</string>
     <string name="offline_notification_text">برای باز کردن آگهی، ضربه بزنید</string>
     <string name="offline_notification_title">مشاهده آگهی‌ای که هنگام آفلاین بودن ذخیره کردید</string>
     <string name="offline_opt_in_confirm">تأیید</string>

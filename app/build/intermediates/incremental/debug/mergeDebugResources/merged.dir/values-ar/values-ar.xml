@@ -123,6 +123,9 @@
     <string name="native_media_view">عرض الوسائط</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"التنقل إلى أعلى"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"فتح لائحة التنقل"</string>
+    <string name="notifications_permission_confirm">السماح</string>
+    <string name="notifications_permission_decline">عدم السماح</string>
+    <string name="notifications_permission_title">هل تريد السماح للتطبيق بإرسال إشعارات إليك؟</string>
     <string name="offline_notification_text">انقر لفتح الإعلان</string>
     <string name="offline_notification_title">عرض الإعلان الذي حفظته عند عدم الاتصال بالإنترنت</string>
     <string name="offline_opt_in_confirm">حسنًا</string>

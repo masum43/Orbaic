@@ -119,6 +119,9 @@
     <string name="native_media_view">Mediacontent</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Omhoog navigeren"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Zijmenu openen"</string>
+    <string name="notifications_permission_confirm">Toestaan</string>
+    <string name="notifications_permission_decline">Niet toestaan</string>
+    <string name="notifications_permission_title">App toestaan om je meldingen te sturen?</string>
     <string name="offline_notification_text">Tik om advertentie te openen</string>
     <string name="offline_notification_title">De advertentie bekijken die je hebt opgeslagen toen je offline was</string>
     <string name="offline_opt_in_confirm">OK</string>

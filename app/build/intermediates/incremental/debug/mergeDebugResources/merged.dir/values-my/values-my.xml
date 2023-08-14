@@ -119,6 +119,9 @@
     <string name="native_media_view">မီဒီယာမြင်ကွင်း</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"အပေါ်သို့ ရွှေ့ရန်"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"လမ်းကြောင်းပြ အံဆွဲကို ဖွင့်ရန်"</string>
+    <string name="notifications_permission_confirm">ခွင့်ပြုရန်</string>
+    <string name="notifications_permission_decline">ခွင့်မပြုပါ</string>
+    <string name="notifications_permission_title">အက်ပ်ကို သင့်ထံ အကြောင်းကြားချက် ပို့ခွင့်ပြုမလား။</string>
     <string name="offline_notification_text">ကြော်ငြာဖွင့်ရန် တို့ပါ</string>
     <string name="offline_notification_title">သင်အော့ဖ်လိုင်းရှိနေစဉ်တွင် သိမ်းထားခဲ့သော ကြော်ငြာကို ကြည့်ရှုပါ</string>
     <string name="offline_opt_in_confirm">OK</string>

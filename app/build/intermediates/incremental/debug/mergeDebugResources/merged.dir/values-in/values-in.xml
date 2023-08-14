@@ -119,6 +119,9 @@
     <string name="native_media_view">Tampilan Media</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Kembali ke atas"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Buka panel navigasi"</string>
+    <string name="notifications_permission_confirm">Izinkan</string>
+    <string name="notifications_permission_decline">Jangan izinkan</string>
+    <string name="notifications_permission_title">Izinkan aplikasi mengirim notifikasi kepada Anda?</string>
     <string name="offline_notification_text">Ketuk untuk membuka iklan</string>
     <string name="offline_notification_title">Lihat iklan yang Anda simpan ketika offline</string>
     <string name="offline_opt_in_confirm">Oke</string>

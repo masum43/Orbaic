@@ -120,6 +120,9 @@
     <string name="native_media_view">Multivides skats</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Pārvietoties augšup"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Atvērt navigācijas atvilktni"</string>
+    <string name="notifications_permission_confirm">Atļaut</string>
+    <string name="notifications_permission_decline">Neatļaut</string>
+    <string name="notifications_permission_title">Vai atļaut lietotnei sūtīt paziņojumus?</string>
     <string name="offline_notification_text">Pieskarieties, lai atvērtu reklāmu</string>
     <string name="offline_notification_title">Skatiet reklāmu, ko saglabājāt bezsaistē</string>
     <string name="offline_opt_in_confirm">Labi</string>

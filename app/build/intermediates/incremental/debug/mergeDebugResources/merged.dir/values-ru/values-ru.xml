@@ -121,6 +121,9 @@
     <string name="native_media_view">Просмотр мультимедиа</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Перейти вверх"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Открыть панель навигации"</string>
+    <string name="notifications_permission_confirm">Разрешить</string>
+    <string name="notifications_permission_decline">Запретить</string>
+    <string name="notifications_permission_title">Разрешить приложению отправлять уведомления?</string>
     <string name="offline_notification_text">Чтобы открыть его, нажмите на уведомление.</string>
     <string name="offline_notification_title">Вы хотели посмотреть объявление, когда были офлайн</string>
     <string name="offline_opt_in_confirm">ОК</string>

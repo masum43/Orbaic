@@ -119,6 +119,9 @@
     <string name="native_media_view">Medianäkymä</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Siirry ylös"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Avaa navigoinnin vetopaneeli"</string>
+    <string name="notifications_permission_confirm">Salli</string>
+    <string name="notifications_permission_decline">Älä salli</string>
+    <string name="notifications_permission_title">Haluatko sallia sovellusilmoitukset?</string>
     <string name="offline_notification_text">Avaa mainos napauttamalla</string>
     <string name="offline_notification_title">Katso mainos, jonka tallensit ollessasi offline-tilassa</string>
     <string name="offline_opt_in_confirm">OK</string>

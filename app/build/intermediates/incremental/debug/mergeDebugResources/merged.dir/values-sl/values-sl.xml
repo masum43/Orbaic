@@ -121,6 +121,9 @@
     <string name="native_media_view">Ogled predstavnosti</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Pomik navzgor"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Odpri predal za krmarjenje"</string>
+    <string name="notifications_permission_confirm">Dovoli</string>
+    <string name="notifications_permission_decline">Ne dovoli</string>
+    <string name="notifications_permission_title">Želite aplikaciji dovoliti, da vam pošilja obvestila?</string>
     <string name="offline_notification_text">Dotaknite se, če želite odpreti oglas</string>
     <string name="offline_notification_title">Oglejte si oglas, ki ste shranili, ko ste bili brez povezave</string>
     <string name="offline_opt_in_confirm">V redu</string>

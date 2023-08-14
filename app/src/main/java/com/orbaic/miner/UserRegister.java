@@ -46,6 +46,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class UserRegister extends AppCompatActivity {
     private ProgressDialog progressDialog;
     int userTotal;
     private Context context;
-    String country;
+    String country = "";
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -101,7 +102,6 @@ public class UserRegister extends AppCompatActivity {
         //google login
         ImageView googleLogin = findViewById(R.id.googleImageRegister);
         googleLogin.setOnClickListener(v -> {
-
             sign_in();
 
         });
@@ -179,13 +179,104 @@ public class UserRegister extends AppCompatActivity {
 
     private void sign_up() {
 
-        EditText user_name = (EditText) findViewById(R.id.user_name_registration);
-        EditText register_email = (EditText) findViewById(R.id.user_email_registration);
-        EditText register_password = (EditText) findViewById(R.id.registration_password);
-        TextView register_fail = (TextView) findViewById(R.id.registration_incorrect_password);
+        EditText user_name = findViewById(R.id.user_name_registration);
+        EditText register_email = findViewById(R.id.user_email_registration);
+        EditText register_password = findViewById(R.id.registration_password);
+        TextView register_fail = findViewById(R.id.registration_incorrect_password);
         String email = register_email.getText().toString().trim();
         String password = register_password.getText().toString().trim();
         String name = user_name.getText().toString();
+
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
+
+        // Attach a ValueEventListener to the query
+        emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Email exists in the database
+                    Toast.makeText(UserRegister.this, "Already account exist with this email!!", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                } else {
+                    // Email does not exist in the database
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(UserRegister.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
+
+                                        Random a = new Random();
+                                        int b = a.nextInt(9999);
+                                        int c = a.nextInt(9999);
+                                        String code = String.valueOf(b) + String.valueOf(c);
+
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference myRef = database.getReference("users");
+                                        Map<String, String> map = new HashMap<>();
+                                        map.put("point","0");
+                                        map.put("phone","0");
+                                        map.put("click","0");
+                                        map.put("country",country);
+                                        map.put("birthdate","0");
+                                        map.put("referral",code);
+                                        map.put("referralButton","ON");
+                                        map.put("type","0");
+                                        map.put("name",name);
+                                        map.put("email",email);
+                                        map.put("id",mAuth.getCurrentUser().getUid());
+                                        map.put("extra1","0");
+                                        map.put("extra2","0");
+                                        map.put("extra3","0");
+                                        if (mAuth.getUid() == null){
+                                            return;
+                                        }
+                                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                                        if (currentUser != null) {
+                                            currentUser.sendEmailVerification();
+                                        }
+
+                                        mAuth.getCurrentUser().sendEmailVerification();
+                                        myRef.child(mAuth.getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                progressDialog.dismiss();
+                                                updateUI();
+                                            }
+                                        });
+                                        progressDialog.dismiss();
+                                    } else {
+                                        Toast.makeText(UserRegister.this,"token Error: "+task,Toast.LENGTH_LONG).show();
+                                        progressDialog.dismiss();
+                                    }
+                                }
+                            });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Error: " + databaseError.getMessage());
+                Log.e("SIGN_UP", "onCancelled: "+databaseError.getMessage());
+                progressDialog.dismiss();
+            }
+        });
+
+
+    }
+
+    private void sign_upOLd() {
+
+        EditText user_name = findViewById(R.id.user_name_registration);
+        EditText register_email = findViewById(R.id.user_email_registration);
+        EditText register_password = findViewById(R.id.registration_password);
+        TextView register_fail = findViewById(R.id.registration_incorrect_password);
+        String email = register_email.getText().toString().trim();
+        String password = register_password.getText().toString().trim();
+        String name = user_name.getText().toString();
+
 
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -198,7 +289,7 @@ public class UserRegister extends AppCompatActivity {
                             FirebaseUser uid = mAuth.getCurrentUser();
                             Map<String, Object> userInfo = new HashMap<>();
                             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-                            ref.child(uid.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            ref.child(uid.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     System.out.println("work");
@@ -311,7 +402,7 @@ public class UserRegister extends AppCompatActivity {
             progressDialog.setMessage("Loading...");
             progressDialog.create();
             progressDialog.setCancelable(false);
-            progressDialog.show();
+//            progressDialog.show();
         }
     }
 
@@ -447,7 +538,6 @@ public class UserRegister extends AppCompatActivity {
 
     public void getUserCountry(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        String country = "";
 
         if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             try {
@@ -466,13 +556,14 @@ public class UserRegister extends AppCompatActivity {
                     List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     if (addresses.size() > 0) {
                         country = addresses.get(0).getCountryName();
+                        Log.e("country", "getUserCountry: "+country );
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        this.country = country;
+
 
        /* if (country.equals("Philippines")){
             dialogShowing("Not Available", "We are stop to create account from Philippines");

@@ -119,6 +119,9 @@
     <string name="native_media_view">მედიაპანელი</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"ზემოთ გადასვლა"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"ნავიგაციის უჯრის გახსნა"</string>
+    <string name="notifications_permission_confirm">დაშვება</string>
+    <string name="notifications_permission_decline">უარყოფა</string>
+    <string name="notifications_permission_title">ნებას დართავთ აპს, გამოგიგზავნოთ შეტყობინებები?</string>
     <string name="offline_notification_text">შეეხეთ რეკლამის გასახსნელად</string>
     <string name="offline_notification_title">ნახეთ თქვენ მიერ ხაზგარეშე ყოფნისას შენახული რეკლამა</string>
     <string name="offline_opt_in_confirm">კარგი</string>

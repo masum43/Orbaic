@@ -121,6 +121,9 @@
     <string name="native_media_view">Widok multimediów</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Przejdź wyżej"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Otwórz panel nawigacji"</string>
+    <string name="notifications_permission_confirm">Zezwól</string>
+    <string name="notifications_permission_decline">Nie zezwalaj</string>
+    <string name="notifications_permission_title">Zezwolić aplikacji na wysyłanie powiadomień?</string>
     <string name="offline_notification_text">Kliknij, by otworzyć reklamę</string>
     <string name="offline_notification_title">Wyświetl reklamę zapisaną w trybie offline</string>
     <string name="offline_opt_in_confirm">OK</string>

@@ -119,6 +119,9 @@
     <string name="native_media_view">Մեդիա տեսք</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Անցնել վերև"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Բացել նավարկման դարակը"</string>
+    <string name="notifications_permission_confirm">Թույլատրել</string>
+    <string name="notifications_permission_decline">Չթույլատրել</string>
+    <string name="notifications_permission_title">Թույլատրե՞լ հավելվածին, որ ձեզ ծանուցումներ ուղարկի։</string>
     <string name="offline_notification_text">Հպեք՝ հայտարարությունը բացելու համար</string>
     <string name="offline_notification_title">Դիտեք հայտարարությունը, որը պահել եք անցանց ռեժիմում</string>
     <string name="offline_opt_in_confirm">Եղավ</string>

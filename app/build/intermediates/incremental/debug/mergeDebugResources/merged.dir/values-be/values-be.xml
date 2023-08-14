@@ -121,6 +121,9 @@
     <string name="native_media_view">Цэнтр мультымедыя</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Перайсці ўверх"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Адкрыць высоўнае меню навігацыі"</string>
+    <string name="notifications_permission_confirm">Дазволіць</string>
+    <string name="notifications_permission_decline">Не дазваляць</string>
+    <string name="notifications_permission_title">Дазволіць праграме адпраўляць вам паведамленні?</string>
     <string name="offline_notification_text">Націсніце, каб адкрыць рэкламу</string>
     <string name="offline_notification_title">Праглядзіце рэкламу, захаваную вамі, калі вы былі па-за сеткай</string>
     <string name="offline_opt_in_confirm">ОК</string>

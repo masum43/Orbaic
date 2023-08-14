@@ -119,6 +119,9 @@
     <string name="native_media_view">Visualização de mídia</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Navegar para cima"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Abrir gaveta de navegação"</string>
+    <string name="notifications_permission_confirm">Permitir</string>
+    <string name="notifications_permission_decline">Não permitir</string>
+    <string name="notifications_permission_title">Permitir que o app envie notificações?</string>
     <string name="offline_notification_text">Toque para abrir o anúncio</string>
     <string name="offline_notification_title">Ver o anúncio que você salvou quando estava off-line</string>
     <string name="offline_opt_in_confirm">OK</string>

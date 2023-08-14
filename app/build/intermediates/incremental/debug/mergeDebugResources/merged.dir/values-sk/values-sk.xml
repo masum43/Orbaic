@@ -121,6 +121,9 @@
     <string name="native_media_view">Zobrazenie média</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Prejsť hore"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Otvoriť navigačný vysúvací panel"</string>
+    <string name="notifications_permission_confirm">Povoliť</string>
+    <string name="notifications_permission_decline">Nepovoliť</string>
+    <string name="notifications_permission_title">Chcete povoliť aplikácii posielať vám upozornenia?</string>
     <string name="offline_notification_text">Klepnutím otvoriť reklamu</string>
     <string name="offline_notification_title">Zobrazte si reklamu, ktorú ste uložili v režime offline</string>
     <string name="offline_opt_in_confirm">OK</string>

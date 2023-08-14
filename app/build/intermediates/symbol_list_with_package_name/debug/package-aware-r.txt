@@ -4319,6 +4319,9 @@ string nav_header_title
 string navigation_drawer_close
 string navigation_drawer_open
 string next
+string notifications_permission_confirm
+string notifications_permission_decline
+string notifications_permission_title
 string offline_notification_text
 string offline_notification_title
 string offline_opt_in_confirm

@@ -119,6 +119,9 @@
     <string name="native_media_view">媒體檢視</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"向上瀏覽"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"開啟導覽匣"</string>
+    <string name="notifications_permission_confirm">允許</string>
+    <string name="notifications_permission_decline">不允許</string>
+    <string name="notifications_permission_title">允許應用程式傳送通知給你嗎？</string>
     <string name="offline_notification_text">輕觸即可開啟廣告</string>
     <string name="offline_notification_title">查看你在離線時儲存的廣告</string>
     <string name="offline_opt_in_confirm">確定</string>

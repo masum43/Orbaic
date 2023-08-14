@@ -119,6 +119,9 @@
     <string name="native_media_view">Medievisning</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Navigera uppåt"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Öppna navigeringspanelen"</string>
+    <string name="notifications_permission_confirm">Tillåt</string>
+    <string name="notifications_permission_decline">Tillåt inte</string>
+    <string name="notifications_permission_title">Vill du tillåta att appen skickar aviseringar?</string>
     <string name="offline_notification_text">Tryck för att öppna annonsen</string>
     <string name="offline_notification_title">Se annonsen som du sparade när du var offline</string>
     <string name="offline_opt_in_confirm">OK</string>

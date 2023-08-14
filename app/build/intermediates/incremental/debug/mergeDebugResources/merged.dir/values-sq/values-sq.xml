@@ -119,6 +119,9 @@
     <string name="native_media_view">Pamja e medias</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Ngjitu lart"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Hap sirtarin e navigimit"</string>
+    <string name="notifications_permission_confirm">Lejo</string>
+    <string name="notifications_permission_decline">Mos lejo</string>
+    <string name="notifications_permission_title">Të lejohet aplikacioni të të dërgojë njoftime?</string>
     <string name="offline_notification_text">Trokit për të hapur reklamën</string>
     <string name="offline_notification_title">Shiko reklamën që ruajte kur ishe jashtë linje</string>
     <string name="offline_opt_in_confirm">Në rregull</string>

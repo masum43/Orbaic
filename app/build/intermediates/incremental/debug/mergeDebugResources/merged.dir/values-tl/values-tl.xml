@@ -119,6 +119,9 @@
     <string name="native_media_view">View ng Media</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Mag-navigate pataas"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Buksan ang navigation drawer"</string>
+    <string name="notifications_permission_confirm">Payagan</string>
+    <string name="notifications_permission_decline">Huwag payagan</string>
+    <string name="notifications_permission_title">Payagan ang app na magpadala sa iyo ng mga notification?</string>
     <string name="offline_notification_text">I-tap para buksan ang ad</string>
     <string name="offline_notification_title">Tingnan ang ad na na-save mo noong offline ka</string>
     <string name="offline_opt_in_confirm">OK</string>

@@ -48,9 +48,9 @@ public class FirebaseData {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String name = snapshot.child("name").getValue().toString();
+                //String name = snapshot.child("name").getValue().toString();
                 //System.out.println(name);
-                String point = snapshot.child("point").getValue().toString();
+                //String point = snapshot.child("point").getValue().toString();
                 /*for (DataSnapshot data: snapshot.getChildren()) {
 
                     FirebaseUserData addData = data.getValue(FirebaseUserData.class);

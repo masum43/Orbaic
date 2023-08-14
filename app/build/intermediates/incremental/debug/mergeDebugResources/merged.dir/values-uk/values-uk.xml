@@ -121,6 +121,9 @@
     <string name="native_media_view">Графічний контент</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Перейти вгору"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Відкрити панель навігації"</string>
+    <string name="notifications_permission_confirm">Дозволити</string>
+    <string name="notifications_permission_decline">Не дозволяти</string>
+    <string name="notifications_permission_title">Дозволити додатку надсилати вам сповіщення?</string>
     <string name="offline_notification_text">Натисніть, щоб відкрити оголошення</string>
     <string name="offline_notification_title">Перегляньте оголошення, яке ви зберегли в режимі офлайн</string>
     <string name="offline_opt_in_confirm">OK</string>
