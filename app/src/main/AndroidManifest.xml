@@ -8,9 +8,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.firebase.messaging.permission.SEND" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,9 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Orbaic"
         tools:targetApi="31" >
-
         <activity
-            android:name=".LearnEarnActivity"
+            android:name=".quiz.QuizStartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".quiz.LearnEarnActivity"
             android:exported="false" />
         <activity
             android:name=".FirebaseDynamicLink"

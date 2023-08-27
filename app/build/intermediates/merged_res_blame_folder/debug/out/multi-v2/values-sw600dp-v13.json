@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-61:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-62:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/9aa52645c1f9ffb87daee3e54199b960/transformed/firebase-inappmessaging-display-20.3.2/res/values-sw600dp-v13/values-sw600dp-v13.xml",

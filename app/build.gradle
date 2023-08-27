@@ -81,4 +81,6 @@ dependencies {
     implementation 'com.google.ads.mediation:facebook:6.15.0.0'
     implementation 'com.android.volley:volley:1.2.1'
 
+    implementation 'com.github.chesire:lifecyklelog:3.1.1'
+
 }

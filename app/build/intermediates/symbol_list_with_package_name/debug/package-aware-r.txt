@@ -3072,6 +3072,7 @@ drawable facebook_icon
 drawable gift_box
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_add
 drawable ic_arrow_back_black_24
 drawable ic_baseline_home_24
 drawable ic_baseline_location_on_24
@@ -3318,6 +3319,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btnStart
 id button
 id buttonPanel
 id cache_measures
@@ -3385,6 +3387,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
+id descriptionTextView
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -3464,6 +3467,7 @@ id groups
 id h
 id header_title
 id hideable
+id holder
 id home
 id homeAsUp
 id honorRequest
@@ -3486,6 +3490,7 @@ id imageView4
 id imageView5
 id imageView6
 id imageView7
+id imageView8
 id imageView9
 id imageView91
 id image_content_root
@@ -3691,6 +3696,7 @@ id right_to_left
 id rounded
 id row_index_key
 id rtl
+id rv
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3820,6 +3826,7 @@ id textinput_suffix_text
 id time
 id title
 id titleDividerNoCustom
+id titleTextView
 id title_template
 id toggle
 id tool_bar
@@ -3998,6 +4005,7 @@ layout activity_learn_earn_activtity
 layout activity_login_layout
 layout activity_main
 layout activity_main2
+layout activity_quiz_start
 layout activity_referral_data
 layout activity_user_register
 layout activity_web_view_content
@@ -4036,6 +4044,7 @@ layout fragment_withdrawal
 layout header_layout
 layout image
 layout item
+layout item_layout
 layout item_view
 layout itemview_for_ref
 layout m3_alert_dialog
@@ -4182,6 +4191,7 @@ string common_signin_button_text
 string common_signin_button_text_long
 string copy_toast_msg
 string default_web_client_id
+string define_Lifecyklelog
 string dest_title
 string error_a11y_label
 string error_icon_content_description
@@ -4203,6 +4213,15 @@ string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
+string library_Lifecyklelog_author
+string library_Lifecyklelog_authorWebsite
+string library_Lifecyklelog_isOpenSource
+string library_Lifecyklelog_libraryDescription
+string library_Lifecyklelog_libraryName
+string library_Lifecyklelog_libraryVersion
+string library_Lifecyklelog_libraryWebsite
+string library_Lifecyklelog_licenseId
+string library_Lifecyklelog_repositoryLink
 string lorem_ipsum
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular

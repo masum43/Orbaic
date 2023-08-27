@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 MERGED from [androidx.databinding:viewbinding:8.0.2] /Users/masum/.gradle/caches/transforms-3/b881cf792aa8c36f773c5a2205e6edc8/transformed/viewbinding-8.0.2/AndroidManifest.xml:2:1-7:12
 MERGED from [com.mikhaellopez:circularimageview:4.3.1] /Users/masum/.gradle/caches/transforms-3/b9dde5db0f1d4368c823ec6b9a1697ac/transformed/circularimageview-4.3.1/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/3a73060df45942e6ae904f126bac5bc8/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:15:1-33:12
@@ -15,6 +15,7 @@ MERGED from [androidx.navigation:navigation-ui:2.6.0] /Users/masum/.gradle/cache
 MERGED from [com.google.android.material:material:1.9.0] /Users/masum/.gradle/caches/transforms-3/a8a9f841e3f0e7743e5261cfa9d0f046/transformed/material-1.9.0/AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/9aa52645c1f9ffb87daee3e54199b960/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:2:1-30:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/67e246fe228f7f84d795dce0905a7f49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/3c1b9ce578cd39f100766cd5922197c8/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/02e2e628fe9ca3ef9c1f0890443fca62/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/masum/.gradle/caches/transforms-3/26b28e7209e49f16a73fb180afbeeced/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-auth:20.6.0] /Users/masum/.gradle/caches/transforms-3/8e57ddc8811eb9306ad85b7f1380af6a/transformed/play-services-auth-20.6.0/AndroidManifest.xml:17:1-40:12
@@ -134,22 +135,22 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/masum/.gr
 MERGED from [org.chromium.net:cronet-api:72.3626.96] /Users/masum/.gradle/caches/transforms-3/74a2a52acc623e7f779a90fa088f7483/transformed/cronet-api-72.3626.96/AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/masum/.gradle/caches/transforms-3/bd17239e8586bf26db572de471c0f680/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] /Users/masum/.gradle/caches/transforms-3/54ba7de186a5859ab66fd9ee0a87d98e/transformed/rxandroid-2.0.2/AndroidManifest.xml:15:1-21:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 	package
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-102:12
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:11-69
@@ -254,13 +255,13 @@ ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.
 	android:name
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:10:22-82
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:11:5-76
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:11:5-77
 MERGED from [com.google.firebase:firebase-messaging:23.2.1] /Users/masum/.gradle/caches/transforms-3/4b283d85ffe41ccb30a9bd1ef231b1f1/transformed/firebase-messaging-23.2.1/AndroidManifest.xml:23:5-77
 MERGED from [com.google.firebase:firebase-messaging:23.2.1] /Users/masum/.gradle/caches/transforms-3/4b283d85ffe41ccb30a9bd1ef231b1f1/transformed/firebase-messaging-23.2.1/AndroidManifest.xml:23:5-77
 	android:name
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:11:22-74
 application
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:13:5-100:19
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:13:5-103:19
 MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/3a73060df45942e6ae904f126bac5bc8/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:23:5-31:19
 MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/3a73060df45942e6ae904f126bac5bc8/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:23:5-31:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:21.3.0] /Users/masum/.gradle/caches/transforms-3/58920e18f2b73b041cdb03ff779c4494/transformed/firebase-analytics-ktx-21.3.0/AndroidManifest.xml:7:5-15:19
@@ -271,6 +272,8 @@ MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/9aa52645c1f9ffb87daee3e54199b960/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:20:5-28:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/67e246fe228f7f84d795dce0905a7f49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/67e246fe228f7f84d795dce0905a7f49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/3c1b9ce578cd39f100766cd5922197c8/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:9:5-20
+MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/3c1b9ce578cd39f100766cd5922197c8/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-auth:20.6.0] /Users/masum/.gradle/caches/transforms-3/8e57ddc8811eb9306ad85b7f1380af6a/transformed/play-services-auth-20.6.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:20.6.0] /Users/masum/.gradle/caches/transforms-3/8e57ddc8811eb9306ad85b7f1380af6a/transformed/play-services-auth-20.6.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.firebase:firebase-auth:22.1.1] /Users/masum/.gradle/caches/transforms-3/b8235bcf907692cc8b59b9acf34bd1f2/transformed/firebase-auth-22.1.1/AndroidManifest.xml:28:5-73:19
@@ -370,141 +373,149 @@ MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/masum/.gradle/c
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] /Users/masum/.gradle/caches/transforms-3/605ae55e9a00607eec9e74e1268a8988/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:20:9-35
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:18:9-41
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:19:9-41
 	android:hardwareAccelerated
 		ADDED from [com.vungle:publisher-sdk-android:6.12.1] /Users/masum/.gradle/caches/transforms-3/c0efcbb8b3cc587a4f45f80c11a2f552/transformed/publisher-sdk-android-6.12.1/AndroidManifest.xml:16:18-52
 	android:fullBackupContent
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:16:9-54
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:17:9-54
 	android:roundIcon
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:19:9-51
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:20:9-51
 	tools:targetApi
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:22:9-29
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:23:9-29
 	android:icon
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:17:9-46
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:18:9-46
 	android:allowBackup
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:14:9-35
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:15:9-35
 	android:theme
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:21:9-44
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:22:9-44
 	android:dataExtractionRules
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:15:9-65
-activity#com.orbaic.miner.LearnEarnActivity
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:16:9-65
+	android:name
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:14:9-30
+activity#com.orbaic.miner.quiz.QuizStartActivity
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:24:9-26:40
 	android:exported
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:25:13-46
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:25:13-51
+activity#com.orbaic.miner.quiz.LearnEarnActivity
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:27:9-29:40
+	android:exported
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:28:13-51
 activity#com.orbaic.miner.FirebaseDynamicLink
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:27:9-40:20
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:30:9-43:20
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:29:13-36
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:32:13-36
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:28:13-48
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:31:13-48
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:orbaic.com+data:scheme:https
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:30:13-39:29
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:33:13-42:29
 action#android.intent.action.VIEW
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:31:17-69
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:34:17-69
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:31:25-66
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:34:25-66
 category#android.intent.category.DEFAULT
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:33:17-76
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:36:17-76
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:33:27-73
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:36:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:34:17-78
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:37:17-78
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:34:27-75
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:37:27-75
 data
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:36:17-38:46
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:39:17-41:46
 	android:host
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:37:21-46
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:40:21-46
 	android:scheme
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:38:21-43
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:41:21-43
 activity#com.orbaic.miner.ReferralData
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:41:9-43:40
-	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:43:13-37
-	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:42:13-41
-activity#com.orbaic.miner.WebViewContent
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:44:9-46:40
 	android:exported
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:46:13-37
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:45:13-43
-activity#com.orbaic.miner.MainActivity2
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:47:9-55:20
-	android:label
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:50:13-57
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:45:13-41
+activity#com.orbaic.miner.WebViewContent
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:47:9-49:40
 	android:exported
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:49:13-37
+	android:name
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:48:13-43
+activity#com.orbaic.miner.MainActivity2
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:50:9-58:20
+	android:label
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:53:13-57
+	android:exported
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:52:13-37
 	android:theme
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:51:13-60
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:54:13-60
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:48:13-42
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:51:13-42
 meta-data#android.app.lib_name
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:52:13-54:36
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:55:13-57:36
 	android:value
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:54:17-33
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:57:17-33
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:53:17-52
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:56:17-52
 activity#com.orbaic.miner.ForgetPassword
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:56:9-59:20
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:59:9-62:20
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:58:13-37
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:61:13-37
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:57:13-43
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:60:13-43
 activity#com.orbaic.miner.UserRegister
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:60:9-66:20
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:63:9-69:20
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:62:13-37
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:65:13-37
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:61:13-41
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:64:13-41
 activity#com.orbaic.miner.LoginLayout
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:67:9-73:20
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:70:9-76:20
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:69:13-37
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:72:13-37
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:68:13-40
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:71:13-40
 activity#com.orbaic.miner.MainActivity
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:74:9-86:20
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:77:9-89:20
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:76:13-36
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:79:13-36
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:75:13-41
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:78:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:77:13-81:29
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:80:13-84:29
 action#android.intent.action.MAIN
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:78:17-69
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:81:17-69
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:78:25-66
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:81:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:80:17-77
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:83:17-77
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:80:27-74
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:83:27-74
 service#com.orbaic.miner.FirebasePushNotification
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:88:9-95:19
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:91:9-98:19
 	android:exported
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:90:13-36
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:93:13-36
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:89:13-53
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:92:13-53
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT+action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:91:13-94:29
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:94:13-97:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:92:17-78
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:95:17-78
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:92:25-75
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:95:25-75
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:93:17-80
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:96:17-80
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:93:25-77
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:96:25-77
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:97:9-99:70
+ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:100:9-102:70
 	android:value
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:99:13-67
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:102:13-67
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:98:13-69
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:101:13-69
 uses-sdk
 INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
@@ -531,6 +542,8 @@ MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/9aa52645c1f9ffb87daee3e54199b960/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/67e246fe228f7f84d795dce0905a7f49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/67e246fe228f7f84d795dce0905a7f49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/3c1b9ce578cd39f100766cd5922197c8/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/3c1b9ce578cd39f100766cd5922197c8/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/02e2e628fe9ca3ef9c1f0890443fca62/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/02e2e628fe9ca3ef9c1f0890443fca62/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/masum/.gradle/caches/transforms-3/26b28e7209e49f16a73fb180afbeeced/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44

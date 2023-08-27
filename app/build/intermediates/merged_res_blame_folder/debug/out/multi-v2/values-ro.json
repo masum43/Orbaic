@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-61:/values-ro/values-ro.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-62:/values-ro/values-ro.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/26b28e7209e49f16a73fb180afbeeced/transformed/appcompat-1.6.1/res/values-ro/values-ro.xml",
