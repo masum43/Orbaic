@@ -1,5 +1,7 @@
 R_DEF: Internal format may change without notice
 local
+color background_dark
+color background_light
 color black
 color black_shadow
 color blue_2FF
@@ -50,9 +52,11 @@ drawable icons8_google
 drawable instagram
 drawable layout_background_for_button
 drawable man
+drawable mcq_result_dialog_shape
 drawable orbaic_icon
 drawable orbaic_logo_first
 drawable orbaic_logo_login
+drawable result
 drawable rock
 drawable side_nav_bar
 drawable start_mining
@@ -162,6 +166,7 @@ id logout
 id mining
 id miningRules
 id navigationView
+id okButton
 id pEdit
 id phone
 id profile
@@ -200,6 +205,11 @@ id titleTextView
 id tool_bar
 id totalMember
 id trans
+id tvCorrectAns
+id tvQsCounter
+id tvResult
+id tvToolbarTitle
+id tvWrongAns
 id twitter_h
 id userCountry
 id userID
@@ -240,6 +250,7 @@ layout item
 layout item_layout
 layout item_view
 layout itemview_for_ref
+layout mcq_result_dialog
 layout ref
 menu navigation_item
 mipmap ic_launcher

@@ -14,10 +14,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.AdMobAds;
 import com.orbaic.miner.FirebaseData;
+import com.orbaic.miner.LoginLayout;
+import com.orbaic.miner.MainActivity2;
 import com.orbaic.miner.R;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -38,6 +44,8 @@ import java.util.Set;
 public class LearnEarnActivity extends AppCompatActivity {
 
     int questionsIndexCount = 0, p = 0, countTime = 100000;
+    int correctAnsCounter = 0;
+    int wrongAnsCounter = 0;
     private TextView question;
 
     private double userPoints;
@@ -50,12 +58,14 @@ public class LearnEarnActivity extends AppCompatActivity {
     private RadioButton ans1, ans2, ans3, ans4;
     private String answer, selectedAnswer;
     List<Integer> randomNumbers;
+    TextView tvQsCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_earn_activtity);
 
+        tvQsCounter = findViewById(R.id.tvQsCounter);
         ans1 = findViewById(R.id.ans1);
         ans2 = findViewById(R.id.ans2);
         ans3 = findViewById(R.id.ans3);
@@ -97,12 +107,15 @@ public class LearnEarnActivity extends AppCompatActivity {
             }
 
             if (answer.equals(selectedAnswer)){
+                correctAnsCounter++;
                 userResultShow("Congratulation! \nYou give the right answer", "Correct Answer");
                 userPoints = userPoints + 1;
                 data.sentData(String.valueOf(userPoints));
                 mobAds.showRewardedVideo();
 
+
             }else {
+                wrongAnsCounter++;
                 userResultShow("Opp! \nYou give the wrong answer", "Wrong Answer");
                 mobAds.showRewardedVideo();
             }
@@ -138,9 +151,25 @@ public class LearnEarnActivity extends AppCompatActivity {
         if(questionsIndexCount < 5){
             question(randomNumbers.get(questionsIndexCount));
         }else {
-            Toast.makeText(LearnEarnActivity.this,
-                    "You have finished all questions", Toast.LENGTH_SHORT).show();
-            finish();
+            Dialog dialog = new Dialog(LearnEarnActivity.this);
+            dialog.setContentView(R.layout.mcq_result_dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            TextView tvCorrectAns = dialog.findViewById(R.id.tvCorrectAns);
+            TextView tvWrongAns = dialog.findViewById(R.id.tvWrongAns);
+            tvCorrectAns.setText("Correct answer: "+correctAnsCounter);
+            tvWrongAns.setText("Wrong Answer:  "+wrongAnsCounter);
+            dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+                Intent intent = new Intent(LearnEarnActivity.this, MainActivity2.class);
+                startActivity(intent);
+                finish();
+            });
+            dialog.show();
+
+//            Toast.makeText(LearnEarnActivity.this,
+//                    "You have finished all questions", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -166,7 +195,8 @@ public class LearnEarnActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void question(int a){
+    private void question(int a) {
+        tvQsCounter.setText("Question No "+(questionsIndexCount+1) +" out of 5");
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("question").child("questions").child(String.valueOf(a));
         reference.addListenerForSingleValueEvent( new ValueEventListener() {

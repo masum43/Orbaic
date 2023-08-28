@@ -55,11 +55,18 @@ public final class ActivityLearnEarnActivtityBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
+  @NonNull
+  public final TextView tvQsCounter;
+
+  @NonNull
+  public final TextView tvToolbarTitle;
+
   private ActivityLearnEarnActivtityBinding(@NonNull RelativeLayout rootView,
       @NonNull RadioButton ans1, @NonNull RadioButton ans2, @NonNull RadioButton ans3,
       @NonNull RadioButton ans4, @NonNull RadioGroup ansGroup, @NonNull ImageView backButton,
       @NonNull LinearLayout learnAndEarnHeader, @NonNull Button learnAnsSubmit,
-      @NonNull TextView learnQuestions, @NonNull ProgressBar progressBar) {
+      @NonNull TextView learnQuestions, @NonNull ProgressBar progressBar,
+      @NonNull TextView tvQsCounter, @NonNull TextView tvToolbarTitle) {
     this.rootView = rootView;
     this.ans1 = ans1;
     this.ans2 = ans2;
@@ -71,6 +78,8 @@ public final class ActivityLearnEarnActivtityBinding implements ViewBinding {
     this.learnAnsSubmit = learnAnsSubmit;
     this.learnQuestions = learnQuestions;
     this.progressBar = progressBar;
+    this.tvQsCounter = tvQsCounter;
+    this.tvToolbarTitle = tvToolbarTitle;
   }
 
   @Override
@@ -160,9 +169,21 @@ public final class ActivityLearnEarnActivtityBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvQsCounter;
+      TextView tvQsCounter = ViewBindings.findChildViewById(rootView, id);
+      if (tvQsCounter == null) {
+        break missingId;
+      }
+
+      id = R.id.tvToolbarTitle;
+      TextView tvToolbarTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvToolbarTitle == null) {
+        break missingId;
+      }
+
       return new ActivityLearnEarnActivtityBinding((RelativeLayout) rootView, ans1, ans2, ans3,
           ans4, ansGroup, backButton, learnAndEarnHeader, learnAnsSubmit, learnQuestions,
-          progressBar);
+          progressBar, tvQsCounter, tvToolbarTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1407,8 +1407,10 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background_dark
 color background_floating_material_dark
 color background_floating_material_light
+color background_light
 color background_material_dark
 color background_material_light
 color black
@@ -3126,6 +3128,7 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable mcq_result_dialog_shape
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3179,6 +3182,7 @@ drawable notify_panel_notification_icon_bg
 drawable orbaic_icon
 drawable orbaic_logo_first
 drawable orbaic_logo_login
+drawable result
 drawable rock
 drawable rounded_layout
 drawable side_nav_bar
@@ -3645,6 +3649,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id off
+id okButton
 id on
 id onInterceptTouchReturnSwipe
 id outline
@@ -3844,6 +3849,11 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvCorrectAns
+id tvQsCounter
+id tvResult
+id tvToolbarTitle
+id tvWrongAns
 id twitter_h
 id unchecked
 id uniform
@@ -4066,6 +4076,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout mcq_result_dialog
 layout modal
 layout modal_portrait_inner
 layout mtrl_alert_dialog
