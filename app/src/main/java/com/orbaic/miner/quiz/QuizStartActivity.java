@@ -30,7 +30,7 @@ public class QuizStartActivity extends AppCompatActivity {
         itemList.add(new Item("If I do wrong answer what will happen?", "If you answer a question incorrectly, you will bot receive any rewards for that question."));
         itemList.add(new Item("Where will add reward?", "To receive your reword tokens, you must complete all 5 quiz questions and submit your answers. Upon successful completion, your reword will be added to your wallet balance."));
         itemList.add(new Item("If unable to complete then how?", "If you leave the quiz halfway through, you will not receive any reword. You must complete all quiz questions to be eligible for the rewords."));
-        itemList.add(new Item("Every day how many time can do?", "Users can participate in the quiz once every 24 hours. After the 24-hour period, a new set of quiz questions will be appear for you to attempt and earn more reword."));
+        itemList.add(new Item("Every day how many time can do?", "Users can participate in the quiz once every 12 hours. After the 12-hour period, a new set of quiz questions will be appear for you to attempt and earn more reword."));
 
 
         adapter = new ItemAdapter(itemList);
