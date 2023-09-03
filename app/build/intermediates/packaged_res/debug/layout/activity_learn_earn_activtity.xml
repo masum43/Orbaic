@@ -10,7 +10,7 @@
         android:id="@+id/learnAndEarnHeader"
         android:layout_width="match_parent"
         android:layout_height="49dp"
-        android:background="@color/teal_200"
+        android:background="@color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,121 +19,146 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:padding="8dp"
-            android:layout_gravity="center"
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
             android:src="@drawable/baseline_arrow_back_24" />
 
         <TextView
+            android:id="@+id/tvToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Learn and Earn"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:text="Learn and Earn"
             android:textColor="@color/white"
             android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
-    
+
     <LinearLayout
-        android:layout_below="@id/learnAndEarnHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/learnAndEarnHeader"
+        android:background="@color/background_light"
         android:orientation="vertical">
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <LinearLayout
-               android:layout_marginTop="20dp"
-               android:layout_marginStart="7dp"
-               android:layout_marginEnd="7dp"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="vertical">
 
-               <TextView
-                   android:layout_marginStart="8dp"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Loading"
-                   android:textSize="16sp"
-                   android:textColor="@color/black"
-                   android:textStyle="bold"
-                   android:id="@+id/learn_questions"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-               <LinearLayout
-                   android:layout_marginStart="7dp"
-                   android:layout_marginEnd="7dp"
-                   android:layout_marginTop="5dp"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="7dp"
+                android:orientation="vertical">
 
-                   <RadioGroup
-                       android:id="@+id/ansGroup"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent">
-                       <RadioButton
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="loading"
-                           android:id="@+id/ans1"/>
+                <TextView
+                    android:id="@+id/learn_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Loading"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                       <RadioButton
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="loading"
-                           android:id="@+id/ans2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="7dp"
+                    android:orientation="vertical">
 
-                       <RadioButton
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="loading"
-                           android:id="@+id/ans3"/>
+                    <RadioGroup
+                        android:id="@+id/ansGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                       <RadioButton
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="loading"
-                           android:id="@+id/ans4"/>
-                   </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/ans1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="loading"
+                            android:textColor="@color/white" />
 
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_marginTop="25dp"
-                   android:gravity="center"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-                   <ProgressBar
-                       android:id="@+id/progress_bar"
-                       style="@style/CircularDeterminateProgressBar"
-                       android:layout_width="60dp"
-                       android:layout_height="60dp"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintLeft_toLeftOf="parent"
-                       app:layout_constraintRight_toRightOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       android:progress="90"/>
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_marginTop="25dp"
-                   android:gravity="center"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-                   <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Submit"
-                       android:textSize="13sp"
-                       android:id="@+id/learn_ans_submit"/>
-               </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/ans2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="loading"
+                            android:textColor="@color/white" />
 
-           </LinearLayout>
-       </ScrollView>
+                        <RadioButton
+                            android:id="@+id/ans3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="loading"
+                            android:textColor="@color/white" />
+
+                        <RadioButton
+                            android:id="@+id/ans4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="loading"
+                            android:textColor="@color/white" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        style="@style/CircularDeterminateProgressBar"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:progress="90"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/learn_ans_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/background_dark"
+                        android:paddingHorizontal="50dp"
+                        android:paddingVertical="10dp"
+                        android:text="Submit"
+                        android:textSize="13sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvQsCounter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Question No 1 out of 5"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </RelativeLayout>

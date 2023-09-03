@@ -206,6 +206,7 @@ public class Home extends Fragment {
         }
 
         learnEarn.setOnClickListener(v->{
+            //startActivity(new Intent(getContext(), QuizStartActivity.class));
             if (currentTime > endTime){
                 startActivity(new Intent(getContext(), QuizStartActivity.class));
             }else {

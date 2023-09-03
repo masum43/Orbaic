@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         dataRead();
-        int versionName = BuildConfig.VERSION_CODE;
+        int appVersionCode = BuildConfig.VERSION_CODE;
 
 
 
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (internetConnectionCheck() == true){
-                            if( versionCode > versionName){
+                        if (internetConnectionCheck()){
+                            if( versionCode > appVersionCode) {
                                 updateNotice();
                                 progressBar.setVisibility(View.GONE);
                                 return;
