@@ -12,11 +12,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orbaic.miner.AdMobAds;
 import com.orbaic.miner.FirebaseData;
-import com.orbaic.miner.LoginLayout;
 import com.orbaic.miner.MainActivity2;
 import com.orbaic.miner.R;
+import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.SpManager;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -34,6 +37,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -65,6 +69,7 @@ public class LearnEarnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_earn_activtity);
 
+        SpManager.init(this);
         tvQsCounter = findViewById(R.id.tvQsCounter);
         ans1 = findViewById(R.id.ans1);
         ans2 = findViewById(R.id.ans2);
@@ -129,8 +134,23 @@ public class LearnEarnActivity extends AppCompatActivity {
         int numberOfRandomNumbers = 5;
         int min = 0;
         int max = 94;
-        randomNumbers = generateUniqueRandomNumbers(numberOfRandomNumbers, min, max);
-        question(randomNumbers.get(questionsIndexCount));
+
+        String prevState = SpManager.getString(SpManager.KEY_MCQ_STATE, Constants.STATE_NOT_STARTED);
+        if (prevState.equals(Constants.STATE_NOT_STARTED)) {
+            SpManager.saveString(SpManager.KEY_MCQ_STATE, Constants.STATE_STARTED);
+            randomNumbers = generateUniqueRandomNumbers(numberOfRandomNumbers, min, max);
+            SpManager.saveString(SpManager.KEY_MCQ_RANDOM_NUMBERS, new Gson().toJson(randomNumbers));
+            question(randomNumbers.get(questionsIndexCount));
+        }
+        else {
+            String json = SpManager.getString(SpManager.KEY_MCQ_RANDOM_NUMBERS, null);
+            if (json != null) {
+                Type type = new TypeToken<List<Integer>>() {}.getType();
+                randomNumbers = new Gson().fromJson(json, type);
+                questionsIndexCount = SpManager.getInt(SpManager.KEY_LAST_QS_INDEX, 0);
+                question(randomNumbers.get(questionsIndexCount));
+            }
+        }
         readData();
 
         progressBar.setProgress(p);
@@ -142,15 +162,21 @@ public class LearnEarnActivity extends AppCompatActivity {
     }
 
     private void loadQuestion() {
-        if (questionsIndexCount == 1){
+/*        if (questionsIndexCount == 1) {
             long time = System.currentTimeMillis();
             long enableTime = time + 43200000;
             data.anyPath(String.valueOf(enableTime),"extra1");
-        }
+        }*/
 
-        if(questionsIndexCount < 5){
+        if(questionsIndexCount < 5) {
             question(randomNumbers.get(questionsIndexCount));
         }else {
+            long time = System.currentTimeMillis();
+            long enableTime = time + 43200000;
+            data.anyPath(String.valueOf(enableTime),"extra1");
+
+            SpManager.saveString(SpManager.KEY_MCQ_STATE, Constants.STATE_NOT_STARTED);
+
             Dialog dialog = new Dialog(LearnEarnActivity.this);
             dialog.setContentView(R.layout.mcq_result_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -196,6 +222,7 @@ public class LearnEarnActivity extends AppCompatActivity {
     }
 
     private void question(int a) {
+        SpManager.saveInt(SpManager.KEY_LAST_QS_INDEX, questionsIndexCount);
         tvQsCounter.setText("Question No "+(questionsIndexCount+1) +" out of 5");
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("question").child("questions").child(String.valueOf(a));
@@ -227,7 +254,7 @@ public class LearnEarnActivity extends AppCompatActivity {
         });
     }
 
-    public void readData(){
+    public void readData() {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
