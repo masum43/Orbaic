@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-62:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/0fe2471882af32d462f6155083e385ac/transformed/play-services-base-18.1.0/res/values-zh-rTW/values.xml",

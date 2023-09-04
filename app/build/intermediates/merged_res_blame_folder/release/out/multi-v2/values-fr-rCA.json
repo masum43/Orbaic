@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-fr-rCA/values-fr-rCA.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-62:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/539c0f5009f4f6941cbe7f851e39ce57/transformed/browser-1.4.0/res/values-fr-rCA/values-fr-rCA.xml",

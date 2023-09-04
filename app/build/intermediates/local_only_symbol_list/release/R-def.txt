@@ -1,5 +1,7 @@
 R_DEF: Internal format may change without notice
 local
+color background_dark
+color background_light
 color black
 color black_shadow
 color blue_2FF
@@ -30,6 +32,7 @@ drawable edit_icon
 drawable eggs_basket
 drawable facebook_icon
 drawable gift_box
+drawable ic_add
 drawable ic_baseline_home_24
 drawable ic_baseline_location_on_24
 drawable ic_baseline_lock_open_24
@@ -49,9 +52,11 @@ drawable icons8_google
 drawable instagram
 drawable layout_background_for_button
 drawable man
+drawable mcq_result_dialog_shape
 drawable orbaic_icon
 drawable orbaic_logo_first
 drawable orbaic_logo_login
+drawable result
 drawable rock
 drawable side_nav_bar
 drawable start_mining
@@ -74,6 +79,7 @@ id ansGroup
 id appBarLayout
 id backButton
 id backButtonRef
+id btnStart
 id button
 id cardView
 id cardView2
@@ -91,6 +97,7 @@ id constraintLayout
 id constraintLayout1
 id constraintLayout3
 id container
+id descriptionTextView
 id drawer_layout
 id emailAddress_profile
 id facebookIcon_h
@@ -104,6 +111,7 @@ id forget_password_registration
 id frameLayout
 id googleImageRegister
 id h
+id holder
 id home
 id hour_fragment
 id i
@@ -116,6 +124,7 @@ id imageView4
 id imageView5
 id imageView6
 id imageView7
+id imageView8
 id imageView9
 id imageView91
 id incorrect_password_forget_password
@@ -157,6 +166,7 @@ id logout
 id mining
 id miningRules
 id navigationView
+id okButton
 id pEdit
 id phone
 id profile
@@ -173,6 +183,7 @@ id register_button
 id registration_incorrect_password
 id registration_password
 id relativeLayout
+id rv
 id share_button
 id sign_up
 id teamMemberShow
@@ -190,9 +201,15 @@ id textView4
 id textView5
 id textView6
 id textView7
+id titleTextView
 id tool_bar
 id totalMember
 id trans
+id tvCorrectAns
+id tvQsCounter
+id tvResult
+id tvToolbarTitle
+id tvWrongAns
 id twitter_h
 id userCountry
 id userID
@@ -215,6 +232,7 @@ layout activity_learn_earn_activtity
 layout activity_login_layout
 layout activity_main
 layout activity_main2
+layout activity_quiz_start
 layout activity_referral_data
 layout activity_user_register
 layout activity_web_view_content
@@ -229,8 +247,10 @@ layout fragment_white_paper
 layout fragment_withdrawal
 layout header_layout
 layout item
+layout item_layout
 layout item_view
 layout itemview_for_ref
+layout mcq_result_dialog
 layout ref
 menu navigation_item
 mipmap ic_launcher

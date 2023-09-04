@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-61:/values-zu/values-zu.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-62:/values-zu/values-zu.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/8e9dd7a2785d0fc3de63ff99717d5405/transformed/play-services-ads-22.2.0/res/values-zu/values.xml",
