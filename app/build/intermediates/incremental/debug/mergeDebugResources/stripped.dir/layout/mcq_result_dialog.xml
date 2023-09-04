@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/mcq_result_dialog_shape"
+    android:padding="20dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/result"/>
+
+    <TextView
+        android:id="@+id/tvCorrectAns"
+        android:layout_gravity="center"
+        android:lineSpacingExtra="-4sp"
+        android:letterSpacing="0.01"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        tools:text="Correct answer: 5"
+        android:textColor="@color/green_pastel"/>
+
+    <TextView
+        android:id="@+id/tvWrongAns"
+        android:layout_gravity="center"
+        android:lineSpacingExtra="-4sp"
+        android:letterSpacing="0.01"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Wrong Answer:  0"
+        android:textColor="@color/red"/>
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_gravity="center"
+        android:lineSpacingExtra="-4sp"
+        android:letterSpacing="0.01"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="You can try after 12 hours again."
+        android:textColor="#64D2FF"/>
+    <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Inviting >>"
+        android:textColor="#64D2FF"
+        android:textSize="14sp"
+        android:lineSpacingExtra="1sp"
+        android:translationY="-0.27sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok, got it"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:letterSpacing="0.05"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
