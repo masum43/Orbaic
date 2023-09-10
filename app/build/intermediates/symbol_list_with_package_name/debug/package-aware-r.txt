@@ -1032,6 +1032,13 @@ attr rangeFillColor
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
+attr rb_color
+attr rb_duration
+attr rb_radius
+attr rb_rippleAmount
+attr rb_scale
+attr rb_strokeWidth
+attr rb_type
 attr reactiveGuide_animateChange
 attr reactiveGuide_applyToAllConstraintSets
 attr reactiveGuide_applyToConstraintSet
@@ -1407,6 +1414,8 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background
+color background2
 color background_dark
 color background_floating_material_dark
 color background_floating_material_light
@@ -2130,12 +2139,15 @@ color purple_200
 color purple_500
 color purple_700
 color red
+color rippelColor
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color selected_text_color
+color status_bar
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -2146,6 +2158,7 @@ color teal_200
 color teal_700
 color tooltip_background_dark
 color tooltip_background_light
+color unselected_text_color
 color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
@@ -2923,6 +2936,8 @@ dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
 dimen paddingSmall
+dimen rippleRadius
+dimen rippleStrokeWidth
 dimen sliding_pane_detail_pane_width
 dimen subtitle_corner_radius
 dimen subtitle_outline_width
@@ -3043,6 +3058,13 @@ drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button_background
 drawable circle
+drawable circle_background
+drawable circle_low
+drawable circle_shape
+drawable circle_white
+drawable clock_icon
+drawable clock_icon_white
+drawable clock_loading_icon
 drawable collapse
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
@@ -3063,17 +3085,30 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable demo_news_icon
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable earn_extra_25_background
 drawable edit_icon
+drawable edit_profile_icon
+drawable edittext_shape
 drawable eggs_basket
+drawable email_edittext_background
+drawable email_icon
+drawable extra_25_dialog_shape
+drawable extra_reward_progress_bar_icon
 drawable facebook_icon
 drawable gift_box
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable homepage_circular_icon_background
+drawable homepage_curved_background
+drawable homepage_logo
+drawable homepage_quiz_progress_background
+drawable horizontal_progressbar_layer
 drawable ic_add
 drawable ic_arrow_back_black_24
 drawable ic_baseline_home_24
@@ -3182,9 +3217,20 @@ drawable notify_panel_notification_icon_bg
 drawable orbaic_icon
 drawable orbaic_logo_first
 drawable orbaic_logo_login
+drawable people_icon
+drawable person_add
+drawable phone_icon
+drawable privacy_policy_icon
+drawable progressbar_layer
+drawable quiz_available_button_shape
+drawable quiz_ques_icon
+drawable quiz_score_icon
+drawable rectangular_shape
 drawable result
+drawable ripple_effect
 drawable rock
 drawable rounded_layout
+drawable share_icon
 drawable side_nav_bar
 drawable start_mining
 drawable study
@@ -3345,6 +3391,7 @@ id cashOut_submit
 id cashOut_username
 id center
 id centerCrop
+id centerImage
 id centerInside
 id center_horizontal
 id center_vertical
@@ -3355,6 +3402,7 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id claimRewardLayout
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3415,6 +3463,7 @@ id dragStart
 id dragUp
 id drawer_layout
 id dropdown_menu
+id earnRewardProgressBar
 id easeIn
 id easeInOut
 id easeOut
@@ -3437,6 +3486,7 @@ id facebookImageRegister
 id fade
 id faq
 id fill
+id fillRipple
 id fill_horizontal
 id fill_vertical
 id filled
@@ -3465,6 +3515,7 @@ id gone
 id googleImageRegister
 id graph
 id graph_wrap
+id gridViewId
 id group_divider
 id grouping
 id groups
@@ -3474,6 +3525,7 @@ id hideable
 id holder
 id home
 id homeAsUp
+id homeLogoButton
 id honorRequest
 id horizontal_only
 id hour_fragment
@@ -3680,10 +3732,14 @@ id progressBar
 id progress_bar
 id progress_circular
 id progress_horizontal
+id quizAvailableLayout
+id quizWaitingLayout
+id quizWaitingProgressBar
 id radio
 id ratio
 id rectangles
 id recyclerView
+id recyclerView2
 id ref_rec
 id refe
 id referralTeam
@@ -3780,6 +3836,7 @@ id staticPostLayout
 id status_bar_latest_event_content
 id stop
 id stretch
+id strokeRipple
 id submenuarrow
 id submit_area
 id supportScrollUp
@@ -3850,6 +3907,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tvCorrectAns
+id tvDate
 id tvQsCounter
 id tvResult
 id tvToolbarTitle
@@ -3877,6 +3935,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id waitingRewardLayout
 id web
 id webViewContent
 id webViewJson
@@ -4688,6 +4747,7 @@ style FiamUI_ModalImageView
 style FiamUI_ResizableImageView
 style FiamUI_Text_BannerTitle
 style FiamUI_Text_Title
+style HorizontalProgressBar
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text
@@ -5650,6 +5710,7 @@ styleable RadialViewGroup materialCircleRadius
 styleable RangeSlider minSeparation values
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_orientation android_clipToPadding android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
+styleable RippleBackground rb_color rb_duration rb_radius rb_rippleAmount rb_scale rb_strokeWidth rb_type
 styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchBar android_textAppearance android_text android_hint defaultMarginsEnabled defaultScrollFlagsEnabled elevation forceDefaultNavigationOnClickListener hideNavigationIcon navigationIconTint strokeColor strokeWidth tintNavigationIcon

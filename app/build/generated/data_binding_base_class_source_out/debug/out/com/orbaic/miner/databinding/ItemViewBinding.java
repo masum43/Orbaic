@@ -4,7 +4,7 @@ package com.orbaic.miner.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +17,7 @@ import java.lang.String;
 
 public final class ItemViewBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final TextView itemViewContent;
@@ -25,16 +25,20 @@ public final class ItemViewBinding implements ViewBinding {
   @NonNull
   public final TextView itemViewTitle;
 
-  private ItemViewBinding(@NonNull RelativeLayout rootView, @NonNull TextView itemViewContent,
-      @NonNull TextView itemViewTitle) {
+  @NonNull
+  public final TextView tvDate;
+
+  private ItemViewBinding(@NonNull LinearLayout rootView, @NonNull TextView itemViewContent,
+      @NonNull TextView itemViewTitle, @NonNull TextView tvDate) {
     this.rootView = rootView;
     this.itemViewContent = itemViewContent;
     this.itemViewTitle = itemViewTitle;
+    this.tvDate = tvDate;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -71,7 +75,13 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemViewBinding((RelativeLayout) rootView, itemViewContent, itemViewTitle);
+      id = R.id.tvDate;
+      TextView tvDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvDate == null) {
+        break missingId;
+      }
+
+      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, tvDate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,106 +1,110 @@
 [
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/header_layout.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/header_layout.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_white_paper.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_white_paper.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_login_layout.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_login_layout.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_home.xml",
+        "source": "com.orbaic.miner.app-main-67:/layout/fragment_home.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/item_layout.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/item_layout.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_faq.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_faq.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_withdrawal.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_withdrawal.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_referral_data.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_referral_data.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_user_register.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_user_register.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_forget_password.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_forget_password.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\contain_main.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\contain_main.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_firebase_dynamic_link.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_firebase_dynamic_link.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_main2.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_main2.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_main2.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_main2.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_firebase_dynamic_link.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_firebase_dynamic_link.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_learn_earn_activtity.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_learn_earn_activtity.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_web_view_content.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_web_view_content.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/itemview_for_ref.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/itemview_for_ref.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\ref.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\ref.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_web_view_content.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_web_view_content.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_login_layout.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_login_layout.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/item.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/item.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_learn_earn_activtity.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_learn_earn_activtity.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/app_bar.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/app_bar.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_faq.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_faq.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_withdrawal.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_withdrawal.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_team_referral.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_team_referral.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_main.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_main.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/ref.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/ref.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\item.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\item.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_quiz_start.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_quiz_start.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_referral_data.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_referral_data.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_profile.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_profile.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_mining_rules.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_mining_rules.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_quiz_start.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_quiz_start.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/activity_user_register.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/activity_user_register.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\app_bar.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\app_bar.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_home.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\mcq_result_dialog.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\mcq_result_dialog.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_team_referral.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_team_referral.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\header_layout.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\header_layout.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/fragment_white_paper.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/fragment_white_paper.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\item_view.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\item_view.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/item_view.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/item_view.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\item_layout.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\item_layout.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/contain_main.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/contain_main.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\itemview_for_ref.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\itemview_for_ref.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-63:/layout/mcq_result_dialog.xml",
-        "source": "com.orbaic.miner.app-main-66:/layout/mcq_result_dialog.xml"
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\fragment_mining_rules.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\fragment_mining_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-mergeDebugResources-64:\\layout\\activity_forget_password.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.0\\com.orbaic.miner.app-main-67:\\layout\\activity_forget_password.xml"
     }
 ]
