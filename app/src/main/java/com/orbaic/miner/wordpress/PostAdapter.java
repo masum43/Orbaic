@@ -93,8 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             Intent intent;
                 intent = WebViewContent.createIntent(view.getContext(), data.getId(),
-                        Html.fromHtml(title,
-                                Html.FROM_HTML_MODE_LEGACY).toString(), excerpt, content);
+                        Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString(), excerpt, content);
 
             view.getContext().startActivity(intent);
 

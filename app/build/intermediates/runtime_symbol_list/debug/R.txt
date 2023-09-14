@@ -3292,6 +3292,7 @@ int id accessibility_custom_action_7 0x7f08002e
 int id accessibility_custom_action_8 0x7f08002f
 int id accessibility_custom_action_9 0x7f080030
 int id aci_coin 0x7f080031
+int id aci_coin_off 0x7f0802c7
 int id action0 0x7f080032
 int id actionDown 0x7f080033
 int id actionDownUp 0x7f080034
@@ -3528,6 +3529,7 @@ int id homeLogoButton 0x7f08011a
 int id honorRequest 0x7f08011b
 int id horizontal_only 0x7f08011c
 int id hour_fragment 0x7f08011d
+int id hour_fragment_old 0x7f0802c8
 int id i 0x7f08011e
 int id icon 0x7f08011f
 int id icon_group 0x7f080120

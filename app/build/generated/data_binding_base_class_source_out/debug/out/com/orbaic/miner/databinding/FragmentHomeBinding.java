@@ -32,6 +32,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView aciCoin;
 
   @NonNull
+  public final TextView aciCoinOff;
+
+  @NonNull
   public final CardView cardView2;
 
   @NonNull
@@ -66,6 +69,9 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final TextView hourFragment;
+
+  @NonNull
+  public final TextView hourFragmentOld;
 
   @NonNull
   public final ImageView imageView10;
@@ -155,27 +161,28 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ImageView whitePaper;
 
   private FragmentHomeBinding(@NonNull NestedScrollView rootView, @NonNull TextView aciCoin,
-      @NonNull CardView cardView2, @NonNull ImageView centerImage,
+      @NonNull TextView aciCoinOff, @NonNull CardView cardView2, @NonNull ImageView centerImage,
       @NonNull LinearLayout claimRewardLayout, @NonNull ConstraintLayout constraintLayout,
       @NonNull ConstraintLayout constraintLayout1, @NonNull ConstraintLayout constraintLayout3,
       @NonNull RippleBackground content, @NonNull ProgressBar earnRewardProgressBar,
       @NonNull ImageView facebookIconH, @NonNull RecyclerView gridViewId,
       @NonNull LinearLayout homeLogoButton, @NonNull TextView hourFragment,
-      @NonNull ImageView imageView10, @NonNull ImageView imageView110,
-      @NonNull ImageView imageView6, @NonNull ImageView imageView9, @NonNull ImageView imageView91,
-      @NonNull ImageView instagramH, @NonNull CoordinatorLayout l12, @NonNull LinearLayout l3,
-      @NonNull ConstraintLayout learnAndEarn, @NonNull TextView learnAvailable,
-      @NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout11,
-      @NonNull LinearLayout linearLayout111, @NonNull LinearLayout linearLayout2,
-      @NonNull LinearLayout linearLayout3, @NonNull ImageView mining,
-      @NonNull LinearLayout quizAvailableLayout, @NonNull LinearLayout quizWaitingLayout,
-      @NonNull ProgressBar quizWaitingProgressBar, @NonNull RecyclerView recyclerView,
-      @NonNull RecyclerView recyclerView2, @NonNull ImageView refe,
-      @NonNull RelativeLayout relativeLayout, @NonNull ImageView telegramH,
+      @NonNull TextView hourFragmentOld, @NonNull ImageView imageView10,
+      @NonNull ImageView imageView110, @NonNull ImageView imageView6, @NonNull ImageView imageView9,
+      @NonNull ImageView imageView91, @NonNull ImageView instagramH, @NonNull CoordinatorLayout l12,
+      @NonNull LinearLayout l3, @NonNull ConstraintLayout learnAndEarn,
+      @NonNull TextView learnAvailable, @NonNull LinearLayout linearLayout,
+      @NonNull LinearLayout linearLayout11, @NonNull LinearLayout linearLayout111,
+      @NonNull LinearLayout linearLayout2, @NonNull LinearLayout linearLayout3,
+      @NonNull ImageView mining, @NonNull LinearLayout quizAvailableLayout,
+      @NonNull LinearLayout quizWaitingLayout, @NonNull ProgressBar quizWaitingProgressBar,
+      @NonNull RecyclerView recyclerView, @NonNull RecyclerView recyclerView2,
+      @NonNull ImageView refe, @NonNull RelativeLayout relativeLayout, @NonNull ImageView telegramH,
       @NonNull TextView textView4, @NonNull ConstraintLayout trans, @NonNull ImageView twitterH,
       @NonNull LinearLayout waitingRewardLayout, @NonNull ImageView whitePaper) {
     this.rootView = rootView;
     this.aciCoin = aciCoin;
+    this.aciCoinOff = aciCoinOff;
     this.cardView2 = cardView2;
     this.centerImage = centerImage;
     this.claimRewardLayout = claimRewardLayout;
@@ -188,6 +195,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.gridViewId = gridViewId;
     this.homeLogoButton = homeLogoButton;
     this.hourFragment = hourFragment;
+    this.hourFragmentOld = hourFragmentOld;
     this.imageView10 = imageView10;
     this.imageView110 = imageView110;
     this.imageView6 = imageView6;
@@ -249,6 +257,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.aci_coin;
       TextView aciCoin = ViewBindings.findChildViewById(rootView, id);
       if (aciCoin == null) {
+        break missingId;
+      }
+
+      id = R.id.aci_coin_off;
+      TextView aciCoinOff = ViewBindings.findChildViewById(rootView, id);
+      if (aciCoinOff == null) {
         break missingId;
       }
 
@@ -321,6 +335,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.hour_fragment;
       TextView hourFragment = ViewBindings.findChildViewById(rootView, id);
       if (hourFragment == null) {
+        break missingId;
+      }
+
+      id = R.id.hour_fragment_old;
+      TextView hourFragmentOld = ViewBindings.findChildViewById(rootView, id);
+      if (hourFragmentOld == null) {
         break missingId;
       }
 
@@ -498,14 +518,14 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((NestedScrollView) rootView, aciCoin, cardView2, centerImage,
-          claimRewardLayout, constraintLayout, constraintLayout1, constraintLayout3, content,
-          earnRewardProgressBar, facebookIconH, gridViewId, homeLogoButton, hourFragment,
-          imageView10, imageView110, imageView6, imageView9, imageView91, instagramH, l12, l3,
-          learnAndEarn, learnAvailable, linearLayout, linearLayout11, linearLayout111,
-          linearLayout2, linearLayout3, mining, quizAvailableLayout, quizWaitingLayout,
-          quizWaitingProgressBar, recyclerView, recyclerView2, refe, relativeLayout, telegramH,
-          textView4, trans, twitterH, waitingRewardLayout, whitePaper);
+      return new FragmentHomeBinding((NestedScrollView) rootView, aciCoin, aciCoinOff, cardView2,
+          centerImage, claimRewardLayout, constraintLayout, constraintLayout1, constraintLayout3,
+          content, earnRewardProgressBar, facebookIconH, gridViewId, homeLogoButton, hourFragment,
+          hourFragmentOld, imageView10, imageView110, imageView6, imageView9, imageView91,
+          instagramH, l12, l3, learnAndEarn, learnAvailable, linearLayout, linearLayout11,
+          linearLayout111, linearLayout2, linearLayout3, mining, quizAvailableLayout,
+          quizWaitingLayout, quizWaitingProgressBar, recyclerView, recyclerView2, refe,
+          relativeLayout, telegramH, textView4, trans, twitterH, waitingRewardLayout, whitePaper);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -3293,6 +3293,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id aci_coin
+id aci_coin_off
 id action0
 id actionDown
 id actionDownUp
@@ -3529,6 +3530,7 @@ id homeLogoButton
 id honorRequest
 id horizontal_only
 id hour_fragment
+id hour_fragment_old
 id i
 id icon
 id icon_group

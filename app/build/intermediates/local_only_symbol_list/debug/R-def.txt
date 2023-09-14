@@ -105,6 +105,7 @@ drawable userlogin
 drawable white_paper
 id RecyclerView
 id aci_coin
+id aci_coin_off
 id active_status
 id alreadyAccount
 id ans1
@@ -156,6 +157,7 @@ id holder
 id home
 id homeLogoButton
 id hour_fragment
+id hour_fragment_old
 id i
 id imageView
 id imageView10
