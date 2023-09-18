@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,10 +52,12 @@ import com.orbaic.miner.wordpress.Post;
 import com.orbaic.miner.wordpress.PostAdapter;
 import com.orbaic.miner.wordpress.RetrofitClient;
 import com.orbaic.miner.wordpress.WordpressData;
+import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -72,22 +76,29 @@ public class Home extends Fragment {
     public Home() {
         // Required empty public constructor
     }
+
     public CountDownTimer count;
-    ConstraintLayout learnEarn,transfer;
+    ConstraintLayout transfer;
+    TextView learnEarn;
 
     private double Coin = 0.0F;
     Timer time = new Timer();
     TimerTask timerTask;
-    public long mEndTime, timeLeftInMillis, oldMilli =0, newMillis = 0, sleepTime = 0, endTime;
+    public long mEndTime, timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime;
     private static long START_TIME_IN_MILLIS = 86400000;
-     TextView hr,AciCoin, available;
-    private ImageView referral,white,facebook,twitter,telegram,instagram, mining;
+    TextView hr, AciCoin;
+    LinearLayout available, quizWaitingLayout;
+    private ImageView referral, facebook, twitter, telegram, instagram;
+    private ImageView white;
+    private LinearLayout mining;
+    private RippleBackground rippleEffect;
+    ImageView rippleCenterImage;
     private RecyclerView postList;
 
     Task<Void> currentUser;
 
     FirebaseUser user;
-    String referralStatus,referralBy;
+    String referralStatus, referralBy;
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
 
@@ -100,42 +111,50 @@ public class Home extends Fragment {
 
         AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
 
 
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
-               mobAds.loadRewardedAd();
+                mobAds.loadRewardedAd();
             }
         });
-
 
 
         //start mining
         learnEarn = view.findViewById(R.id.learnAndEarn);
         available = view.findViewById(R.id.learnAvailable);
+        quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
         transfer = view.findViewById(R.id.trans);
         mining = view.findViewById(R.id.mining);
+        rippleEffect = view.findViewById(R.id.rippleEffect);
+        rippleCenterImage = view.findViewById(R.id.centerImage);
+
         instagram = view.findViewById(R.id.instagram_h);
         telegram = view.findViewById(R.id.telegram_h);
         twitter = view.findViewById(R.id.twitter_h);
         facebook = view.findViewById(R.id.facebookIcon_h);
-        white = view.findViewById(R.id.white_paper);
         referral = view.findViewById(R.id.refe);
+
+        white = view.findViewById(R.id.white_paper);
+
         hr = view.findViewById(R.id.hour_fragment);
         AciCoin = view.findViewById(R.id.aci_coin);
         postList = view.findViewById(R.id.recyclerView);
 
 
         //Mining Start button
-        mining.setOnClickListener(v->{
+        mining.setOnClickListener(v -> {
             mobAds.showRewardedVideo();
-            mining.setVisibility(View.GONE);
+//            mining.setVisibility(View.GONE);
+            startRippleEffect();
+
             runClock();
             setActiveStatus();
             tastFunction();
+
+
             /*if (mobAds.getButton().equals("ON")){
                 mobAds.showRewardedVideo();
                 mining.setVisibility(View.GONE);
@@ -158,13 +177,12 @@ public class Home extends Fragment {
             public void onSuccess(Void unused) {
                 System.out.println(user.isEmailVerified());
                 if (user.isEmailVerified()) {
-                   /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
-                }else {
+                    /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
+                } else {
                     dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                 }
             }
         });
-
 
 
         transfer.setOnClickListener(v -> {
@@ -175,7 +193,7 @@ public class Home extends Fragment {
                     //get token
                     String uid = FirebaseAuth.getInstance().getUid();
                     String token = task.getResult();
-                    System.out.println("Device Token : " +token);
+                    System.out.println("Device Token : " + token);
 
                     //get Time
                     LocalDateTime currentTime = LocalDateTime.now().plusDays(1);
@@ -199,25 +217,27 @@ public class Home extends Fragment {
 
         //learn and earn
         long currentTime = System.currentTimeMillis();
-        if (currentTime > endTime){
+        if (currentTime > endTime) {
+            quizWaitingLayout.setVisibility(View.GONE);
             available.setVisibility(View.VISIBLE);
-        }else {
-            available.setVisibility(View.INVISIBLE);
+        } else {
+            quizWaitingLayout.setVisibility(View.VISIBLE);
+            available.setVisibility(View.GONE);
         }
 
-        learnEarn.setOnClickListener(v->{
+        learnEarn.setOnClickListener(v -> {
             //startActivity(new Intent(getContext(), QuizStartActivity.class));
-            if (currentTime > endTime){
+            if (currentTime > endTime) {
                 startActivity(new Intent(getContext(), QuizStartActivity.class));
-            }else {
+            } else {
                 Toast.makeText(getContext(), "After Every 12 Hours", Toast.LENGTH_SHORT).show();
             }
 
         });
 
         //user referral activity
-        referral.setOnClickListener(v->{
-            Fragment newFragment = new  TeamReferral();
+        referral.setOnClickListener(v -> {
+            Fragment newFragment = new TeamReferral();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container, newFragment);
@@ -236,7 +256,7 @@ public class Home extends Fragment {
 
         });
 
-        facebook.setOnClickListener(v->{
+        facebook.setOnClickListener(v -> {
             String url = "https://www.facebook.com/orbaic/";
 
             Uri uri = Uri.parse(url);
@@ -244,14 +264,14 @@ public class Home extends Fragment {
             startActivity(intent);
 
         });
-        twitter.setOnClickListener(v->{
+        twitter.setOnClickListener(v -> {
             String url = "https://twitter.com/Orbaicproject?s=08";
 
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
-        telegram.setOnClickListener(v->{
+        telegram.setOnClickListener(v -> {
             String url = "https://t.me/OrbaicEnglish";
 
             Uri uri = Uri.parse(url);
@@ -259,7 +279,7 @@ public class Home extends Fragment {
             startActivity(intent);
 
         });
-        instagram.setOnClickListener(v->{
+        instagram.setOnClickListener(v -> {
             String url = "https://www.instagram.com/orbaicproject/";
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -267,11 +287,20 @@ public class Home extends Fragment {
         });
 
 
-
         setListContent(true);
 
-         return view;
+        return view;
 
+    }
+
+    private void startRippleEffect() {
+        if (!rippleEffect.isRippleAnimationRunning()){
+            rippleCenterImage.setColorFilter(Color.argb(255, 255, 255, 255)); //change the logo color while staring animation
+            rippleEffect.startRippleAnimation(); //starting the animation
+        }else {
+            rippleCenterImage.setColorFilter(null); //get back to previous logo color while stopping animation
+            rippleEffect.stopRippleAnimation(); //stopping the animation
+        }
     }
 
     //user team referral user active status
@@ -279,7 +308,7 @@ public class Home extends Fragment {
         long active = System.currentTimeMillis() + START_TIME_IN_MILLIS;
         String s = String.valueOf(active);
 
-        if (referralStatus.equals("OFF")){
+        if (referralStatus.equals("OFF")) {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("referralUser")
@@ -311,7 +340,14 @@ public class Home extends Fragment {
                 postItemList = response.body();
                 postList.setHasFixedSize(true);
                 postList.setLayoutManager(new LinearLayoutManager(getContext()));
-                postList.setAdapter(new PostAdapter(getContext(), postItemList));
+
+                List<Post> firstFiveItems = new ArrayList<>();
+                if (postItemList.size() >= 10) {
+                    firstFiveItems.addAll(postItemList.subList(0, 10));
+                } else {
+                    firstFiveItems.addAll(postItemList);
+                }
+                postList.setAdapter(new PostAdapter(getContext(), firstFiveItems));
 
                 if (withProgress) {
 
@@ -321,7 +357,7 @@ public class Home extends Fragment {
                             progressDialog.dismiss();
                         }
                     };
-                    time.schedule(timerTask,1000);
+                    time.schedule(timerTask, 1000);
                 }
 
 
@@ -341,19 +377,19 @@ public class Home extends Fragment {
     // Mining system
     private void tastFunction() {
         timerTask = new TimerTask() {
-                @Override
-                public void run() {
-                    if (internetConnectionCheck()){
-                        Coin = (double) (Coin + (0.000012*5));
-                        data.sentData(String.valueOf(Coin));
-                        System.out.println(Coin);
-                        tastFunction();
-                    }else {
-                        stop();
-                    }
+            @Override
+            public void run() {
+                if (internetConnectionCheck()) {
+                    Coin = (double) (Coin + (0.000012 * 5));
+                    data.sentData(String.valueOf(Coin));
+                    System.out.println(Coin);
+                    tastFunction();
+                } else {
+                    stop();
                 }
-            };
-            time.schedule(timerTask, 5000);
+            }
+        };
+        time.schedule(timerTask, 5000);
 
 
     }
@@ -369,12 +405,13 @@ public class Home extends Fragment {
     //mining time countdown
     private void runClock() {
 
-        count = new CountDownTimer(START_TIME_IN_MILLIS,1000){
+        count = new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
             @Override
             public void onTick(long l) {
                 timeLeftInMillis = l;
                 updateText();
             }
+
             @Override
             public void onFinish() {
                 mining.setVisibility(View.VISIBLE);
@@ -387,11 +424,11 @@ public class Home extends Fragment {
     //countdown time update in text which is in left side of top
     private void updateText() {
         int hour = (int) (timeLeftInMillis / 1000) / 3600;
-        int minute = (int) ((timeLeftInMillis / 1000) % 3600) /60;
+        int minute = (int) ((timeLeftInMillis / 1000) % 3600) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
-       String timeFormat = String.format(Locale.getDefault(), "%02d:%02d:%02d", hour,minute,seconds);
-       hr.setText(timeFormat);
+        String timeFormat = String.format(Locale.getDefault(), "%02d:%02d:%02d", hour, minute, seconds);
+        hr.setText(timeFormat);
 
     }
 
@@ -414,7 +451,7 @@ public class Home extends Fragment {
 
                 String point = snapshot.child("point").getValue().toString();
                 Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(),"%.5f",Coin);
+                String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 AciCoin.setText(format);
 
                 //Learn and Earn Enable
@@ -423,19 +460,19 @@ public class Home extends Fragment {
 
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
                 timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
-                oldMilli  = timeLeftInMillis;
+                oldMilli = timeLeftInMillis;
                 //System.out.println(System.currentTimeMillis());
                 updateText();
-                mEndTime = preferences.getLong("lastMillis",0);
+                mEndTime = preferences.getLong("lastMillis", 0);
                 //System.out.println(timeLeftInMillis +" "+ mEndTime);
-                timeLeftInMillis = mEndTime-System.currentTimeMillis();
+                timeLeftInMillis = mEndTime - System.currentTimeMillis();
                 newMillis = timeLeftInMillis;
-                if(newMillis > 0){
+                if (newMillis > 0) {
                     sleepTime = oldMilli - newMillis;
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Coin = (double) (Coin + ((sleepTime / 1000)* 0.000012));
+                            Coin = (double) (Coin + ((sleepTime / 1000) * 0.000012));
                             data.sentData(String.valueOf(Coin));
                             //AciCoin.setText(post.getPoint());
                             //System.out.println("sleeping"+ Coin);
@@ -444,24 +481,25 @@ public class Home extends Fragment {
                     time.schedule(timerTask, 1000);
                 }
                 //System.out.println("endTime"+timeLeftInMillis);
-                if(timeLeftInMillis < 0){
+                if (timeLeftInMillis < 0) {
                     timeLeftInMillis = 0;
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Coin = (double) (Coin + ((oldMilli / 1000)* 0.000012));
-                            if(Coin >=0){
+                            Coin = (double) (Coin + ((oldMilli / 1000) * 0.000012));
+                            if (Coin >= 0) {
                                 data.sentData(String.valueOf(Coin));
                                 //System.out.println("finish" + Coin);
                             }
                         }
                     };
-                    time.schedule(timerTask,4000);
+                    time.schedule(timerTask, 4000);
                     updateText();
                     START_TIME_IN_MILLIS = 86400000;
-                }else{
+                } else {
                     START_TIME_IN_MILLIS = timeLeftInMillis;
-                    mining.setVisibility(View.GONE);
+//                    mining.setVisibility(View.GONE);
+                    startRippleEffect();
                     runClock();
                     tastFunction();
                 }
@@ -484,19 +522,19 @@ public class Home extends Fragment {
         SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         edit.putLong("millis", timeLeftInMillis);
-        edit.putLong("lastMillis",mEndTime);
+        edit.putLong("lastMillis", mEndTime);
         edit.apply();
 
         timerTask.cancel();
 
         //System.out.println(timeLeftInMillis +" "+ mEndTime);
 
-        if(count != null){
+        if (count != null) {
             count.cancel();
         }
     }
 
-    public void readData(){
+    public void readData() {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -509,17 +547,18 @@ public class Home extends Fragment {
                 String point = snapshot.child("point").getValue().toString();
                 referralStatus = snapshot.child("referralButton").getValue().toString();
 
-               // System.out.println(referralStatus);
+                // System.out.println(referralStatus);
                 Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(),"%.5f",Coin);
+                String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 AciCoin.setText(format);
 
-                if (referralStatus.equals("OFF")){
+                if (referralStatus.equals("OFF")) {
                     referralBy = snapshot.child("referredBy").getValue().toString();
-                }else{
+                } else {
                     //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -541,7 +580,7 @@ public class Home extends Fragment {
 
     }
 
-    private void dialogShow(String title, String msg){
+    private void dialogShow(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(title);
         builder.setMessage(msg);
@@ -549,7 +588,7 @@ public class Home extends Fragment {
         builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (currentUser == null){
+                if (currentUser == null) {
                     Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
                 }
                 currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
@@ -562,7 +601,7 @@ public class Home extends Fragment {
                         System.out.println(user.isEmailVerified());
                         if (user.isEmailVerified()) {
                             Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                         }
                     }
@@ -597,20 +636,17 @@ public class Home extends Fragment {
         try {
             // clearing app data
             if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
-                ((ActivityManager)getActivity().getSystemService(getActivity().ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
+                ((ActivityManager) getActivity().getSystemService(getActivity().ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
             } else {
                 String packageName = getActivity().getApplicationContext().getPackageName();
                 Runtime runtime = Runtime.getRuntime();
-                runtime.exec("pm clear "+packageName);
+                runtime.exec("pm clear " + packageName);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }

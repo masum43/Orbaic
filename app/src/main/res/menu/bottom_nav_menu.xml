@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeMenu"
+        android:icon="@drawable/home_icon"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/walletMenu"
+        android:icon="@drawable/wallet_icon"
+        android:title="Wallet" />
+
+    <item
+        android:id="@+id/teamMenu"
+        android:icon="@drawable/referral_team_icon"
+        android:title="Team" />
+
+    <item
+        android:id="@+id/supportMenu"
+        android:icon="@drawable/support_icon"
+        android:title="Support" />
+</menu>

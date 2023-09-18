@@ -228,8 +228,8 @@
 119        </activity>
 120        <activity
 120-->C:\Users\ASUS\StudioProjects\Orbaic\app\src\main\AndroidManifest.xml:77:9-89:20
-121            android:name="com.orbaic.miner.MainActivity"
-121-->C:\Users\ASUS\StudioProjects\Orbaic\app\src\main\AndroidManifest.xml:78:13-41
+121            android:name="com.orbaic.miner.SplashActivity"
+121-->C:\Users\ASUS\StudioProjects\Orbaic\app\src\main\AndroidManifest.xml:78:13-43
 122            android:exported="true" >
 122-->C:\Users\ASUS\StudioProjects\Orbaic\app\src\main\AndroidManifest.xml:79:13-36
 123            <intent-filter>

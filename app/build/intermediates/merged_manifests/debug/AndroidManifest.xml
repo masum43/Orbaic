@@ -118,7 +118,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.orbaic.miner.MainActivity"
+            android:name="com.orbaic.miner.SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

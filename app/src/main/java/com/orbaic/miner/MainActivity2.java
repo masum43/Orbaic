@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,6 +35,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.databinding.ActivityMain2Binding;
 
 import java.lang.ref.WeakReference;
@@ -42,15 +45,25 @@ public class MainActivity2 extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    ImageView hamBurgIcon;
+    View header;
+
+    CircularImageView profileIcon;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        toolbar = findViewById(R.id.tool_bar);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navigationViewId);
+        header = navigationView.getHeaderView(0);
+        hamBurgIcon = findViewById(R.id.hamBurgMenuId);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        profileIcon = findViewById(R.id.profileIcon);
+        setNavigationDrawerMenu();
+        setBottomNavigationMenu();
 
         setSupportActionBar(toolbar);
 
@@ -61,6 +74,33 @@ public class MainActivity2 extends AppCompatActivity {
         loadFragment( new Home());
 
 
+
+
+    }
+
+    private void setBottomNavigationMenu() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.homeMenu:
+                            loadFragment( new Home());
+                            return true;
+                        case R.id.walletMenu:
+                            loadFragment( new Home());
+                            return true;
+                        case R.id.supportMenu:
+                            loadFragment( new Home());
+                            return true;
+                        case R.id.teamMenu:
+                            loadFragment( new Home());
+                            return true;
+                    }
+                    return false;
+                });
+    }
+
+    private void setNavigationDrawerMenu() {
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,7 +131,14 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
             }
         });
+        hamBurgIcon.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
 
+        });
     }
 
     private void loadFragment(Fragment f) {

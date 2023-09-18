@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
 
     Timer timer = new Timer();
@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 return;
                             }else {
-                                Intent intent = new Intent(MainActivity.this, LoginLayout.class);
+                                Intent intent = new Intent(SplashActivity.this, LoginLayout.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
                                 finish();
                             }
                         }else {
-                            Toast.makeText(MainActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SplashActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();
                             internetConnectionLost();
                             progressBar.setVisibility(View.GONE);
                         }
