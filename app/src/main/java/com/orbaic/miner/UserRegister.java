@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,14 +94,14 @@ public class UserRegister extends AppCompatActivity {
         //end google login configure
 
         //facebook login
-        ImageView facebookLogin = findViewById(R.id.facebookImageRegister);
+        LinearLayout facebookLogin = findViewById(R.id.facebookImageRegister);
         facebookLogin.setOnClickListener(v -> {
             Toast.makeText(UserRegister.this, "Coming soon", Toast.LENGTH_LONG).show();
         });
 
 
         //google login
-        ImageView googleLogin = findViewById(R.id.googleImageRegister);
+        LinearLayout googleLogin = findViewById(R.id.googleImageRegister);
         googleLogin.setOnClickListener(v -> {
             sign_in();
 
@@ -115,22 +116,22 @@ public class UserRegister extends AppCompatActivity {
         });
 
         //forget password
-        TextView forgetPassword = findViewById(R.id.forget_password_registration);
+/*        TextView forgetPassword = findViewById(R.id.forget_password_registration);
         forgetPassword.setOnClickListener(v -> {
             Intent intent = new Intent(UserRegister.this, ForgetPassword.class);
             startActivity(intent);
-        });
+        });*/
 
 
         EditText user_name = (EditText) findViewById(R.id.user_name_registration);
         EditText register_email = (EditText) findViewById(R.id.user_email_registration);
         EditText register_password = (EditText) findViewById(R.id.registration_password);
-        TextView register_fail = (TextView) findViewById(R.id.registration_incorrect_password);
+//        TextView register_fail = (TextView) findViewById(R.id.registration_incorrect_password);
 
         //Sign Up with Password & Email
-        Button signUp = findViewById(R.id.register_button);
+        ImageView signUp = findViewById(R.id.register_button);
         signUp.setOnClickListener(v -> {
-            register_fail.setVisibility(View.GONE);
+//            register_fail.setVisibility(View.GONE);
             if (TextUtils.isEmpty(user_name.getText().toString())) {
                 user_name.setError("Enter a  Username");
                 return;
@@ -182,7 +183,7 @@ public class UserRegister extends AppCompatActivity {
         EditText user_name = findViewById(R.id.user_name_registration);
         EditText register_email = findViewById(R.id.user_email_registration);
         EditText register_password = findViewById(R.id.registration_password);
-        TextView register_fail = findViewById(R.id.registration_incorrect_password);
+//        TextView register_fail = findViewById(R.id.registration_incorrect_password);
         String email = register_email.getText().toString().trim();
         String password = register_password.getText().toString().trim();
         String name = user_name.getText().toString();
@@ -272,7 +273,7 @@ public class UserRegister extends AppCompatActivity {
         EditText user_name = findViewById(R.id.user_name_registration);
         EditText register_email = findViewById(R.id.user_email_registration);
         EditText register_password = findViewById(R.id.registration_password);
-        TextView register_fail = findViewById(R.id.registration_incorrect_password);
+//        TextView register_fail = findViewById(R.id.registration_incorrect_password);
         String email = register_email.getText().toString().trim();
         String password = register_password.getText().toString().trim();
         String name = user_name.getText().toString();

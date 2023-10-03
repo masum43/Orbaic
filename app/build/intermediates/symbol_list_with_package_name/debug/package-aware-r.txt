@@ -3316,6 +3316,8 @@ drawable white_paper
 drawable white_paper_icon
 drawable winner_image
 drawable youtube
+font poppins_medium
+font poppins_semibold
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3577,7 +3579,6 @@ id forgetPasswordButton
 id forgetPasswordEditText
 id forgetPasswordRegister
 id forget_password_login
-id forget_password_registration
 id fragment_container_view_tag
 id frameLayout
 id frost
@@ -3597,7 +3598,9 @@ id h
 id hamBurgMenuId
 id header_title
 id hideable
+id holdeLogout
 id holder
+id holder_google_signIn
 id home
 id homeAsUp
 id homeMenu
@@ -3615,8 +3618,6 @@ id ignoreRequest
 id image
 id imageView
 id imageView110
-id imageView2
-id imageView3
 id imageView4
 id imageView5
 id imageView6
@@ -3680,7 +3681,6 @@ id listMode
 id list_item
 id locale
 id login_button
-id login_incorrect_password
 id login_password
 id logout
 id ltr
@@ -3822,7 +3822,6 @@ id refe
 id referralTeam
 id refreshButton
 id register_button
-id registration_incorrect_password
 id registration_password
 id relativeLayout
 id reverseSawtooth
@@ -3940,8 +3939,6 @@ id text
 id text2
 id textEnd
 id textInputLayout
-id textInputLayout2
-id textInputLayout9
 id textOne
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -3954,7 +3951,6 @@ id textView15
 id textView2
 id textView3
 id textView4
-id textView5
 id textView6
 id textView7
 id text_input_end_icon

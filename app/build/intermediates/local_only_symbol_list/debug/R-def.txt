@@ -176,6 +176,8 @@ drawable white_paper
 drawable white_paper_icon
 drawable winner_image
 drawable youtube
+font poppins_medium
+font poppins_semibold
 id RecyclerView
 id aci_coin
 id aci_coin_off
@@ -221,13 +223,14 @@ id forgetPasswordButton
 id forgetPasswordEditText
 id forgetPasswordRegister
 id forget_password_login
-id forget_password_registration
 id frameLayout
 id googleImageRegister
 id gridViewId
 id h
 id hamBurgMenuId
+id holdeLogout
 id holder
+id holder_google_signIn
 id home
 id homeMenu
 id hour_fragment
@@ -235,8 +238,6 @@ id hour_fragment_old
 id i
 id imageView
 id imageView110
-id imageView2
-id imageView3
 id imageView4
 id imageView5
 id imageView6
@@ -274,7 +275,6 @@ id linearLayout7
 id linearLayout8
 id linearLayout9
 id login_button
-id login_incorrect_password
 id login_password
 id logout
 id menuMiningRules
@@ -303,7 +303,6 @@ id refe
 id referralTeam
 id refreshButton
 id register_button
-id registration_incorrect_password
 id registration_password
 id relativeLayout
 id rippleEffect
@@ -315,8 +314,6 @@ id teamMemberShow
 id teamMenu
 id telegram_h
 id textInputLayout
-id textInputLayout2
-id textInputLayout9
 id textOne
 id textView
 id textView12
@@ -325,7 +322,6 @@ id textView15
 id textView2
 id textView3
 id textView4
-id textView5
 id textView6
 id textView7
 id titleTextView

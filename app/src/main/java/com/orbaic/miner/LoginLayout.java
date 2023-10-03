@@ -1,8 +1,5 @@
 package com.orbaic.miner;
 
-
-
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,13 +92,13 @@ public class LoginLayout extends AppCompatActivity {
         //end google login configure
 
         //Google Login
-        ImageView googleLogin = findViewById(R.id.imageView2);
+        LinearLayout googleLogin = findViewById(R.id.holder_google_signIn);
         googleLogin.setOnClickListener(v->{
             signGoogle();
         });
 
         //forget
-        TextView forgetPassword = findViewById(R.id.forget_password_login);
+        ImageView forgetPassword = findViewById(R.id.forget_password_login);
         forgetPassword.setOnClickListener(v->{
             Intent intent = new Intent(LoginLayout.this, ForgetPassword.class);
             startActivity(intent);
@@ -122,7 +120,7 @@ public class LoginLayout extends AppCompatActivity {
         EditText username = findViewById(R.id.user_login_email);
         EditText Login_password = findViewById(R.id.login_password);
 
-        Button loginButton = findViewById(R.id.login_button);
+        ImageView loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v->{
             if (TextUtils.isEmpty(username.getText().toString())){
                 username.setError("Please Enter the Email");
@@ -156,7 +154,7 @@ public class LoginLayout extends AppCompatActivity {
     }
 
     private void sign_function() {
-        TextView fail_login = (TextView) findViewById(R.id.login_incorrect_password);
+//        TextView fail_login = (TextView) findViewById(R.id.login_incorrect_password);
         EditText username = (EditText) findViewById(R.id.user_login_email);
         EditText Login_password = (EditText) findViewById(R.id.login_password);
         String email = username.getText().toString().trim();
@@ -173,7 +171,8 @@ public class LoginLayout extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            fail_login.setVisibility(View.VISIBLE);
+//                            fail_login.setVisibility(View.VISIBLE);
+                            Toast.makeText(context, "Please check email and password!!", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }
