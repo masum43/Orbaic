@@ -3722,6 +3722,7 @@ id message_title
 id middle
 id mini
 id mining
+id miningProgressBar
 id miningRules
 id modal_content_root
 id modal_root
@@ -3811,6 +3812,7 @@ id progressBar
 id progress_bar
 id progress_circular
 id progress_horizontal
+id quizProgressBar
 id quizWaitingLayout
 id quizWaitingProgressBar
 id radio
@@ -4021,6 +4023,7 @@ id west
 id whitePaper
 id white_paper
 id wide
+id winnerLayout
 id withText
 id with_icon
 id withdrawal
@@ -4186,6 +4189,7 @@ layout fragment_home_2
 layout fragment_mining_rules
 layout fragment_profile
 layout fragment_team_referral
+layout fragment_wallet
 layout fragment_white_paper
 layout fragment_withdrawal
 layout header
@@ -4270,6 +4274,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout winning_dialog
 menu bottom_nav_menu
 menu nav_menu
 menu navigation_item

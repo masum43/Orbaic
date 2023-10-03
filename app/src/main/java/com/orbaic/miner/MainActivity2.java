@@ -72,7 +72,7 @@ public class MainActivity2 extends AppCompatActivity {
                             loadFragment( new Home());
                             return true;
                         case R.id.walletMenu:
-                            loadFragment( new Home());
+                            loadFragment( new WalletFragment());
                             return true;
                         case R.id.supportMenu:
                             loadFragment( new Home());

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@drawable/extra_25_dialog_shape"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_margin="15dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_gravity="center"
+        android:src="@drawable/winner_image"
+        app:civ_border="false" />
+
+    <TextView
+        android:textSize="15sp"
+        android:letterSpacing="0.01"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="John Smith, an extraordinary individual with an indomitable spirit, has carved his path to success through sheer dedication and unwavering determination. His journey in the mining app Orbaic is a testament to the power of perseverance and the pursuit of excellence."/>
+    <TextView
+        android:id="@+id/okButton"
+        android:textSize="15sp"
+        android:letterSpacing="0.05"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Ok, got it"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#61C7C4"/>
+</LinearLayout>

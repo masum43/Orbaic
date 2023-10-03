@@ -283,6 +283,7 @@ id menuSettings
 id menuTermsAndConditions
 id menuWhitePaper
 id mining
+id miningProgressBar
 id miningRules
 id navigationViewId
 id newsRecyclerView2
@@ -295,6 +296,7 @@ id profile_pic
 id profile_submit
 id progressBar
 id progress_bar
+id quizProgressBar
 id quizWaitingLayout
 id quizWaitingProgressBar
 id recyclerView
@@ -350,6 +352,7 @@ id webViewJson
 id webview_fqa
 id whitePaper
 id white_paper
+id winnerLayout
 id withdrawal
 layout activity_firebase_dynamic_link
 layout activity_forget_password
@@ -369,6 +372,7 @@ layout fragment_home_2
 layout fragment_mining_rules
 layout fragment_profile
 layout fragment_team_referral
+layout fragment_wallet
 layout fragment_white_paper
 layout fragment_withdrawal
 layout header
@@ -380,6 +384,7 @@ layout itemview_for_ref
 layout layout_home_old
 layout mcq_result_dialog
 layout ref
+layout winning_dialog
 menu bottom_nav_menu
 menu nav_menu
 menu navigation_item
