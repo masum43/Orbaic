@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="-550dp"
     android:background="@color/background">
 
@@ -158,6 +158,15 @@
             android:background="@drawable/homepage_quiz_progress_background"
             android:orientation="vertical"
             android:padding="15dp">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/refe"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_baseline_people_outline_24" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -481,9 +490,10 @@ team. Bonus rate uncapped "
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/gridViewId"
+                android:id="@+id/rvMyTeam"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
+                tools:listitem="@layout/grid_single_view"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="-5dp"
                 android:layout_marginBottom="20dp" />

@@ -35,6 +35,9 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
   public final EditText registrationPassword;
 
   @NonNull
+  public final EditText registrationRefer;
+
+  @NonNull
   public final TextView signUp;
 
   @NonNull
@@ -46,13 +49,14 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
   private ActivityUserRegisterBinding(@NonNull NestedScrollView rootView,
       @NonNull LinearLayout facebookImageRegister, @NonNull LinearLayout googleImageRegister,
       @NonNull ImageView registerButton, @NonNull EditText registrationPassword,
-      @NonNull TextView signUp, @NonNull EditText userEmailRegistration,
-      @NonNull EditText userNameRegistration) {
+      @NonNull EditText registrationRefer, @NonNull TextView signUp,
+      @NonNull EditText userEmailRegistration, @NonNull EditText userNameRegistration) {
     this.rootView = rootView;
     this.facebookImageRegister = facebookImageRegister;
     this.googleImageRegister = googleImageRegister;
     this.registerButton = registerButton;
     this.registrationPassword = registrationPassword;
+    this.registrationRefer = registrationRefer;
     this.signUp = signUp;
     this.userEmailRegistration = userEmailRegistration;
     this.userNameRegistration = userNameRegistration;
@@ -109,6 +113,12 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.registration_refer;
+      EditText registrationRefer = ViewBindings.findChildViewById(rootView, id);
+      if (registrationRefer == null) {
+        break missingId;
+      }
+
       id = R.id.sign_up;
       TextView signUp = ViewBindings.findChildViewById(rootView, id);
       if (signUp == null) {
@@ -128,8 +138,8 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
       }
 
       return new ActivityUserRegisterBinding((NestedScrollView) rootView, facebookImageRegister,
-          googleImageRegister, registerButton, registrationPassword, signUp, userEmailRegistration,
-          userNameRegistration);
+          googleImageRegister, registerButton, registrationPassword, registrationRefer, signUp,
+          userEmailRegistration, userNameRegistration);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

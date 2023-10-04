@@ -19,6 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,8 +45,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.orbaic.miner.myTeam.Team;
 import com.orbaic.miner.quiz.LearnEarnActivity;
 import com.orbaic.miner.quiz.QuizStartActivity;
 import com.orbaic.miner.wordpress.Post;
@@ -98,7 +101,7 @@ public class Home extends Fragment {
     Task<Void> currentUser;
 
     FirebaseUser user;
-    String referralStatus, referralBy;
+    String referralStatus, referralBy, myReferCode;
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
 
@@ -552,16 +555,53 @@ public class Home extends Fragment {
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 AciCoin.setText(format);
 
+
                 if (referralStatus.equals("OFF")) {
                     referralBy = snapshot.child("referredBy").getValue().toString();
                 } else {
                     //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
                 }
+                myReferCode = snapshot.child("referral").getValue().toString();
+                getMyTeam(myReferCode);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    private void getMyTeam(String myReferCode) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference();
+        Query referredUsersQuery = databaseRef.child("users")
+                .orderByChild("referredBy")
+                .equalTo(myReferCode);
+
+        referredUsersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Team> teamList = new ArrayList<>();
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    // Access each referred user's data
+                    String userId = userSnapshot.child("id").getValue(String.class);
+                    String userName = userSnapshot.child("name").getValue(String.class);
+                    String userEmail = userSnapshot.child("email").getValue(String.class);
+
+                    teamList.add(new Team(userId, userEmail, userName, ""));
+
+                }
+
+                gridView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+                GridBindAdapter adapter = new GridBindAdapter(getActivity(), imageIds);
+                gridView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle any errors that occur
             }
         });
     }

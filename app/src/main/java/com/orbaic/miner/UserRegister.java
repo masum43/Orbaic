@@ -123,9 +123,10 @@ public class UserRegister extends AppCompatActivity {
         });*/
 
 
-        EditText user_name = (EditText) findViewById(R.id.user_name_registration);
-        EditText register_email = (EditText) findViewById(R.id.user_email_registration);
-        EditText register_password = (EditText) findViewById(R.id.registration_password);
+        EditText user_name = findViewById(R.id.user_name_registration);
+        EditText register_email = findViewById(R.id.user_email_registration);
+        EditText register_password = findViewById(R.id.registration_password);
+        EditText register_refer = findViewById(R.id.registration_refer);
 //        TextView register_fail = (TextView) findViewById(R.id.registration_incorrect_password);
 
         //Sign Up with Password & Email
@@ -183,10 +184,12 @@ public class UserRegister extends AppCompatActivity {
         EditText user_name = findViewById(R.id.user_name_registration);
         EditText register_email = findViewById(R.id.user_email_registration);
         EditText register_password = findViewById(R.id.registration_password);
+        EditText register_refer = findViewById(R.id.registration_refer);
 //        TextView register_fail = findViewById(R.id.registration_incorrect_password);
         String email = register_email.getText().toString().trim();
         String password = register_password.getText().toString().trim();
         String name = user_name.getText().toString();
+        String referredBy = register_refer.getText().toString();
 
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
         Query emailQuery = usersRef.orderByChild("email").equalTo(email);
@@ -222,6 +225,7 @@ public class UserRegister extends AppCompatActivity {
                                         map.put("country",country);
                                         map.put("birthdate","0");
                                         map.put("referral",code);
+                                        map.put("referredBy",referredBy);
                                         map.put("referralButton","ON");
                                         map.put("type","0");
                                         map.put("name",name);
@@ -450,6 +454,7 @@ public class UserRegister extends AppCompatActivity {
                             map.put("country",country);
                             map.put("birthdate","0");
                             map.put("referral",code);
+                            map.put("referredBy","");
                             map.put("referralButton","ON");
                             map.put("type","0");
                             map.put("name",name);

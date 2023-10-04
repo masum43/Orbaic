@@ -59,9 +59,6 @@ public class MainActivity2 extends AppCompatActivity {
         toggle.syncState();
         loadFragment( new Home());
 
-
-
-
     }
 
     private void setBottomNavigationMenu() {

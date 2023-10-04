@@ -48,7 +48,6 @@
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
-
         <EditText
             android:id="@+id/user_name_registration"
             android:layout_width="match_parent"
@@ -84,7 +83,6 @@
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
-
         <EditText
             android:id="@+id/user_email_registration"
             android:layout_width="match_parent"
@@ -118,7 +116,6 @@
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
-
         <EditText
             android:id="@+id/registration_password"
             android:layout_width="match_parent"
@@ -130,6 +127,42 @@
             android:drawablePadding="10dp"
             android:gravity="start|center_vertical"
             android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_refer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refer Code"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/registration_refer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/email_edittext_background"
+            android:drawablePadding="10dp"
+            android:gravity="start|center_vertical"
+            android:inputType="text"
             android:padding="15dp"
             android:textColor="#fff"
             android:textSize="15sp" />

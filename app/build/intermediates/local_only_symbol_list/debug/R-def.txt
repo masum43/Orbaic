@@ -93,6 +93,7 @@ drawable ic_launcher_foreground
 drawable ic_menu_camera
 drawable ic_menu_gallery
 drawable ic_menu_slideshow
+drawable ic_refer
 drawable icons8_facebook
 drawable icons8_google
 drawable instagram
@@ -306,6 +307,7 @@ id referralTeam
 id refreshButton
 id register_button
 id registration_password
+id registration_refer
 id relativeLayout
 id rippleEffect
 id rv

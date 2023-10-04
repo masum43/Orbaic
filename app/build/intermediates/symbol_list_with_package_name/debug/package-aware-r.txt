@@ -3156,6 +3156,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_refer
 drawable ic_search_black_24
 drawable icons8_facebook
 drawable icons8_google
@@ -3825,6 +3826,7 @@ id referralTeam
 id refreshButton
 id register_button
 id registration_password
+id registration_refer
 id relativeLayout
 id reverseSawtooth
 id right
