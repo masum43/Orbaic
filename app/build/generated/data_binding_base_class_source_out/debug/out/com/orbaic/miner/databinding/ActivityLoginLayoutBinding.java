@@ -4,16 +4,15 @@ package com.orbaic.miner.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.orbaic.miner.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,69 +20,42 @@ import java.lang.String;
 
 public final class ActivityLoginLayoutBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final NestedScrollView rootView;
 
   @NonNull
-  public final TextView forgetPasswordLogin;
+  public final ImageView forgetPasswordLogin;
 
   @NonNull
-  public final ImageView imageView;
+  public final LinearLayout holderGoogleSignIn;
 
   @NonNull
-  public final ImageView imageView2;
+  public final ImageView loginButton;
 
   @NonNull
-  public final ImageView imageView3;
-
-  @NonNull
-  public final Button loginButton;
-
-  @NonNull
-  public final TextView loginIncorrectPassword;
-
-  @NonNull
-  public final TextInputEditText loginPassword;
+  public final EditText loginPassword;
 
   @NonNull
   public final TextView signUp;
 
   @NonNull
-  public final TextInputLayout textInputLayout;
+  public final EditText userLoginEmail;
 
-  @NonNull
-  public final TextInputLayout textInputLayout2;
-
-  @NonNull
-  public final TextView textView5;
-
-  @NonNull
-  public final TextInputEditText userLoginEmail;
-
-  private ActivityLoginLayoutBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView forgetPasswordLogin, @NonNull ImageView imageView,
-      @NonNull ImageView imageView2, @NonNull ImageView imageView3, @NonNull Button loginButton,
-      @NonNull TextView loginIncorrectPassword, @NonNull TextInputEditText loginPassword,
-      @NonNull TextView signUp, @NonNull TextInputLayout textInputLayout,
-      @NonNull TextInputLayout textInputLayout2, @NonNull TextView textView5,
-      @NonNull TextInputEditText userLoginEmail) {
+  private ActivityLoginLayoutBinding(@NonNull NestedScrollView rootView,
+      @NonNull ImageView forgetPasswordLogin, @NonNull LinearLayout holderGoogleSignIn,
+      @NonNull ImageView loginButton, @NonNull EditText loginPassword, @NonNull TextView signUp,
+      @NonNull EditText userLoginEmail) {
     this.rootView = rootView;
     this.forgetPasswordLogin = forgetPasswordLogin;
-    this.imageView = imageView;
-    this.imageView2 = imageView2;
-    this.imageView3 = imageView3;
+    this.holderGoogleSignIn = holderGoogleSignIn;
     this.loginButton = loginButton;
-    this.loginIncorrectPassword = loginIncorrectPassword;
     this.loginPassword = loginPassword;
     this.signUp = signUp;
-    this.textInputLayout = textInputLayout;
-    this.textInputLayout2 = textInputLayout2;
-    this.textView5 = textView5;
     this.userLoginEmail = userLoginEmail;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -109,43 +81,25 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.forget_password_login;
-      TextView forgetPasswordLogin = ViewBindings.findChildViewById(rootView, id);
+      ImageView forgetPasswordLogin = ViewBindings.findChildViewById(rootView, id);
       if (forgetPasswordLogin == null) {
         break missingId;
       }
 
-      id = R.id.imageView;
-      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
-      if (imageView == null) {
-        break missingId;
-      }
-
-      id = R.id.imageView2;
-      ImageView imageView2 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView2 == null) {
-        break missingId;
-      }
-
-      id = R.id.imageView3;
-      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView3 == null) {
+      id = R.id.holder_google_signIn;
+      LinearLayout holderGoogleSignIn = ViewBindings.findChildViewById(rootView, id);
+      if (holderGoogleSignIn == null) {
         break missingId;
       }
 
       id = R.id.login_button;
-      Button loginButton = ViewBindings.findChildViewById(rootView, id);
+      ImageView loginButton = ViewBindings.findChildViewById(rootView, id);
       if (loginButton == null) {
         break missingId;
       }
 
-      id = R.id.login_incorrect_password;
-      TextView loginIncorrectPassword = ViewBindings.findChildViewById(rootView, id);
-      if (loginIncorrectPassword == null) {
-        break missingId;
-      }
-
       id = R.id.login_password;
-      TextInputEditText loginPassword = ViewBindings.findChildViewById(rootView, id);
+      EditText loginPassword = ViewBindings.findChildViewById(rootView, id);
       if (loginPassword == null) {
         break missingId;
       }
@@ -156,33 +110,14 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textInputLayout;
-      TextInputLayout textInputLayout = ViewBindings.findChildViewById(rootView, id);
-      if (textInputLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.textInputLayout2;
-      TextInputLayout textInputLayout2 = ViewBindings.findChildViewById(rootView, id);
-      if (textInputLayout2 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView5;
-      TextView textView5 = ViewBindings.findChildViewById(rootView, id);
-      if (textView5 == null) {
-        break missingId;
-      }
-
       id = R.id.user_login_email;
-      TextInputEditText userLoginEmail = ViewBindings.findChildViewById(rootView, id);
+      EditText userLoginEmail = ViewBindings.findChildViewById(rootView, id);
       if (userLoginEmail == null) {
         break missingId;
       }
 
-      return new ActivityLoginLayoutBinding((ConstraintLayout) rootView, forgetPasswordLogin,
-          imageView, imageView2, imageView3, loginButton, loginIncorrectPassword, loginPassword,
-          signUp, textInputLayout, textInputLayout2, textView5, userLoginEmail);
+      return new ActivityLoginLayoutBinding((NestedScrollView) rootView, forgetPasswordLogin,
+          holderGoogleSignIn, loginButton, loginPassword, signUp, userLoginEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
