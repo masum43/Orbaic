@@ -94,6 +94,8 @@ drawable ic_menu_camera
 drawable ic_menu_gallery
 drawable ic_menu_slideshow
 drawable ic_refer
+drawable ic_toolbar_logo
+drawable ic_toolbar_name
 drawable icons8_facebook
 drawable icons8_google
 drawable instagram

@@ -740,6 +740,10 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/mipmap-mdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/drawable_ic_toolbar_name.png.flat",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/drawable/ic_toolbar_name.png"
+    },
+    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/drawable-mdpi_orbaic_icon.png.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-pngs-61:/drawable-mdpi/orbaic_icon.png"
     },
@@ -948,6 +952,10 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/drawable/team_members_inactive_box.xml"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-65:/layout_app_bar.xml.flat",
+        "source": "com.orbaic.miner.app-main-67:/layout/app_bar.xml"
+    },
+    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/layout_activity_learn_earn_activtity.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/activity_learn_earn_activtity.xml"
     },
@@ -1108,10 +1116,6 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/drawable/member_background_shape.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-65:/layout_grid_single_view.xml.flat",
-        "source": "com.orbaic.miner.app-main-67:/layout/grid_single_view.xml"
-    },
-    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/layout_fragment_team_referral.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_team_referral.xml"
     },
@@ -1134,6 +1138,10 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/drawable_forget_password_text.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/drawable/forget_password_text.xml"
+    },
+    {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/drawable_ic_toolbar_logo.png.flat",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/drawable/ic_toolbar_logo.png"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-65:/drawable_homepage_curved_background.xml.flat",

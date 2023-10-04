@@ -3158,6 +3158,8 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_refer
 drawable ic_search_black_24
+drawable ic_toolbar_logo
+drawable ic_toolbar_name
 drawable icons8_facebook
 drawable icons8_google
 drawable image_placeholder
