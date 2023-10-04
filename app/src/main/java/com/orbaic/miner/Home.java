@@ -385,7 +385,7 @@ public class Home extends Fragment {
             @Override
             public void run() {
                 if (internetConnectionCheck()) {
-                    Coin = (double) (Coin + (0.000012 * 5));
+                    Coin = Coin + (0.000012 * 5);
                     data.sentData(String.valueOf(Coin));
                     System.out.println(Coin);
                     tastFunction();
