@@ -3479,6 +3479,7 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id circularImageTeam
 id claimRewardLayout
 id clear_text
 id clip_horizontal
@@ -3839,6 +3840,7 @@ id rounded
 id row_index_key
 id rtl
 id rv
+id rvMyTeam
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3991,6 +3993,7 @@ id tvDate
 id tvQsCounter
 id tvResult
 id tvToolbarTitle
+id tvUserName
 id tvWrongAns
 id twitter_h
 id unchecked
@@ -4194,6 +4197,7 @@ layout fragment_team_referral
 layout fragment_wallet
 layout fragment_white_paper
 layout fragment_withdrawal
+layout grid_single_view
 layout header
 layout header_layout
 layout image

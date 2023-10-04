@@ -48,6 +48,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 import com.orbaic.miner.quiz.LearnEarnActivity;
 import com.orbaic.miner.quiz.QuizStartActivity;
@@ -96,7 +97,7 @@ public class Home extends Fragment {
     private LinearLayout mining;
     private RippleBackground rippleEffect;
     ImageView rippleCenterImage;
-    private RecyclerView postList;
+    private RecyclerView postList, teamRecyclerView;
 
     Task<Void> currentUser;
 
@@ -145,6 +146,7 @@ public class Home extends Fragment {
         hr = view.findViewById(R.id.hour_fragment);
         AciCoin = view.findViewById(R.id.aci_coin);
         postList = view.findViewById(R.id.recyclerView);
+        teamRecyclerView = view.findViewById(R.id.rvMyTeam);
 
 
         //Mining Start button
@@ -585,18 +587,17 @@ public class Home extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Team> teamList = new ArrayList<>();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    // Access each referred user's data
                     String userId = userSnapshot.child("id").getValue(String.class);
                     String userName = userSnapshot.child("name").getValue(String.class);
                     String userEmail = userSnapshot.child("email").getValue(String.class);
 
-                    teamList.add(new Team(userId, userEmail, userName, ""));
+                    teamList.add(new Team(userId, userName, userEmail, ""));
 
                 }
 
-                gridView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-                GridBindAdapter adapter = new GridBindAdapter(getActivity(), imageIds);
-                gridView.setAdapter(adapter);
+                teamRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
+                teamRecyclerView.setAdapter(adapter);
             }
 
             @Override

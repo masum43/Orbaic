@@ -39,6 +39,7 @@ public class GridBindAdapter extends RecyclerView.Adapter<GridBindAdapter.ViewHo
         Team team = list.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(team.getImageUrl())
+                .error(R.drawable.demo_avatar2)
                 .into(holder.imageView);
         holder.userName.setText(team.getUserName());
 

@@ -205,6 +205,7 @@ id cashOut_point_input
 id cashOut_submit
 id cashOut_username
 id centerImage
+id circularImageTeam
 id claimRewardLayout
 id codeRef
 id codeSubmit
@@ -311,6 +312,7 @@ id registration_refer
 id relativeLayout
 id rippleEffect
 id rv
+id rvMyTeam
 id share_button
 id sign_up
 id supportMenu
@@ -336,6 +338,7 @@ id tvDate
 id tvQsCounter
 id tvResult
 id tvToolbarTitle
+id tvUserName
 id tvWrongAns
 id twitter_h
 id userCountry
@@ -377,6 +380,7 @@ layout fragment_team_referral
 layout fragment_wallet
 layout fragment_white_paper
 layout fragment_withdrawal
+layout grid_single_view
 layout header
 layout header_layout
 layout item
