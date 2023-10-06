@@ -79,6 +79,7 @@ drawable homepage_logo
 drawable homepage_quiz_progress_background
 drawable horizontal_progressbar_layer
 drawable ic_add
+drawable ic_alert
 drawable ic_baseline_home_24
 drawable ic_baseline_location_on_24
 drawable ic_baseline_lock_open_24
@@ -216,6 +217,7 @@ id constraintLayout1
 id constraintLayout3
 id container
 id content
+id cvMininigStatus
 id descriptionTextView
 id drawerLayout
 id earnRewardProgressBar
@@ -337,8 +339,10 @@ id totalMember
 id trans
 id tvCorrectAns
 id tvDate
+id tvNotice
 id tvQsCounter
 id tvResult
+id tvTeamStatus
 id tvToolbarTitle
 id tvUserName
 id tvWrongAns
@@ -373,6 +377,8 @@ layout activity_user_register
 layout activity_web_view_content
 layout app_bar
 layout contain_main
+layout dialog_extra_point
+layout dialog_mining_warning
 layout fragment_faq
 layout fragment_home
 layout fragment_home_2

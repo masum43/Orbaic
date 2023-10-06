@@ -3131,6 +3131,7 @@ drawable homepage_logo
 drawable homepage_quiz_progress_background
 drawable horizontal_progressbar_layer
 drawable ic_add
+drawable ic_alert
 drawable ic_arrow_back_black_24
 drawable ic_baseline_home_24
 drawable ic_baseline_location_on_24
@@ -3511,6 +3512,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id cvMininigStatus
 id dark
 id date_picker_actions
 id decelerate
@@ -3992,8 +3994,10 @@ id transition_transform
 id triangle
 id tvCorrectAns
 id tvDate
+id tvNotice
 id tvQsCounter
 id tvResult
+id tvTeamStatus
 id tvToolbarTitle
 id tvUserName
 id tvWrongAns
@@ -4190,6 +4194,8 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_extra_point
+layout dialog_mining_warning
 layout fragment_faq
 layout fragment_home
 layout fragment_home_2

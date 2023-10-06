@@ -24,6 +24,10 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/activity_referral_data.xml"
     },
     {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/dialog_extra_point.xml",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/dialog_extra_point.xml"
+    },
+    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/activity_user_register.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/activity_user_register.xml"
     },
@@ -48,6 +52,10 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_team_referral.xml"
     },
     {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/dialog_mining_warning.xml",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/dialog_mining_warning.xml"
+    },
+    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/item_view.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/item_view.xml"
     },
@@ -66,10 +74,6 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/activity_web_view_content.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/activity_web_view_content.xml"
-    },
-    {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/app_bar.xml",
-        "source": "com.orbaic.miner.app-main-67:/layout/app_bar.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/contain_main.xml",
@@ -106,6 +110,10 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/item.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/item.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/grid_single_view.xml",
+        "source": "com.orbaic.miner.app-main-67:/layout/grid_single_view.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/item_layout.xml",
