@@ -11,6 +11,8 @@ public class SpManager {
     public static String KEY_LAST_QS_INDEX = "last_qs_index";
     public static String KEY_MCQ_STATE = "mcq_state";
     public static String KEY_MCQ_RANDOM_NUMBERS = "mcq_qs_random";
+    public static String KEY_LAST_QUIZ_FINISH_TIME = "mcq_finish_time";
+
 
     // Initialize SharedPreferences
     public static void init(Context context) {
@@ -27,6 +29,16 @@ public class SpManager {
     // Retrieve an integer value from SharedPreferences
     public static int getInt(String key, int defaultValue) {
         return sharedPreferences.getInt(key, defaultValue);
+    }
+
+
+    public static void saveLong(String key, long value) {
+        editor.putLong(key, value);
+        editor.apply();
+    }
+
+    public static long getLong(String key, long defaultValue) {
+        return sharedPreferences.getLong(key, defaultValue);
     }
 
     // Save a String value to SharedPreferences

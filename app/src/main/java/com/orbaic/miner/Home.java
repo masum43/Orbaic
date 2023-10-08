@@ -53,6 +53,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 import com.orbaic.miner.quiz.QuizStartActivity;
@@ -72,7 +73,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -113,12 +113,14 @@ public class Home extends Fragment {
     FirebaseData data = new FirebaseData();
     List<Team> teamList = new ArrayList<>();
     List<Team> onMiningDataList = new ArrayList<>();
+    TextView tvQuizCountDown;
 
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_2, container, false);
+        SpManager.init(requireActivity());
         readData();
         AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
@@ -137,8 +139,34 @@ public class Home extends Fragment {
 
         newsFromWordpressBlog(true);
 
+
         return view;
 
+    }
+
+    private void quizCountDown(String enableTime) {
+
+        long currentTime = System.currentTimeMillis();
+        long timeDifference = Long.parseLong(enableTime) - currentTime;
+
+
+        new CountDownTimer(timeDifference, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Calculate remaining hours, minutes, and seconds
+                long hours = millisUntilFinished / (60 * 60 * 1000);
+                long minutes = (millisUntilFinished % (60 * 60 * 1000)) / (60 * 1000);
+                long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
+
+                // Display the remaining time as a countdown
+                String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                // Update a TextView or any other UI element to show the remaining time.
+                tvQuizCountDown.setText(remainingTime);
+            }
+
+            public void onFinish() {
+                // The countdown timer has finished, you can start the quiz or perform any other action.
+            }
+        }.start();
     }
 
     private void initClicks(AdMobAds mobAds) {
@@ -324,6 +352,7 @@ public class Home extends Fragment {
         postList = view.findViewById(R.id.recyclerView);
         teamRecyclerView = view.findViewById(R.id.rvMyTeam);
         tvTeamStatus = view.findViewById(R.id.tvTeamStatus);
+        tvQuizCountDown = view.findViewById(R.id.tvQuizCountDown);
     }
 
     private void startRippleEffect() {
@@ -513,6 +542,7 @@ public class Home extends Fragment {
                 } else {
                     quizWaitingLayout.setVisibility(View.VISIBLE);
                     available.setVisibility(View.GONE);
+                    quizCountDown(enableTime);
                 }
 
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);

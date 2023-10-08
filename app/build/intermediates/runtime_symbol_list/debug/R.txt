@@ -3064,6 +3064,7 @@ int drawable button_shape 0x7f0700aa
 int drawable chat_icon 0x7f0700ab
 int drawable choose_photo_cam_icon 0x7f0700ac
 int drawable circle 0x7f0700ad
+int drawable circle_2 0x7f0701ad
 int drawable circle_background 0x7f0700ae
 int drawable circle_low 0x7f0700af
 int drawable circle_shape 0x7f0700b0
@@ -3610,6 +3611,7 @@ int id home 0x7f09011c
 int id homeAsUp 0x7f09011d
 int id homeMenu 0x7f09011e
 int id honorRequest 0x7f09011f
+int id horizontalRecyclerView 0x7f0902d2
 int id horizontal_only 0x7f090120
 int id hour_fragment 0x7f090121
 int id hour_fragment_old 0x7f090122
@@ -3629,6 +3631,7 @@ int id imageView6 0x7f09012f
 int id imageView7 0x7f090130
 int id imageView8 0x7f090131
 int id imageView91 0x7f090132
+int id imageViewItem 0x7f0902d3
 int id image_content_root 0x7f090133
 int id image_root 0x7f090134
 int id image_view 0x7f090135
@@ -3832,6 +3835,7 @@ int id register_button 0x7f0901fa
 int id registration_password 0x7f0901fb
 int id registration_refer 0x7f0901fc
 int id relativeLayout 0x7f0901fd
+int id removableView 0x7f0902d4
 int id reverseSawtooth 0x7f0901fe
 int id right 0x7f0901ff
 int id rightToLeft 0x7f090200
@@ -3919,6 +3923,8 @@ int id startToEnd 0x7f090251
 int id startVertical 0x7f090252
 int id staticLayout 0x7f090253
 int id staticPostLayout 0x7f090254
+int id statusOffIcon 0x7f0902d5
+int id statusOnIcon 0x7f0902d6
 int id status_bar_latest_event_content 0x7f090255
 int id stop 0x7f090256
 int id stretch 0x7f090257
@@ -3942,6 +3948,7 @@ int id tag_unhandled_key_event_manager 0x7f090268
 int id tag_unhandled_key_listeners 0x7f090269
 int id tag_window_insets_animation_callback 0x7f09026a
 int id teamMemberShow 0x7f09026b
+int id teamMembersRecyclerView 0x7f0902d7
 int id teamMenu 0x7f09026c
 int id telegram_h 0x7f09026d
 int id text 0x7f09026e
@@ -3995,6 +4002,7 @@ int id tvCorrectAns 0x7f09029d
 int id tvDate 0x7f09029e
 int id tvNotice 0x7f0902cf
 int id tvQsCounter 0x7f09029f
+int id tvQuizCountDown 0x7f0902d9
 int id tvResult 0x7f0902a0
 int id tvTeamStatus 0x7f0902d0
 int id tvToolbarTitle 0x7f0902a1
@@ -4014,6 +4022,7 @@ int id user_id_in_ref 0x7f0902ae
 int id user_login_email 0x7f0902af
 int id user_name_registration 0x7f0902b0
 int id vertical_only 0x7f0902b1
+int id viewAll 0x7f0902d8
 int id view_fqa 0x7f0902b2
 int id view_offset_helper 0x7f0902b3
 int id view_transition 0x7f0902b4
@@ -4200,6 +4209,8 @@ int layout fragment_home 0x7f0c0040
 int layout fragment_home_2 0x7f0c0041
 int layout fragment_mining_rules 0x7f0c0042
 int layout fragment_profile 0x7f0c0043
+int layout fragment_team 0x7f0c009e
+int layout fragment_team_members 0x7f0c009f
 int layout fragment_team_referral 0x7f0c0044
 int layout fragment_wallet 0x7f0c0045
 int layout fragment_white_paper 0x7f0c0046
@@ -4209,6 +4220,7 @@ int layout header 0x7f0c0049
 int layout header_layout 0x7f0c004a
 int layout image 0x7f0c004b
 int layout item 0x7f0c004c
+int layout item_horizontal_list 0x7f0c00a0
 int layout item_layout 0x7f0c004d
 int layout item_view 0x7f0c004e
 int layout itemview_for_ref 0x7f0c004f
@@ -4287,6 +4299,7 @@ int layout select_dialog_item_material 0x7f0c0097
 int layout select_dialog_multichoice_material 0x7f0c0098
 int layout select_dialog_singlechoice_material 0x7f0c0099
 int layout support_simple_spinner_dropdown_item 0x7f0c009a
+int layout team_member_single 0x7f0c00a1
 int layout winning_dialog 0x7f0c009b
 int menu bottom_nav_menu 0x7f0e0000
 int menu nav_menu 0x7f0e0001

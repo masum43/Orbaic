@@ -170,7 +170,7 @@ public class LearnEarnActivity extends AppCompatActivity {
 
         if(questionsIndexCount < 5) {
             question(randomNumbers.get(questionsIndexCount));
-        }else {
+        } else {
             long time = System.currentTimeMillis();
             long enableTime = time + 43200000;
             data.anyPath(String.valueOf(enableTime),"extra1");
@@ -193,9 +193,9 @@ public class LearnEarnActivity extends AppCompatActivity {
             });
             dialog.show();
 
-//            Toast.makeText(LearnEarnActivity.this,
-//                    "You have finished all questions", Toast.LENGTH_SHORT).show();
 
+            long quizFinishTime = System.currentTimeMillis();
+            SpManager.saveLong(SpManager.KEY_LAST_QUIZ_FINISH_TIME, quizFinishTime);
         }
     }
 

@@ -95,8 +95,11 @@ public class AdMobAds {
         if (interstitialAd == null) {
 
             AdRequest adRequest = new AdRequest.Builder().build();
-
-            InterstitialAd.load(context,"ca-app-pub-9323045181924630/7438005611", adRequest,
+            String intersId = "ca-app-pub-9323045181924630/7438005611";
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
+                intersId = "ca-app-pub-3940256099942544/1033173712";
+            }
+            InterstitialAd.load(context,intersId, adRequest,
                     new InterstitialAdLoadCallback() {
                         @Override
                         public void onAdLoaded(@NonNull InterstitialAd ad) {

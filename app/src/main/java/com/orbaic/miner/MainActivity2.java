@@ -75,7 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
                             loadFragment( new Home());
                             return true;
                         case R.id.teamMenu:
-                            loadFragment( new Home());
+                            loadFragment( new TeamFragment());
                             return true;
                     }
                     return false;
