@@ -24,7 +24,7 @@
 
     <style name="CircularDeterminateProgressBar">
         <item name="android:indeterminateOnly">false</item>
-        <item name="android:progressDrawable">@drawable/circle</item>
+        <item name="android:progressDrawable">@drawable/circle_2</item>
     </style>
 
     <string name="lorem_ipsum">

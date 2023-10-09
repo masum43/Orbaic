@@ -5,12 +5,16 @@ public class Team {
     String userName;
     String userEmail;
     String imageUrl;
+    String miningStartTime;
+    String miningStatus;
 
-    public Team(String id, String userName, String userEmail, String imageUrl) {
+    public Team(String id, String userName, String userEmail, String imageUrl, String miningStartTime, String miningStatus) {
         this.id = id;
         this.userName = userName;
         this.userEmail = userEmail;
         this.imageUrl = imageUrl;
+        this.miningStartTime = miningStartTime;
+        this.miningStatus = miningStatus;
     }
 
     public String getId() {
@@ -43,5 +47,21 @@ public class Team {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getMiningStartTime() {
+        return miningStartTime;
+    }
+
+    public void setMiningStartTime(String miningStartTime) {
+        this.miningStartTime = miningStartTime;
+    }
+
+    public String getMiningStatus() {
+        return miningStatus;
+    }
+
+    public void setMiningStatus(String miningStatus) {
+        this.miningStatus = miningStatus;
     }
 }

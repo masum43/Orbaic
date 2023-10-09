@@ -8,11 +8,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.R;
+import com.orbaic.miner.common.Constants;
 
 import java.util.List;
 
@@ -39,8 +41,14 @@ public class GridBindAdapter extends RecyclerView.Adapter<GridBindAdapter.ViewHo
         Team team = list.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(team.getImageUrl())
+                .error(R.drawable.demo_avatar2)
                 .into(holder.imageView);
         holder.userName.setText(team.getUserName());
+
+        if (team.miningStatus.equals(Constants.STATUS_ON)) {
+            holder.cvMininigStatus.setVisibility(View.VISIBLE);
+        }
+        else holder.cvMininigStatus.setVisibility(View.GONE);
 
     }
 
@@ -53,11 +61,13 @@ public class GridBindAdapter extends RecyclerView.Adapter<GridBindAdapter.ViewHo
         CircularImageView imageView;
         TextView userName;
         RelativeLayout layout;
+        CardView cvMininigStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.circularImageTeam);
             userName = itemView.findViewById(R.id.tvUserName);
+            cvMininigStatus = itemView.findViewById(R.id.cvMininigStatus);
 
 
         }

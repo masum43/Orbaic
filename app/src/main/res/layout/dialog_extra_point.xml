@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/extra_25_dialog_shape"
+    android:padding="20dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/notification_icon"/>
+    <TextView
+        android:id="@+id/tvNotice"
+        android:layout_gravity="center"
+        android:lineSpacingExtra="-4sp"
+        android:letterSpacing="0.01"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Earn extra 25% / active member in your
+team. Bonus rate uncapped"
+        android:textColor="#fff"/>
+    <TextView
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Inviting >>"
+        android:textColor="#64D2FF"
+        android:textSize="14sp"
+        android:lineSpacingExtra="1sp"
+        android:translationY="-0.27sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="-4sp"
+            android:text="Ok, got it"
+            android:textSize="15sp"
+            android:letterSpacing="0.05"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

@@ -3,12 +3,14 @@ package com.orbaic.miner;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +26,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,8 +52,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.SpManager;
+import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
-import com.orbaic.miner.quiz.LearnEarnActivity;
 import com.orbaic.miner.quiz.QuizStartActivity;
 import com.orbaic.miner.wordpress.Post;
 import com.orbaic.miner.wordpress.PostAdapter;
@@ -72,7 +78,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+//22955
 public class Home extends Fragment {
 
 
@@ -87,106 +93,111 @@ public class Home extends Fragment {
     private double Coin = 0.0F;
     Timer time = new Timer();
     TimerTask timerTask;
-    public long mEndTime, timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime;
+    public long mEndTime, timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime = -1;
     private static long START_TIME_IN_MILLIS = 86400000;
     TextView hr, AciCoin;
+    TextView tvTeamStatus;
     LinearLayout available, quizWaitingLayout;
     private ImageView referral, facebook, twitter, telegram, instagram;
     private ImageView white;
     private LinearLayout mining;
     private RippleBackground rippleEffect;
     ImageView rippleCenterImage;
-    private RecyclerView postList;
+    private RecyclerView postList, teamRecyclerView;
 
     Task<Void> currentUser;
 
     FirebaseUser user;
-    String referralStatus, referralBy, myReferCode;
+    String referralStatus, referralBy, myReferCode, miningStatus, miningStartTime;
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
+    List<Team> teamList = new ArrayList<>();
+    List<Team> onMiningDataList = new ArrayList<>();
+    TextView tvQuizCountDown;
 
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        readData();
-
-        AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_2, container, false);
-
-
+        SpManager.init(requireActivity());
+        readData();
+        AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
                 mobAds.loadRewardedAd();
             }
         });
-
-
-        //start mining
-        learnEarn = view.findViewById(R.id.learnAndEarn);
-        available = view.findViewById(R.id.learnAvailable);
-        quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
-        transfer = view.findViewById(R.id.trans);
-        mining = view.findViewById(R.id.mining);
-        rippleEffect = view.findViewById(R.id.rippleEffect);
-        rippleCenterImage = view.findViewById(R.id.centerImage);
-
-        instagram = view.findViewById(R.id.instagram_h);
-        telegram = view.findViewById(R.id.telegram_h);
-        twitter = view.findViewById(R.id.twitter_h);
-        facebook = view.findViewById(R.id.facebookIcon_h);
-        referral = view.findViewById(R.id.refe);
-
-        white = view.findViewById(R.id.white_paper);
-
-        hr = view.findViewById(R.id.hour_fragment);
-        AciCoin = view.findViewById(R.id.aci_coin);
-        postList = view.findViewById(R.id.recyclerView);
-
-
-        //Mining Start button
-        mining.setOnClickListener(v -> {
-            mobAds.showRewardedVideo();
-//            mining.setVisibility(View.GONE);
-            startRippleEffect();
-
-            runClock();
-            setActiveStatus();
-            tastFunction();
-
-
-            /*if (mobAds.getButton().equals("ON")){
-                mobAds.showRewardedVideo();
-                mining.setVisibility(View.GONE);
-                runClock();
-                setActiveStatus();
-                tastFunction();
-            }else {
-                Toast.makeText(getContext(), "Please wait Sometime", Toast.LENGTH_SHORT).show();
-            }*/
-        });
-
-        //user email verification
+        initViews(view);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
+        checkEmailVerifyStatus();
+
+        initClicks(mobAds);
+
+        newsFromWordpressBlog(true);
 
 
-        currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println(user.isEmailVerified());
-                if (user.isEmailVerified()) {
-                    /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
-                } else {
-                    dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
-                }
+        return view;
+
+    }
+
+    private void quizCountDown(String enableTime) {
+
+        long currentTime = System.currentTimeMillis();
+        long timeDifference = Long.parseLong(enableTime) - currentTime;
+
+
+        new CountDownTimer(timeDifference, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Calculate remaining hours, minutes, and seconds
+                long hours = millisUntilFinished / (60 * 60 * 1000);
+                long minutes = (millisUntilFinished % (60 * 60 * 1000)) / (60 * 1000);
+                long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
+
+                // Display the remaining time as a countdown
+                String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                // Update a TextView or any other UI element to show the remaining time.
+                tvQuizCountDown.setText(remainingTime);
             }
-        });
 
+            public void onFinish() {
+                // The countdown timer has finished, you can start the quiz or perform any other action.
+            }
+        }.start();
+    }
+
+    private void initClicks(AdMobAds mobAds) {
+        mining.setOnClickListener(v -> {
+            getMiningStatus(miningStatus -> {
+                if (miningStatus.equals(Constants.STATUS_OFF)) {
+                    if (!onMiningDataList.isEmpty()) {
+                        Dialog dialog = new Dialog(requireActivity());
+                        dialog.setContentView(R.layout.dialog_extra_point);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        TextView tvNotice = dialog.findViewById(R.id.tvNotice);
+                        tvNotice.setText("Your "+onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10*onMiningDataList.size()) +"%.");
+                        dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+                            dialog.dismiss();
+                            startMining(mobAds);
+
+                        });
+                        dialog.show();
+                    }
+                    else {
+                        startMining(mobAds);
+                    }
+
+                }
+                else {
+                    miningAlreadyRunningWarning();
+                }
+            });
+
+
+        });
 
         transfer.setOnClickListener(v -> {
             PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
@@ -218,27 +229,18 @@ public class Home extends Fragment {
             /*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*/
         });
 
-        //learn and earn
-        long currentTime = System.currentTimeMillis();
-        if (currentTime > endTime) {
-            quizWaitingLayout.setVisibility(View.GONE);
-            available.setVisibility(View.VISIBLE);
-        } else {
-            quizWaitingLayout.setVisibility(View.VISIBLE);
-            available.setVisibility(View.GONE);
-        }
-
         learnEarn.setOnClickListener(v -> {
             //startActivity(new Intent(getContext(), QuizStartActivity.class));
-            if (currentTime > endTime) {
-                startActivity(new Intent(getContext(), QuizStartActivity.class));
-            } else {
-                Toast.makeText(getContext(), "After Every 12 Hours", Toast.LENGTH_SHORT).show();
+            if (endTime != -1) {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime > endTime) {
+                    startActivity(new Intent(getContext(), QuizStartActivity.class));
+                } else {
+                    Toast.makeText(getContext(), "After Every 12 Hours", Toast.LENGTH_SHORT).show();
+                }
             }
-
         });
 
-        //user referral activity
         referral.setOnClickListener(v -> {
             Fragment newFragment = new TeamReferral();
             FragmentManager fragmentManager = getFragmentManager();
@@ -267,6 +269,7 @@ public class Home extends Fragment {
             startActivity(intent);
 
         });
+
         twitter.setOnClickListener(v -> {
             String url = "https://twitter.com/Orbaicproject?s=08";
 
@@ -274,6 +277,7 @@ public class Home extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
+
         telegram.setOnClickListener(v -> {
             String url = "https://t.me/OrbaicEnglish";
 
@@ -282,25 +286,84 @@ public class Home extends Fragment {
             startActivity(intent);
 
         });
+
         instagram.setOnClickListener(v -> {
             String url = "https://www.instagram.com/orbaicproject/";
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
+    }
+
+    private void miningAlreadyRunningWarning() {
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_mining_warning);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+            dialog.dismiss();
 
 
-        setListContent(true);
+        });
+        dialog.show();
+    }
 
-        return view;
+    private void startMining(AdMobAds mobAds) {
+        mobAds.showRewardedVideo();
+        startRippleEffect();
 
+        runClock();
+        setActiveStatus();
+        addPoints();
+    }
+
+    private void checkEmailVerifyStatus() {
+        currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println(user.isEmailVerified());
+                if (user.isEmailVerified()) {
+                    /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
+                } else {
+                    dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                }
+            }
+        });
+    }
+
+    private void initViews(View view) {
+        learnEarn = view.findViewById(R.id.learnAndEarn);
+        available = view.findViewById(R.id.learnAvailable);
+        quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
+        transfer = view.findViewById(R.id.trans);
+        mining = view.findViewById(R.id.mining);
+        rippleEffect = view.findViewById(R.id.rippleEffect);
+        rippleCenterImage = view.findViewById(R.id.centerImage);
+
+        instagram = view.findViewById(R.id.instagram_h);
+        telegram = view.findViewById(R.id.telegram_h);
+        twitter = view.findViewById(R.id.twitter_h);
+        facebook = view.findViewById(R.id.facebookIcon_h);
+        referral = view.findViewById(R.id.refe);
+
+        white = view.findViewById(R.id.white_paper);
+
+        hr = view.findViewById(R.id.hour_fragment);
+        AciCoin = view.findViewById(R.id.aci_coin);
+        postList = view.findViewById(R.id.recyclerView);
+        teamRecyclerView = view.findViewById(R.id.rvMyTeam);
+        tvTeamStatus = view.findViewById(R.id.tvTeamStatus);
+        tvQuizCountDown = view.findViewById(R.id.tvQuizCountDown);
     }
 
     private void startRippleEffect() {
         if (!rippleEffect.isRippleAnimationRunning()){
             rippleCenterImage.setColorFilter(Color.argb(255, 255, 255, 255)); //change the logo color while staring animation
             rippleEffect.startRippleAnimation(); //starting the animation
-        }else {
+        }
+    }
+
+    private void stopRippleEffect() {
+        if (rippleEffect.isRippleAnimationRunning()){
             rippleCenterImage.setColorFilter(null); //get back to previous logo color while stopping animation
             rippleEffect.stopRippleAnimation(); //stopping the animation
         }
@@ -311,9 +374,14 @@ public class Home extends Fragment {
         long active = System.currentTimeMillis() + START_TIME_IN_MILLIS;
         String s = String.valueOf(active);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference refUser = database.getReference("users")
+                .child(mAuth.getUid());
+        long now = System.currentTimeMillis();
+        refUser.child("miningStartTime").setValue(String.valueOf(now));
+
         if (referralStatus.equals("OFF")) {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("referralUser")
                     .child(referralBy).child(mAuth.getUid());
             ref.child("status").setValue(s);
@@ -321,7 +389,7 @@ public class Home extends Fragment {
     }
 
     //news from wordpress blog
-    private void setListContent(boolean withProgress) {
+    private void newsFromWordpressBlog(boolean withProgress) {
 
         WordpressData api = RetrofitClient.getApiService();
         Call<List<Post>> call = api.getPost();
@@ -378,15 +446,22 @@ public class Home extends Fragment {
     }
 
     // Mining system
-    private void tastFunction() {
+    private void addPoints() {
         timerTask = new TimerTask() {
             @Override
             public void run() {
                 if (internetConnectionCheck()) {
-                    Coin = (double) (Coin + (0.000012 * 5));
+                    int myTeamMiningCount = onMiningDataList.size();
+                    if (myTeamMiningCount != 0) {
+                        Coin = Coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount)) ;
+                    }
+                    else {
+                        Coin = Coin + (0.000012 * 5);
+                    }
+
                     data.sentData(String.valueOf(Coin));
                     System.out.println(Coin);
-                    tastFunction();
+                    addPoints();
                 } else {
                     stop();
                 }
@@ -460,6 +535,15 @@ public class Home extends Fragment {
                 //Learn and Earn Enable
                 String enableTime = snapshot.child("extra1").getValue().toString();
                 endTime = Long.parseLong(enableTime);
+                long currentTime = System.currentTimeMillis();
+                if (currentTime > endTime) {
+                    quizWaitingLayout.setVisibility(View.GONE);
+                    available.setVisibility(View.VISIBLE);
+                } else {
+                    quizWaitingLayout.setVisibility(View.VISIBLE);
+                    available.setVisibility(View.GONE);
+                    quizCountDown(enableTime);
+                }
 
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
                 timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
@@ -504,7 +588,7 @@ public class Home extends Fragment {
 //                    mining.setVisibility(View.GONE);
                     startRippleEffect();
                     runClock();
-                    tastFunction();
+                    addPoints();
                 }
 
             }
@@ -537,6 +621,36 @@ public class Home extends Fragment {
         }
     }
 
+    public void getMiningStatus(MiningStatusCallback callback) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("miningStartTime").exists()) {
+                    miningStartTime = snapshot.child("miningStartTime").getValue().toString();
+                }
+                else miningStartTime = "-1";
+
+                String miningStatus = checkMiningStatus(miningStartTime);
+                if (miningStatus.equals(Constants.STATUS_ON)) {
+                    startRippleEffect();
+                }
+                else {
+                    stopRippleEffect();
+                }
+                callback.onMiningStatusChanged(miningStatus);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onMiningStatusChanged(Constants.STATUS_OFF);
+            }
+        });
+    }
+
     public void readData() {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -549,6 +663,18 @@ public class Home extends Fragment {
                 String name = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
                 referralStatus = snapshot.child("referralButton").getValue().toString();
+                if (snapshot.child("miningStartTime").exists()) {
+                    miningStartTime = snapshot.child("miningStartTime").getValue().toString();
+                }
+                else miningStartTime = "-1";
+
+                String miningStatus = checkMiningStatus(miningStartTime);
+                if (miningStatus.equals(Constants.STATUS_ON)) {
+                    startRippleEffect();
+                }
+                else {
+                    stopRippleEffect();
+                }
 
                 // System.out.println(referralStatus);
                 Coin = Double.valueOf(point);
@@ -562,7 +688,7 @@ public class Home extends Fragment {
                     //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
                 }
                 myReferCode = snapshot.child("referral").getValue().toString();
-                getMyTeam(myReferCode);
+
 
             }
 
@@ -571,6 +697,35 @@ public class Home extends Fragment {
 
             }
         });
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!myReferCode.isEmpty()) {
+                    getMyTeam(myReferCode);
+                }
+            }
+        }, 1500);
+    }
+
+    private String checkMiningStatus(String miningStartTime) {
+        long now = System.currentTimeMillis();
+        long miningStartTimeLong = Long.parseLong(miningStartTime);
+        long timeElapsed = now - miningStartTimeLong;
+
+        Log.e("checkMiningStatus", "now: "+ now );
+        Log.e("checkMiningStatus", "miningStartTimeLong: "+ miningStartTimeLong );
+        Log.e("checkMiningStatus", "timeElapsed: "+ timeElapsed );
+
+        if (timeElapsed >= 24 * 60 * 60 * 1000) {
+            // If more than 24 hours have elapsed, do something
+            // Your code here
+            return Constants.STATUS_OFF;
+        } else {
+            // If less than 24 hours have elapsed, do something else
+            // Your code here
+            return Constants.STATUS_ON;
+        }
     }
 
     private void getMyTeam(String myReferCode) {
@@ -580,23 +735,40 @@ public class Home extends Fragment {
                 .orderByChild("referredBy")
                 .equalTo(myReferCode);
 
-        referredUsersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        referredUsersQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Team> teamList = new ArrayList<>();
+                teamList.clear();
+                onMiningDataList.clear();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    // Access each referred user's data
+                    Log.e("getMyTeam", "userSnapshot: "+ userSnapshot);
                     String userId = userSnapshot.child("id").getValue(String.class);
                     String userName = userSnapshot.child("name").getValue(String.class);
                     String userEmail = userSnapshot.child("email").getValue(String.class);
+                    String miningStartTime = "-1";
+                    if (userSnapshot.child("miningStartTime").exists()) {
+                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
+                    }
+                    Log.e("getMyTeam", "miningStartTime: "+miningStartTime );
 
-                    teamList.add(new Team(userId, userEmail, userName, ""));
+                    String miningStatus = checkMiningStatus(miningStartTime);
+                    Log.e("getMyTeam", "miningStatus: "+miningStatus );
+
+                    teamList.add(new Team(userId, userName, userEmail, "", miningStartTime, miningStatus));
 
                 }
 
-                gridView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-                GridBindAdapter adapter = new GridBindAdapter(getActivity(), imageIds);
-                gridView.setAdapter(adapter);
+                teamRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
+                teamRecyclerView.setAdapter(adapter);
+
+                for (Team miningData : teamList) {
+                    if (miningData.getMiningStatus().equals(Constants.STATUS_ON)) {
+                        onMiningDataList.add(miningData);
+                    }
+                }
+
+                tvTeamStatus.setText(onMiningDataList.size()+"/"+teamList.size());
             }
 
             @Override
@@ -668,7 +840,7 @@ public class Home extends Fragment {
                 clearAppData();
             }
         });
-        builder.create().show();
+//        builder.create().show();
     }
 
 

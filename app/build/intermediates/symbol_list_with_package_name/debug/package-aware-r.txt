@@ -3065,6 +3065,7 @@ drawable button_shape
 drawable chat_icon
 drawable choose_photo_cam_icon
 drawable circle
+drawable circle_2
 drawable circle_background
 drawable circle_low
 drawable circle_shape
@@ -3131,6 +3132,7 @@ drawable homepage_logo
 drawable homepage_quiz_progress_background
 drawable horizontal_progressbar_layer
 drawable ic_add
+drawable ic_alert
 drawable ic_arrow_back_black_24
 drawable ic_baseline_home_24
 drawable ic_baseline_location_on_24
@@ -3158,6 +3160,8 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_refer
 drawable ic_search_black_24
+drawable ic_toolbar_logo
+drawable ic_toolbar_name
 drawable icons8_facebook
 drawable icons8_google
 drawable image_placeholder
@@ -3479,6 +3483,7 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id circularImageTeam
 id claimRewardLayout
 id clear_text
 id clip_horizontal
@@ -3508,6 +3513,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id cvMininigStatus
 id dark
 id date_picker_actions
 id decelerate
@@ -3606,6 +3612,7 @@ id home
 id homeAsUp
 id homeMenu
 id honorRequest
+id horizontalRecyclerView
 id horizontal_only
 id hour_fragment
 id hour_fragment_old
@@ -3625,6 +3632,7 @@ id imageView6
 id imageView7
 id imageView8
 id imageView91
+id imageViewItem
 id image_content_root
 id image_root
 id image_view
@@ -3828,6 +3836,7 @@ id register_button
 id registration_password
 id registration_refer
 id relativeLayout
+id removableView
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3839,6 +3848,7 @@ id rounded
 id row_index_key
 id rtl
 id rv
+id rvMyTeam
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3914,6 +3924,8 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
+id statusOffIcon
+id statusOnIcon
 id status_bar_latest_event_content
 id stop
 id stretch
@@ -3937,6 +3949,7 @@ id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
 id teamMemberShow
+id teamMembersRecyclerView
 id teamMenu
 id telegram_h
 id text
@@ -3988,9 +4001,13 @@ id transition_transform
 id triangle
 id tvCorrectAns
 id tvDate
+id tvNotice
 id tvQsCounter
+id tvQuizCountDown
 id tvResult
+id tvTeamStatus
 id tvToolbarTitle
+id tvUserName
 id tvWrongAns
 id twitter_h
 id unchecked
@@ -4006,6 +4023,7 @@ id user_id_in_ref
 id user_login_email
 id user_name_registration
 id vertical_only
+id viewAll
 id view_fqa
 id view_offset_helper
 id view_transition
@@ -4185,19 +4203,25 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_extra_point
+layout dialog_mining_warning
 layout fragment_faq
 layout fragment_home
 layout fragment_home_2
 layout fragment_mining_rules
 layout fragment_profile
+layout fragment_team
+layout fragment_team_members
 layout fragment_team_referral
 layout fragment_wallet
 layout fragment_white_paper
 layout fragment_withdrawal
+layout grid_single_view
 layout header
 layout header_layout
 layout image
 layout item
+layout item_horizontal_list
 layout item_layout
 layout item_view
 layout itemview_for_ref
@@ -4276,6 +4300,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout team_member_single
 layout winning_dialog
 menu bottom_nav_menu
 menu nav_menu
