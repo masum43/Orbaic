@@ -165,6 +165,7 @@ public class Home extends Fragment {
                 tvQuizCountDown.setText(remainingTime);
 
                 int progress = (int) ((timeDifference - millisUntilFinished) * 100 / timeDifference);
+                Log.e("quizCountDown", "progress: "+ progress);
                 waitingQuizProgressbar.setProgress(progress);
             }
 
