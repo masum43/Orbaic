@@ -1,19 +1,19 @@
-#Mon Oct 09 00:43:54 BDT 2023
-base.0=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.3=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
-base.4=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
-base.5=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
-base.6=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
-base.7=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.8=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
-base.9=/Users/masum/StudioProjects/temp/Orbaic/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
+#Mon Oct 09 17:47:01 BDT 2023
+base.0=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.3=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.4=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.5=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.6=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.7=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.8=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+base.9=C\:\\Users\\ASUS\\StudioProjects\\Orbaic\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes4.dex
 path.0=classes.dex
 path.1=0/classes.dex
-path.2=1/classes.dex
-path.3=14/classes.dex
-path.4=15/classes.dex
+path.2=14/classes.dex
+path.3=15/classes.dex
+path.4=1/classes.dex
 path.5=2/classes.dex
 path.6=4/classes.dex
 path.7=classes2.dex

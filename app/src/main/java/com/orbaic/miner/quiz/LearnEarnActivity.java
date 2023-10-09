@@ -29,6 +29,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -133,7 +134,7 @@ public class LearnEarnActivity extends AppCompatActivity {
 
         int numberOfRandomNumbers = 5;
         int min = 0;
-        int max = 94;
+        int max = 93;
 
         String prevState = SpManager.getString(SpManager.KEY_MCQ_STATE, Constants.STATE_NOT_STARTED);
         if (prevState.equals(Constants.STATE_NOT_STARTED)) {
@@ -223,6 +224,8 @@ public class LearnEarnActivity extends AppCompatActivity {
 
     private void question(int a) {
         SpManager.saveInt(SpManager.KEY_LAST_QS_INDEX, questionsIndexCount);
+        Log.e("QUIZ_ERROR", "a: "+ a );
+        Log.e("QUIZ_ERROR", "KEY_LAST_QS_INDEX: "+ questionsIndexCount );
         tvQsCounter.setText("Question No "+(questionsIndexCount+1) +" out of 5");
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("question").child("questions").child(String.valueOf(a));
@@ -230,6 +233,7 @@ public class LearnEarnActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //System.out.println(snapshot);
+                Log.e("QUIZ_ERROR", "snapshot: "+ snapshot );
                 String q1 = Objects.requireNonNull(snapshot.child("question").getValue()).toString();
                 question.setText(q1);
                 String a1 = Objects.requireNonNull(snapshot.child("ans1").getValue()).toString();

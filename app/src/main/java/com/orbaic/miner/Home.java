@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -114,6 +115,7 @@ public class Home extends Fragment {
     List<Team> teamList = new ArrayList<>();
     List<Team> onMiningDataList = new ArrayList<>();
     TextView tvQuizCountDown;
+    ProgressBar waitingQuizProgressbar, earnRewardProgressBar;
 
     @SuppressLint("NewApi")
     @Override
@@ -161,6 +163,10 @@ public class Home extends Fragment {
                 String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
                 // Update a TextView or any other UI element to show the remaining time.
                 tvQuizCountDown.setText(remainingTime);
+
+                int progress = (int) ((timeDifference - millisUntilFinished) * 100 / timeDifference);
+                Log.e("quizCountDown", "progress: "+ progress);
+                waitingQuizProgressbar.setProgress(progress);
             }
 
             public void onFinish() {
@@ -353,6 +359,8 @@ public class Home extends Fragment {
         teamRecyclerView = view.findViewById(R.id.rvMyTeam);
         tvTeamStatus = view.findViewById(R.id.tvTeamStatus);
         tvQuizCountDown = view.findViewById(R.id.tvQuizCountDown);
+        waitingQuizProgressbar = view.findViewById(R.id.quizWaitingProgressBar);
+        earnRewardProgressBar = view.findViewById(R.id.earnRewardProgressBar);
     }
 
     private void startRippleEffect() {
