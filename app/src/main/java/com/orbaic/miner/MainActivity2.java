@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,10 +22,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import java.util.HashMap;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -59,6 +70,68 @@ public class MainActivity2 extends AppCompatActivity {
         toggle.syncState();
         loadFragment( new Home());
 
+        if (getIntent().hasExtra("referBy")) {
+            String name = getIntent().getStringExtra("name");
+            String referBy = getIntent().getStringExtra("referBy");
+            Log.e("addIntoReferTeam", "name: "+ name);
+            Log.e("addIntoReferTeam", "referBy: "+ referBy);
+            if (referBy != null && !referBy.isEmpty()) {
+                addIntoReferTeam(name, referBy);
+            }
+
+        }
+
+    }
+
+    private void addIntoReferTeam(String name, String referredBy) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference();
+        Query referredUsersQuery = databaseRef.child("users")
+                .orderByChild("referral")
+                .equalTo(referredBy);
+
+        referredUsersQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String userId = "";
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    Log.e("addIntoReferTeam", "userSnapshot: "+ userSnapshot);
+                    userId = userSnapshot.getKey();
+                    String userName = userSnapshot.child("name").getValue(String.class);
+                    String userEmail = userSnapshot.child("email").getValue(String.class);
+                    String miningStartTime = "-1";
+                    if (userSnapshot.child("miningStartTime").exists()) {
+                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
+                    }
+                    Log.e("getMyTeam", "miningStartTime: "+miningStartTime );
+
+                }
+
+                Log.e("addIntoReferTeam", "userId: "+ userId);
+                if (userId != null && !userId.isEmpty()) {
+                    DatabaseReference referralRef = database.getReference("referralUser");
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("name", name);
+                    map.put("status", "-1");
+                    referralRef.child(userId).child(mAuth.getUid().toString()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.e("addIntoReferTeam", "task: isSuccessful");
+                            }
+                        }
+                    });
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle any errors that occur
+            }
+        });
     }
 
     private void setBottomNavigationMenu() {
@@ -194,4 +267,6 @@ public class MainActivity2 extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }

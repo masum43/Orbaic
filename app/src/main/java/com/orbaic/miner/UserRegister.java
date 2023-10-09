@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -49,6 +50,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.myTeam.GridBindAdapter;
+import com.orbaic.miner.myTeam.Team;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -247,7 +251,8 @@ public class UserRegister extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 progressDialog.dismiss();
-                                                updateUI();
+                                                updateUI(name, referredBy);
+
                                             }
                                         });
                                         progressDialog.dismiss();
@@ -272,126 +277,6 @@ public class UserRegister extends AppCompatActivity {
 
     }
 
-    private void sign_upOLd() {
-
-        EditText user_name = findViewById(R.id.user_name_registration);
-        EditText register_email = findViewById(R.id.user_email_registration);
-        EditText register_password = findViewById(R.id.registration_password);
-//        TextView register_fail = findViewById(R.id.registration_incorrect_password);
-        String email = register_email.getText().toString().trim();
-        String password = register_password.getText().toString().trim();
-        String name = user_name.getText().toString();
-
-
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser uid = mAuth.getCurrentUser();
-                            Map<String, Object> userInfo = new HashMap<>();
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-                            ref.child(uid.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    System.out.println("work");
-                                    String point = "1";
-                                    for (DataSnapshot userData : snapshot.getChildren()){
-                                        String key = userData.getKey();
-                                        Object value = userData.getValue();
-
-                                        userInfo.put(key, value);
-                                    }
-
-                                    point = String.valueOf(userInfo.get("point"));
-                                    System.out.println(point);
-                                    if (point.equals("1") | point.equals("null")){
-                                        Toast.makeText(UserRegister.this, "You have created a new account ", Toast.LENGTH_SHORT).show();
-                                        int id = userTotal + 1;
-                                        String userID = String.valueOf(id);
-
-                                        Random a = new Random();
-                                        int b = a.nextInt(9999);
-                                        int c = a.nextInt(9999);
-                                        String code = String.valueOf(b) + String.valueOf(c);
-
-                                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
-                                        if (account == null){
-                                            return;
-                                        }
-                                        String name = account.getDisplayName();
-                                        String email = account.getEmail();
-
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference myRef = database.getReference("users");
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put("point","0");
-                                        map.put("phone","0");
-                                        map.put("click","0");
-                                        map.put("country",country);
-                                        map.put("birthdate","0");
-                                        map.put("referral",code);
-                                        map.put("referralButton","ON");
-                                        map.put("type","0");
-                                        map.put("name",name);
-                                        map.put("email",email);
-                                        map.put("id",userID);
-                                        map.put("extra1","0");
-                                        map.put("extra2","0");
-                                        map.put("extra3","0");
-                                        if (mAuth.getUid() == null){
-                                            return;
-                                        }
-                                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                                        if (currentUser != null) {
-                                            currentUser.sendEmailVerification();
-                                        }
-
-                                        mAuth.getCurrentUser().sendEmailVerification();
-                                        myRef.child(mAuth.getUid()).setValue(map);
-
-                                        DatabaseReference reference = database.getReference("userId");
-                                        reference.child("totalUserId").setValue(userID)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        updateUI();
-                                                        progressDialog.dismiss();
-                                                    }
-                                                });
-
-                                        Toast.makeText(UserRegister.this, "token Successful", Toast.LENGTH_LONG).show();
-                                    }else {
-                                        Toast.makeText(UserRegister.this, " You have already an account", Toast.LENGTH_SHORT).show();
-                                        updateUI();
-                                        progressDialog.dismiss();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(UserRegister.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
-                            });
-                            /*if (uid != null){
-                                progressDialog.dismiss();
-                                updateUI();
-                            }else {
-                                Toast.makeText(LoginLayout.this, "Please create a new account", Toast.LENGTH_SHORT).show();
-                            }*/
-                        } else {
-
-                            Toast.makeText(UserRegister.this,"token Error",Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                            // If sign in fails, display a message to the user.
-                        }
-                    }
-                });
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -480,7 +365,7 @@ public class UserRegister extends AppCompatActivity {
                             Toast.makeText(UserRegister.this, "token Successful", Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
-                            updateUI();
+                            updateUI(name, "");
                         } else {
 
                             Toast.makeText(UserRegister.this, "token Error", Toast.LENGTH_LONG).show();
@@ -490,8 +375,10 @@ public class UserRegister extends AppCompatActivity {
                 });
     }
 
-    private void updateUI() {
+    private void updateUI(String name, String referBy) {
         Intent i = new Intent(UserRegister.this, MainActivity2.class);
+        i.putExtra("name", name);
+        i.putExtra("referBy", referBy);
         startActivity(i);
         finish();
     }
@@ -576,5 +463,8 @@ public class UserRegister extends AppCompatActivity {
         }*/
 
     }
+
+
+
 
 }
