@@ -165,10 +165,16 @@ public class Home extends Fragment {
                 String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
                 // Update a TextView or any other UI element to show the remaining time.
                 tvQuizCountDown.setText(remainingTime);
-                Log.e("quizCountDown", "timeDifference: "+ timeDifference);
-                Log.e("quizCountDown", "millisUntilFinished: "+ millisUntilFinished);
-                int progress = (int) ((timeDifference - millisUntilFinished) * 100 / timeDifference);
-                Log.e("quizCountDown", "progress: "+ progress);
+
+
+
+                long currentTimeMillis = System.currentTimeMillis();
+                long futureEnableTimeMillis = Long.parseLong(enableTime); // Replace with your future enable time
+                long twelveHoursInMillis = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+                long timeDifferenceMillis = futureEnableTimeMillis - currentTimeMillis;
+                int progress = 100 - ((int) ((timeDifferenceMillis * 100) / twelveHoursInMillis));
+                // Ensure the progress is within the valid range [0, 100]
+                progress = Math.max(0, Math.min(100, progress));
                 waitingQuizProgressbar.setProgress(progress);
             }
 

@@ -14,8 +14,10 @@
         android:layout_height="16dp"
         app:cardBackgroundColor="@color/green_pastel"
         app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/circularImageTeam"
+        app:layout_constraintTop_toTopOf="@+id/circularImageTeam"
+        android:layout_marginTop="-5dp"
+        />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/circularImageTeam"

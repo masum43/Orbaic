@@ -3561,6 +3561,7 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id etReferByCode
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -4005,6 +4006,7 @@ id tvNotice
 id tvQsCounter
 id tvQuizCountDown
 id tvResult
+id tvSubmit
 id tvTeamStatus
 id tvToolbarTitle
 id tvUserName

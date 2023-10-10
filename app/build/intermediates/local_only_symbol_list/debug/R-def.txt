@@ -223,6 +223,7 @@ id descriptionTextView
 id drawerLayout
 id earnRewardProgressBar
 id emailAddress_profile
+id etReferByCode
 id facebookIcon_h
 id facebookImageRegister
 id faq
@@ -350,6 +351,7 @@ id tvNotice
 id tvQsCounter
 id tvQuizCountDown
 id tvResult
+id tvSubmit
 id tvTeamStatus
 id tvToolbarTitle
 id tvUserName
