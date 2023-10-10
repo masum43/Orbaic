@@ -3560,6 +3560,7 @@ int id endToStart 0x7f0900ea
 int id end_padder 0x7f0900eb
 int id enterAlways 0x7f0900ec
 int id enterAlwaysCollapsed 0x7f0900ed
+int id etReferByCode 0x7f0902da
 int id exitUntilCollapsed 0x7f0900ee
 int id expand_activities_button 0x7f0900ef
 int id expanded_menu 0x7f0900f0
@@ -4004,6 +4005,7 @@ int id tvNotice 0x7f0902a6
 int id tvQsCounter 0x7f0902a7
 int id tvQuizCountDown 0x7f0902a8
 int id tvResult 0x7f0902a9
+int id tvSubmit 0x7f0902db
 int id tvTeamStatus 0x7f0902aa
 int id tvToolbarTitle 0x7f0902ab
 int id tvUserName 0x7f0902ac

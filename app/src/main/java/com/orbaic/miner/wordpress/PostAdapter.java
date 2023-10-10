@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
         String title = post.getTitle().get("rendered").toString().replaceAll("\"", "");
-        String excerpt = post.getExcerpt().get("rendered").toString().replaceAll("\"", "");
+        String excerpt = post.getExcerpt().get("rendered").toString().trim().replaceAll("\"", "");
+      /*  if (excerpt.endsWith("\n")) {
+            excerpt = excerpt.substring(0, excerpt.length() - 1);
+        }*/
+        excerpt = excerpt.replaceAll("\n", "");
+
+        Log.e("NEWS", "excerpt: "+excerpt );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY));
             holder.shortContent.setText(Html.fromHtml(excerpt, Html.FROM_HTML_MODE_LEGACY));
