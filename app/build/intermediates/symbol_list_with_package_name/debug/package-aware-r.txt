@@ -3311,6 +3311,7 @@ drawable username_icon
 drawable verified_background
 drawable wallet_background_shape
 drawable wallet_icon
+drawable wallet_reward_icon_ltc
 drawable wallet_reward_token_bnb
 drawable wallet_reward_token_shib
 drawable wallet_reward_token_tlc
@@ -3660,6 +3661,7 @@ id item_number
 id item_point
 id item_status
 id item_touch_helper_previous_elevation
+id ivAvater
 id ivProfile
 id j
 id jumpToEnd
@@ -4023,6 +4025,7 @@ id tvTeamMemberCount
 id tvTeamStatus
 id tvToolbarTitle
 id tvTotalPoint
+id tvUserEmail
 id tvUserName
 id tvWrongAns
 id twitter

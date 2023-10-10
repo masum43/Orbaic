@@ -176,6 +176,11 @@ public class Home extends Fragment {
                 // Ensure the progress is within the valid range [0, 100]
                 progress = Math.max(0, Math.min(100, progress));
                 waitingQuizProgressbar.setProgress(progress);
+
+                if (progress == 100) {
+                    quizWaitingLayout.setVisibility(View.GONE);
+                    available.setVisibility(View.VISIBLE);
+                }
             }
 
             public void onFinish() {
@@ -405,9 +410,9 @@ public class Home extends Fragment {
             ref.child("status").setValue(now);
         }*/
 
-        DatabaseReference ref = database.getReference("referralUser")
+/*        DatabaseReference ref = database.getReference("referralUser")
                 .child(referralBy).child(mAuth.getUid());
-        ref.child("status").setValue(now);
+        ref.child("status").setValue(now);*/
     }
 
     //news from wordpress blog
@@ -684,6 +689,7 @@ public class Home extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name = snapshot.child("name").getValue().toString();
+                String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
                 referralStatus = snapshot.child("referralButton").getValue().toString();
                 if (snapshot.child("miningStartTime").exists()) {
@@ -715,9 +721,12 @@ public class Home extends Fragment {
                 if (!isMyTeamLoaded) {
                     isMyTeamLoaded = true;
                     getMyTeam(myReferCode);
+
+                    MainActivity2 mainActivity = (MainActivity2) getActivity();
+                    if (mainActivity != null) {
+                        mainActivity.updateHeader("", name, email);
+                    }
                 }
-
-
 
             }
 

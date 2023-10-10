@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,11 +36,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.orbaic.miner.interfaces.NavigationDrawerInterface;
 import com.orbaic.miner.support.SupportFragment;
 
 import java.util.HashMap;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -270,4 +273,19 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
+    @Override
+    public void updateHeader(String avatarUrl, String username, String userEmail) {
+        NavigationView navigationView = findViewById(R.id.navigationViewId);
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameTextView = headerView.findViewById(R.id.tvUserName);
+        TextView userEmailTextView = headerView.findViewById(R.id.tvUserEmail);
+        CircularImageView ivAvater = headerView.findViewById(R.id.ivAvater);
+
+        Glide.with(MainActivity2.this)
+                .load(avatarUrl)
+                .error(R.drawable.demo_avatar2)
+                .into(ivAvater);
+        usernameTextView.setText(username);
+        userEmailTextView.setText(userEmail);
+    }
 }

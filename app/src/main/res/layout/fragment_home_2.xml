@@ -434,7 +434,7 @@
                     android:layout_height="wrap_content"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="-4sp"
-                    android:text="Earn extra 25% / active member in your
+                    android:text="Earn extra 10% / active member in your
 team. Bonus rate uncapped "
                     android:textColor="#fff" />
 
