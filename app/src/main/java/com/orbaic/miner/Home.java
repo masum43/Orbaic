@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -116,6 +117,7 @@ public class Home extends Fragment {
     List<Team> onMiningDataList = new ArrayList<>();
     TextView tvQuizCountDown;
     ProgressBar waitingQuizProgressbar, earnRewardProgressBar;
+    private Boolean isMyTeamLoaded = false;
 
     @SuppressLint("NewApi")
     @Override
@@ -163,7 +165,8 @@ public class Home extends Fragment {
                 String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
                 // Update a TextView or any other UI element to show the remaining time.
                 tvQuizCountDown.setText(remainingTime);
-
+                Log.e("quizCountDown", "timeDifference: "+ timeDifference);
+                Log.e("quizCountDown", "millisUntilFinished: "+ millisUntilFinished);
                 int progress = (int) ((timeDifference - millisUntilFinished) * 100 / timeDifference);
                 Log.e("quizCountDown", "progress: "+ progress);
                 waitingQuizProgressbar.setProgress(progress);
@@ -208,6 +211,7 @@ public class Home extends Fragment {
         transfer.setOnClickListener(v -> {
             PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onComplete(@NonNull Task<String> task) {
                     //get token
@@ -384,16 +388,20 @@ public class Home extends Fragment {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference refUser = database.getReference("users")
+        DatabaseReference userRef = database.getReference("users")
                 .child(mAuth.getUid());
         long now = System.currentTimeMillis();
-        refUser.child("miningStartTime").setValue(String.valueOf(now));
+        userRef.child("miningStartTime").setValue(String.valueOf(now));
 
-        if (referralStatus.equals("OFF")) {
+/*        if (referralStatus.equals("ON")) {
             DatabaseReference ref = database.getReference("referralUser")
                     .child(referralBy).child(mAuth.getUid());
-            ref.child("status").setValue(s);
-        }
+            ref.child("status").setValue(now);
+        }*/
+
+        DatabaseReference ref = database.getReference("referralUser")
+                .child(referralBy).child(mAuth.getUid());
+        ref.child("status").setValue(now);
     }
 
     //news from wordpress blog
@@ -523,6 +531,7 @@ public class Home extends Fragment {
         super.onStart();
         readData();
         startOnFun();
+//        getMyTeam2();
 
     }
 
@@ -697,6 +706,12 @@ public class Home extends Fragment {
                 }
                 myReferCode = snapshot.child("referral").getValue().toString();
 
+                if (!isMyTeamLoaded) {
+                    isMyTeamLoaded = true;
+                    getMyTeam(myReferCode);
+                }
+
+
 
             }
 
@@ -706,14 +721,7 @@ public class Home extends Fragment {
             }
         });
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!myReferCode.isEmpty()) {
-                    getMyTeam(myReferCode);
-                }
-            }
-        }, 1500);
+
     }
 
     private String checkMiningStatus(String miningStartTime) {
@@ -784,6 +792,46 @@ public class Home extends Fragment {
                 // Handle any errors that occur
             }
         });
+    }
+
+    private void getMyTeam2() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                teamList.clear();
+                onMiningDataList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    ReferralDataRecive data = dataSnapshot.getValue(ReferralDataRecive.class);
+                    Log.e("getMyTeam2", "key: "+ dataSnapshot.getKey());
+                    String miningStatus = checkMiningStatus(data.getStatus());
+                    teamList.add(new Team(dataSnapshot.getKey(), data.getName(), "", "", data.getStatus(), miningStatus));
+                }
+
+                teamRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
+                teamRecyclerView.setAdapter(adapter);
+
+                for (Team miningData : teamList) {
+                    if (miningData.getMiningStatus().equals(Constants.STATUS_ON)) {
+                        onMiningDataList.add(miningData);
+                    }
+                }
+
+                tvTeamStatus.setText(onMiningDataList.size()+"/"+teamList.size());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(""+error);
+            }
+        });
+
+
     }
 
 
