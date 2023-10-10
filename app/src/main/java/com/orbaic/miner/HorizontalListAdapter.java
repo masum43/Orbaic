@@ -8,16 +8,20 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.myTeam.Team;
+
 import java.util.List;
 
 public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAdapter.ViewHolder> {
 
-    private List<Integer> imageIds;
+    List<Team> list;
     private Context context;
 
-    public HorizontalListAdapter(Context context, List<Integer> imageIds) {
+    public HorizontalListAdapter(Context context, List<Team> list) {
         this.context = context;
-        this.imageIds = imageIds;
+        this.list = list;
     }
 
     @Override
@@ -31,14 +35,26 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         if(position != 0){
             holder.removableView.setVisibility(View.GONE);
         }
-        int imageId = imageIds.get(position);
-        holder.imageView.setImageResource(imageId);
+        Team team = list.get(position);
+        Glide.with(holder.itemView.getContext())
+                .load(team.getImageUrl())
+                .error(R.drawable.demo_avatar2)
+                .into(holder.imageView);
+//        holder.tvUserName.setText(team.getUserName());
+
+/*        if (team.getMiningStatus().equals(Constants.STATUS_ON)) {
+            holder.iconOn.setVisibility(View.VISIBLE);
+            holder.iconOff.setVisibility(View.GONE);
+        }
+        else {
+            holder.iconOn.setVisibility(View.GONE);
+            holder.iconOff.setVisibility(View.VISIBLE);
+        }*/
     }
 
     @Override
     public int getItemCount() {
-        if(imageIds.size() > 6) {return 6;}
-        else {return imageIds.size();}
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

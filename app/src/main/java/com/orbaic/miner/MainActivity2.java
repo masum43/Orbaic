@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.orbaic.miner.support.SupportFragment;
 
 import java.util.HashMap;
 
@@ -145,7 +146,7 @@ public class MainActivity2 extends AppCompatActivity {
                             loadFragment( new WalletFragment());
                             return true;
                         case R.id.supportMenu:
-                            loadFragment( new Home());
+                            loadFragment( new SupportFragment());
                             return true;
                         case R.id.teamMenu:
                             loadFragment( new TeamFragment());

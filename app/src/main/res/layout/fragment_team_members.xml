@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:padding="15dp">
             <TextView
+                android:id="@+id/tvInactiveTeamCount"
                 android:textColor="#FF6543"
                 android:text="15"
                 android:letterSpacing="0.05"
@@ -47,6 +48,7 @@
                 android:layout_weight="1"/>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
@@ -75,10 +77,12 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp">
+
         <LinearLayout
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:background="@drawable/edittext_shape">
             <ImageView
                 android:layout_marginEnd="10dp"
@@ -89,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_icon"/>
             <EditText
+                android:id="@+id/etSearch"
                 android:textColor="#fff"
                 android:textColorHint="#ccc"
                 android:hint="search"

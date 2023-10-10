@@ -1,5 +1,8 @@
 package com.orbaic.miner;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,14 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,25 +36,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 public class TeamFragment extends Fragment {
     View mainView;
     RecyclerView recyclerView;
     EditText etReferByCode;
-    TextView tvSubmit;
+    TextView tvSubmit, tvMyReferCode, tvTotalPoint, tvCopy;
     HorizontalListAdapter horizontalListAdapter;
-    TextView viewAll;
+    TextView tvTeamMemberCount, viewAll;
     List<Team> teamList = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_team, container, false);
+        tvTeamMemberCount = mainView.findViewById(R.id.tvTeamMemberCount);
         viewAll = mainView.findViewById(R.id.viewAll);
         recyclerView = mainView.findViewById(R.id.horizontalRecyclerView);
         etReferByCode = mainView.findViewById(R.id.etReferByCode);
         tvSubmit = mainView.findViewById(R.id.tvSubmit);
+        tvMyReferCode = mainView.findViewById(R.id.tvMyReferCode);
+        tvTotalPoint = mainView.findViewById(R.id.tvTotalPoint);
+        tvCopy = mainView.findViewById(R.id.tvCopy);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         return mainView;
     }
@@ -80,29 +84,68 @@ public class TeamFragment extends Fragment {
         tvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateReferCode();
+                String referBy = etReferByCode.getText().toString();
+                if (referBy.isEmpty()) {
+                    Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                validateReferralCode(referBy);
             }
         });
+
+        tvCopy.setOnClickListener(view -> {
+            String textToCopy = tvMyReferCode.getText().toString();
+            if (textToCopy.isEmpty()) {
+                Toast.makeText(requireContext(), "Nothing to copy!!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("label", textToCopy);
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show();
+        });
+
+
 
         readData();
     }
 
-    private void updateReferCode() {
-        String referBy = etReferByCode.getText().toString();
-        if (referBy.isEmpty()) {
-            Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
-        }
+    private void validateReferralCode(final String enteredReferralCode) {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        Query query = usersRef.orderByChild("referral").equalTo(enteredReferralCode);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    updateReferCode(enteredReferralCode);
+                } else {
+                    Toast.makeText(requireContext(), "Invalid referral code. Please try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors, if any
+            }
+        });
+    }
+
+    private void updateReferCode(String enteredReferralCode) {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
         Map<String, Object> map = new HashMap<>();
-        map.put("referredBy","");
+        map.put("referredBy", enteredReferralCode);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myRef.child(mAuth.getUid()).updateChildren(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Update was successful
+                        etReferByCode.setClickable(false);
+                        etReferByCode.setEnabled(false);
+                        tvSubmit.setVisibility(View.GONE);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -132,20 +175,23 @@ public class TeamFragment extends Fragment {
 
 //                String miningStatus = checkMiningStatus(miningStartTime);
 
+                etReferByCode.setClickable(true);
+                etReferByCode.setEnabled(true);
+                tvSubmit.setVisibility(View.VISIBLE);
+
                 if (snapshot.child("referredBy").exists()) {
                     String referralBy = snapshot.child("referredBy").getValue().toString();
-                    etReferByCode.setText(referralBy);
-                    etReferByCode.setClickable(false);
-                    etReferByCode.setEnabled(false);
-                    tvSubmit.setVisibility(View.GONE);
-                }
-                else {
-                    etReferByCode.setClickable(true);
-                    etReferByCode.setEnabled(true);
-                    tvSubmit.setVisibility(View.VISIBLE);
+                    if (!referralBy.isEmpty()) {
+                        etReferByCode.setText(referralBy);
+                        etReferByCode.setClickable(false);
+                        etReferByCode.setEnabled(false);
+                        tvSubmit.setVisibility(View.GONE);
+                    }
+
                 }
 
                 String myReferCode = snapshot.child("referral").getValue().toString();
+                tvMyReferCode.setText(myReferCode);
 
                 getMyTeam(myReferCode);
 
@@ -171,11 +217,13 @@ public class TeamFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 teamList.clear();
+                double totalPoint = 0;
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
                     String userId = userSnapshot.child("id").getValue(String.class);
                     String userName = userSnapshot.child("name").getValue(String.class);
                     String userEmail = userSnapshot.child("email").getValue(String.class);
+                    String point = userSnapshot.child("point").getValue(String.class);
                     String miningStartTime = "-1";
                     if (userSnapshot.child("miningStartTime").exists()) {
                         miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
@@ -187,11 +235,17 @@ public class TeamFragment extends Fragment {
 
                     teamList.add(new Team(userId, userName, userEmail, "", miningStartTime, miningStatus));
 
+                    totalPoint += Double.parseDouble(point);
+
                 }
 
+                String format = String.format(Locale.getDefault(), "%.5f", totalPoint);
+                tvTotalPoint.setText(format + " ACI");
 
-                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
+                HorizontalListAdapter adapter = new HorizontalListAdapter(getActivity(), teamList);
                 recyclerView.setAdapter(adapter);
+
+                tvTeamMemberCount.setText("My Team ("+teamList.size()+")");
             }
 
             @Override
