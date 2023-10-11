@@ -644,6 +644,8 @@
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="androidx_core_ripple_material_light">#1f000000</color>
     <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
+    <color name="background">#212D40</color>
+    <color name="background2">#364156</color>
     <color name="background_dark">#212D40</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
@@ -975,12 +977,15 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="red">#FF0000</color>
+    <color name="rippelColor">#0099CC</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
+    <color name="selected_text_color">#41918B</color>
+    <color name="status_bar">#41918B</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
@@ -989,6 +994,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
+    <color name="unselected_text_color">#777</color>
     <color name="white">#FFFFFFFF</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
@@ -1766,6 +1772,8 @@
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
     <dimen name="paddingSmall">16dp</dimen>
+    <dimen name="rippleRadius">64dp</dimen>
+    <dimen name="rippleStrokeWidth">2dp</dimen>
     <dimen name="sliding_pane_detail_pane_width">300dp</dimen>
     <dimen name="subtitle_corner_radius">2dp</dimen>
     <dimen name="subtitle_outline_width">2dp</dimen>
@@ -5653,7 +5661,7 @@
     </style>
     <style name="CircularDeterminateProgressBar">
         <item name="android:indeterminateOnly">false</item>
-        <item name="android:progressDrawable">@drawable/circle</item>
+        <item name="android:progressDrawable">@drawable/circle_2</item>
     </style>
     <style name="FiamUI" parent="Theme.AppCompat.Light"/>
     <style name="FiamUI.Banner" parent="@style/FiamUI">
@@ -5739,6 +5747,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
+    </style>
+    <style name="HorizontalProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/horizontal_progressbar_layer</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
     </style>
     <style name="MaterialAlertDialog.Material3" parent="MaterialAlertDialog.MaterialComponents">
     <item name="enforceMaterialTheme">true</item>
@@ -12893,6 +12907,7 @@
         <attr format="reference" name="fastScrollHorizontalThumbDrawable"/>
         <attr format="reference" name="fastScrollHorizontalTrackDrawable"/>
     </declare-styleable>
+    <declare-styleable name="RippleBackground"><attr format="color" name="rb_color"/><attr format="dimension" name="rb_strokeWidth"/><attr format="dimension" name="rb_radius"/><attr format="integer" name="rb_duration"/><attr format="integer" name="rb_rippleAmount"/><attr format="float" name="rb_scale"/><attr format="enum" name="rb_type"><enum name="fillRipple" value="0"/><enum name="strokeRipple" value="1"/></attr></declare-styleable>
     <declare-styleable name="ScrimInsetsFrameLayout">
     <attr format="color|reference" name="insetForeground"/>
   </declare-styleable>

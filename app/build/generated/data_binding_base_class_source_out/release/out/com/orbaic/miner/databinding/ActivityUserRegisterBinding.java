@@ -4,16 +4,15 @@ package com.orbaic.miner.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.orbaic.miner.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,83 +20,51 @@ import java.lang.String;
 
 public final class ActivityUserRegisterBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final NestedScrollView rootView;
 
   @NonNull
-  public final ImageView facebookImageRegister;
+  public final LinearLayout facebookImageRegister;
 
   @NonNull
-  public final TextView forgetPasswordRegistration;
+  public final LinearLayout googleImageRegister;
 
   @NonNull
-  public final ImageView googleImageRegister;
+  public final ImageView registerButton;
 
   @NonNull
-  public final ImageView imageView;
+  public final EditText registrationPassword;
 
   @NonNull
-  public final Button registerButton;
-
-  @NonNull
-  public final TextView registrationIncorrectPassword;
-
-  @NonNull
-  public final TextInputEditText registrationPassword;
+  public final EditText registrationRefer;
 
   @NonNull
   public final TextView signUp;
 
   @NonNull
-  public final TextInputLayout textInputLayout;
+  public final EditText userEmailRegistration;
 
   @NonNull
-  public final TextInputLayout textInputLayout2;
+  public final EditText userNameRegistration;
 
-  @NonNull
-  public final TextInputLayout textInputLayout9;
-
-  @NonNull
-  public final TextView textView2;
-
-  @NonNull
-  public final TextView textView5;
-
-  @NonNull
-  public final TextInputEditText userEmailRegistration;
-
-  @NonNull
-  public final TextInputEditText userNameRegistration;
-
-  private ActivityUserRegisterBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageView facebookImageRegister, @NonNull TextView forgetPasswordRegistration,
-      @NonNull ImageView googleImageRegister, @NonNull ImageView imageView,
-      @NonNull Button registerButton, @NonNull TextView registrationIncorrectPassword,
-      @NonNull TextInputEditText registrationPassword, @NonNull TextView signUp,
-      @NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2,
-      @NonNull TextInputLayout textInputLayout9, @NonNull TextView textView2,
-      @NonNull TextView textView5, @NonNull TextInputEditText userEmailRegistration,
-      @NonNull TextInputEditText userNameRegistration) {
+  private ActivityUserRegisterBinding(@NonNull NestedScrollView rootView,
+      @NonNull LinearLayout facebookImageRegister, @NonNull LinearLayout googleImageRegister,
+      @NonNull ImageView registerButton, @NonNull EditText registrationPassword,
+      @NonNull EditText registrationRefer, @NonNull TextView signUp,
+      @NonNull EditText userEmailRegistration, @NonNull EditText userNameRegistration) {
     this.rootView = rootView;
     this.facebookImageRegister = facebookImageRegister;
-    this.forgetPasswordRegistration = forgetPasswordRegistration;
     this.googleImageRegister = googleImageRegister;
-    this.imageView = imageView;
     this.registerButton = registerButton;
-    this.registrationIncorrectPassword = registrationIncorrectPassword;
     this.registrationPassword = registrationPassword;
+    this.registrationRefer = registrationRefer;
     this.signUp = signUp;
-    this.textInputLayout = textInputLayout;
-    this.textInputLayout2 = textInputLayout2;
-    this.textInputLayout9 = textInputLayout9;
-    this.textView2 = textView2;
-    this.textView5 = textView5;
     this.userEmailRegistration = userEmailRegistration;
     this.userNameRegistration = userNameRegistration;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -123,44 +90,32 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.facebookImageRegister;
-      ImageView facebookImageRegister = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout facebookImageRegister = ViewBindings.findChildViewById(rootView, id);
       if (facebookImageRegister == null) {
         break missingId;
       }
 
-      id = R.id.forget_password_registration;
-      TextView forgetPasswordRegistration = ViewBindings.findChildViewById(rootView, id);
-      if (forgetPasswordRegistration == null) {
-        break missingId;
-      }
-
       id = R.id.googleImageRegister;
-      ImageView googleImageRegister = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout googleImageRegister = ViewBindings.findChildViewById(rootView, id);
       if (googleImageRegister == null) {
         break missingId;
       }
 
-      id = R.id.imageView;
-      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
-      if (imageView == null) {
-        break missingId;
-      }
-
       id = R.id.register_button;
-      Button registerButton = ViewBindings.findChildViewById(rootView, id);
+      ImageView registerButton = ViewBindings.findChildViewById(rootView, id);
       if (registerButton == null) {
         break missingId;
       }
 
-      id = R.id.registration_incorrect_password;
-      TextView registrationIncorrectPassword = ViewBindings.findChildViewById(rootView, id);
-      if (registrationIncorrectPassword == null) {
+      id = R.id.registration_password;
+      EditText registrationPassword = ViewBindings.findChildViewById(rootView, id);
+      if (registrationPassword == null) {
         break missingId;
       }
 
-      id = R.id.registration_password;
-      TextInputEditText registrationPassword = ViewBindings.findChildViewById(rootView, id);
-      if (registrationPassword == null) {
+      id = R.id.registration_refer;
+      EditText registrationRefer = ViewBindings.findChildViewById(rootView, id);
+      if (registrationRefer == null) {
         break missingId;
       }
 
@@ -170,53 +125,21 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textInputLayout;
-      TextInputLayout textInputLayout = ViewBindings.findChildViewById(rootView, id);
-      if (textInputLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.textInputLayout2;
-      TextInputLayout textInputLayout2 = ViewBindings.findChildViewById(rootView, id);
-      if (textInputLayout2 == null) {
-        break missingId;
-      }
-
-      id = R.id.textInputLayout9;
-      TextInputLayout textInputLayout9 = ViewBindings.findChildViewById(rootView, id);
-      if (textInputLayout9 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView2;
-      TextView textView2 = ViewBindings.findChildViewById(rootView, id);
-      if (textView2 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView5;
-      TextView textView5 = ViewBindings.findChildViewById(rootView, id);
-      if (textView5 == null) {
-        break missingId;
-      }
-
       id = R.id.user_email_registration;
-      TextInputEditText userEmailRegistration = ViewBindings.findChildViewById(rootView, id);
+      EditText userEmailRegistration = ViewBindings.findChildViewById(rootView, id);
       if (userEmailRegistration == null) {
         break missingId;
       }
 
       id = R.id.user_name_registration;
-      TextInputEditText userNameRegistration = ViewBindings.findChildViewById(rootView, id);
+      EditText userNameRegistration = ViewBindings.findChildViewById(rootView, id);
       if (userNameRegistration == null) {
         break missingId;
       }
 
-      return new ActivityUserRegisterBinding((ConstraintLayout) rootView, facebookImageRegister,
-          forgetPasswordRegistration, googleImageRegister, imageView, registerButton,
-          registrationIncorrectPassword, registrationPassword, signUp, textInputLayout,
-          textInputLayout2, textInputLayout9, textView2, textView5, userEmailRegistration,
-          userNameRegistration);
+      return new ActivityUserRegisterBinding((NestedScrollView) rootView, facebookImageRegister,
+          googleImageRegister, registerButton, registrationPassword, registrationRefer, signUp,
+          userEmailRegistration, userNameRegistration);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
