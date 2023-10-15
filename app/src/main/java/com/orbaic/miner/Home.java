@@ -27,8 +27,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,7 +108,7 @@ public class Home extends Fragment {
     Task<Void> currentUser;
 
     FirebaseUser user;
-    String referralStatus, referralBy, myReferCode, miningStatus, miningStartTime;
+    String referralStatus, referralByUserId, myReferCode, miningStatus, miningStartTime;
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
     List<Team> teamList = new ArrayList<>();
@@ -126,6 +124,7 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_2, container, false);
         SpManager.init(requireActivity());
         readData();
+        getMyTeam();
         AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
@@ -410,9 +409,9 @@ public class Home extends Fragment {
             ref.child("status").setValue(now);
         }*/
 
-/*        DatabaseReference ref = database.getReference("referralUser")
-                .child(referralBy).child(mAuth.getUid());
-        ref.child("status").setValue(now);*/
+        DatabaseReference ref = database.getReference("referralUser")
+                .child(referralByUserId).child(mAuth.getUid());
+        ref.child("status").setValue(String.valueOf(now));
     }
 
     //news from wordpress blog
@@ -711,16 +710,17 @@ public class Home extends Fragment {
                 AciCoin.setText(format);
 
 
-                if (referralStatus.equals("OFF")) {
-                    referralBy = snapshot.child("referredBy").getValue().toString();
-                } else {
-                    //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
-                }
+//                if (referralStatus.equals("OFF")) {
+//                    referralBy = snapshot.child("referredBy").getValue().toString();
+//                } else {
+//                    //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
+//                }
+                referralByUserId = snapshot.child("referredBy").getValue().toString();
                 myReferCode = snapshot.child("referral").getValue().toString();
 
                 if (!isMyTeamLoaded) {
                     isMyTeamLoaded = true;
-                    getMyTeam(myReferCode);
+//                    getMyTeam2(myReferCode);
 
                     MainActivity2 mainActivity = (MainActivity2) getActivity();
                     if (mainActivity != null) {
@@ -759,7 +759,7 @@ public class Home extends Fragment {
         }
     }
 
-    private void getMyTeam(String myReferCode) {
+    private void getMyTeam2(String myReferCode) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference();
         Query referredUsersQuery = databaseRef.child("users")
@@ -809,7 +809,7 @@ public class Home extends Fragment {
         });
     }
 
-    private void getMyTeam2() {
+    private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
@@ -911,7 +911,13 @@ public class Home extends Fragment {
                 clearAppData();
             }
         });
-//        builder.create().show();
+        if (com.orbaic.miner.BuildConfig.DEBUG) {
+//            builder.create().show();
+        }
+        else {
+            builder.create().show();
+        }
+
     }
 
 

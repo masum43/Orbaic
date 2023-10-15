@@ -196,9 +196,41 @@ public class UserRegister extends AppCompatActivity {
         String referredBy = register_refer.getText().toString();
 
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
+        //validate refer code
+        if (!referredBy.isEmpty()) {
+            Query query = usersRef.orderByChild("referral").equalTo(referredBy);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Log.e("dataSnapshot", "onDataChange: "+ dataSnapshot);
+                        String referByUserId = "";
+                        for (DataSnapshot mSnap: dataSnapshot.getChildren()) {
+                            referByUserId = mSnap.getKey().toString();
+                            Log.e("dataSnapshot", "referByUserId: "+ referByUserId );
+                        }
 
-        // Attach a ValueEventListener to the query
+                        startRegistering(referByUserId, usersRef, email, password, name, referredBy);
+                    } else {
+                        Toast.makeText(UserRegister.this, "Invalid referral code. Please try again.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle errors, if any
+                }
+            });
+        }
+        else {
+            startRegistering("", usersRef, email, password, name, referredBy);
+        }
+
+    }
+
+    private void startRegistering(String referByUserId, DatabaseReference usersRef, String email, String password, String name, String referredBy) {
+        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
         emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -229,11 +261,11 @@ public class UserRegister extends AppCompatActivity {
                                         map.put("country",country);
                                         map.put("birthdate","0");
                                         map.put("referral",code);
-                                        map.put("referredBy",referredBy);
+                                        map.put("referredBy", referByUserId);
                                         map.put("referralButton","ON");
                                         map.put("type","0");
-                                        map.put("name",name);
-                                        map.put("email",email);
+                                        map.put("name", name);
+                                        map.put("email", email);
                                         map.put("id",mAuth.getCurrentUser().getUid());
                                         map.put("extra1","0");
                                         map.put("extra2","0");
@@ -273,8 +305,6 @@ public class UserRegister extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-
-
     }
 
 
