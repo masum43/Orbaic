@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -108,6 +109,7 @@ public class TeamFragment extends Fragment {
 
 
         readData();
+        getMyTeam();
     }
 
     private void validateReferralCode(final String enteredReferralCode) {
@@ -193,7 +195,7 @@ public class TeamFragment extends Fragment {
                 String myReferCode = snapshot.child("referral").getValue().toString();
                 tvMyReferCode.setText(myReferCode);
 
-                getMyTeam(myReferCode);
+
 
             }
 
@@ -206,7 +208,7 @@ public class TeamFragment extends Fragment {
 
     }
 
-    private void getMyTeam(String myReferCode) {
+    private void getMyTeam2(String myReferCode) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference();
         Query referredUsersQuery = databaseRef.child("users")
@@ -253,6 +255,58 @@ public class TeamFragment extends Fragment {
                 // Handle any errors that occur
             }
         });
+    }
+
+    private void getMyTeam() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                teamList.clear();
+                double totalPoint = 0;
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
+                    String userId = userSnapshot.getKey();
+                    String userName = userSnapshot.child("name").getValue(String.class);
+//                    String userEmail = userSnapshot.child("email").getValue(String.class);
+                    String point = "0";
+                    if (userSnapshot.child("point").exists()) {
+                        point = userSnapshot.child("point").getValue(String.class);
+                    }
+                    String miningStartTime = "-1";
+                    if (userSnapshot.child("status").exists()) {
+                        miningStartTime = userSnapshot.child("status").getValue(String.class);
+                    }
+                    Log.e("getMyTeam", "miningStartTime: " + miningStartTime);
+
+                    String miningStatus = checkMiningStatus(miningStartTime);
+                    Log.e("getMyTeam", "miningStatus: " + miningStatus);
+
+                    teamList.add(new Team(userId, userName, "", "", miningStartTime, miningStatus));
+
+                    totalPoint += Double.parseDouble(point);
+
+                }
+
+                String format = String.format(Locale.getDefault(), "%.5f", totalPoint);
+                tvTotalPoint.setText(format + " ACI");
+
+                HorizontalListAdapter adapter = new HorizontalListAdapter(getActivity(), teamList);
+                recyclerView.setAdapter(adapter);
+
+                tvTeamMemberCount.setText("My Team ("+teamList.size()+")");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(""+error);
+            }
+        });
+
+
     }
 
     private String checkMiningStatus(String miningStartTime) {
