@@ -11,15 +11,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="309c4ce5-2a5a-4ac9-9534-862311eaceeb" name="Changes" comment="local changes">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" />
+    <list default="true" id="309c4ce5-2a5a-4ac9-9534-862311eaceeb" name="Changes" comment="bug fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/release/app-release.aab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\ASUS\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[JZTCYTMR49YPFAG6]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -191,6 +193,7 @@
       <recent name="com.orbaic.miner" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.orbaic.miner.support" />
       <recent name="com.orbaic.miner" />
     </key>
   </component>
@@ -534,14 +537,49 @@
       <option name="project" value="LOCAL" />
       <updated>1696860009298</updated>
     </task>
-    <task id="LOCAL-00028" summary="local changes">
-      <created>1697340423693</created>
+    <task id="LOCAL-00028" summary="update">
+      <created>1696874241002</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1697340423693</updated>
+      <updated>1696874241002</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="local">
+      <created>1696946011314</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1696946011314</updated>
+    </task>
+    <task id="LOCAL-00030" summary="local">
+      <created>1696946047737</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1696946047737</updated>
+    </task>
+    <task id="LOCAL-00031" summary="local">
+      <created>1696946613780</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1696946613780</updated>
+    </task>
+    <task id="LOCAL-00032" summary="support, team and other update">
+      <created>1696957419833</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1696957419833</updated>
+    </task>
+    <task id="LOCAL-00033" summary="bug fixed">
+      <created>1696962379122</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1696962379122</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -558,7 +596,6 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial commit" />
-    <MESSAGE value="bug fixed" />
     <MESSAGE value="quiz done" />
     <MESSAGE value="new release v12" />
     <MESSAGE value="local commit" />
@@ -570,24 +607,11 @@
     <MESSAGE value="improvement" />
     <MESSAGE value="refer, my team, increase" />
     <MESSAGE value="home page quiz work" />
+    <MESSAGE value="update" />
     <MESSAGE value="local" />
-    <MESSAGE value="local changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="local changes" />
+    <MESSAGE value="support, team and other update" />
+    <MESSAGE value="bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/Home.java</url>
-          <line>802</line>
-          <properties class="com.orbaic.miner.Home" method="getMyTeam2">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

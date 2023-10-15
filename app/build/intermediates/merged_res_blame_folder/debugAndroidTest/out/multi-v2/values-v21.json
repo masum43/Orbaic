@@ -4,7 +4,7 @@
             "outputFile": "com.orbaic.miner.test.app-mergeDebugAndroidTestResources-3:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-3\\6f07aa32d19b359e6e8e1e4724818957\\transformed\\core-1.5.0\\res\\values-v21\\values.xml",
+                    "source": "/Users/masum/.gradle/caches/transforms-3/6f07aa32d19b359e6e8e1e4724818957/transformed/core-1.5.0/res/values-v21/values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",

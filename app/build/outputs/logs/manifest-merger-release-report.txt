@@ -110,6 +110,7 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /Users/masum/.gradle/ca
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] /Users/masum/.gradle/caches/transforms-3/146f3c9d2b300aff4cb9faa3447b5a5b/transformed/lifecycle-viewmodel-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/masum/.gradle/caches/transforms-3/fae90433c899a2fb77225be782579a49/transformed/lifecycle-livedata-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transforms-3/5577b687c474370c35f821ec2cbe50e9/transformed/volley-1.2.1/AndroidManifest.xml:2:1-7:12
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/73ba007586fa017ea2f02749e3e5d27c/transformed/library-1.0.1/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/masum/.gradle/caches/transforms-3/e18445c922ea4361c0a5f8d94c6cf435/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:15:1-37:12
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /Users/masum/.gradle/caches/transforms-3/6d7680cc2d10662dfdb2dc390f21ffa6/transformed/transport-runtime-3.1.8/AndroidManifest.xml:15:1-41:12
 MERGED from [com.google.firebase:firebase-encoders-json:18.0.0] /Users/masum/.gradle/caches/transforms-3/2310a0614f39aa4fb807061e4609557b/transformed/firebase-encoders-json-18.0.0/AndroidManifest.xml:15:1-23:12
@@ -356,6 +357,8 @@ MERGED from [com.vungle:publisher-sdk-android:6.12.1] /Users/masum/.gradle/cache
 MERGED from [com.vungle:publisher-sdk-android:6.12.1] /Users/masum/.gradle/caches/transforms-3/c0efcbb8b3cc587a4f45f80c11a2f552/transformed/publisher-sdk-android-6.12.1/AndroidManifest.xml:16:5-26:19
 MERGED from [androidx.core:core:1.9.0] /Users/masum/.gradle/caches/transforms-3/605ae55e9a00607eec9e74e1268a8988/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.9.0] /Users/masum/.gradle/caches/transforms-3/605ae55e9a00607eec9e74e1268a8988/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/73ba007586fa017ea2f02749e3e5d27c/transformed/library-1.0.1/AndroidManifest.xml:11:5-20
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/73ba007586fa017ea2f02749e3e5d27c/transformed/library-1.0.1/AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/masum/.gradle/caches/transforms-3/e18445c922ea4361c0a5f8d94c6cf435/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/masum/.gradle/caches/transforms-3/e18445c922ea4361c0a5f8d94c6cf435/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /Users/masum/.gradle/caches/transforms-3/6d7680cc2d10662dfdb2dc390f21ffa6/transformed/transport-runtime-3.1.8/AndroidManifest.xml:25:5-39:19
@@ -478,12 +481,12 @@ ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:72:13-37
 	android:name
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:71:13-40
-activity#com.orbaic.miner.MainActivity
+activity#com.orbaic.miner.SplashActivity
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:77:9-89:20
 	android:exported
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:79:13-36
 	android:name
-		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:78:13-41
+		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:78:13-43
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:80:13-84:29
 action#android.intent.action.MAIN
@@ -732,6 +735,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/masum/.grad
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/masum/.gradle/caches/transforms-3/fae90433c899a2fb77225be782579a49/transformed/lifecycle-livedata-ktx-2.6.1/AndroidManifest.xml:20:5-44
 MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transforms-3/5577b687c474370c35f821ec2cbe50e9/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
 MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transforms-3/5577b687c474370c35f821ec2cbe50e9/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/73ba007586fa017ea2f02749e3e5d27c/transformed/library-1.0.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/73ba007586fa017ea2f02749e3e5d27c/transformed/library-1.0.1/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/masum/.gradle/caches/transforms-3/e18445c922ea4361c0a5f8d94c6cf435/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/masum/.gradle/caches/transforms-3/e18445c922ea4361c0a5f8d94c6cf435/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /Users/masum/.gradle/caches/transforms-3/6d7680cc2d10662dfdb2dc390f21ffa6/transformed/transport-runtime-3.1.8/AndroidManifest.xml:18:5-20:41

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-62:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.orbaic.miner.app-mergeReleaseResources-63:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/8e57ddc8811eb9306ad85b7f1380af6a/transformed/play-services-auth-20.6.0/res/values-watch-v20/values.xml",

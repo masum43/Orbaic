@@ -4,13 +4,16 @@ package com.orbaic.miner.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,16 +24,30 @@ public final class AppBarBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final AppBarLayout appBarLayout;
+  public final BottomNavigationView bottomNavigation;
 
   @NonNull
-  public final Toolbar toolBar;
+  public final FrameLayout container;
 
-  private AppBarBinding(@NonNull LinearLayout rootView, @NonNull AppBarLayout appBarLayout,
-      @NonNull Toolbar toolBar) {
+  @NonNull
+  public final ImageView hamBurgMenuId;
+
+  @NonNull
+  public final CircularImageView profileIcon;
+
+  @NonNull
+  public final TextView textOne;
+
+  private AppBarBinding(@NonNull LinearLayout rootView,
+      @NonNull BottomNavigationView bottomNavigation, @NonNull FrameLayout container,
+      @NonNull ImageView hamBurgMenuId, @NonNull CircularImageView profileIcon,
+      @NonNull TextView textOne) {
     this.rootView = rootView;
-    this.appBarLayout = appBarLayout;
-    this.toolBar = toolBar;
+    this.bottomNavigation = bottomNavigation;
+    this.container = container;
+    this.hamBurgMenuId = hamBurgMenuId;
+    this.profileIcon = profileIcon;
+    this.textOne = textOne;
   }
 
   @Override
@@ -60,19 +77,38 @@ public final class AppBarBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.appBarLayout;
-      AppBarLayout appBarLayout = ViewBindings.findChildViewById(rootView, id);
-      if (appBarLayout == null) {
+      id = R.id.bottom_navigation;
+      BottomNavigationView bottomNavigation = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigation == null) {
         break missingId;
       }
 
-      id = R.id.tool_bar;
-      Toolbar toolBar = ViewBindings.findChildViewById(rootView, id);
-      if (toolBar == null) {
+      id = R.id.container;
+      FrameLayout container = ViewBindings.findChildViewById(rootView, id);
+      if (container == null) {
         break missingId;
       }
 
-      return new AppBarBinding((LinearLayout) rootView, appBarLayout, toolBar);
+      id = R.id.hamBurgMenuId;
+      ImageView hamBurgMenuId = ViewBindings.findChildViewById(rootView, id);
+      if (hamBurgMenuId == null) {
+        break missingId;
+      }
+
+      id = R.id.profileIcon;
+      CircularImageView profileIcon = ViewBindings.findChildViewById(rootView, id);
+      if (profileIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.textOne;
+      TextView textOne = ViewBindings.findChildViewById(rootView, id);
+      if (textOne == null) {
+        break missingId;
+      }
+
+      return new AppBarBinding((LinearLayout) rootView, bottomNavigation, container, hamBurgMenuId,
+          profileIcon, textOne);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
