@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">806056413861-ni4tg9f9ll4umc4j9v9uqh4o5ukqn8pe.apps.googleusercontent.com</string>
-    <string name="firebase_database_url" translatable="false">https://orbaic-53e08-default-rtdb.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">806056413861</string>
-    <string name="google_api_key" translatable="false">AIzaSyCU9DTIHINYSCXBjiGT9q4W_gZv6rYd240</string>
-    <string name="google_app_id" translatable="false">1:806056413861:android:2cd7350adbee96e8b25b4c</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCU9DTIHINYSCXBjiGT9q4W_gZv6rYd240</string>
-    <string name="google_storage_bucket" translatable="false">orbaic-53e08.appspot.com</string>
-    <string name="project_id" translatable="false">orbaic-53e08</string>
+    <string name="default_web_client_id" translatable="false">545894903810-k6r1hh6ndee50l1h5ahnouov011glin9.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://orbaic-6832f-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">545894903810</string>
+    <string name="google_api_key" translatable="false">AIzaSyBm2nz07NAa8N-75Lz7ExoDa80JY7jDrU8</string>
+    <string name="google_app_id" translatable="false">1:545894903810:android:b88bd9eb3cafd2a3b6b71b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBm2nz07NAa8N-75Lz7ExoDa80JY7jDrU8</string>
+    <string name="google_storage_bucket" translatable="false">orbaic-6832f.appspot.com</string>
+    <string name="project_id" translatable="false">orbaic-6832f</string>
 </resources>

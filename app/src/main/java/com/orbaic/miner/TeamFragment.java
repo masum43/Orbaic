@@ -51,29 +51,16 @@ public class TeamFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_team, container, false);
-        tvTeamMemberCount = mainView.findViewById(R.id.tvTeamMemberCount);
-        viewAll = mainView.findViewById(R.id.viewAll);
-        recyclerView = mainView.findViewById(R.id.horizontalRecyclerView);
-        etReferByCode = mainView.findViewById(R.id.etReferByCode);
-        tvSubmit = mainView.findViewById(R.id.tvSubmit);
-        tvMyReferCode = mainView.findViewById(R.id.tvMyReferCode);
-        tvTotalPoint = mainView.findViewById(R.id.tvTotalPoint);
-        tvCopy = mainView.findViewById(R.id.tvCopy);
+        initViews();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+        initClicks();
+        readData();
+        getMyTeam();
         return mainView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-/*        List<Integer> dataList = new ArrayList<>();
-        for(int i = 0; i < 20; i++) {
-            dataList.add(R.drawable.demo_avatar);
-        }*/
-        // Add more items to the dataList as needed
-   /*     horizontalListAdapter = new HorizontalListAdapter(getActivity(), dataList);
-        recyclerView.setAdapter(horizontalListAdapter);*/
+    private void initClicks() {
         viewAll.setOnClickListener(view -> {
             getParentFragmentManager()
                     .beginTransaction()
@@ -105,12 +92,19 @@ public class TeamFragment extends Fragment {
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show();
         });
-
-
-
-        readData();
-        getMyTeam();
     }
+
+    private void initViews() {
+        tvTeamMemberCount = mainView.findViewById(R.id.tvTeamMemberCount);
+        viewAll = mainView.findViewById(R.id.viewAll);
+        recyclerView = mainView.findViewById(R.id.horizontalRecyclerView);
+        etReferByCode = mainView.findViewById(R.id.etReferByCode);
+        tvSubmit = mainView.findViewById(R.id.tvSubmit);
+        tvMyReferCode = mainView.findViewById(R.id.tvMyReferCode);
+        tvTotalPoint = mainView.findViewById(R.id.tvTotalPoint);
+        tvCopy = mainView.findViewById(R.id.tvCopy);
+    }
+
 
     private void validateReferralCode(final String enteredReferralCode) {
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
@@ -167,6 +161,7 @@ public class TeamFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e("DATA_READ", "Team: readData");
                 String name = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
  /*               referralStatus = snapshot.child("referralButton").getValue().toString();
@@ -266,6 +261,7 @@ public class TeamFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 teamList.clear();
                 double totalPoint = 0;
+                Log.e("DATA_READ", "Team: getMyTeam");
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
                     String userId = userSnapshot.getKey();

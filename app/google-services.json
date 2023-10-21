@@ -1,42 +1,50 @@
 {
   "project_info": {
-    "project_number": "806056413861",
-    "firebase_url": "https://orbaic-53e08-default-rtdb.firebaseio.com",
-    "project_id": "orbaic-53e08",
-    "storage_bucket": "orbaic-53e08.appspot.com"
+    "project_number": "545894903810",
+    "firebase_url": "https://orbaic-6832f-default-rtdb.firebaseio.com",
+    "project_id": "orbaic-6832f",
+    "storage_bucket": "orbaic-6832f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:806056413861:android:2cd7350adbee96e8b25b4c",
+        "mobilesdk_app_id": "1:545894903810:android:b88bd9eb3cafd2a3b6b71b",
         "android_client_info": {
           "package_name": "com.orbaic.miner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "806056413861-a8idvu4cg7pllgng6du6eetm9ile1ltm.apps.googleusercontent.com",
+          "client_id": "545894903810-ledinhnoaiaprt1co9u165e5ohfcr2a2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.orbaic.miner",
-            "certificate_hash": "f7777ef15608e8bf2542896c2747b7cbb7b9903a"
+            "certificate_hash": "50582b21fe421d983de7f4cc546b86da4250e447"
           }
         },
         {
-          "client_id": "806056413861-ni4tg9f9ll4umc4j9v9uqh4o5ukqn8pe.apps.googleusercontent.com",
+          "client_id": "545894903810-repgfl4soc3o1ctnt0d0gv6hectkvu2n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbaic.miner",
+            "certificate_hash": "a22a8e57fe41b5b79a20b0c31cdb27b8a77e41e6"
+          }
+        },
+        {
+          "client_id": "545894903810-k6r1hh6ndee50l1h5ahnouov011glin9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCU9DTIHINYSCXBjiGT9q4W_gZv6rYd240"
+          "current_key": "AIzaSyBm2nz07NAa8N-75Lz7ExoDa80JY7jDrU8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "806056413861-j763u024qs6eunq82i7g9hfjoobb8mug.apps.googleusercontent.com",
+              "client_id": "545894903810-k6r1hh6ndee50l1h5ahnouov011glin9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
@@ -172,8 +174,19 @@ public class LoginLayout extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
 //                            fail_login.setVisibility(View.VISIBLE);
-                            Toast.makeText(context, "Please check email and password!!", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "Please check email and password!!", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
+                            Exception exception = task.getException();
+                            if (exception != null) {
+                                Log.e("LoginIssue", "onComplete: " + exception.getMessage());
+                            }
+                            // Handle the error or display a more specific error message to the user.
+                            // For example, you can check the exception's type and provide custom error messages.
+                            if (exception instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "Authentication failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });

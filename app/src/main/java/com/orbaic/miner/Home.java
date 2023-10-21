@@ -108,7 +108,8 @@ public class Home extends Fragment {
     Task<Void> currentUser;
 
     FirebaseUser user;
-    String referralStatus, referralByUserId, myReferCode, miningStatus, miningStartTime;
+    String referralStatus, myReferCode, miningStatus, miningStartTime;
+    String referralByUserId = "";
     private List<Post> postItemList;
     FirebaseData data = new FirebaseData();
     List<Team> teamList = new ArrayList<>();
@@ -123,8 +124,8 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_2, container, false);
         SpManager.init(requireActivity());
-        readData();
-        getMyTeam();
+
+
         AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
@@ -139,9 +140,7 @@ public class Home extends Fragment {
         checkEmailVerifyStatus();
 
         initClicks(mobAds);
-
         newsFromWordpressBlog(true);
-
 
         return view;
 
@@ -409,9 +408,12 @@ public class Home extends Fragment {
             ref.child("status").setValue(now);
         }*/
 
-        DatabaseReference ref = database.getReference("referralUser")
-                .child(referralByUserId).child(mAuth.getUid());
-        ref.child("status").setValue(String.valueOf(now));
+        if (!referralByUserId.isEmpty()) {
+            DatabaseReference ref = database.getReference("referralUser")
+                    .child(referralByUserId).child(mAuth.getUid());
+            ref.child("status").setValue(String.valueOf(now));
+        }
+
     }
 
     //news from wordpress blog
@@ -473,6 +475,7 @@ public class Home extends Fragment {
 
     // Mining system
     private void addPoints() {
+        Log.e("DATA_READ", "addPoints: " );
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -487,6 +490,9 @@ public class Home extends Fragment {
 
                     data.sentData(String.valueOf(Coin));
                     System.out.println(Coin);
+                    Log.e("COIN_UPDATE", "Coin1: "+ Coin );
+                    String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                    requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
                 } else {
                     stop();
@@ -541,7 +547,7 @@ public class Home extends Fragment {
         super.onStart();
         readData();
         startOnFun();
-//        getMyTeam2();
+        getMyTeam();
 
     }
 
@@ -553,13 +559,13 @@ public class Home extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                Log.e("DATA_READ", "startOnFun");
                 String point = snapshot.child("point").getValue().toString();
                 Coin = Double.valueOf(point);
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 AciCoin.setText(format);
 
-                //Learn and Earn Enable
+                //Start - Learn and Earn Enable
                 String enableTime = snapshot.child("extra1").getValue().toString();
                 endTime = Long.parseLong(enableTime);
                 long currentTime = System.currentTimeMillis();
@@ -571,6 +577,7 @@ public class Home extends Fragment {
                     available.setVisibility(View.GONE);
                     quizCountDown(enableTime);
                 }
+                //End - Learn and Earn Enable
 
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
                 timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
@@ -581,6 +588,7 @@ public class Home extends Fragment {
                 //System.out.println(timeLeftInMillis +" "+ mEndTime);
                 timeLeftInMillis = mEndTime - System.currentTimeMillis();
                 newMillis = timeLeftInMillis;
+                Log.e("COIN_UPDATE", "newMillis: "+ newMillis );
                 if (newMillis > 0) {
                     sleepTime = oldMilli - newMillis;
                     timerTask = new TimerTask() {
@@ -588,13 +596,15 @@ public class Home extends Fragment {
                         public void run() {
                             Coin = (double) (Coin + ((sleepTime / 1000) * 0.000012));
                             data.sentData(String.valueOf(Coin));
-                            //AciCoin.setText(post.getPoint());
-                            //System.out.println("sleeping"+ Coin);
+                            String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                            Log.e("COIN_UPDATE", "Coin1: "+ Coin );
+                            requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                         }
                     };
                     time.schedule(timerTask, 1000);
                 }
                 //System.out.println("endTime"+timeLeftInMillis);
+                Log.e("COIN_UPDATE", "timeLeftInMillis: "+ timeLeftInMillis );
                 if (timeLeftInMillis < 0) {
                     timeLeftInMillis = 0;
                     timerTask = new TimerTask() {
@@ -603,6 +613,9 @@ public class Home extends Fragment {
                             Coin = (double) (Coin + ((oldMilli / 1000) * 0.000012));
                             if (Coin >= 0) {
                                 data.sentData(String.valueOf(Coin));
+                                String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                                Log.e("COIN_UPDATE", "Coin2: "+ Coin );
+                                requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                                 //System.out.println("finish" + Coin);
                             }
                         }
@@ -632,7 +645,7 @@ public class Home extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        mEndTime = System.currentTimeMillis() + timeLeftInMillis;
+        mEndTime = System.currentTimeMillis() + timeLeftInMillis; //actual end time of the mining
         SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         edit.putLong("millis", timeLeftInMillis);
@@ -684,9 +697,10 @@ public class Home extends Fragment {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e("DATA_READ", "readData");
                 String name = snapshot.child("name").getValue().toString();
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
@@ -715,7 +729,10 @@ public class Home extends Fragment {
 //                } else {
 //                    //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
 //                }
-                referralByUserId = snapshot.child("referredBy").getValue().toString();
+                if (snapshot.child("referredBy").exists()) {
+                    referralByUserId = snapshot.child("referredBy").getValue().toString();
+                }
+
                 myReferCode = snapshot.child("referral").getValue().toString();
 
                 if (!isMyTeamLoaded) {
@@ -759,55 +776,6 @@ public class Home extends Fragment {
         }
     }
 
-    private void getMyTeam2(String myReferCode) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRef = database.getReference();
-        Query referredUsersQuery = databaseRef.child("users")
-                .orderByChild("referredBy")
-                .equalTo(myReferCode);
-
-        referredUsersQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                teamList.clear();
-                onMiningDataList.clear();
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    Log.e("getMyTeam", "userSnapshot: "+ userSnapshot);
-                    String userId = userSnapshot.child("id").getValue(String.class);
-                    String userName = userSnapshot.child("name").getValue(String.class);
-                    String userEmail = userSnapshot.child("email").getValue(String.class);
-                    String miningStartTime = "-1";
-                    if (userSnapshot.child("miningStartTime").exists()) {
-                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
-                    }
-                    Log.e("getMyTeam", "miningStartTime: "+miningStartTime );
-
-                    String miningStatus = checkMiningStatus(miningStartTime);
-                    Log.e("getMyTeam", "miningStatus: "+miningStatus );
-
-                    teamList.add(new Team(userId, userName, userEmail, "", miningStartTime, miningStatus));
-
-                }
-
-                teamRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
-                teamRecyclerView.setAdapter(adapter);
-
-                for (Team miningData : teamList) {
-                    if (miningData.getMiningStatus().equals(Constants.STATUS_ON)) {
-                        onMiningDataList.add(miningData);
-                    }
-                }
-
-                tvTeamStatus.setText(onMiningDataList.size()+"/"+teamList.size());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors that occur
-            }
-        });
-    }
 
     private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -818,6 +786,7 @@ public class Home extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 teamList.clear();
                 onMiningDataList.clear();
+                Log.e("DATA_READ", "getMyTeam");
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     ReferralDataRecive data = dataSnapshot.getValue(ReferralDataRecive.class);
