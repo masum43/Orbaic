@@ -781,7 +781,7 @@ public class Home extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 teamList.clear();
