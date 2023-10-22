@@ -64,6 +64,9 @@ import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -495,6 +498,7 @@ public class Home extends Fragment {
                     requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
                 } else {
+                    Log.e("COIN_UPDATE", "run: No internet connection");
                     stop();
                 }
             }
@@ -509,7 +513,7 @@ public class Home extends Fragment {
         timerTask.cancel();
         System.out.println("error");
         count.cancel();
-        //Toast.makeText(getContext(),"Internet error", Toast.LENGTH_SHORT).show();
+        stopRippleEffect();
     }
 
     //mining time countdown
@@ -737,8 +741,6 @@ public class Home extends Fragment {
 
                 if (!isMyTeamLoaded) {
                     isMyTeamLoaded = true;
-//                    getMyTeam2(myReferCode);
-
                     MainActivity2 mainActivity = (MainActivity2) getActivity();
                     if (mainActivity != null) {
                         mainActivity.updateHeader("", name, email);
@@ -819,7 +821,17 @@ public class Home extends Fragment {
     }
 
 
+
     private boolean internetConnectionCheck() {
+        try {
+            InetAddress address = InetAddress.getByName("google.com");
+            return address.isReachable(5000); // Timeout in milliseconds
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+/*    private boolean internetConnectionCheck() {
         try {
             String cmd = "ping -c 1 google.com";
             return (Runtime.getRuntime().exec(cmd).waitFor() == 0);
@@ -830,7 +842,7 @@ public class Home extends Fragment {
             return false;
         }
 
-    }
+    }*/
 
     private void dialogShow(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

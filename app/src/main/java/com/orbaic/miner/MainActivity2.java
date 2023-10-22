@@ -95,21 +95,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 .orderByChild("referral")
                 .equalTo(referredBy);
 
-        referredUsersQuery.addValueEventListener(new ValueEventListener() {
+        referredUsersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userId = "";
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Log.e("addIntoReferTeam", "userSnapshot: "+ userSnapshot);
                     userId = userSnapshot.getKey();
-                    String userName = userSnapshot.child("name").getValue(String.class);
-                    String userEmail = userSnapshot.child("email").getValue(String.class);
-                    String miningStartTime = "-1";
-                    if (userSnapshot.child("miningStartTime").exists()) {
-                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
-                    }
-                    Log.e("getMyTeam", "miningStartTime: "+miningStartTime );
-
                 }
 
                 Log.e("addIntoReferTeam", "userId: "+ userId);
@@ -127,8 +119,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                         }
                     });
                 }
-
-
             }
 
             @Override
