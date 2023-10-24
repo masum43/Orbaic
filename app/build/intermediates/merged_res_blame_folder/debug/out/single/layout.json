@@ -12,16 +12,12 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_withdrawal.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_team.xml",
-        "source": "com.orbaic.miner.app-main-67:/layout/fragment_team.xml"
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_support.xml",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_support.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_mining_rules.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_mining_rules.xml"
-    },
-    {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_support.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/fragment_support.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/team_member_single.xml",
@@ -66,6 +62,10 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/dialog_mining_warning.xml",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-67:/layout/dialog_mining_warning.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/activity_user_register.xml",
+        "source": "com.orbaic.miner.app-main-67:/layout/activity_user_register.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-64:/layout/item_view.xml",
