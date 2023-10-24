@@ -81,12 +81,14 @@ public class TeamFragment extends Fragment {
         tvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String referBy = etReferByCode.getText().toString();
+                Toast.makeText(requireContext(), "Coming very soon...", Toast.LENGTH_SHORT).show();
+
+/*                String referBy = etReferByCode.getText().toString();
                 if (referBy.isEmpty()) {
                     Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                validateReferralCode(referBy);
+                validateReferralCode(referBy);*/
             }
         });
 

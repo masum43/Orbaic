@@ -84,7 +84,7 @@ public class UserRegister extends AppCompatActivity {
 
         //id create
         context = this;
-        idCreate();
+        //idCreate();
 
         //cunntry Lock
         getLocationPermission();
@@ -196,6 +196,9 @@ public class UserRegister extends AppCompatActivity {
         String referredBy = register_refer.getText().toString();
 
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        startRegistering("", usersRef, email, password, name, referredBy);
+
+        /*
         //validate refer code
         if (!referredBy.isEmpty()) {
             Query query = usersRef.orderByChild("referral").equalTo(referredBy);
@@ -225,12 +228,69 @@ public class UserRegister extends AppCompatActivity {
         }
         else {
             startRegistering("", usersRef, email, password, name, referredBy);
-        }
+        }*/
 
     }
 
     private void startRegistering(String referByUserId, DatabaseReference usersRef, String email, String password, String name, String referredBy) {
-        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
+        progressDialog.show();
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(UserRegister.this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
+
+                        Random a = new Random();
+                        int b = a.nextInt(9999);
+                        int c = a.nextInt(9999);
+                        String code = String.valueOf(b) + String.valueOf(c);
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("users");
+                        Map<String, String> map = new HashMap<>();
+                        map.put("point","0");
+                        map.put("phone","0");
+                        map.put("click","0");
+                        map.put("country",country);
+                        map.put("birthdate","0");
+                        map.put("referral",code);
+                        map.put("referredBy", referByUserId);
+                        map.put("referralButton","ON");
+                        map.put("type","0");
+                        map.put("name", name);
+                        map.put("email", email);
+                        map.put("id",mAuth.getCurrentUser().getUid());
+                        map.put("extra1","0");
+                        map.put("extra2","0");
+                        map.put("extra3","0");
+                        if (mAuth.getUid() == null){
+                            return;
+                        }
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        if (currentUser != null) {
+                            currentUser.sendEmailVerification();
+                        }
+
+                        mAuth.getCurrentUser().sendEmailVerification();
+                        myRef.child(mAuth.getUid()).setValue(map).addOnCompleteListener(task1 -> {
+                            progressDialog.dismiss();
+                            updateUI(name, referredBy);
+
+                        });
+                    } else {
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            String errorMessage = exception.getMessage();
+                            Toast.makeText(UserRegister.this,  errorMessage, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(UserRegister.this, "Unknown error", Toast.LENGTH_LONG).show();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+
+
+
+/*        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
         emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -240,60 +300,6 @@ public class UserRegister extends AppCompatActivity {
                     progressDialog.dismiss();
                 } else {
                     // Email does not exist in the database
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(UserRegister.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(UserRegister.this,"token Successful",Toast.LENGTH_LONG).show();
-
-                                        Random a = new Random();
-                                        int b = a.nextInt(9999);
-                                        int c = a.nextInt(9999);
-                                        String code = String.valueOf(b) + String.valueOf(c);
-
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference myRef = database.getReference("users");
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put("point","0");
-                                        map.put("phone","0");
-                                        map.put("click","0");
-                                        map.put("country",country);
-                                        map.put("birthdate","0");
-                                        map.put("referral",code);
-                                        map.put("referredBy", referByUserId);
-                                        map.put("referralButton","ON");
-                                        map.put("type","0");
-                                        map.put("name", name);
-                                        map.put("email", email);
-                                        map.put("id",mAuth.getCurrentUser().getUid());
-                                        map.put("extra1","0");
-                                        map.put("extra2","0");
-                                        map.put("extra3","0");
-                                        if (mAuth.getUid() == null){
-                                            return;
-                                        }
-                                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                                        if (currentUser != null) {
-                                            currentUser.sendEmailVerification();
-                                        }
-
-                                        mAuth.getCurrentUser().sendEmailVerification();
-                                        myRef.child(mAuth.getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                progressDialog.dismiss();
-                                                updateUI(name, referredBy);
-
-                                            }
-                                        });
-                                        progressDialog.dismiss();
-                                    } else {
-                                        Toast.makeText(UserRegister.this,"token Error: "+task,Toast.LENGTH_LONG).show();
-                                        progressDialog.dismiss();
-                                    }
-                                }
-                            });
 
                 }
             }
@@ -304,7 +310,7 @@ public class UserRegister extends AppCompatActivity {
                 Log.e("SIGN_UP", "onCancelled: "+databaseError.getMessage());
                 progressDialog.dismiss();
             }
-        });
+        });*/
     }
 
 

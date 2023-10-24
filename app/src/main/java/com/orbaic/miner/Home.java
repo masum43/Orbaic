@@ -893,7 +893,7 @@ public class Home extends Fragment {
             }
         });
         if (com.orbaic.miner.BuildConfig.DEBUG) {
-//            builder.create().show();
+            builder.create().show();
         }
         else {
             builder.create().show();
