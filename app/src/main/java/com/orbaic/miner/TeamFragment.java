@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.Loading;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 
@@ -46,34 +49,27 @@ public class TeamFragment extends Fragment {
     HorizontalListAdapter horizontalListAdapter;
     TextView tvTeamMemberCount, viewAll;
     List<Team> teamList = new ArrayList<>();
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    Loading loadingDialog;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_team, container, false);
-        tvTeamMemberCount = mainView.findViewById(R.id.tvTeamMemberCount);
-        viewAll = mainView.findViewById(R.id.viewAll);
-        recyclerView = mainView.findViewById(R.id.horizontalRecyclerView);
-        etReferByCode = mainView.findViewById(R.id.etReferByCode);
-        tvSubmit = mainView.findViewById(R.id.tvSubmit);
-        tvMyReferCode = mainView.findViewById(R.id.tvMyReferCode);
-        tvTotalPoint = mainView.findViewById(R.id.tvTotalPoint);
-        tvCopy = mainView.findViewById(R.id.tvCopy);
+        initViews();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        loadingDialog = new Loading(requireContext());
+
+        initClicks();
+        readData();
+        getMyTeam();
         return mainView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-/*        List<Integer> dataList = new ArrayList<>();
-        for(int i = 0; i < 20; i++) {
-            dataList.add(R.drawable.demo_avatar);
-        }*/
-        // Add more items to the dataList as needed
-   /*     horizontalListAdapter = new HorizontalListAdapter(getActivity(), dataList);
-        recyclerView.setAdapter(horizontalListAdapter);*/
+    private void initClicks() {
         viewAll.setOnClickListener(view -> {
             getParentFragmentManager()
                     .beginTransaction()
@@ -85,12 +81,14 @@ public class TeamFragment extends Fragment {
         tvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String referBy = etReferByCode.getText().toString();
+                Toast.makeText(requireContext(), "Coming very soon...", Toast.LENGTH_SHORT).show();
+
+/*                String referBy = etReferByCode.getText().toString();
                 if (referBy.isEmpty()) {
                     Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                validateReferralCode(referBy);
+                validateReferralCode(referBy);*/
             }
         });
 
@@ -105,14 +103,22 @@ public class TeamFragment extends Fragment {
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show();
         });
-
-
-
-        readData();
-        getMyTeam();
     }
 
+    private void initViews() {
+        tvTeamMemberCount = mainView.findViewById(R.id.tvTeamMemberCount);
+        viewAll = mainView.findViewById(R.id.viewAll);
+        recyclerView = mainView.findViewById(R.id.horizontalRecyclerView);
+        etReferByCode = mainView.findViewById(R.id.etReferByCode);
+        tvSubmit = mainView.findViewById(R.id.tvSubmit);
+        tvMyReferCode = mainView.findViewById(R.id.tvMyReferCode);
+        tvTotalPoint = mainView.findViewById(R.id.tvTotalPoint);
+        tvCopy = mainView.findViewById(R.id.tvCopy);
+    }
+
+
     private void validateReferralCode(final String enteredReferralCode) {
+        loadingDialog.showLoadingDialog();
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
         Query query = usersRef.orderByChild("referral").equalTo(enteredReferralCode);
 
@@ -120,8 +126,16 @@ public class TeamFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    updateReferCode(enteredReferralCode);
+                    for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
+                        String name = mSnap.child("name").getValue().toString();
+                        String userId = mSnap.getKey();
+                        addIntoReferTeam(userId, name);
+                        updateReferCode(enteredReferralCode);
+                    }
+
+                    Log.e("validateReferralCode", "name: "+ dataSnapshot);
                 } else {
+                    loadingDialog.closeLoadingDialog();
                     Toast.makeText(requireContext(), "Invalid referral code. Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -133,6 +147,22 @@ public class TeamFragment extends Fragment {
         });
     }
 
+    private void addIntoReferTeam(String userId, String name) {
+        if (userId != null && !userId.isEmpty()) {
+            DatabaseReference referralRef = database.getReference("referralUser");
+            HashMap<String, String> map = new HashMap<>();
+            map.put("name", name);
+            map.put("status", "-1");
+            referralRef.child(userId).child(mAuth.getUid().toString()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        loadingDialog.closeLoadingDialog();
+                    }
+                }
+            });
+        }
+    }
     private void updateReferCode(String enteredReferralCode) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -158,6 +188,8 @@ public class TeamFragment extends Fragment {
                 });
     }
 
+
+
     public void readData() {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -167,6 +199,7 @@ public class TeamFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e("DATA_READ", "Team: readData");
                 String name = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
  /*               referralStatus = snapshot.child("referralButton").getValue().toString();
@@ -208,64 +241,17 @@ public class TeamFragment extends Fragment {
 
     }
 
-    private void getMyTeam2(String myReferCode) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRef = database.getReference();
-        Query referredUsersQuery = databaseRef.child("users")
-                .orderByChild("referredBy")
-                .equalTo(myReferCode);
-
-        referredUsersQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                teamList.clear();
-                double totalPoint = 0;
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
-                    String userId = userSnapshot.child("id").getValue(String.class);
-                    String userName = userSnapshot.child("name").getValue(String.class);
-                    String userEmail = userSnapshot.child("email").getValue(String.class);
-                    String point = userSnapshot.child("point").getValue(String.class);
-                    String miningStartTime = "-1";
-                    if (userSnapshot.child("miningStartTime").exists()) {
-                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
-                    }
-                    Log.e("getMyTeam", "miningStartTime: " + miningStartTime);
-
-                    String miningStatus = checkMiningStatus(miningStartTime);
-                    Log.e("getMyTeam", "miningStatus: " + miningStatus);
-
-                    teamList.add(new Team(userId, userName, userEmail, "", miningStartTime, miningStatus));
-
-                    totalPoint += Double.parseDouble(point);
-
-                }
-
-                String format = String.format(Locale.getDefault(), "%.5f", totalPoint);
-                tvTotalPoint.setText(format + " ACI");
-
-                HorizontalListAdapter adapter = new HorizontalListAdapter(getActivity(), teamList);
-                recyclerView.setAdapter(adapter);
-
-                tvTeamMemberCount.setText("My Team ("+teamList.size()+")");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors that occur
-            }
-        });
-    }
 
     private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 teamList.clear();
                 double totalPoint = 0;
+                Log.e("DATA_READ", "Team: getMyTeam");
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
                     String userId = userSnapshot.getKey();

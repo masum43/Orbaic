@@ -114,62 +114,12 @@ public class TeamMembersFragment extends Fragment {
 
     }*/
 
-    private void getMyTeam2(String myReferCode) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRef = database.getReference();
-        Query referredUsersQuery = databaseRef.child("users")
-                .orderByChild("referredBy")
-                .equalTo(myReferCode);
-
-        referredUsersQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                teamList.clear();
-                double totalPoint = 0;
-                int inactiveTeamCount = 0;
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    Log.e("getMyTeam", "userSnapshot: " + userSnapshot);
-                    String userId = userSnapshot.child("id").getValue(String.class);
-                    String userName = userSnapshot.child("name").getValue(String.class);
-                    String userEmail = userSnapshot.child("email").getValue(String.class);
-                    String point = userSnapshot.child("point").getValue(String.class);
-                    String miningStartTime = "-1";
-                    if (userSnapshot.child("miningStartTime").exists()) {
-                        miningStartTime = userSnapshot.child("miningStartTime").getValue(String.class);
-                    }
-                    Log.e("getMyTeam", "miningStartTime: " + miningStartTime);
-
-                    String miningStatus = checkMiningStatus(miningStartTime);
-                    Log.e("getMyTeam", "miningStatus: " + miningStatus);
-                    if (miningStatus.equals(Constants.STATUS_OFF)) {
-                        inactiveTeamCount ++;
-                    }
-
-                    teamList.add(new Team(userId, userName, userEmail, "", miningStartTime, miningStatus));
-
-                    totalPoint += Double.parseDouble(point);
-
-                }
-
-
-                TeamMembersFullAdapter adapter = new TeamMembersFullAdapter(getActivity(), teamList);
-                recyclerView.setAdapter(adapter);
-
-                tvInactiveTeamCount.setText(String.valueOf(inactiveTeamCount));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors that occur
-            }
-        });
-    }
 
     private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference ref = database.getReference("referralUser").child(mAuth.getUid());
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 teamList.clear();

@@ -61,7 +61,7 @@
                 android:id="@+id/tvTeamMemberCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Team (54)"
+                android:text="My Team (0)"
                 android:textSize="16sp"
                 android:letterSpacing="0.01"
                 android:lineSpacingExtra="-5sp"
@@ -187,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
-                android:text="14342952"
+                tools:text="14342952"
                 android:textSize="16.16sp"
                 android:letterSpacing="0.03"/>
             <TextView

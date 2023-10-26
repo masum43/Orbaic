@@ -133,6 +133,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -154,6 +155,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
         <EditText
+            android:visibility="gone"
             android:id="@+id/registration_refer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
