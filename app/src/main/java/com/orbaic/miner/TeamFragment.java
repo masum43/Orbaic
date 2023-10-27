@@ -53,6 +53,7 @@ public class TeamFragment extends Fragment {
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     Loading loadingDialog;
+    private String myName = "";
 
     @Nullable
     @Override
@@ -131,10 +132,10 @@ public class TeamFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String userId = dataSnapshot.child("userId").getValue(String.class);
-                    String name = dataSnapshot.child("name").getValue(String.class);
+//                    String name = dataSnapshot.child("name").getValue(String.class);
 
 
-                    addIntoReferTeam(userId, name);
+                    addIntoReferTeam(userId, myName);
                     updateReferCode(userId, desiredReferKey);
                 } else {
                     loadingDialog.closeLoadingDialog();
@@ -234,7 +235,7 @@ public class TeamFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("DATA_READ", "Team: readData");
-                String name = snapshot.child("name").getValue().toString();
+                myName = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
                 String referral = snapshot.child("referral").getValue().toString();
 
