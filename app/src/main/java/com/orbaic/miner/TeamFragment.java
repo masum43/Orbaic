@@ -32,6 +32,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.Loading;
+import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 
@@ -58,6 +59,7 @@ public class TeamFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_team, container, false);
         initViews();
+        SpManager.init(requireContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -68,6 +70,8 @@ public class TeamFragment extends Fragment {
         getMyTeam();
         return mainView;
     }
+
+
 
     private void initClicks() {
         viewAll.setOnClickListener(view -> {
@@ -81,14 +85,14 @@ public class TeamFragment extends Fragment {
         tvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(requireContext(), "Coming very soon...", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(requireContext(), "Coming very soon...", Toast.LENGTH_SHORT).show();
 
-/*                String referBy = etReferByCode.getText().toString();
-                if (referBy.isEmpty()) {
+                String referBy = etReferByCode.getText().toString();
+                if (referBy.isEmpty() || referBy.equals(tvMyReferCode.getText().toString())) {
                     Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                validateReferralCode(referBy);*/
+                validateReferralCode(referBy);
             }
         });
 
@@ -117,9 +121,38 @@ public class TeamFragment extends Fragment {
     }
 
 
-    private void validateReferralCode(final String enteredReferralCode) {
+    private void validateReferralCode(final String desiredReferKey) {
         loadingDialog.showLoadingDialog();
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference referKeysRef = FirebaseDatabase.getInstance().getReference().child("referKeys");
+        DatabaseReference specificReferKeyRef = referKeysRef.child(desiredReferKey);
+
+        specificReferKeyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String userId = dataSnapshot.child("userId").getValue(String.class);
+                    String name = dataSnapshot.child("name").getValue(String.class);
+
+
+                    addIntoReferTeam(userId, name);
+                    updateReferCode(userId, desiredReferKey);
+                } else {
+                    loadingDialog.closeLoadingDialog();
+                    Toast.makeText(requireContext(), "Invalid referral code. Please try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(requireContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+/*        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("referKeys");
         Query query = usersRef.orderByChild("referral").equalTo(enteredReferralCode);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,7 +177,7 @@ public class TeamFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle errors, if any
             }
-        });
+        });*/
     }
 
     private void addIntoReferTeam(String userId, String name) {
@@ -163,12 +196,13 @@ public class TeamFragment extends Fragment {
             });
         }
     }
-    private void updateReferCode(String enteredReferralCode) {
+    private void updateReferCode(String userId, String enteredReferralCode) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
         Map<String, Object> map = new HashMap<>();
-        map.put("referredBy", enteredReferralCode);
+        map.put("referredBy", userId);
+        map.put("referredByCode", enteredReferralCode);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myRef.child(mAuth.getUid()).updateChildren(map)
@@ -202,6 +236,9 @@ public class TeamFragment extends Fragment {
                 Log.e("DATA_READ", "Team: readData");
                 String name = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
+                String referral = snapshot.child("referral").getValue().toString();
+
+
  /*               referralStatus = snapshot.child("referralButton").getValue().toString();
                 if (snapshot.child("miningStartTime").exists()) {
                     miningStartTime = snapshot.child("miningStartTime").getValue().toString();
@@ -214,8 +251,8 @@ public class TeamFragment extends Fragment {
                 etReferByCode.setEnabled(true);
                 tvSubmit.setVisibility(View.VISIBLE);
 
-                if (snapshot.child("referredBy").exists()) {
-                    String referralBy = snapshot.child("referredBy").getValue().toString();
+                if (snapshot.child("referredByCode").exists()) {
+                    String referralBy = snapshot.child("referredByCode").getValue().toString();
                     if (!referralBy.isEmpty()) {
                         etReferByCode.setText(referralBy);
                         etReferByCode.setClickable(false);
