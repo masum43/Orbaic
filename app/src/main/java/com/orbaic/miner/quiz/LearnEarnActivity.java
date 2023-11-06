@@ -3,6 +3,8 @@ package com.orbaic.miner.quiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -48,12 +50,11 @@ import java.util.Set;
 
 public class LearnEarnActivity extends AppCompatActivity {
 
+    private LearnEarnViewModel learnEarnViewModel;
     int questionsIndexCount = 0, p = 0, countTime = 100000;
     int correctAnsCounter = 0;
     int wrongAnsCounter = 0;
     private TextView question;
-
-    private double userPoints;
     private CountDownTimer count;
 
     private Button submit;
@@ -71,6 +72,7 @@ public class LearnEarnActivity extends AppCompatActivity {
         setContentView(R.layout.activity_learn_earn_activtity);
 
         SpManager.init(this);
+        learnEarnViewModel = new ViewModelProvider(this).get(LearnEarnViewModel.class);
         tvQsCounter = findViewById(R.id.tvQsCounter);
         ans1 = findViewById(R.id.ans1);
         ans2 = findViewById(R.id.ans2);
@@ -115,8 +117,8 @@ public class LearnEarnActivity extends AppCompatActivity {
             if (answer.equals(selectedAnswer)){
                 correctAnsCounter++;
                 userResultShow("Congratulation! \nYou give the right answer", "Correct Answer");
-                userPoints = userPoints + 1;
-                data.sentData(String.valueOf(userPoints));
+                learnEarnViewModel.updateUserPoints(learnEarnViewModel.getUserPoints() + 1);
+                data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()));
                 mobAds.showRewardedVideo();
 
 
@@ -269,8 +271,10 @@ public class LearnEarnActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String point = Objects.requireNonNull(snapshot.child("point").getValue()).toString();
-                userPoints = Double.parseDouble(point);
-                System.out.println(userPoints);
+                String qzCount = Objects.requireNonNull(snapshot.child("qz_count").getValue()).toString();
+                learnEarnViewModel.updateUserPoints(Double.parseDouble(point));
+                learnEarnViewModel.updateQzCount(Integer.parseInt(qzCount));
+                System.out.println(learnEarnViewModel.getUserPoints());
 
             }
 
