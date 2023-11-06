@@ -62,7 +62,8 @@ public class ForgetPassword extends AppCompatActivity {
                         incorrectEmail.setText("Password successfully resend. Please check Email.");
                         incorrectEmail.setVisibility(View.VISIBLE);
                     }else{
-                        incorrectEmail.setText("Incorrect Email or You have no Account");
+                        String errorMessage = task.getException().getMessage(); // Get the error message
+                        incorrectEmail.setText(errorMessage.toString());
                         incorrectEmail.setVisibility(View.VISIBLE);
                     }
                 }
