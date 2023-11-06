@@ -415,7 +415,9 @@ public class Home extends Fragment {
             DatabaseReference ref = database.getReference("referralUser")
                     .child(referralByUserId).child(mAuth.getUid());
             ref.child("status").setValue(String.valueOf(now));
+
         }
+
 
     }
 
@@ -714,6 +716,8 @@ public class Home extends Fragment {
                 }
                 else miningStartTime = "-1";
 
+                Log.e("miningStartTime", "onDataChange: "+ miningStartTime);
+
                 String miningStatus = checkMiningStatus(miningStartTime);
                 if (miningStatus.equals(Constants.STATUS_ON)) {
                     startRippleEffect();
@@ -739,6 +743,13 @@ public class Home extends Fragment {
 
                 myReferCode = snapshot.child("referral").getValue().toString();
 
+                boolean isDailyTaskDone = SpManager.isDailyTaskDone();
+                Log.e("isDailyTaskDone", "isDailyTaskDone: "+isDailyTaskDone);
+                if (!isDailyTaskDone) {
+                    Log.e("isDailyTaskDone", "onDataChange");
+                    setMyReferKey(name, myReferCode);
+                }
+
                 if (!isMyTeamLoaded) {
                     isMyTeamLoaded = true;
                     MainActivity2 mainActivity = (MainActivity2) getActivity();
@@ -756,6 +767,26 @@ public class Home extends Fragment {
         });
 
 
+    }
+
+    private String checkMiningStatusTeam(String miningStartTime) {
+        long now = System.currentTimeMillis();
+        long miningStartTimeLong = Long.parseLong(miningStartTime);
+        long timeElapsed = now - miningStartTimeLong;
+
+        Log.e("checkMiningStatus", "now: "+ now );
+        Log.e("checkMiningStatus", "miningStartTimeLong: "+ miningStartTimeLong );
+        Log.e("checkMiningStatus", "timeElapsed: "+ timeElapsed );
+
+        if (timeElapsed >= 24 * 60 * 60 * 1000) {
+            // If more than 24 hours have elapsed, do something
+            // Your code here
+            return Constants.STATUS_OFF;
+        } else {
+            // If less than 24 hours have elapsed, do something else
+            // Your code here
+            return Constants.STATUS_ON;
+        }
     }
 
     private String checkMiningStatus(String miningStartTime) {
@@ -793,7 +824,7 @@ public class Home extends Fragment {
 
                     ReferralDataRecive data = dataSnapshot.getValue(ReferralDataRecive.class);
                     Log.e("getMyTeam2", "key: "+ dataSnapshot.getKey());
-                    String miningStatus = checkMiningStatus(data.getStatus());
+                    String miningStatus = checkMiningStatusTeam(data.getStatus());
                     teamList.add(new Team(dataSnapshot.getKey(), data.getName(), "", "", data.getStatus(), miningStatus));
                 }
 
@@ -893,7 +924,7 @@ public class Home extends Fragment {
             }
         });
         if (com.orbaic.miner.BuildConfig.DEBUG) {
-            builder.create().show();
+            //builder.create().show();
         }
         else {
             builder.create().show();
@@ -918,5 +949,30 @@ public class Home extends Fragment {
         }
     }
 
+
+    private void setMyReferKey(String name, String code) {
+        if (code.isEmpty()) {
+            return;
+        }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference referKeys = database.getReference("referKeys");
+        Map<String, String> referKeyMap = new HashMap<>();
+        referKeyMap.put("name", name);
+        referKeyMap.put("userId", mAuth.getCurrentUser().getUid().toString());
+
+        Log.e("setMyReferKeyError", "getUid: "+ mAuth.getCurrentUser().getUid().toString() );
+        Log.e("setMyReferKeyError", "code: "+ code);
+
+        referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
+            if (task2.isSuccessful()) {
+                SpManager.makeDailyTaskDone();
+            } else {
+                String errorMessage = task2.getException().getMessage();
+                //Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                Log.e("setMyReferKeyError", "task2: " + errorMessage);
+            }
+        });
+    }
 
 }

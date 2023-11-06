@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,14 +58,21 @@ public class ForgetPassword extends AppCompatActivity {
             mAuth.sendPasswordResetEmail(forgetEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+                    incorrectEmail.setVisibility(View.VISIBLE);
                     if(task.isSuccessful()){
                         incorrectEmail.setTextColor(getResources().getColor(R.color.green_pastel));
                         incorrectEmail.setText("Password successfully resend. Please check Email.");
-                        incorrectEmail.setVisibility(View.VISIBLE);
                     }else{
-                        String errorMessage = task.getException().getMessage(); // Get the error message
-                        incorrectEmail.setText(errorMessage.toString());
-                        incorrectEmail.setVisibility(View.VISIBLE);
+//                        incorrectEmail.setText("Incorrect Email or You have no Account");
+//                        incorrectEmail.setVisibility(View.VISIBLE);
+                        String errorMessage = "Password reset email not sent. Error: ";
+                        if (task.getException() != null) {
+                            errorMessage += task.getException().getMessage();
+                        } else {
+                            errorMessage += "Unknown error occurred.";
+                        }
+                        Log.e("PasswordReset", errorMessage);
+                        incorrectEmail.setText(errorMessage);
                     }
                 }
             });

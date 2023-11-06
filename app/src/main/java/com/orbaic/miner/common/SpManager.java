@@ -3,6 +3,8 @@ package com.orbaic.miner.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Calendar;
+
 public class SpManager {
 
     private static final String PREFERENCES_NAME = "MyAppPreferences";
@@ -51,6 +53,19 @@ public class SpManager {
     public static String getString(String key, String defaultValue) {
         return sharedPreferences.getString(key, defaultValue);
     }
+
+    public static boolean isDailyTaskDone() {
+        String currentDay = DateUtils.getCurrentDay();
+        return sharedPreferences.contains("refKey");
+    }
+
+    public static void makeDailyTaskDone() {
+//        String currentDay = DateUtils.getCurrentDay();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("refKey", "DONE");
+        editor.apply();
+    }
+
 
     // Remove a value from SharedPreferences
     public static void removeValue(String key) {

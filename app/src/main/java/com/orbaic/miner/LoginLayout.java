@@ -341,7 +341,7 @@ public class LoginLayout extends AppCompatActivity {
 
                                         Toast.makeText(LoginLayout.this, "token Successful", Toast.LENGTH_LONG).show();
                                     }else {
-                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
                                         updateUI();
                                         progressDialog.dismiss();
                                     }
