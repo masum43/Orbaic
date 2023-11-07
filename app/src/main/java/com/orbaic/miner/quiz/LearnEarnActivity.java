@@ -114,15 +114,15 @@ public class LearnEarnActivity extends AppCompatActivity {
                 return;
             }
 
+            learnEarnViewModel.updateQzCount(learnEarnViewModel.getQzCount() + 1);
+
             if (answer.equals(selectedAnswer)){
                 correctAnsCounter++;
                 userResultShow("Congratulation! \nYou give the right answer", "Correct Answer");
                 learnEarnViewModel.updateUserPoints(learnEarnViewModel.getUserPoints() + 1);
-                data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()));
+                data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()), String.valueOf(learnEarnViewModel.getQzCount()));
                 mobAds.showRewardedVideo();
-
-
-            }else {
+            } else {
                 wrongAnsCounter++;
                 userResultShow("Opp! \nYou give the wrong answer", "Wrong Answer");
                 mobAds.showRewardedVideo();
