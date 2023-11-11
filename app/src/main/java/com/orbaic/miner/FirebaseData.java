@@ -27,17 +27,26 @@ public class FirebaseData {
         myRef.child("point").setValue(mPoint);
     }
 
-    public void addQuizPoints(String mPoint, String qzCountStr){
+    public void addQuizPoints(String mPoint){
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("point", mPoint);
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.updateChildren(hashMap);
+    }
+
+    public void addQuizCount(String qzCountStr){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("qz_count", qzCountStr);
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
         myRef.updateChildren(hashMap);
-//        myRef.child("point").setValue(mPoint);
     }
+
 
     public void anyPath(String value, String pathName){
 

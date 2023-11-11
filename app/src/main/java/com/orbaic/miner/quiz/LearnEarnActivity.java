@@ -120,13 +120,14 @@ public class LearnEarnActivity extends AppCompatActivity {
                 correctAnsCounter++;
                 userResultShow("Congratulation! \nYou give the right answer", "Correct Answer");
                 learnEarnViewModel.updateUserPoints(learnEarnViewModel.getUserPoints() + 1);
-                data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()), String.valueOf(learnEarnViewModel.getQzCount()));
+                data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()));
                 mobAds.showRewardedVideo();
             } else {
                 wrongAnsCounter++;
                 userResultShow("Opp! \nYou give the wrong answer", "Wrong Answer");
                 mobAds.showRewardedVideo();
             }
+
             radioGroup.clearCheck();
             count.cancel();
             progressBar.setProgress(p = 0);
@@ -154,14 +155,12 @@ public class LearnEarnActivity extends AppCompatActivity {
                 question(randomNumbers.get(questionsIndexCount));
             }
         }
-        readData();
 
         progressBar.setProgress(p);
 
         //countdown();
 
-
-
+        readData();
     }
 
     private void loadQuestion() {
@@ -196,7 +195,7 @@ public class LearnEarnActivity extends AppCompatActivity {
             });
             dialog.show();
 
-
+            data.addQuizCount(String.valueOf(learnEarnViewModel.getQzCount()));
             long quizFinishTime = System.currentTimeMillis();
             SpManager.saveLong(SpManager.KEY_LAST_QUIZ_FINISH_TIME, quizFinishTime);
         }
@@ -271,7 +270,10 @@ public class LearnEarnActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String point = Objects.requireNonNull(snapshot.child("point").getValue()).toString();
-                String qzCount = Objects.requireNonNull(snapshot.child("qz_count").getValue()).toString();
+                String qzCount = "0";
+                if (snapshot.hasChild("qz_count")) {
+                    qzCount = Objects.requireNonNull(snapshot.child("qz_count").getValue()).toString();
+                }
                 learnEarnViewModel.updateUserPoints(Double.parseDouble(point));
                 learnEarnViewModel.updateQzCount(Integer.parseInt(qzCount));
                 System.out.println(learnEarnViewModel.getUserPoints());
