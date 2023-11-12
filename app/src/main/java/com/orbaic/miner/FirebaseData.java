@@ -9,6 +9,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class FirebaseData {
     private FirebaseAuth mAuth;
@@ -16,16 +18,35 @@ public class FirebaseData {
 
     ArrayList<FirebaseUserData> list = new ArrayList<FirebaseUserData>();
 
-    public void sentData(String mPoint){
+    public void addMiningPoints(String mPoint){
 
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
         myRef.child("point").setValue(mPoint);
-
-
     }
+
+    public void addQuizPoints(String mPoint){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("point", mPoint);
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.updateChildren(hashMap);
+    }
+
+    public void addQuizCount(String qzCountStr){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("qz_count", qzCountStr);
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.updateChildren(hashMap);
+    }
+
 
     public void anyPath(String value, String pathName){
 

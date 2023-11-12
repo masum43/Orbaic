@@ -49,7 +49,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.orbaic.miner.common.Constants;
@@ -64,9 +63,7 @@ import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -493,7 +490,7 @@ public class Home extends Fragment {
                         Coin = Coin + (0.000012 * 5);
                     }
 
-                    data.sentData(String.valueOf(Coin));
+                    data.addMiningPoints(String.valueOf(Coin));
                     System.out.println(Coin);
                     Log.e("COIN_UPDATE", "Coin1: "+ Coin );
                     String format = String.format(Locale.getDefault(), "%.5f", Coin);
@@ -601,7 +598,7 @@ public class Home extends Fragment {
                         @Override
                         public void run() {
                             Coin = (double) (Coin + ((sleepTime / 1000) * 0.000012));
-                            data.sentData(String.valueOf(Coin));
+                            data.addMiningPoints(String.valueOf(Coin));
                             String format = String.format(Locale.getDefault(), "%.5f", Coin);
                             Log.e("COIN_UPDATE", "Coin1: "+ Coin );
                             requireActivity().runOnUiThread(() -> AciCoin.setText(format));
@@ -618,7 +615,7 @@ public class Home extends Fragment {
                         public void run() {
                             Coin = (double) (Coin + ((oldMilli / 1000) * 0.000012));
                             if (Coin >= 0) {
-                                data.sentData(String.valueOf(Coin));
+                                data.addMiningPoints(String.valueOf(Coin));
                                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                                 Log.e("COIN_UPDATE", "Coin2: "+ Coin );
                                 requireActivity().runOnUiThread(() -> AciCoin.setText(format));

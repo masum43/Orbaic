@@ -332,6 +332,7 @@ id rv
 id rvMyTeam
 id share_button
 id sign_up
+id stacking
 id statusOffIcon
 id statusOnIcon
 id supportMenu
@@ -356,6 +357,8 @@ id titleSubject
 id titleTextView
 id totalMember
 id trans
+id transfer
+id tvAciCoin
 id tvCopy
 id tvCorrectAns
 id tvDate
@@ -393,6 +396,7 @@ id webview_fqa
 id whitePaper
 id white_paper
 id winnerLayout
+id withdraw
 id withdrawal
 layout activity_firebase_dynamic_link
 layout activity_forget_password
