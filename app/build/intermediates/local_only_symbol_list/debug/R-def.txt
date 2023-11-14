@@ -271,6 +271,7 @@ id item_number
 id item_point
 id item_status
 id ivAvater
+id ivIcon
 id ivProfile
 id j
 id l1
@@ -330,6 +331,7 @@ id removableView
 id rippleEffect
 id rv
 id rvMyTeam
+id rvRewardTokens
 id share_button
 id sign_up
 id stacking
@@ -359,14 +361,17 @@ id totalMember
 id trans
 id transfer
 id tvAciCoin
+id tvCoin
 id tvCopy
 id tvCorrectAns
 id tvDate
 id tvInactiveTeamCount
 id tvMyReferCode
+id tvName
 id tvNotice
 id tvQsCounter
 id tvQuizCountDown
+id tvQuizSummary
 id tvResult
 id tvSubmit
 id tvTeamMemberCount
@@ -375,6 +380,7 @@ id tvToolbarTitle
 id tvTotalPoint
 id tvUserEmail
 id tvUserName
+id tvWithdraw
 id tvWrongAns
 id twitter
 id twitter_h
@@ -430,6 +436,7 @@ layout header_layout
 layout item
 layout item_horizontal_list
 layout item_layout
+layout item_reward_tokens
 layout item_view
 layout itemview_for_ref
 layout layout_home_old
