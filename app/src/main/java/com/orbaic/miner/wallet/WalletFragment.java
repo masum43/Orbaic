@@ -106,6 +106,14 @@ public class WalletFragment extends Fragment {
                 if (qzCount > 300) qzCount = 300;
                 setUpQuizProgress(qzCount);
 
+                String miningHoursStr = "0";
+                if (snapshot.hasChild("mining_hours")) {
+                    miningHoursStr = snapshot.child("mining_hours").getValue().toString();
+                }
+                int miningHours = Integer.parseInt(miningHoursStr);
+                if (miningHours > 300) miningHours = 300;
+                setUpMiningHourProgress(miningHours);
+
                 double Coin = Double.valueOf(point);
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
@@ -131,6 +139,20 @@ public class WalletFragment extends Fragment {
 
     private void animateProgressBar(int progressPercentage) {
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(binding.quizProgressBar, "progress", progressPercentage);
+        progressAnimator.setDuration(1000); // Set the duration of the animation in milliseconds (adjust as needed)
+        progressAnimator.start();
+    }
+
+
+    private void setUpMiningHourProgress(int currentProgress) {
+        int totalProgress = 300;
+        int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);
+//        binding.quizProgressBar.setProgress(progressPercentage);
+        animateMiningHourProgressBar(progressPercentage);
+    }
+
+    private void animateMiningHourProgressBar(int progressPercentage) {
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(binding.miningProgressBar, "progress", progressPercentage);
         progressAnimator.setDuration(1000); // Set the duration of the animation in milliseconds (adjust as needed)
         progressAnimator.start();
     }

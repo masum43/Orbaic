@@ -24,6 +24,10 @@
         "source": "com.orbaic.miner.app-main-67:/layout/mcq_result_dialog.xml"
     },
     {
+        "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/item_reward_tokens.xml",
+        "source": "com.orbaic.miner.app-main-67:/layout/item_reward_tokens.xml"
+    },
+    {
         "merged": "com.orbaic.miner.app-mergeDebugResources-64:/layout/fragment_white_paper.xml",
         "source": "com.orbaic.miner.app-main-67:/layout/fragment_white_paper.xml"
     },

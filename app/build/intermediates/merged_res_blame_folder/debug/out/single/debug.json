@@ -264,6 +264,10 @@
         "source": "com.orbaic.miner.app-main-67:/drawable/edittext_shape.xml"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-65:/layout_item_reward_tokens.xml.flat",
+        "source": "com.orbaic.miner.app-main-67:/layout/item_reward_tokens.xml"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-65:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.orbaic.miner.app-main-67:/mipmap-anydpi-v26/ic_launcher.xml"
     },
