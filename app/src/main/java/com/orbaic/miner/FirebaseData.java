@@ -26,6 +26,29 @@ public class FirebaseData {
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
         myRef.child("point").setValue(mPoint);
     }
+    public void addQuizRewardPoints(String mPoint){
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("point", mPoint);
+        hashMap.put("qz_count", "0");
+        myRef.updateChildren(hashMap);
+    }
+
+    public void addMiningRewardPoints(String mPoint){
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("point", mPoint);
+        hashMap.put("mining_count", "0");
+        myRef.updateChildren(hashMap);
+    }
 
     public void addQuizPoints(String mPoint){
         mAuth = FirebaseAuth.getInstance();

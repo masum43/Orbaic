@@ -67,7 +67,6 @@ import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
-import com.orbaic.miner.quiz.LearnEarnViewModel;
 import com.orbaic.miner.quiz.QuizStartActivity;
 import com.orbaic.miner.wordpress.Post;
 import com.orbaic.miner.wordpress.PostAdapter;
@@ -419,8 +418,8 @@ public class Home extends Fragment {
         long now = System.currentTimeMillis();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("miningStartTime", String.valueOf(now));
-        double miningHours = viewModel.getMiningHours();
-        hashMap.put("mining_hours", String.valueOf(miningHours + 24));
+        int miningHours = viewModel.getMiningHoursCount();
+        hashMap.put("mining_count", String.valueOf(miningHours + 24));
 
 
 
@@ -735,10 +734,10 @@ public class Home extends Fragment {
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
                 String miningHours = "0";
-                if (snapshot.hasChild("mining_hours")) {
-                    miningHours = snapshot.child("mining_hours").getValue().toString();
+                if (snapshot.hasChild("mining_count")) {
+                    miningHours = snapshot.child("mining_count").getValue().toString();
                 }
-                viewModel.setMiningHours(Double.parseDouble(miningHours));
+                viewModel.setMiningHoursCount(Integer.parseInt(miningHours));
                 referralStatus = snapshot.child("referralButton").getValue().toString();
                 if (snapshot.child("miningStartTime").exists()) {
                     miningStartTime = snapshot.child("miningStartTime").getValue().toString();

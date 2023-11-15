@@ -374,12 +374,13 @@
                     tools:progress="70" />
 
                 <TextView
+                    android:id="@+id/tvMiningHours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="500/720"
+                    android:text="0/720"
                     android:textColor="#fff"
                     android:textSize="18sp" />
             </LinearLayout>
