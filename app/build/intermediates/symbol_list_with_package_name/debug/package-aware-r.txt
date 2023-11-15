@@ -4026,7 +4026,7 @@ id tvName
 id tvNotice
 id tvQsCounter
 id tvQuizCountDown
-id tvRate
+id tvQuizSummary
 id tvResult
 id tvSubmit
 id tvTeamMemberCount
@@ -4387,7 +4387,6 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
-string com_google_firebase_crashlytics_mapping_file_id
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title

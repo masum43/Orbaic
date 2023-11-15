@@ -131,6 +131,7 @@ public class WalletFragment extends Fragment {
     }
 
     private void setUpQuizProgress(int currentProgress) {
+        binding.tvQuizSummary.setText(currentProgress + "/300");
         int totalProgress = 300;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);
 //        binding.quizProgressBar.setProgress(progressPercentage);

@@ -371,7 +371,7 @@ id tvName
 id tvNotice
 id tvQsCounter
 id tvQuizCountDown
-id tvRate
+id tvQuizSummary
 id tvResult
 id tvSubmit
 id tvTeamMemberCount
@@ -453,7 +453,6 @@ mipmap ic_launcher_round
 mipmap telegram
 string action_settings
 string app_name
-string com.google.firebase.crashlytics.mapping_file_id
 string default_web_client_id
 string firebase_database_url
 string first_fragment_label
