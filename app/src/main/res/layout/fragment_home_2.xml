@@ -291,7 +291,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-20dp"
@@ -368,9 +368,10 @@
                     android:src="@drawable/clock_icon" />
 
                 <TextView
+                    android:id="@+id/tvMiningHoursCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 300 / 720 hours"
+                    android:text=" 0 / 720 hours"
                     android:textColor="#64D2FF"
                     android:textSize="12sp" />
             </LinearLayout>

@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -38,6 +39,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -129,8 +132,10 @@ public class Home extends Fragment {
     TextView tvQuizCountDown;
     TextView tvRate;
     ProgressBar waitingQuizProgressbar, earnRewardProgressBar;
+    TextView tvMiningHoursCount;
     private Boolean isMyTeamLoaded = false;
     private HomeViewModel viewModel;
+    AdMobAds mobAds;
 
     @SuppressLint("NewApi")
     @Override
@@ -141,7 +146,7 @@ public class Home extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        AdMobAds mobAds = new AdMobAds(getContext(), getActivity());
+        mobAds = new AdMobAds(getContext(), getActivity());
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -157,8 +162,38 @@ public class Home extends Fragment {
         initClicks(mobAds);
         newsFromWordpressBlog(true);
 
+
         return view;
 
+    }
+
+    private void showTapTarget() {
+        TapTargetView.showFor(requireActivity(),                 // `this` is an Activity
+                TapTarget.forView(mining, "Start Mining", "Click here to start your mining")
+                        // All options below are optional
+                        .outerCircleColor(R.color.red)      // Specify a color for the outer circle
+                        .outerCircleAlpha(0.96f)            // Specify the alpha amount for the outer circle
+                        .targetCircleColor(R.color.white)   // Specify a color for the target circle
+                        .titleTextSize(20)                  // Specify the size (in sp) of the title text
+                        .titleTextColor(R.color.white)      // Specify the color of the title text
+                        .descriptionTextSize(10)            // Specify the size (in sp) of the description text
+                        .descriptionTextColor(R.color.red)  // Specify the color of the description text
+                        .textColor(R.color.white)            // Specify a color for both the title and description text
+                        .textTypeface(Typeface.SANS_SERIF)  // Specify a typeface for the text
+                        .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
+                        .drawShadow(true)                   // Whether to draw a drop shadow or not
+                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                        .tintTarget(true)                   // Whether to tint the target view's color
+                        .transparentTarget(false)           // Specify whether the target is transparent (displays the content underneath)
+//                        .icon(Drawable)                     // Specify a custom drawable to draw as the target
+                        .targetRadius(60),                  // Specify the target radius (in dp)
+                new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);      // This call is optional
+                        startMining();
+                    }
+                });
     }
 
     private void quizCountDown(String enableTime) {
@@ -214,13 +249,13 @@ public class Home extends Fragment {
                         tvNotice.setText("Your "+onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10*onMiningDataList.size()) +"%.");
                         dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
                             dialog.dismiss();
-                            startMining(mobAds);
+                            startMining();
 
                         });
                         dialog.show();
                     }
                     else {
-                        startMining(mobAds);
+                        startMining();
                     }
 
                 }
@@ -341,7 +376,7 @@ public class Home extends Fragment {
         dialog.show();
     }
 
-    private void startMining(AdMobAds mobAds) {
+    private void startMining() {
         mobAds.showRewardedVideo();
         startRippleEffect();
 
@@ -366,6 +401,7 @@ public class Home extends Fragment {
 
     private void initViews(View view) {
         learnEarn = view.findViewById(R.id.learnAndEarn);
+        tvMiningHoursCount = view.findViewById(R.id.tvMiningHoursCount);
         available = view.findViewById(R.id.learnAvailable);
         quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
         transfer = view.findViewById(R.id.trans);
@@ -752,6 +788,10 @@ public class Home extends Fragment {
                 }
                 else {
                     stopRippleEffect();
+                    if (miningStartTime.equals("-1")) {
+
+                    }
+                    showTapTarget();
                 }
 
                 // System.out.println(referralStatus);
@@ -785,6 +825,14 @@ public class Home extends Fragment {
                         mainActivity.updateHeader("", name, email);
                     }
                 }
+
+                int miningHoursCount = viewModel.getMiningHoursCount();
+                int maxHours = 720;
+                if (miningHoursCount > maxHours) miningHoursCount = maxHours;
+
+                int percentage = (int) ((float) miningHoursCount / maxHours * 100);
+                earnRewardProgressBar.setProgress(percentage);
+                tvMiningHoursCount.setText(" "+miningHoursCount + "/"+ maxHours + " ");
 
             }
 
