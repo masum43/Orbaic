@@ -136,6 +136,7 @@ public class Home extends Fragment {
     private Boolean isMyTeamLoaded = false;
     private HomeViewModel viewModel;
     AdMobAds mobAds;
+    ImageView ivMining;
 
     @SuppressLint("NewApi")
     @Override
@@ -168,16 +169,19 @@ public class Home extends Fragment {
     }
 
     private void showTapTarget() {
+        boolean isTapDone = SpManager.getBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, false);
+        if (isTapDone) return;
+
         TapTargetView.showFor(requireActivity(),                 // `this` is an Activity
-                TapTarget.forView(mining, "Start Mining", "Click here to start your mining")
+                TapTarget.forView(ivMining, "Start Mining", "Click here to start your mining")
                         // All options below are optional
-                        .outerCircleColor(R.color.red)      // Specify a color for the outer circle
+                        .outerCircleColor(R.color.teal_700)      // Specify a color for the outer circle
                         .outerCircleAlpha(0.96f)            // Specify the alpha amount for the outer circle
                         .targetCircleColor(R.color.white)   // Specify a color for the target circle
                         .titleTextSize(20)                  // Specify the size (in sp) of the title text
                         .titleTextColor(R.color.white)      // Specify the color of the title text
                         .descriptionTextSize(10)            // Specify the size (in sp) of the description text
-                        .descriptionTextColor(R.color.red)  // Specify the color of the description text
+                        .descriptionTextColor(R.color.white)  // Specify the color of the description text
                         .textColor(R.color.white)            // Specify a color for both the title and description text
                         .textTypeface(Typeface.SANS_SERIF)  // Specify a typeface for the text
                         .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
@@ -191,6 +195,7 @@ public class Home extends Fragment {
                     @Override
                     public void onTargetClick(TapTargetView view) {
                         super.onTargetClick(view);      // This call is optional
+                        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
                         startMining();
                     }
                 });
@@ -426,6 +431,7 @@ public class Home extends Fragment {
         waitingQuizProgressbar = view.findViewById(R.id.quizWaitingProgressBar);
         earnRewardProgressBar = view.findViewById(R.id.earnRewardProgressBar);
         tvRate = view.findViewById(R.id.tvRate);
+        ivMining = view.findViewById(R.id.ivMining);
     }
 
     private void startRippleEffect() {
