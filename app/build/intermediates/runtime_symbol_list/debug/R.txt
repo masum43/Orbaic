@@ -3662,6 +3662,7 @@ int id item_status 0x7f09014f
 int id item_touch_helper_previous_elevation 0x7f090150
 int id ivAvater 0x7f090151
 int id ivIcon 0x7f090152
+int id ivMining 0x7f0902fa
 int id ivProfile 0x7f090153
 int id j 0x7f090154
 int id jumpToEnd 0x7f090155
@@ -4021,6 +4022,7 @@ int id tvCorrectAns 0x7f0902b6
 int id tvDate 0x7f0902b7
 int id tvInactiveTeamCount 0x7f0902b8
 int id tvMiningHours 0x7f0902b9
+int id tvMiningHoursCount 0x7f0902f9
 int id tvMyReferCode 0x7f0902ba
 int id tvName 0x7f0902bb
 int id tvNotice 0x7f0902bc

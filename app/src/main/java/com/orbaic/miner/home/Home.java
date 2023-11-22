@@ -45,6 +45,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,6 +69,7 @@ import com.orbaic.miner.TeamReferral;
 import com.orbaic.miner.WhitePaper;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.SpManager;
+import com.orbaic.miner.databinding.FragmentHome2Binding;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 import com.orbaic.miner.quiz.QuizStartActivity;
@@ -95,7 +97,7 @@ import retrofit2.Response;
 
 //22955
 public class Home extends Fragment {
-
+    private FragmentHome2Binding binding;
 
     public Home() {
         // Required empty public constructor
@@ -131,18 +133,26 @@ public class Home extends Fragment {
     List<Team> onMiningDataList = new ArrayList<>();
     TextView tvQuizCountDown;
     TextView tvRate;
-    ProgressBar waitingQuizProgressbar, earnRewardProgressBar;
-    TextView tvMiningHoursCount;
+    ProgressBar waitingQuizProgressbar, earnRewardProgressBar, quizRewardProgressBar;
+    TextView tvMiningHoursCount, tvQuizCount;
     private Boolean isMyTeamLoaded = false;
     private HomeViewModel viewModel;
     AdMobAds mobAds;
     ImageView ivMining;
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference myRewardedTokensRef;
+    DatabaseReference userRef;
+
 
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
+        binding = FragmentHome2Binding.inflate(getLayoutInflater(), container, false);
+//        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
+        View view = binding.getRoot();
+
         SpManager.init(requireActivity());
 
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -154,10 +164,15 @@ public class Home extends Fragment {
                 mobAds.loadRewardedAd();
             }
         });
+
         initViews(view);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        myRewardedTokensRef = database.getReference("my_rewarded_tokens").child(mAuth.getCurrentUser().getUid());
+        userRef = database.getReference("users").child(mAuth.getUid());
         checkEmailVerifyStatus();
 
         initClicks(mobAds);
@@ -220,7 +235,6 @@ public class Home extends Fragment {
                 tvQuizCountDown.setText(remainingTime);
 
 
-
                 long currentTimeMillis = System.currentTimeMillis();
                 long futureEnableTimeMillis = Long.parseLong(enableTime); // Replace with your future enable time
                 long twelveHoursInMillis = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
@@ -251,20 +265,18 @@ public class Home extends Fragment {
                         dialog.setContentView(R.layout.dialog_extra_point);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         TextView tvNotice = dialog.findViewById(R.id.tvNotice);
-                        tvNotice.setText("Your "+onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10*onMiningDataList.size()) +"%.");
+                        tvNotice.setText("Your " + onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10 * onMiningDataList.size()) + "%.");
                         dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
                             dialog.dismiss();
                             startMining();
 
                         });
                         dialog.show();
-                    }
-                    else {
+                    } else {
                         startMining();
                     }
 
-                }
-                else {
+                } else {
                     miningAlreadyRunningWarning();
                 }
             });
@@ -407,6 +419,7 @@ public class Home extends Fragment {
     private void initViews(View view) {
         learnEarn = view.findViewById(R.id.learnAndEarn);
         tvMiningHoursCount = view.findViewById(R.id.tvMiningHoursCount);
+        tvQuizCount = view.findViewById(R.id.tvQuizCount);
         available = view.findViewById(R.id.learnAvailable);
         quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
         transfer = view.findViewById(R.id.trans);
@@ -430,19 +443,20 @@ public class Home extends Fragment {
         tvQuizCountDown = view.findViewById(R.id.tvQuizCountDown);
         waitingQuizProgressbar = view.findViewById(R.id.quizWaitingProgressBar);
         earnRewardProgressBar = view.findViewById(R.id.earnRewardProgressBar);
+        quizRewardProgressBar = view.findViewById(R.id.quizRewardProgressBar);
         tvRate = view.findViewById(R.id.tvRate);
         ivMining = view.findViewById(R.id.ivMining);
     }
 
     private void startRippleEffect() {
-        if (!rippleEffect.isRippleAnimationRunning()){
+        if (!rippleEffect.isRippleAnimationRunning()) {
             rippleCenterImage.setColorFilter(Color.argb(255, 255, 255, 255)); //change the logo color while staring animation
             rippleEffect.startRippleAnimation(); //starting the animation
         }
     }
 
     private void stopRippleEffect() {
-        if (rippleEffect.isRippleAnimationRunning()){
+        if (rippleEffect.isRippleAnimationRunning()) {
             rippleCenterImage.setColorFilter(null); //get back to previous logo color while stopping animation
             rippleEffect.stopRippleAnimation(); //stopping the animation
         }
@@ -462,7 +476,6 @@ public class Home extends Fragment {
         hashMap.put("miningStartTime", String.valueOf(now));
         int miningHours = viewModel.getMiningHoursCount();
         hashMap.put("mining_count", String.valueOf(miningHours + 24));
-
 
 
         userRef.updateChildren(hashMap);
@@ -542,7 +555,7 @@ public class Home extends Fragment {
 
     // Mining system
     private void addPoints() {
-        Log.e("DATA_READ", "addPoints: " );
+        Log.e("DATA_READ", "addPoints: ");
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -552,15 +565,14 @@ public class Home extends Fragment {
                     if (myTeamMiningCount != 0) {
                         Coin = Coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
                         hourRate = hourRate + hourRate * 0.10 * myTeamMiningCount;
-                    }
-                    else {
+                    } else {
                         Coin = Coin + (0.000012 * 5);
                     }
                     tvRate.setText(hourRate + "/h ACI");
 
                     data.addMiningPoints(String.valueOf(Coin));
                     System.out.println(Coin);
-                    Log.e("COIN_UPDATE", "Coin1: "+ Coin );
+                    Log.e("COIN_UPDATE", "Coin1: " + Coin);
                     String format = String.format(Locale.getDefault(), "%.5f", Coin);
                     requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
@@ -659,7 +671,7 @@ public class Home extends Fragment {
                 //System.out.println(timeLeftInMillis +" "+ mEndTime);
                 timeLeftInMillis = mEndTime - System.currentTimeMillis();
                 newMillis = timeLeftInMillis;
-                Log.e("COIN_UPDATE", "newMillis: "+ newMillis );
+                Log.e("COIN_UPDATE", "newMillis: " + newMillis);
                 if (newMillis > 0) {
                     sleepTime = oldMilli - newMillis;
                     timerTask = new TimerTask() {
@@ -668,14 +680,14 @@ public class Home extends Fragment {
                             Coin = (double) (Coin + ((sleepTime / 1000) * 0.000012));
                             data.addMiningPoints(String.valueOf(Coin));
                             String format = String.format(Locale.getDefault(), "%.5f", Coin);
-                            Log.e("COIN_UPDATE", "Coin1: "+ Coin );
+                            Log.e("COIN_UPDATE", "Coin1: " + Coin);
                             requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                         }
                     };
                     time.schedule(timerTask, 1000);
                 }
                 //System.out.println("endTime"+timeLeftInMillis);
-                Log.e("COIN_UPDATE", "timeLeftInMillis: "+ timeLeftInMillis );
+                Log.e("COIN_UPDATE", "timeLeftInMillis: " + timeLeftInMillis);
                 if (timeLeftInMillis < 0) {
                     timeLeftInMillis = 0;
                     timerTask = new TimerTask() {
@@ -685,7 +697,7 @@ public class Home extends Fragment {
                             if (Coin >= 0) {
                                 data.addMiningPoints(String.valueOf(Coin));
                                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
-                                Log.e("COIN_UPDATE", "Coin2: "+ Coin );
+                                Log.e("COIN_UPDATE", "Coin2: " + Coin);
                                 requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                                 //System.out.println("finish" + Coin);
                             }
@@ -741,14 +753,12 @@ public class Home extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child("miningStartTime").exists()) {
                     miningStartTime = snapshot.child("miningStartTime").getValue().toString();
-                }
-                else miningStartTime = "-1";
+                } else miningStartTime = "-1";
 
                 String miningStatus = checkMiningStatus(miningStartTime);
                 if (miningStatus.equals(Constants.STATUS_ON)) {
                     startRippleEffect();
-                }
-                else {
+                } else {
                     stopRippleEffect();
                 }
                 callback.onMiningStatusChanged(miningStatus);
@@ -775,24 +785,30 @@ public class Home extends Fragment {
                 String name = snapshot.child("name").getValue().toString();
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
+
                 String miningHours = "0";
                 if (snapshot.hasChild("mining_count")) {
                     miningHours = snapshot.child("mining_count").getValue().toString();
                 }
                 viewModel.setMiningHoursCount(Integer.parseInt(miningHours));
+
+                String qzCountStr = "0";
+                if (snapshot.hasChild("qz_count")) {
+                    qzCountStr = snapshot.child("qz_count").getValue().toString();
+                }
+                viewModel.setQuizCount(Integer.parseInt(qzCountStr));
+
                 referralStatus = snapshot.child("referralButton").getValue().toString();
                 if (snapshot.child("miningStartTime").exists()) {
                     miningStartTime = snapshot.child("miningStartTime").getValue().toString();
-                }
-                else miningStartTime = "-1";
+                } else miningStartTime = "-1";
 
-                Log.e("miningStartTime", "onDataChange: "+ miningStartTime);
+                Log.e("miningStartTime", "onDataChange: " + miningStartTime);
 
                 String miningStatus = checkMiningStatus(miningStartTime);
                 if (miningStatus.equals(Constants.STATUS_ON)) {
                     startRippleEffect();
-                }
-                else {
+                } else {
                     stopRippleEffect();
                     if (miningStartTime.equals("-1")) {
 
@@ -818,7 +834,7 @@ public class Home extends Fragment {
                 myReferCode = snapshot.child("referral").getValue().toString();
 
                 boolean isDailyTaskDone = SpManager.isDailyTaskDone();
-                Log.e("isDailyTaskDone", "isDailyTaskDone: "+isDailyTaskDone);
+                Log.e("isDailyTaskDone", "isDailyTaskDone: " + isDailyTaskDone);
                 if (!isDailyTaskDone) {
                     Log.e("isDailyTaskDone", "onDataChange");
                     setMyReferKey(name, myReferCode);
@@ -832,13 +848,8 @@ public class Home extends Fragment {
                     }
                 }
 
-                int miningHoursCount = viewModel.getMiningHoursCount();
-                int maxHours = 720;
-                if (miningHoursCount > maxHours) miningHoursCount = maxHours;
-
-                int percentage = (int) ((float) miningHoursCount / maxHours * 100);
-                earnRewardProgressBar.setProgress(percentage);
-                tvMiningHoursCount.setText(" "+miningHoursCount + "/"+ maxHours + " ");
+                miningRewardProgress();
+                quizRewardProgress();
 
             }
 
@@ -851,14 +862,101 @@ public class Home extends Fragment {
 
     }
 
+    private void quizRewardProgress() {
+        int quizCount = viewModel.getQuizCount();
+        int maxQuizCount = 300;
+        if (quizCount > maxQuizCount) quizCount = maxQuizCount;
+
+        int percentageQuizCount = (int) ((float) quizCount / maxQuizCount * 100);
+        quizRewardProgressBar.setProgress(percentageQuizCount);
+        tvQuizCount.setText(" " + quizCount + "/" + maxQuizCount + " ");
+        if (quizCount == maxQuizCount) {
+            binding.waitingQuizRewardLayout.setVisibility(View.VISIBLE);
+            binding.claimQuizRewardLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+    }
+
+    private void miningRewardProgress() {
+        int miningHoursCount = viewModel.getMiningHoursCount();
+        int maxHours = 720;
+        if (miningHoursCount > maxHours) miningHoursCount = maxHours;
+
+        int percentage = (int) ((float) miningHoursCount / maxHours * 100);
+        earnRewardProgressBar.setProgress(percentage);
+        tvMiningHoursCount.setText(" " + miningHoursCount + "/" + maxHours + " ");
+        if (miningHoursCount == maxHours) {
+            binding.waitingRewardLayout.setVisibility(View.VISIBLE);
+            binding.claimRewardLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    binding.claimRewardLayout.setVisibility(View.GONE);
+                    myRewardedTokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
+                                    MyRewardedTokenItem rewardedTokenItem = mSnap.getValue(MyRewardedTokenItem.class);
+                                    if (rewardedTokenItem.getCode().equals("SHIB")) {
+                                        long rewardedBalance = Long.parseLong(rewardedTokenItem.getBalance());
+                                        Long updatedBalance = rewardedBalance + 2000;
+
+                                        myRewardedTokensRef.child("balance").setValue(updatedBalance)
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Log.d("TAG", "Rewarded balance updated!");
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    // Failed to update the balance
+                                                    Log.e("TAG", "Failed to update rewarded balance!", e);
+                                                    // Handle the error
+                                                });
+                                    }
+                                }
+
+                            } else {
+                                HashMap<String, Object> hashMap = new HashMap<>();
+                                hashMap.put("id", 1);
+                                hashMap.put("name", "SHIBA INU (SHIB)");
+                                hashMap.put("code", "SHIB");
+                                hashMap.put("balance", "2000");
+                                myRewardedTokensRef.child("1").setValue(hashMap)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                binding.tvMiningHoursCount.setText(" 0 / 720 hours");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                binding.claimRewardLayout.setVisibility(View.VISIBLE);
+                                            }
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            });
+        }
+    }
+
     private String checkMiningStatusTeam(String miningStartTime) {
         long now = System.currentTimeMillis();
         long miningStartTimeLong = Long.parseLong(miningStartTime);
         long timeElapsed = now - miningStartTimeLong;
 
-        Log.e("checkMiningStatus", "now: "+ now );
-        Log.e("checkMiningStatus", "miningStartTimeLong: "+ miningStartTimeLong );
-        Log.e("checkMiningStatus", "timeElapsed: "+ timeElapsed );
+        Log.e("checkMiningStatus", "now: " + now);
+        Log.e("checkMiningStatus", "miningStartTimeLong: " + miningStartTimeLong);
+        Log.e("checkMiningStatus", "timeElapsed: " + timeElapsed);
 
         if (timeElapsed >= 24 * 60 * 60 * 1000) {
             // If more than 24 hours have elapsed, do something
@@ -876,9 +974,9 @@ public class Home extends Fragment {
         long miningStartTimeLong = Long.parseLong(miningStartTime);
         long timeElapsed = now - miningStartTimeLong;
 
-        Log.e("checkMiningStatus", "now: "+ now );
-        Log.e("checkMiningStatus", "miningStartTimeLong: "+ miningStartTimeLong );
-        Log.e("checkMiningStatus", "timeElapsed: "+ timeElapsed );
+        Log.e("checkMiningStatus", "now: " + now);
+        Log.e("checkMiningStatus", "miningStartTimeLong: " + miningStartTimeLong);
+        Log.e("checkMiningStatus", "timeElapsed: " + timeElapsed);
 
         if (timeElapsed >= 24 * 60 * 60 * 1000) {
             // If more than 24 hours have elapsed, do something
@@ -905,7 +1003,7 @@ public class Home extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     ReferralDataRecive data = dataSnapshot.getValue(ReferralDataRecive.class);
-                    Log.e("getMyTeam2", "key: "+ dataSnapshot.getKey());
+                    Log.e("getMyTeam2", "key: " + dataSnapshot.getKey());
                     String miningStatus = checkMiningStatusTeam(data.getStatus());
                     teamList.add(new Team(dataSnapshot.getKey(), data.getName(), "", "", data.getStatus(), miningStatus));
                 }
@@ -920,19 +1018,18 @@ public class Home extends Fragment {
                     }
                 }
 
-                tvTeamStatus.setText(onMiningDataList.size()+"/"+teamList.size());
+                tvTeamStatus.setText(onMiningDataList.size() + "/" + teamList.size());
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(""+error);
+                System.out.println("" + error);
             }
         });
 
 
     }
-
 
 
     private boolean internetConnectionCheck() {
@@ -1007,8 +1104,7 @@ public class Home extends Fragment {
         });
         if (com.orbaic.miner.BuildConfig.DEBUG) {
             //builder.create().show();
-        }
-        else {
+        } else {
             builder.create().show();
         }
 
@@ -1043,8 +1139,8 @@ public class Home extends Fragment {
         referKeyMap.put("name", name);
         referKeyMap.put("userId", mAuth.getCurrentUser().getUid().toString());
 
-        Log.e("setMyReferKeyError", "getUid: "+ mAuth.getCurrentUser().getUid().toString() );
-        Log.e("setMyReferKeyError", "code: "+ code);
+        Log.e("setMyReferKeyError", "getUid: " + mAuth.getCurrentUser().getUid().toString());
+        Log.e("setMyReferKeyError", "code: " + code);
 
         referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
             if (task2.isSuccessful()) {

@@ -272,6 +272,7 @@ id item_point
 id item_status
 id ivAvater
 id ivIcon
+id ivMining
 id ivProfile
 id j
 id l1
@@ -367,6 +368,7 @@ id tvCorrectAns
 id tvDate
 id tvInactiveTeamCount
 id tvMiningHours
+id tvMiningHoursCount
 id tvMyReferCode
 id tvName
 id tvNotice

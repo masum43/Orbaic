@@ -6,6 +6,7 @@ public class RewardModel {
     private String bonus;
     private String order;
     private String icon;
+    private boolean isRewardGranted = true;
 
     public RewardModel() {
     }
@@ -56,5 +57,13 @@ public class RewardModel {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public boolean isRewardGranted() {
+        return isRewardGranted;
+    }
+
+    public void setRewardGranted(boolean rewardGranted) {
+        isRewardGranted = rewardGranted;
     }
 }

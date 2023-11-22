@@ -2,6 +2,7 @@ package com.orbaic.miner.wallet;
 
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,13 @@ public class RewardAdapter extends ListAdapter<RewardModel, RewardAdapter.Reward
             holder.tvWithdraw.setEnabled(false);
             holder.tvWithdraw.setClickable(false);
             holder.tvWithdraw.setTextColor(ContextCompat.getColor(holder.tvWithdraw.getContext(), R.color.black_shadow));
-//            holder.ivIcon.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(holder.tvWithdraw.getContext(), R.color.black_shadow)));
+
+            Drawable[] drawables = holder.tvWithdraw.getCompoundDrawablesRelative();
+            Drawable drawable = drawables[0];
+            if (drawable != null) {
+                drawable = drawable.mutate();
+                drawable.setTint(ContextCompat.getColor(holder.tvWithdraw.getContext(), R.color.black_shadow));
+            }
         });
     }
 
@@ -78,6 +85,31 @@ public class RewardAdapter extends ListAdapter<RewardModel, RewardAdapter.Reward
             tvName.setText(reward.getName());
             tvCoin.setText(reward.getBonus());
             Glide.with(ivIcon.getContext()).load(reward.getIcon()).into(ivIcon);
+
+            if (reward.isRewardGranted()) {
+                tvWithdraw.setEnabled(true);
+                tvWithdraw.setClickable(true);
+                tvWithdraw.setTextColor(ContextCompat.getColor(tvWithdraw.getContext(), R.color.white));
+
+                Drawable[] drawables = tvWithdraw.getCompoundDrawablesRelative();
+                Drawable drawable = drawables[0];
+                if (drawable != null) {
+                    drawable = drawable.mutate();
+                    drawable.setTint(ContextCompat.getColor(tvWithdraw.getContext(), R.color.white));
+                }
+            }
+            else {
+                tvWithdraw.setEnabled(false);
+                tvWithdraw.setClickable(false);
+                tvWithdraw.setTextColor(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
+
+                Drawable[] drawables = tvWithdraw.getCompoundDrawablesRelative();
+                Drawable drawable = drawables[0];
+                if (drawable != null) {
+                    drawable = drawable.mutate();
+                    drawable.setTint(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
+                }
+            }
         }
     }
 

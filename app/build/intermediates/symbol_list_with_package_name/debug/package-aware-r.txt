@@ -3663,6 +3663,7 @@ id item_status
 id item_touch_helper_previous_elevation
 id ivAvater
 id ivIcon
+id ivMining
 id ivProfile
 id j
 id jumpToEnd
@@ -4022,6 +4023,7 @@ id tvCorrectAns
 id tvDate
 id tvInactiveTeamCount
 id tvMiningHours
+id tvMiningHoursCount
 id tvMyReferCode
 id tvName
 id tvNotice

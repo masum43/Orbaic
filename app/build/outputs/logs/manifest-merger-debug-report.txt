@@ -14,6 +14,7 @@ MERGED from [com.google.android.material:material:1.9.0] C:\Users\ASUS\.gradle\c
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] C:\Users\ASUS\.gradle\caches\transforms-3\db40991aa5fbba620080d351a0d517cf\transformed\firebase-inappmessaging-display-20.3.2\AndroidManifest.xml:2:1-30:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ASUS\.gradle\caches\transforms-3\941954b29a444f06c652d1d02c20eeec\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.chesire:lifecyklelog:3.1.1] C:\Users\ASUS\.gradle\caches\transforms-3\cbc1004db1e6f1dd7c363eeb1fb24b81\transformed\lifecyklelog-3.1.1\AndroidManifest.xml:2:1-11:12
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ASUS\.gradle\caches\transforms-3\08b359709a5ddc7d0350d2a10830db37\transformed\taptargetview-1.13.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\ASUS\.gradle\caches\transforms-3\ccabd9d303fef00ac403a9388c9cb2e3\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\ASUS\.gradle\caches\transforms-3\7cd2d9d69eaa88625054863c894c70eb\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-auth:20.6.0] C:\Users\ASUS\.gradle\caches\transforms-3\38102d3e6d90e774a38ac014e9799087\transformed\play-services-auth-20.6.0\AndroidManifest.xml:17:1-40:12
@@ -547,6 +548,8 @@ MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ASUS\.gr
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ASUS\.gradle\caches\transforms-3\941954b29a444f06c652d1d02c20eeec\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.chesire:lifecyklelog:3.1.1] C:\Users\ASUS\.gradle\caches\transforms-3\cbc1004db1e6f1dd7c363eeb1fb24b81\transformed\lifecyklelog-3.1.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.chesire:lifecyklelog:3.1.1] C:\Users\ASUS\.gradle\caches\transforms-3\cbc1004db1e6f1dd7c363eeb1fb24b81\transformed\lifecyklelog-3.1.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ASUS\.gradle\caches\transforms-3\08b359709a5ddc7d0350d2a10830db37\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ASUS\.gradle\caches\transforms-3\08b359709a5ddc7d0350d2a10830db37\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\ASUS\.gradle\caches\transforms-3\ccabd9d303fef00ac403a9388c9cb2e3\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\ASUS\.gradle\caches\transforms-3\ccabd9d303fef00ac403a9388c9cb2e3\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\ASUS\.gradle\caches\transforms-3\7cd2d9d69eaa88625054863c894c70eb\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44

@@ -56,11 +56,45 @@ public class WalletFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(WalletViewModel.class);
         readData();
-        fetchRewards();
         initClicks();
     }
 
     private void fetchRewards() {
+        RewardAdapter adapter = getRewardAdapter();
+
+        DatabaseReference rewardsRef = FirebaseDatabase.getInstance().getReference().child("rewards");
+        rewardsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<RewardModel> rewardsList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    RewardModel reward = snapshot.getValue(RewardModel.class);
+                    assert reward != null;
+                    reward.setRewardGranted(false);
+//                    if (reward.getCode().equals("quiz")) {
+//                        boolean isGranted = checkQuizEligibility(reward);
+//                        reward.setRewardGranted(isGranted);
+//                    }
+//                    else if (reward.getCode().equals("mining")) {
+//                        boolean isGranted = checkMiningEligibility(reward);
+//                        reward.setRewardGranted(isGranted);
+//                    }
+                    rewardsList.add(reward);
+                }
+
+                adapter.submitList(rewardsList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("FirebaseError", "Error: " + databaseError.getMessage());
+            }
+        });
+
+    }
+
+    @NonNull
+    private RewardAdapter getRewardAdapter() {
         binding.rvRewardTokens.setLayoutManager(new LinearLayoutManager(requireContext()));
         RewardAdapter adapter = new RewardAdapter(reward -> {
             if (reward.getCode().equals("quiz")) {
@@ -93,26 +127,7 @@ public class WalletFragment extends Fragment {
 
 
         binding.rvRewardTokens.setAdapter(adapter);
-
-        DatabaseReference rewardsRef = FirebaseDatabase.getInstance().getReference().child("rewards");
-        rewardsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<RewardModel> rewardsList = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    RewardModel reward = snapshot.getValue(RewardModel.class);
-                    rewardsList.add(reward);
-                }
-
-                adapter.submitList(rewardsList);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("FirebaseError", "Error: " + databaseError.getMessage());
-            }
-        });
-
+        return adapter;
     }
 
     private boolean checkQuizEligibility(RewardModel reward) {
@@ -204,6 +219,7 @@ public class WalletFragment extends Fragment {
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
 
+                fetchRewards();
 
             }
 
