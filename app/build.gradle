@@ -20,8 +20,8 @@ android {
         applicationId "com.orbaic.miner"
         minSdk 21
         targetSdk 34
-        versionCode 18
-        versionName '1.2.3'
+        versionCode 19
+        versionName '1.2.4'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -93,5 +93,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
 
 }

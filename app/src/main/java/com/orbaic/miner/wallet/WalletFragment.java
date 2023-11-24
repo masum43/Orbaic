@@ -17,6 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,15 +27,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orbaic.miner.FirebaseData;
 import com.orbaic.miner.R;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.databinding.FragmentWalletBinding;
+import com.orbaic.miner.quiz.LearnEarnViewModel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class WalletFragment extends Fragment {
     private FragmentWalletBinding binding;
+    WalletViewModel viewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,8 +54,96 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        viewModel = new ViewModelProvider(this).get(WalletViewModel.class);
         readData();
         initClicks();
+    }
+
+    private void fetchRewards() {
+        RewardAdapter adapter = getRewardAdapter();
+
+        DatabaseReference rewardsRef = FirebaseDatabase.getInstance().getReference().child("rewards");
+        rewardsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<RewardModel> rewardsList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    RewardModel reward = snapshot.getValue(RewardModel.class);
+                    assert reward != null;
+                    reward.setRewardGranted(false);
+//                    if (reward.getCode().equals("quiz")) {
+//                        boolean isGranted = checkQuizEligibility(reward);
+//                        reward.setRewardGranted(isGranted);
+//                    }
+//                    else if (reward.getCode().equals("mining")) {
+//                        boolean isGranted = checkMiningEligibility(reward);
+//                        reward.setRewardGranted(isGranted);
+//                    }
+                    rewardsList.add(reward);
+                }
+
+                adapter.submitList(rewardsList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("FirebaseError", "Error: " + databaseError.getMessage());
+            }
+        });
+
+    }
+
+    @NonNull
+    private RewardAdapter getRewardAdapter() {
+        binding.rvRewardTokens.setLayoutManager(new LinearLayoutManager(requireContext()));
+        RewardAdapter adapter = new RewardAdapter(reward -> {
+            if (reward.getCode().equals("quiz")) {
+                boolean isGranted = checkQuizEligibility(reward);
+                if (isGranted) {
+                    FirebaseData data = new FirebaseData();
+                    double point = viewModel.getPoint() + Double.parseDouble(reward.getBonus());
+                    data.addQuizRewardPoints(String.valueOf(point));
+                    Toast.makeText(requireContext(), reward.getBonus()+ " ACI Rewarded Coin has been added to your balance", Toast.LENGTH_SHORT).show();
+                    readData();
+                }
+                else {
+                    Toast.makeText(requireContext(), "You are not eligible for this reward!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else if (reward.getCode().equals("mining")) {
+                boolean isGranted = checkMiningEligibility(reward);
+                if (isGranted) {
+                    FirebaseData data = new FirebaseData();
+                    double point = viewModel.getPoint() + Double.parseDouble(reward.getBonus());
+                    data.addMiningRewardPoints(String.valueOf(point));
+                    Toast.makeText(requireContext(), reward.getBonus()+ " ACI Rewarded Coin has been added to your balance", Toast.LENGTH_SHORT).show();
+                    readData();
+                }
+                else {
+                    Toast.makeText(requireContext(), "You are not eligible for this reward!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        binding.rvRewardTokens.setAdapter(adapter);
+        return adapter;
+    }
+
+    private boolean checkQuizEligibility(RewardModel reward) {
+        int quizCount = viewModel.getQuizCount();
+        if (quizCount >=  300) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkMiningEligibility(RewardModel reward) {
+        int miningHoursCount = viewModel.getMiningHoursCount();
+        if (miningHoursCount >=  720) {
+            return true;
+        }
+        return false;
     }
 
     private void initClicks() {
@@ -98,26 +196,30 @@ public class WalletFragment extends Fragment {
                 String name = snapshot.child("name").getValue().toString();
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
+                viewModel.setPoint(Double.parseDouble(point));
                 String qzCountStr = "0";
                 if (snapshot.hasChild("qz_count")) {
                     qzCountStr = snapshot.child("qz_count").getValue().toString();
                 }
                 int qzCount = Integer.parseInt(qzCountStr);
                 if (qzCount > 300) qzCount = 300;
+                viewModel.setQuizCount(qzCount);
                 setUpQuizProgress(qzCount);
 
                 String miningHoursStr = "0";
-                if (snapshot.hasChild("mining_hours")) {
-                    miningHoursStr = snapshot.child("mining_hours").getValue().toString();
+                if (snapshot.hasChild("mining_count")) {
+                    miningHoursStr = snapshot.child("mining_count").getValue().toString();
                 }
                 int miningHours = Integer.parseInt(miningHoursStr);
-                if (miningHours > 300) miningHours = 300;
+                if (miningHours > 720) miningHours = 720;
+                viewModel.setMiningHoursCount(miningHours);
                 setUpMiningHourProgress(miningHours);
 
                 double Coin = Double.valueOf(point);
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
 
+                fetchRewards();
 
             }
 
@@ -146,7 +248,8 @@ public class WalletFragment extends Fragment {
 
 
     private void setUpMiningHourProgress(int currentProgress) {
-        int totalProgress = 300;
+        binding.tvMiningHours.setText(currentProgress + "/720");
+        int totalProgress = 720;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);
 //        binding.quizProgressBar.setProgress(progressPercentage);
         animateMiningHourProgressBar(progressPercentage);

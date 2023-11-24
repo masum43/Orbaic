@@ -3,8 +3,6 @@ package com.orbaic.miner.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Calendar;
-
 public class SpManager {
 
     private static final String PREFERENCES_NAME = "MyAppPreferences";
@@ -14,6 +12,7 @@ public class SpManager {
     public static String KEY_MCQ_STATE = "mcq_state";
     public static String KEY_MCQ_RANDOM_NUMBERS = "mcq_qs_random";
     public static String KEY_LAST_QUIZ_FINISH_TIME = "mcq_finish_time";
+    public static String KEY_IS_TAP_TARGET_SHOW = "tap_showed";
 
 
     // Initialize SharedPreferences
@@ -22,15 +21,22 @@ public class SpManager {
         editor = sharedPreferences.edit();
     }
 
-    // Save an integer value to SharedPreferences
     public static void saveInt(String key, int value) {
         editor.putInt(key, value);
         editor.apply();
     }
 
-    // Retrieve an integer value from SharedPreferences
     public static int getInt(String key, int defaultValue) {
         return sharedPreferences.getInt(key, defaultValue);
+    }
+
+    public static void saveBoolean(String key, boolean value) {
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        return sharedPreferences.getBoolean(key, defaultValue);
     }
 
 

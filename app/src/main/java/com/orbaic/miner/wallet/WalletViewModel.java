@@ -16,6 +16,8 @@ import java.util.Locale;
 
 public class WalletViewModel extends ViewModel {
     private double point = 0.0;
+    private int quizCount = 0;
+    private int miningHoursCount = 0;
 
     public double getPoint() {
         return point;
@@ -23,6 +25,22 @@ public class WalletViewModel extends ViewModel {
 
     public void setPoint(double point) {
         this.point = point;
+    }
+
+    public int getQuizCount() {
+        return quizCount;
+    }
+
+    public void setQuizCount(int quizCount) {
+        this.quizCount = quizCount;
+    }
+
+    public int getMiningHoursCount() {
+        return miningHoursCount;
+    }
+
+    public void setMiningHoursCount(int miningHoursCount) {
+        this.miningHoursCount = miningHoursCount;
     }
 
     public LiveData<String> getFormattedACICoin() {

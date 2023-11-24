@@ -106,6 +106,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/ivMining"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
@@ -291,7 +292,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-20dp"
@@ -368,9 +369,10 @@
                     android:src="@drawable/clock_icon" />
 
                 <TextView
+                    android:id="@+id/tvMiningHoursCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 300 / 720 hours"
+                    android:text=" 0 / 720 hours"
                     android:textColor="#64D2FF"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -394,12 +396,119 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/homepage_quiz_progress_background"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.08"
+                    android:lineHeight="18sp"
+                    android:lineSpacingExtra="-4sp"
+                    android:paddingStart="20dp"
+                    android:text="Extra Reward Progress Bar"
+                    android:textColor="#fff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:src="@drawable/extra_reward_progress_bar_icon" />
+
+                <ProgressBar
+                    android:id="@+id/quizRewardProgressBar"
+                    style="@style/HorizontalProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:progress="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/waitingQuizRewardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:text="Quiz Progress"
+                    android:textColor="#aaa" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/clock_icon" />
+
+                <TextView
+                    android:id="@+id/tvQuizCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 0 / 300 hours"
+                    android:textColor="#64D2FF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/claimQuizRewardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/quiz_available_button_shape"
+                    android:padding="8dp"
+                    android:text="Claim Your Shiba Inu" />
+            </LinearLayout>
+        </LinearLayout>
+
         <View
             android:layout_width="125dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="-20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="#777" />
