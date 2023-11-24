@@ -5,15 +5,17 @@ public class MyRewardedTokenItem {
     String name;
     String code;
     String balance;
+    String icon;
 
     public MyRewardedTokenItem() {
     }
 
-    public MyRewardedTokenItem(Long id, String name, String code, String balance) {
+    public MyRewardedTokenItem(Long id, String name, String code, String balance, String icon) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.balance = balance;
+        this.icon = icon;
     }
 
     public Long getId() {
@@ -46,5 +48,13 @@ public class MyRewardedTokenItem {
 
     public void setBalance(String balance) {
         this.balance = balance;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
