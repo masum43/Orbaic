@@ -1,6 +1,8 @@
 package com.orbaic.miner.home;
 
 
+import static com.vungle.warren.utility.ThreadUtil.runOnUiThread;
+
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Dialog;
@@ -210,8 +212,11 @@ public class Home extends Fragment {
                     @Override
                     public void onTargetClick(TapTargetView view) {
                         super.onTargetClick(view);      // This call is optional
-                        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
-                        startMining();
+                        runOnUiThread(() -> {
+                            SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
+                            startMining();
+                        });
+
                     }
                 });
     }
@@ -568,7 +573,14 @@ public class Home extends Fragment {
                     } else {
                         Coin = Coin + (0.000012 * 5);
                     }
-                    tvRate.setText(hourRate + "/h ACI");
+                    double finalHourRate = hourRate;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvRate.setText(finalHourRate + "/h ACI");
+                        }
+                    });
+
 
                     data.addMiningPoints(String.valueOf(Coin));
                     System.out.println(Coin);
@@ -664,20 +676,24 @@ public class Home extends Fragment {
 
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
                 timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
+                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
                 oldMilli = timeLeftInMillis;
-                //System.out.println(System.currentTimeMillis());
+                Log.e("BUGS_123", "oldMilli: "+ oldMilli);
                 updateText();
                 mEndTime = preferences.getLong("lastMillis", 0);
-                //System.out.println(timeLeftInMillis +" "+ mEndTime);
+                Log.e("BUGS_123", "mEndTime: "+ mEndTime);
                 timeLeftInMillis = mEndTime - System.currentTimeMillis();
+                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
+                Log.e("BUGS_123", "System.currentTimeMillis(): "+ System.currentTimeMillis());
                 newMillis = timeLeftInMillis;
+                Log.e("BUGS_123", "newMillis: "+ newMillis);
                 Log.e("COIN_UPDATE", "newMillis: " + newMillis);
                 if (newMillis > 0) {
                     sleepTime = oldMilli - newMillis;
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Coin = (double) (Coin + ((sleepTime / 1000) * 0.000012));
+                            Coin = Coin + ((sleepTime / 1000) * 0.000012);
                             data.addMiningPoints(String.valueOf(Coin));
                             String format = String.format(Locale.getDefault(), "%.5f", Coin);
                             Log.e("COIN_UPDATE", "Coin1: " + Coin);
@@ -693,7 +709,7 @@ public class Home extends Fragment {
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Coin = (double) (Coin + ((oldMilli / 1000) * 0.000012));
+                            Coin = Coin + ((oldMilli / 1000) * 0.000012);
                             if (Coin >= 0) {
                                 data.addMiningPoints(String.valueOf(Coin));
                                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
@@ -871,12 +887,66 @@ public class Home extends Fragment {
         quizRewardProgressBar.setProgress(percentageQuizCount);
         tvQuizCount.setText(" " + quizCount + "/" + maxQuizCount + " ");
         if (quizCount == maxQuizCount) {
-            binding.waitingQuizRewardLayout.setVisibility(View.VISIBLE);
-            binding.claimQuizRewardLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            binding.claimQuizRewardLayout.setVisibility(View.VISIBLE);
+            binding.claimQuizRewardLayout.setOnClickListener(v -> {
+                binding.claimQuizRewardLayout.setVisibility(View.GONE);
+                myRewardedTokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
+                                MyRewardedTokenItem rewardedTokenItem = mSnap.getValue(MyRewardedTokenItem.class);
+                                if (rewardedTokenItem.getCode().equals("SHIB")) {
+                                    long rewardedBalance = Long.parseLong(rewardedTokenItem.getBalance());
+                                    Long updatedBalance = rewardedBalance + 2000;
 
-                }
+                                    myRewardedTokensRef.child(rewardedTokenItem.getId().toString())
+                                            .child("balance").setValue(String.valueOf(updatedBalance))
+                                            .addOnSuccessListener(aVoid -> {
+                                                Log.d("TAG", "Rewarded balance updated!");
+                                                Toast.makeText(requireContext(), "Claimed successfully. Check in wallet", Toast.LENGTH_LONG).show();
+                                                binding.tvQuizCount.setText(" 0 / 300");
+                                                data.addQuizCount("0");
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Failed to update the balance
+                                                Log.e("TAG", "Failed to update rewarded balance!", e);
+                                                // Handle the error
+                                                binding.claimQuizRewardLayout.setVisibility(View.VISIBLE);
+                                            });
+                                }
+                            }
+
+                        } else {
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("id", 1);
+                            hashMap.put("name", "SHIBA INU (SHIB)");
+                            hashMap.put("code", "SHIB");
+                            hashMap.put("balance", "2000");
+                            hashMap.put("icon", "https://firebasestorage.googleapis.com/v0/b/orbaic-6832f.appspot.com/o/wallet_reward_token_shib.png?alt=media&token=de3a647a-ed26-44f3-90e7-28db8441290c");
+                            myRewardedTokensRef.child("1").setValue(hashMap)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(requireContext(), "Claimed successfully. Check in wallet", Toast.LENGTH_LONG).show();
+                                            binding.tvMiningHoursCount.setText(" 0 / 300");
+                                            data.addMiningCount("0");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            binding.claimRewardLayout.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             });
         }
     }
@@ -890,61 +960,66 @@ public class Home extends Fragment {
         earnRewardProgressBar.setProgress(percentage);
         tvMiningHoursCount.setText(" " + miningHoursCount + "/" + maxHours + " ");
         if (miningHoursCount == maxHours) {
-            binding.waitingRewardLayout.setVisibility(View.VISIBLE);
-            binding.claimRewardLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    binding.claimRewardLayout.setVisibility(View.GONE);
-                    myRewardedTokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
-                                    MyRewardedTokenItem rewardedTokenItem = mSnap.getValue(MyRewardedTokenItem.class);
-                                    if (rewardedTokenItem.getCode().equals("SHIB")) {
-                                        long rewardedBalance = Long.parseLong(rewardedTokenItem.getBalance());
-                                        Long updatedBalance = rewardedBalance + 2000;
+            binding.claimQuizRewardLayout.setVisibility(View.VISIBLE);
+            binding.claimQuizRewardLayout.setOnClickListener(v -> {
+                binding.claimQuizRewardLayout.setVisibility(View.GONE);
+                myRewardedTokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
+                                MyRewardedTokenItem rewardedTokenItem = mSnap.getValue(MyRewardedTokenItem.class);
+                                if (rewardedTokenItem.getCode().equals("SHIB")) {
+                                    long rewardedBalance = Long.parseLong(rewardedTokenItem.getBalance());
+                                    Long updatedBalance = rewardedBalance + 3000;
 
-                                        myRewardedTokensRef.child("balance").setValue(updatedBalance)
-                                                .addOnSuccessListener(aVoid -> {
-                                                    Log.d("TAG", "Rewarded balance updated!");
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                    // Failed to update the balance
-                                                    Log.e("TAG", "Failed to update rewarded balance!", e);
-                                                    // Handle the error
-                                                });
-                                    }
-                                }
-
-                            } else {
-                                HashMap<String, Object> hashMap = new HashMap<>();
-                                hashMap.put("id", 1);
-                                hashMap.put("name", "SHIBA INU (SHIB)");
-                                hashMap.put("code", "SHIB");
-                                hashMap.put("balance", "2000");
-                                myRewardedTokensRef.child("1").setValue(hashMap)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
+                                    myRewardedTokensRef.child(rewardedTokenItem.getId().toString())
+                                            .child("balance").setValue(String.valueOf(updatedBalance))
+                                            .addOnSuccessListener(aVoid -> {
+                                                Log.d("TAG", "Rewarded balance updated!");
+                                                Toast.makeText(requireContext(), "Claimed successfully. Check in wallet", Toast.LENGTH_LONG).show();
                                                 binding.tvMiningHoursCount.setText(" 0 / 720 hours");
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
+                                                data.addMiningCount("0");
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Failed to update the balance
+                                                Log.e("TAG", "Failed to update rewarded balance!", e);
+                                                // Handle the error
                                                 binding.claimRewardLayout.setVisibility(View.VISIBLE);
-                                            }
-                                        });
+                                            });
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
+                        } else {
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("id", 1);
+                            hashMap.put("name", "SHIBA INU (SHIB)");
+                            hashMap.put("code", "SHIB");
+                            hashMap.put("balance", "3000");
+                            hashMap.put("icon", "https://firebasestorage.googleapis.com/v0/b/orbaic-6832f.appspot.com/o/wallet_reward_token_shib.png?alt=media&token=de3a647a-ed26-44f3-90e7-28db8441290c");
+                            myRewardedTokensRef.child("1").setValue(hashMap)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(requireContext(), "Claimed successfully. Check in wallet", Toast.LENGTH_LONG).show();
+                                            binding.tvMiningHoursCount.setText(" 0 / 720 hours");
+                                            data.addMiningCount("0");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            binding.claimRewardLayout.setVisibility(View.VISIBLE);
+                                        }
+                                    });
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             });
         }
     }

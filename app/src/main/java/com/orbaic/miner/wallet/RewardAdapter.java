@@ -17,19 +17,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.orbaic.miner.R;
+import com.orbaic.miner.home.MyRewardedTokenItem;
 
-public class RewardAdapter extends ListAdapter<RewardModel, RewardAdapter.RewardViewHolder> {
+public class RewardAdapter extends ListAdapter<MyRewardedTokenItem, RewardAdapter.RewardViewHolder> {
     private OnRewardItemClickListener onRewardItemClickListener;
-    private static final DiffUtil.ItemCallback<RewardModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<RewardModel>() {
+    private static final DiffUtil.ItemCallback<MyRewardedTokenItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<MyRewardedTokenItem>() {
         @Override
-        public boolean areItemsTheSame(@NonNull RewardModel oldItem, @NonNull RewardModel newItem) {
+        public boolean areItemsTheSame(@NonNull MyRewardedTokenItem oldItem, @NonNull MyRewardedTokenItem newItem) {
             return oldItem.getCode().equals(newItem.getCode()); // Implement your unique ID comparison logic
         }
 
         @SuppressLint("DiffUtilEquals")
         @Override
-        public boolean areContentsTheSame(@NonNull RewardModel oldItem, @NonNull RewardModel newItem) {
-            return oldItem.equals(newItem); // Implement your equals() method in RewardModel
+        public boolean areContentsTheSame(@NonNull MyRewardedTokenItem oldItem, @NonNull MyRewardedTokenItem newItem) {
+            return oldItem.equals(newItem); // Implement your equals() method in MyRewardedTokenItem
         }
     };
 
@@ -48,7 +49,7 @@ public class RewardAdapter extends ListAdapter<RewardModel, RewardAdapter.Reward
 
     @Override
     public void onBindViewHolder(@NonNull RewardViewHolder holder, int position) {
-        RewardModel reward = getItem(position);
+        MyRewardedTokenItem reward = getItem(position);
         holder.bind(reward);
 
         holder.tvWithdraw.setOnClickListener(v -> {
@@ -81,40 +82,26 @@ public class RewardAdapter extends ListAdapter<RewardModel, RewardAdapter.Reward
 
         }
 
-        void bind(RewardModel reward) {
+        void bind(MyRewardedTokenItem reward) {
             tvName.setText(reward.getName());
-            tvCoin.setText(reward.getBonus());
+            tvCoin.setText(reward.getBalance());
             Glide.with(ivIcon.getContext()).load(reward.getIcon()).into(ivIcon);
 
-            if (reward.isRewardGranted()) {
-                tvWithdraw.setEnabled(true);
-                tvWithdraw.setClickable(true);
-                tvWithdraw.setTextColor(ContextCompat.getColor(tvWithdraw.getContext(), R.color.white));
+            tvWithdraw.setEnabled(false);
+            tvWithdraw.setClickable(false);
+            tvWithdraw.setTextColor(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
 
-                Drawable[] drawables = tvWithdraw.getCompoundDrawablesRelative();
-                Drawable drawable = drawables[0];
-                if (drawable != null) {
-                    drawable = drawable.mutate();
-                    drawable.setTint(ContextCompat.getColor(tvWithdraw.getContext(), R.color.white));
-                }
-            }
-            else {
-                tvWithdraw.setEnabled(false);
-                tvWithdraw.setClickable(false);
-                tvWithdraw.setTextColor(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
-
-                Drawable[] drawables = tvWithdraw.getCompoundDrawablesRelative();
-                Drawable drawable = drawables[0];
-                if (drawable != null) {
-                    drawable = drawable.mutate();
-                    drawable.setTint(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
-                }
+            Drawable[] drawables = tvWithdraw.getCompoundDrawablesRelative();
+            Drawable drawable = drawables[0];
+            if (drawable != null) {
+                drawable = drawable.mutate();
+                drawable.setTint(ContextCompat.getColor(tvWithdraw.getContext(), R.color.black_shadow));
             }
         }
     }
 
     public interface OnRewardItemClickListener {
-        void onRewardItemClick(RewardModel reward);
+        void onRewardItemClick(MyRewardedTokenItem reward);
     }
 }
 
