@@ -24,7 +24,6 @@ public class WhitePaper extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_white_paper, container, false);
 
         WebView webView = view.findViewById(R.id.white_paper);
@@ -50,11 +49,6 @@ public class WhitePaper extends Fragment {
             }
         });
         webView.loadUrl("https://blog.orbaic.com/whitePaper/white.html");
-
-
-
-
-
 
         return view;
     }

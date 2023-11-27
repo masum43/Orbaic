@@ -1,6 +1,7 @@
 package com.orbaic.miner.home;
 
 
+import static com.unity3d.services.core.properties.ClientProperties.getApplicationContext;
 import static com.vungle.warren.utility.ThreadUtil.runOnUiThread;
 
 import android.annotation.SuppressLint;
@@ -11,6 +12,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -384,6 +387,13 @@ public class Home extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
+
+        binding.holderRefer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refer();
+            }
+        });
     }
 
     private void miningAlreadyRunningWarning() {
@@ -747,6 +757,7 @@ public class Home extends Fragment {
         mEndTime = System.currentTimeMillis() + timeLeftInMillis; //actual end time of the mining
         SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
+        Log.e("BUG123", "millis: "+ timeLeftInMillis);
         edit.putLong("millis", timeLeftInMillis);
         edit.putLong("lastMillis", mEndTime);
         edit.apply();
@@ -960,9 +971,9 @@ public class Home extends Fragment {
         earnRewardProgressBar.setProgress(percentage);
         tvMiningHoursCount.setText(" " + miningHoursCount + "/" + maxHours + " ");
         if (miningHoursCount == maxHours) {
-            binding.claimQuizRewardLayout.setVisibility(View.VISIBLE);
-            binding.claimQuizRewardLayout.setOnClickListener(v -> {
-                binding.claimQuizRewardLayout.setVisibility(View.GONE);
+            binding.claimRewardLayout.setVisibility(View.VISIBLE);
+            binding.claimRewardLayout.setOnClickListener(v -> {
+                binding.claimRewardLayout.setVisibility(View.GONE);
                 myRewardedTokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -1226,6 +1237,38 @@ public class Home extends Fragment {
                 Log.e("setMyReferKeyError", "task2: " + errorMessage);
             }
         });
+    }
+
+    private void refer() {
+        if (myReferCode == null || myReferCode.isEmpty()) {
+            Toast.makeText(requireContext(), "Refer code not exist. Please contact with support!!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String referralCode = myReferCode;
+        String appPackage = getApplicationContext().getPackageName();
+        String appName = getString(R.string.app_name);
+        String appPlayStoreLink = "https://play.google.com/store/apps/details?id=" + appPackage;
+
+        String message = "Join " + appName + " using my referral code: " + referralCode + "\n\n" + "Download the app from Play Store: " + appPlayStoreLink;
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+        shareIntent.setType("text/plain");
+
+        shareIntent.putExtra(Intent.EXTRA_TITLE, "Invite Friends");
+
+        PackageManager pm = requireActivity().getPackageManager();
+        List<ResolveInfo> activityList = pm.queryIntentActivities(shareIntent, 0);
+
+        Intent chooser = Intent.createChooser(shareIntent, "Share via");
+
+        if (activityList.size() > 0) {
+            startActivity(chooser);
+        } else {
+            Toast.makeText(requireContext(), "No apps available to share", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

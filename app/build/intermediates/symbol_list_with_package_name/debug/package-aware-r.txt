@@ -3485,6 +3485,7 @@ id checked
 id chronometer
 id circle_center
 id circularImageTeam
+id claimQuizRewardLayout
 id claimRewardLayout
 id clear_text
 id clip_horizontal
@@ -3613,6 +3614,7 @@ id header_title
 id hideable
 id holdeLogout
 id holder
+id holderRefer
 id holder_google_signIn
 id home
 id homeAsUp
@@ -3833,6 +3835,7 @@ id progress_bar
 id progress_circular
 id progress_horizontal
 id quizProgressBar
+id quizRewardProgressBar
 id quizWaitingLayout
 id quizWaitingProgressBar
 id radio
@@ -4026,8 +4029,10 @@ id tvMiningHours
 id tvMiningHoursCount
 id tvMyReferCode
 id tvName
+id tvNoTokens
 id tvNotice
 id tvQsCounter
+id tvQuizCount
 id tvQuizCountDown
 id tvQuizSummary
 id tvRate
@@ -4066,6 +4071,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id waitingQuizRewardLayout
 id waitingRewardLayout
 id walletMenu
 id web

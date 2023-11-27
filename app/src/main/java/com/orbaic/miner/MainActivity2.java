@@ -50,7 +50,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     Toolbar toolbar;
     ImageView hamBurgIcon;
     View header;
-
     CircularImageView profileIcon;
     BottomNavigationView bottomNavigationView;
 
@@ -70,17 +69,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        loadFragment( new Home());
+        loadFragment(new Home());
 
         if (getIntent().hasExtra("referBy")) {
             String name = getIntent().getStringExtra("name");
             String referBy = getIntent().getStringExtra("referBy");
-            Log.e("addIntoReferTeam", "name: "+ name);
-            Log.e("addIntoReferTeam", "referBy: "+ referBy);
+            Log.e("addIntoReferTeam", "name: " + name);
+            Log.e("addIntoReferTeam", "referBy: " + referBy);
             if (referBy != null && !referBy.isEmpty()) {
                 addIntoReferTeam(name, referBy);
             }
@@ -102,11 +101,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userId = "";
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    Log.e("addIntoReferTeam", "userSnapshot: "+ userSnapshot);
+                    Log.e("addIntoReferTeam", "userSnapshot: " + userSnapshot);
                     userId = userSnapshot.getKey();
                 }
 
-                Log.e("addIntoReferTeam", "userId: "+ userId);
+                Log.e("addIntoReferTeam", "userId: " + userId);
                 if (userId != null && !userId.isEmpty()) {
                     DatabaseReference referralRef = database.getReference("referralUser");
                     HashMap<String, String> map = new HashMap<>();
@@ -135,16 +134,16 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.homeMenu:
-                            loadFragment( new Home());
+                            loadFragment(new Home());
                             return true;
                         case R.id.walletMenu:
-                            loadFragment( new WalletFragment());
+                            loadFragment(new WalletFragment());
                             return true;
                         case R.id.supportMenu:
-                            loadFragment( new SupportFragment());
+                            loadFragment(new SupportFragment());
                             return true;
                         case R.id.teamMenu:
-                            loadFragment( new TeamFragment());
+                            loadFragment(new TeamFragment());
                             return true;
                     }
                     return false;
@@ -153,32 +152,33 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
     private void setNavigationDrawerMenu() {
         navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.home){
-                    loadFragment( new Home());
-                } else if (id == R.id.miningRules){
-                    loadFragment( new MiningRules());
-                }else if (id == R.id.referralTeam){
-                    loadFragment( new TeamReferral());
-                }else if (id == R.id.whitePaper){
-                    loadFragment( new WhitePaper());
-                }else if (id == R.id.faq){
-                    loadFragment( new faq());
-                }else if (id == R.id.profile){
-                    loadFragment( new Profile());
-                }else if (id == R.id.logout){
-                    logout();
-                    //loadFragment( new Withdrawal());
-                }else {
-                    Toast.makeText(MainActivity2.this, "Coming Soon", Toast.LENGTH_SHORT).show();
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            Log.e("DrawerMenu", "setNavigationDrawerMenu: " + id);
+            if (id == R.id.home) {
+                loadFragment(new Home());
+            } else if (id == R.id.menuMiningRules) {
+                loadFragment(new MiningRules());
+            } else if (id == R.id.menuWhitePaper) {
+                loadFragment(new WhitePaper());
+            } else if (id == R.id.menuTermsAndConditions) {
+                loadFragment(new faq());
+            } else if (id == R.id.menuPrivacyPolicy) {
+                loadFragment(new faq());
+            } else if (id == R.id.referralTeam) {
+                loadFragment(new TeamReferral());
+            } else if (id == R.id.profile) {
+                loadFragment(new Profile());
+            } else if (id == R.id.logout) {
+                logout();
+            } else {
+                Toast.makeText(MainActivity2.this, "Coming Soon", Toast.LENGTH_SHORT).show();
             }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
+
+
         hamBurgIcon.setOnClickListener(v -> {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -214,14 +214,14 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            if (getSupportFragmentManager().getBackStackEntryCount()>1){
+        } else {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
                 getSupportFragmentManager().popBackStack();
-            }else if (isTaskRoot()){
+            } else if (isTaskRoot()) {
                 backClick();
-            }else {
+            } else {
                 super.onBackPressed();
             }
         }
@@ -252,11 +252,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         try {
             // clearing app data
             if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
-                ((ActivityManager)getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
+                ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
             } else {
                 String packageName = getApplicationContext().getPackageName();
                 Runtime runtime = Runtime.getRuntime();
-                runtime.exec("pm clear "+packageName);
+                runtime.exec("pm clear " + packageName);
             }
 
         } catch (Exception e) {

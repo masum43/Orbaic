@@ -7,7 +7,6 @@
     tools:context=".WhitePaper">
 
     <WebView
-        android:layout_margin="5dp"
         android:id="@+id/white_paper"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
