@@ -180,7 +180,7 @@ public class Home extends Fragment {
         userRef = database.getReference("users").child(mAuth.getUid());
         checkEmailVerifyStatus();
 
-        initClicks(mobAds);
+        initClicks();
         newsFromWordpressBlog(true);
 
 
@@ -264,7 +264,7 @@ public class Home extends Fragment {
         }.start();
     }
 
-    private void initClicks(AdMobAds mobAds) {
+    private void initClicks() {
         mining.setOnClickListener(v -> {
             getMiningStatus(miningStatus -> {
                 if (miningStatus.equals(Constants.STATUS_OFF)) {
