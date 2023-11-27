@@ -59,15 +59,6 @@ public class FirebaseData {
         myRef.child("mining_count").setValue(count);
     }
 
-//    public void addQuizCount(String count){
-//
-//        mAuth = FirebaseAuth.getInstance();
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//
-//        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
-//        myRef.child("qz_count").setValue(count);
-//    }
-
     public void addQuizPoints(String mPoint){
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();

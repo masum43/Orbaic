@@ -489,17 +489,11 @@ public class Home extends Fragment {
         long now = System.currentTimeMillis();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("miningStartTime", String.valueOf(now));
-        int miningHours = viewModel.getMiningHoursCount();
-        hashMap.put("mining_count", String.valueOf(miningHours + 24));
+//        int miningHours = viewModel.getMiningHoursCount();
+//        hashMap.put("mining_count", String.valueOf(miningHours + 24));
 
 
         userRef.updateChildren(hashMap);
-
-/*        if (referralStatus.equals("ON")) {
-            DatabaseReference ref = database.getReference("referralUser")
-                    .child(referralBy).child(mAuth.getUid());
-            ref.child("status").setValue(now);
-        }*/
 
         if (!referralByUserId.isEmpty()) {
             DatabaseReference ref = database.getReference("referralUser")
@@ -584,12 +578,7 @@ public class Home extends Fragment {
                         Coin = Coin + (0.000012 * 5);
                     }
                     double finalHourRate = hourRate;
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tvRate.setText(finalHourRate + "/h ACI");
-                        }
-                    });
+                    runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
 
 
                     data.addMiningPoints(String.valueOf(Coin));
