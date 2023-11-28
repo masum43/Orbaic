@@ -117,8 +117,6 @@ public class LearnEarnActivity extends AppCompatActivity {
                 return;
             }
 
-            learnEarnViewModel.updateQzCount(learnEarnViewModel.getQzCount() + 1);
-            data.addQuizCount(String.valueOf(learnEarnViewModel.getQzCount()));
 
             if (answer.equals(selectedAnswer)){
                 correctAnsCounter++;
@@ -127,6 +125,9 @@ public class LearnEarnActivity extends AppCompatActivity {
                 learnEarnViewModel.updateUserPoints(learnEarnViewModel.getUserPoints() + 1);
                 data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()));
                 mobAds.showRewardedVideo();
+
+                learnEarnViewModel.updateQzCount(learnEarnViewModel.getQzCount() + 1);
+                data.addQuizCount(String.valueOf(learnEarnViewModel.getQzCount()));
             } else {
                 wrongAnsCounter++;
                 SpManager.saveInt(SpManager.KEY_WRONG_ANS, wrongAnsCounter);
