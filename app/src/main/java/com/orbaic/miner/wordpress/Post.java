@@ -1,5 +1,7 @@
 package com.orbaic.miner.wordpress;
 
+import android.util.Log;
+
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 

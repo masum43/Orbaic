@@ -61,6 +61,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
 import com.orbaic.miner.AdMobAds;
 import com.orbaic.miner.FirebaseData;
 import com.orbaic.miner.LoginLayout;
@@ -535,6 +536,7 @@ public class Home extends Fragment {
                 } else {
                     firstFiveItems.addAll(postItemList);
                 }
+                Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
                 postList.setAdapter(new PostAdapter(getContext(), firstFiveItems));
 
                 if (withProgress) {

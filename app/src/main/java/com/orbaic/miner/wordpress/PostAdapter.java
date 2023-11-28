@@ -51,6 +51,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }*/
         excerpt = excerpt.replaceAll("\n", "");
 
+        Log.e("featured_media", "featured_media: "+ post.getFeatured_media());
+
         Log.e("NEWS", "excerpt: "+excerpt );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY));
