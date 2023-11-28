@@ -244,6 +244,7 @@ id h
 id hamBurgMenuId
 id holdeLogout
 id holder
+id holderRefer
 id holder_google_signIn
 id home
 id homeMenu
@@ -373,6 +374,7 @@ id tvMiningHours
 id tvMiningHoursCount
 id tvMyReferCode
 id tvName
+id tvNoTokens
 id tvNotice
 id tvQsCounter
 id tvQuizCount

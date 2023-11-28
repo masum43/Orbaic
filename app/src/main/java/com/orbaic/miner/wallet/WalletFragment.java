@@ -75,16 +75,15 @@ public class WalletFragment extends Fragment {
                 List<MyRewardedTokenItem> rewardsList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     MyRewardedTokenItem reward = snapshot.getValue(MyRewardedTokenItem.class);
-//                    Long id = snapshot.child("id").getValue(Long.class);
-//                    String name = snapshot.child("name").getValue(String.class);
-//                    String code = snapshot.child("code").getValue(String.class);
-//                    String balance = snapshot.child("balance").getValue(String.class);
-//                    String icon = snapshot.child("icon").getValue(String.class);
-//                    MyRewardedTokenItem reward = new MyRewardedTokenItem(id, name, code, balance, icon);
-
                     rewardsList.add(reward);
                 }
                 adapter.submitList(rewardsList);
+                if (rewardsList.isEmpty()) {
+                    binding.tvNoTokens.setVisibility(View.VISIBLE);
+                }
+                else {
+                    binding.tvNoTokens.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -198,8 +197,8 @@ public class WalletFragment extends Fragment {
         binding.tvQuizSummary.setText(currentProgress + "/300");
         int totalProgress = 300;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);
-//        binding.quizProgressBar.setProgress(progressPercentage);
-        animateProgressBar(progressPercentage);
+        binding.quizProgressBar.setProgress(progressPercentage);
+//        animateProgressBar(progressPercentage);
     }
 
     private void animateProgressBar(int progressPercentage) {
@@ -213,8 +212,8 @@ public class WalletFragment extends Fragment {
         binding.tvMiningHours.setText(currentProgress + "/720");
         int totalProgress = 720;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);
-//        binding.quizProgressBar.setProgress(progressPercentage);
-        animateMiningHourProgressBar(progressPercentage);
+        binding.miningProgressBar.setProgress(progressPercentage);
+//        animateMiningHourProgressBar(progressPercentage);
     }
 
     private void animateMiningHourProgressBar(int progressPercentage) {

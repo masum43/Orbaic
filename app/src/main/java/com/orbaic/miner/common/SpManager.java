@@ -13,6 +13,8 @@ public class SpManager {
     public static String KEY_MCQ_RANDOM_NUMBERS = "mcq_qs_random";
     public static String KEY_LAST_QUIZ_FINISH_TIME = "mcq_finish_time";
     public static String KEY_IS_TAP_TARGET_SHOW = "tap_showed";
+    public static String KEY_CORRECT_ANS = "correct_ans";
+    public static String KEY_WRONG_ANS = "wrong_ans";
 
 
     // Initialize SharedPreferences

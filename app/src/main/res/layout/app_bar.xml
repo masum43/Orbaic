@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity2">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -25,8 +25,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            >
+            android:layout_gravity="center">
 
             <ImageView
                 android:layout_width="35dp"
@@ -37,9 +36,9 @@
             <ImageView
                 android:layout_width="140dp"
                 android:layout_height="35dp"
-                android:scaleType="fitStart"
-                android:layout_marginStart="5dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:scaleType="fitStart"
                 android:src="@drawable/ic_toolbar_name" />
 
 
@@ -68,7 +67,8 @@
             android:text="9+"
             android:textColor="#FFF"
             android:textSize="8sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <View
             android:layout_width="25dp"
@@ -76,65 +76,59 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profileIcon"
-            android:layout_marginEnd="5dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
             android:src="@drawable/demo_avatar"
             app:civ_border="false" />
     </LinearLayout>
-    <androidx.core.widget.NestedScrollView
-        android:orientation="vertical"
+
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#364156"
-        android:layout_weight="1">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <FrameLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </FrameLayout>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
         android:background="@color/background"
-        app:itemTextColor="#777" />
+        app:itemTextColor="#777"
+        app:menu="@menu/bottom_nav_menu" />
 </LinearLayout>
 
-<!--
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tool_bar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints" />
+            android:background="@color/teal_200"
+            tools:ignore="MissingConstraints">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints" />
 
-    <include
-        layout="@layout/contain_main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            layout="@layout/contain_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 
-</LinearLayout>-->
+    </LinearLayout>-->

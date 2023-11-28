@@ -150,6 +150,20 @@
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/tvNoTokens"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Rewarded Token Available. Do mining and play quiz to get."
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRewardTokens"
                 android:layout_width="match_parent"
@@ -330,8 +344,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:progress="15"
-                    tools:progress="15" />
+                    android:progress="0"
+                    tools:progress="0" />
 
                 <TextView
                     android:id="@+id/tvQuizSummary"
@@ -370,8 +384,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:progress="70"
-                    tools:progress="70" />
+                    android:progress="0"
+                    tools:progress="0" />
 
                 <TextView
                     android:id="@+id/tvMiningHours"

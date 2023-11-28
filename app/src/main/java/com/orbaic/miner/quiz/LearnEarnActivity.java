@@ -83,6 +83,9 @@ public class LearnEarnActivity extends AppCompatActivity {
         question = findViewById(R.id.learn_questions);
         submit = findViewById(R.id.learn_ans_submit);
 
+        correctAnsCounter = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0);
+        wrongAnsCounter = SpManager.getInt(SpManager.KEY_WRONG_ANS, 0);
+
         Activity activity = LearnEarnActivity.this.getParent();
 
         AdMobAds mobAds = new AdMobAds(this, activity);
@@ -115,15 +118,18 @@ public class LearnEarnActivity extends AppCompatActivity {
             }
 
             learnEarnViewModel.updateQzCount(learnEarnViewModel.getQzCount() + 1);
+            data.addQuizCount(String.valueOf(learnEarnViewModel.getQzCount()));
 
             if (answer.equals(selectedAnswer)){
                 correctAnsCounter++;
+                SpManager.saveInt(SpManager.KEY_CORRECT_ANS, correctAnsCounter);
                 userResultShow("Congratulation! \nYou give the right answer", "Correct Answer");
                 learnEarnViewModel.updateUserPoints(learnEarnViewModel.getUserPoints() + 1);
                 data.addQuizPoints(String.valueOf(learnEarnViewModel.getUserPoints()));
                 mobAds.showRewardedVideo();
             } else {
                 wrongAnsCounter++;
+                SpManager.saveInt(SpManager.KEY_WRONG_ANS, wrongAnsCounter);
                 userResultShow("Opp! \nYou give the wrong answer", "Wrong Answer");
                 mobAds.showRewardedVideo();
             }
@@ -186,8 +192,10 @@ public class LearnEarnActivity extends AppCompatActivity {
             dialog.setCanceledOnTouchOutside(false);
             TextView tvCorrectAns = dialog.findViewById(R.id.tvCorrectAns);
             TextView tvWrongAns = dialog.findViewById(R.id.tvWrongAns);
-            tvCorrectAns.setText("Correct answer: "+correctAnsCounter);
-            tvWrongAns.setText("Wrong Answer:  "+wrongAnsCounter);
+            tvCorrectAns.setText("Correct answer: "+SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0));
+            tvWrongAns.setText("Wrong Answer:  "+SpManager.getInt(SpManager.KEY_WRONG_ANS, 0));
+            SpManager.saveInt(SpManager.KEY_CORRECT_ANS, 0);
+            SpManager.saveInt(SpManager.KEY_WRONG_ANS, 0);
             dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
                 Intent intent = new Intent(LearnEarnActivity.this, MainActivity2.class);
                 startActivity(intent);
@@ -195,7 +203,6 @@ public class LearnEarnActivity extends AppCompatActivity {
             });
             dialog.show();
 
-            data.addQuizCount(String.valueOf(learnEarnViewModel.getQzCount()));
             long quizFinishTime = System.currentTimeMillis();
             SpManager.saveLong(SpManager.KEY_LAST_QUIZ_FINISH_TIME, quizFinishTime);
         }
