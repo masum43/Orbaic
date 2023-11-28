@@ -4,7 +4,7 @@
             "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-3\\7cd2d9d69eaa88625054863c894c70eb\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "/Users/masum/.gradle/caches/transforms-3/7cd2d9d69eaa88625054863c894c70eb/transformed/appcompat-1.6.1/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

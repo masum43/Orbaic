@@ -211,6 +211,7 @@ id cashOut_submit
 id cashOut_username
 id centerImage
 id circularImageTeam
+id claimQuizRewardLayout
 id claimRewardLayout
 id codeRef
 id codeSubmit
@@ -317,6 +318,7 @@ id profile_submit
 id progressBar
 id progress_bar
 id quizProgressBar
+id quizRewardProgressBar
 id quizWaitingLayout
 id quizWaitingProgressBar
 id recyclerView
@@ -373,6 +375,7 @@ id tvMyReferCode
 id tvName
 id tvNotice
 id tvQsCounter
+id tvQuizCount
 id tvQuizCountDown
 id tvQuizSummary
 id tvRate
@@ -397,6 +400,7 @@ id user_login_email
 id user_name_registration
 id viewAll
 id view_fqa
+id waitingQuizRewardLayout
 id waitingRewardLayout
 id walletMenu
 id web
