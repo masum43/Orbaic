@@ -86,6 +86,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
         }
 
+        initClicks();
+
+    }
+
+    private void initClicks() {
+        profileIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new Profile());
+            }
+        });
     }
 
     private void addIntoReferTeam(String name, String referredBy) {
