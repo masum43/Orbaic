@@ -197,6 +197,7 @@ id ansGroup
 id backButton
 id backButtonRef
 id bottom_navigation
+id btnEditProfile
 id btnStart
 id button
 id cardView
@@ -210,6 +211,8 @@ id cashOut_point_input
 id cashOut_submit
 id cashOut_username
 id centerImage
+id changeName
+id changePhone
 id circularImageTeam
 id claimQuizRewardLayout
 id claimRewardLayout
@@ -220,6 +223,7 @@ id constraintLayout1
 id constraintLayout3
 id container
 id content
+id countryCodePicker
 id cvMininigStatus
 id descriptionTextView
 id drawerLayout
@@ -273,6 +277,7 @@ id item_number
 id item_point
 id item_status
 id ivAvater
+id ivCamera
 id ivIcon
 id ivMining
 id ivProfile
@@ -292,10 +297,6 @@ id linearLayout2
 id linearLayout3
 id linearLayout4
 id linearLayout5
-id linearLayout6
-id linearLayout7
-id linearLayout8
-id linearLayout9
 id login_button
 id login_password
 id logout
@@ -310,12 +311,10 @@ id miningRules
 id navigationViewId
 id newsRecyclerView2
 id okButton
-id pEdit
 id phone
 id profile
 id profileIcon
 id profile_pic
-id profile_submit
 id progressBar
 id progress_bar
 id quizProgressBar
@@ -393,7 +392,6 @@ id tvWithdraw
 id tvWrongAns
 id twitter
 id twitter_h
-id userCountry
 id userID
 id userName
 id user_email_registration
@@ -433,6 +431,7 @@ layout fragment_home
 layout fragment_home_2
 layout fragment_mining_rules
 layout fragment_profile
+layout fragment_settings
 layout fragment_support
 layout fragment_team
 layout fragment_team_members

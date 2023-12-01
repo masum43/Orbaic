@@ -79,6 +79,28 @@ public class FirebaseData {
         myRef.updateChildren(hashMap);
     }
 
+    public void changeMiningRewardStatus(String miningRewardStatus){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("extra2", miningRewardStatus);
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.updateChildren(hashMap);
+    }
+
+    public void changeMiningRewardStatusWithMiningCount(String miningRewardStatus, String miningHoursCount){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("extra2", miningRewardStatus);
+        hashMap.put("mining_count", miningHoursCount);
+        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        myRef.updateChildren(hashMap);
+    }
+
+
 
     public void anyPath(String value, String pathName){
 

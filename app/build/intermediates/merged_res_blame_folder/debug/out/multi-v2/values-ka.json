@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-ka/values-ka.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-ka/values-ka.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/bd4be4fd3922f8c8a87a9095c8d80c44/transformed/browser-1.4.0/res/values-ka/values-ka.xml",

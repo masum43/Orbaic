@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-hy/values-hy.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-hy/values-hy.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/f6bd88b96aca11b1e4b96289759fdb6c/transformed/material-1.9.0/res/values-hy/values-hy.xml",

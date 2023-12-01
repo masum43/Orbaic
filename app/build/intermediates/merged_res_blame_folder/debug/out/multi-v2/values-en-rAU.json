@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/048cd0df1db67ec44d17ed623d0ff52a/transformed/navigation-ui-2.6.0/res/values-en-rAU/values-en-rAU.xml",

@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.home.Home;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
+import com.orbaic.miner.settings.SettingsFragment;
 import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
@@ -52,6 +53,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     View header;
     CircularImageView profileIcon;
     BottomNavigationView bottomNavigationView;
+    ImageView btnEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         profileIcon = findViewById(R.id.profileIcon);
         setNavigationDrawerMenu();
         setBottomNavigationMenu();
+
+
+        btnEditProfile = header.findViewById(R.id.btnEditProfile);
 
         setSupportActionBar(toolbar);
 
@@ -91,6 +96,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     }
 
     private void initClicks() {
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new Profile());
+            }
+        });
+
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,9 +192,12 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 loadFragment(new TeamReferral());
             } else if (id == R.id.profile) {
                 loadFragment(new Profile());
+            } else if (id == R.id.menuSettings) {
+                loadFragment(new SettingsFragment());
             } else if (id == R.id.logout) {
                 logout();
-            } else {
+            }
+            else {
                 Toast.makeText(MainActivity2.this, "Coming Soon", Toast.LENGTH_SHORT).show();
             }
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -290,5 +305,10 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 .into(ivAvater);
         usernameTextView.setText(username);
         userEmailTextView.setText(userEmail);
+
+        Glide.with(MainActivity2.this)
+                .load(avatarUrl)
+                .error(R.drawable.demo_avatar2)
+                .into(profileIcon);
     }
 }

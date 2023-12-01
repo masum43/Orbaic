@@ -5,6 +5,7 @@ INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManife
 INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:1-105:12
 MERGED from [androidx.databinding:viewbinding:8.0.2] /Users/masum/.gradle/caches/transforms-3/5a49f3de8ca95f9ca4fed672e1b3c506/transformed/viewbinding-8.0.2/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:15:1-39:12
 MERGED from [com.mikhaellopez:circularimageview:4.3.1] /Users/masum/.gradle/caches/transforms-3/b1e8a84bb67a6c7fabe76db628bd67b2/transformed/circularimageview-4.3.1/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-common:2.6.0] /Users/masum/.gradle/caches/transforms-3/23380e53ce3234a4a9eeff9fae83918e/transformed/navigation-common-2.6.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.6.0] /Users/masum/.gradle/caches/transforms-3/e35dfa919076ea5895d84b4fc615ba36/transformed/navigation-runtime-2.6.0/AndroidManifest.xml:17:1-22:12
@@ -15,6 +16,7 @@ MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/masum/.gradle/caches/transforms-3/941954b29a444f06c652d1d02c20eeec/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/cbc1004db1e6f1dd7c363eeb1fb24b81/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] /Users/masum/.gradle/caches/transforms-3/08b359709a5ddc7d0350d2a10830db37/transformed/taptargetview-1.13.3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.hbb20:ccp:2.5.0] /Users/masum/.gradle/caches/transforms-3/3788546bae788d116ef1c66a316d2d50/transformed/ccp-2.5.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/ccabd9d303fef00ac403a9388c9cb2e3/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/masum/.gradle/caches/transforms-3/7cd2d9d69eaa88625054863c894c70eb/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-auth:20.6.0] /Users/masum/.gradle/caches/transforms-3/38102d3e6d90e774a38ac014e9799087/transformed/play-services-auth-20.6.0/AndroidManifest.xml:17:1-40:12
@@ -43,30 +45,31 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /User
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /Users/masum/.gradle/caches/transforms-3/bb0833007116ab1d816efe1f36f209d0/transformed/play-services-stats-17.0.2/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/masum/.gradle/caches/transforms-3/7314b045fed711043c564d44767d6bf8/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/masum/.gradle/caches/transforms-3/ead83fa42bff708ab86e36a246d1ea58/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:17:1-80:12
-MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:15:1-34:12
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:17:1-37:12
-MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:17:1-27:12
-MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:2:1-32:12
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:2:1-20:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/masum/.gradle/caches/transforms-3/bad1b2a16a339d0fe10d19976e55bd37/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:2:1-22:12
 MERGED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:15:1-33:12
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:2:1-18:12
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:17:1-80:12
+MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:2:1-32:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/618467fd2c6a3a0e46ae70b9fafe2b53/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.play:integrity:1.1.0] /Users/masum/.gradle/caches/transforms-3/1de3a31c09dfd9338eb68e367148a109/transformed/integrity-1.1.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/805c2c09471ba16204df9f40eef3892b/transformed/firebase-installations-interop-17.1.0/AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/48bb2fe27500cd0dd187821a2e806c9d/transformed/firebase-iid-interop-17.1.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] /Users/masum/.gradle/caches/transforms-3/2e379b3b0f8ef89a022d9b1e9caa0982/transformed/play-services-cloud-messaging-17.0.1/AndroidManifest.xml:2:1-13:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] /Users/masum/.gradle/caches/transforms-3/9661a8398f4993ed13d827c88afda6ef/transformed/firebase-appcheck-interop-17.0.1/AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/masum/.gradle/caches/transforms-3/5c0bb2378e85993228600f061d1a242c/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/masum/.gradle/caches/transforms-3/ccf604eaba2d20ab76deea9f82979057/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
 MERGED from [androidx.fragment:fragment-ktx:1.6.0] /Users/masum/.gradle/caches/transforms-3/1d0670f6d0418a450a06820f15b133ca/transformed/fragment-ktx-1.6.0/AndroidManifest.xml:17:1-22:12
@@ -120,9 +123,9 @@ MERGED from [androidx.cardview:cardview:1.0.0] /Users/masum/.gradle/caches/trans
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/masum/.gradle/caches/transforms-3/b1bda378f766c5fc31bcdfeef900d83d/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/masum/.gradle/caches/transforms-3/6191c7dff92d83b354177c2e985528e5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/masum/.gradle/caches/transforms-3/4833c3bafa14af23644fe48296caae36/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
-MERGED from [com.google.firebase:firebase-components:17.1.0] /Users/masum/.gradle/caches/transforms-3/4bd51ab62c7aaa4e291c5b47757136fe/transformed/firebase-components-17.1.0/AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/masum/.gradle/caches/transforms-3/7dd8509e260e15252e652ea8241960ed/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] /Users/masum/.gradle/caches/transforms-3/04dbe4bb61031a4551c84571f8fe50da/transformed/transport-api-3.0.0/AndroidManifest.xml:15:1-22:12
+MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/masum/.gradle/caches/transforms-3/098c7f01a27564f13b85e48ac95e7fcc/transformed/firebase-components-17.1.5/AndroidManifest.xml:15:1-20:12
 MERGED from [androidx.tracing:tracing:1.0.0] /Users/masum/.gradle/caches/transforms-3/eb788ac3716d57825061bad4900e0ef6/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/masum/.gradle/caches/transforms-3/8a673f324c4650b2e6da0546b5798241/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/masum/.gradle/caches/transforms-3/5254bc84cc3bbe27fc922dec09adf057/transformed/gifdecoder-4.11.0/AndroidManifest.xml:2:1-11:12
@@ -134,6 +137,7 @@ MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/masum/.gradle/caches
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/masum/.gradle/caches/transforms-3/2370e62100d4440d2857715633f93545/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/masum/.gradle/caches/transforms-3/dc412cd91746a01f7cc974bc301b9602/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/masum/.gradle/caches/transforms-3/28a19f15c6471aa0f0b3341e16967e99/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] /Users/masum/.gradle/caches/transforms-3/c896aaa47a75dd275d3df510177c54ce/transformed/libphonenumber-android-8.12.19-2/AndroidManifest.xml:2:1-9:12
 MERGED from [org.chromium.net:cronet-api:72.3626.96] /Users/masum/.gradle/caches/transforms-3/20e402986a18839266107076f0f628e3/transformed/cronet-api-72.3626.96/AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/masum/.gradle/caches/transforms-3/25a9a8d03d18ac63708527f1383cc892/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] /Users/masum/.gradle/caches/transforms-3/a4e1081af6053840b4d22832e7a653e6/transformed/rxandroid-2.0.2/AndroidManifest.xml:15:1-21:12
@@ -158,6 +162,8 @@ INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManife
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:25:5-67
@@ -172,16 +178,16 @@ MERGED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/mas
 MERGED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/masum/.gradle/caches/transforms-3/4304b104139687f416d57ba0aea9daa5/transformed/play-services-measurement-21.3.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:22:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:22:5-67
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:15:5-67
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:15:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:10:5-67
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:10:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:24:5-67
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:15:5-67
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:15:5-67
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] /Users/masum/.gradle/caches/transforms-3/2e379b3b0f8ef89a022d9b1e9caa0982/transformed/play-services-cloud-messaging-17.0.1/AndroidManifest.xml:8:5-67
@@ -198,6 +204,8 @@ MERGED from [org.chromium.net:cronet-api:72.3626.96] /Users/masum/.gradle/caches
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:6:5-79
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:26:5-79
@@ -212,16 +220,16 @@ MERGED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/mas
 MERGED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/masum/.gradle/caches/transforms-3/4304b104139687f416d57ba0aea9daa5/transformed/play-services-measurement-21.3.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:23:5-79
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:16:5-79
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:16:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:9:5-79
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:9:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:25:5-79
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:16:5-79
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:16:5-79
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] /Users/masum/.gradle/caches/transforms-3/2e379b3b0f8ef89a022d9b1e9caa0982/transformed/play-services-cloud-messaging-17.0.1/AndroidManifest.xml:7:5-79
@@ -266,6 +274,8 @@ MERGED from [com.google.firebase:firebase-messaging:23.1.2] /Users/masum/.gradle
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:11:22-74
 application
 ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:13:5-103:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:26:5-37:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:26:5-37:19
 MERGED from [com.google.android.material:material:1.9.0] /Users/masum/.gradle/caches/transforms-3/f6bd88b96aca11b1e4b96289759fdb6c/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] /Users/masum/.gradle/caches/transforms-3/f6bd88b96aca11b1e4b96289759fdb6c/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:20:5-28:19
@@ -304,24 +314,12 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /User
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:29:5-30:19
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /Users/masum/.gradle/caches/transforms-3/bb0833007116ab1d816efe1f36f209d0/transformed/play-services-stats-17.0.2/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /Users/masum/.gradle/caches/transforms-3/bb0833007116ab1d816efe1f36f209d0/transformed/play-services-stats-17.0.2/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:50:5-78:19
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:50:5-78:19
-MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:27:5-35:19
-MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
-MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
-MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:19:5-30:19
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:19:5-30:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:10:5-18:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/masum/.gradle/caches/transforms-3/bad1b2a16a339d0fe10d19976e55bd37/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/masum/.gradle/caches/transforms-3/bad1b2a16a339d0fe10d19976e55bd37/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:12:5-20:19
@@ -332,14 +330,28 @@ MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gr
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:10:5-16:19
 MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:10:5-16:19
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:24:5-37:19
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:50:5-78:19
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:50:5-78:19
+MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:19:5-30:19
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:19:5-30:19
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/618467fd2c6a3a0e46ae70b9fafe2b53/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/618467fd2c6a3a0e46ae70b9fafe2b53/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
 MERGED from [com.google.android.play:integrity:1.1.0] /Users/masum/.gradle/caches/transforms-3/1de3a31c09dfd9338eb68e367148a109/transformed/integrity-1.1.0/AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.android.play:integrity:1.1.0] /Users/masum/.gradle/caches/transforms-3/1de3a31c09dfd9338eb68e367148a109/transformed/integrity-1.1.0/AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/48bb2fe27500cd0dd187821a2e806c9d/transformed/firebase-iid-interop-17.1.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/48bb2fe27500cd0dd187821a2e806c9d/transformed/firebase-iid-interop-17.1.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] /Users/masum/.gradle/caches/transforms-3/9661a8398f4993ed13d827c88afda6ef/transformed/firebase-appcheck-interop-17.0.1/AndroidManifest.xml:23:5-20
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] /Users/masum/.gradle/caches/transforms-3/9661a8398f4993ed13d827c88afda6ef/transformed/firebase-appcheck-interop-17.0.1/AndroidManifest.xml:23:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/masum/.gradle/caches/transforms-3/ccf604eaba2d20ab76deea9f82979057/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/masum/.gradle/caches/transforms-3/ccf604eaba2d20ab76deea9f82979057/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/masum/.gradle/caches/transforms-3/426a9770ddd2d2c8f5001733a1c7b88b/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
@@ -530,6 +542,8 @@ INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManife
 INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:8.0.2] /Users/masum/.gradle/caches/transforms-3/5a49f3de8ca95f9ca4fed672e1b3c506/transformed/viewbinding-8.0.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.databinding:viewbinding:8.0.2] /Users/masum/.gradle/caches/transforms-3/5a49f3de8ca95f9ca4fed672e1b3c506/transformed/viewbinding-8.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:19:5-44
 MERGED from [com.mikhaellopez:circularimageview:4.3.1] /Users/masum/.gradle/caches/transforms-3/b1e8a84bb67a6c7fabe76db628bd67b2/transformed/circularimageview-4.3.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.mikhaellopez:circularimageview:4.3.1] /Users/masum/.gradle/caches/transforms-3/b1e8a84bb67a6c7fabe76db628bd67b2/transformed/circularimageview-4.3.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.navigation:navigation-common:2.6.0] /Users/masum/.gradle/caches/transforms-3/23380e53ce3234a4a9eeff9fae83918e/transformed/navigation-common-2.6.0/AndroidManifest.xml:20:5-44
@@ -550,6 +564,8 @@ MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/
 MERGED from [com.github.chesire:lifecyklelog:3.1.1] /Users/masum/.gradle/caches/transforms-3/cbc1004db1e6f1dd7c363eeb1fb24b81/transformed/lifecyklelog-3.1.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] /Users/masum/.gradle/caches/transforms-3/08b359709a5ddc7d0350d2a10830db37/transformed/taptargetview-1.13.3/AndroidManifest.xml:5:5-7:41
 MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] /Users/masum/.gradle/caches/transforms-3/08b359709a5ddc7d0350d2a10830db37/transformed/taptargetview-1.13.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.hbb20:ccp:2.5.0] /Users/masum/.gradle/caches/transforms-3/3788546bae788d116ef1c66a316d2d50/transformed/ccp-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.hbb20:ccp:2.5.0] /Users/masum/.gradle/caches/transforms-3/3788546bae788d116ef1c66a316d2d50/transformed/ccp-2.5.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/ccabd9d303fef00ac403a9388c9cb2e3/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/masum/.gradle/caches/transforms-3/ccabd9d303fef00ac403a9388c9cb2e3/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/masum/.gradle/caches/transforms-3/7cd2d9d69eaa88625054863c894c70eb/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
@@ -606,30 +622,12 @@ MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/masum/.grad
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/masum/.gradle/caches/transforms-3/7314b045fed711043c564d44767d6bf8/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/masum/.gradle/caches/transforms-3/ead83fa42bff708ab86e36a246d1ea58/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/masum/.gradle/caches/transforms-3/ead83fa42bff708ab86e36a246d1ea58/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:21:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:21:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/masum/.gradle/caches/transforms-3/bad1b2a16a339d0fe10d19976e55bd37/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/masum/.gradle/caches/transforms-3/bad1b2a16a339d0fe10d19976e55bd37/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:5:5-7:41
@@ -640,8 +638,30 @@ MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gr
 MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:19:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/masum/.gradle/caches/transforms-3/2c9042783ed31a341588c885251c1191/transformed/play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/masum/.gradle/caches/transforms-3/76e31e87f91111defa4e183135892593/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/masum/.gradle/caches/transforms-3/10011ff5cf89d14fd4fd6c20ca60ac7f/transformed/play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:22.2.0] /Users/masum/.gradle/caches/transforms-3/d2b43f49d200b40c07aa1752a5ec91f0/transformed/play-services-ads-base-22.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /Users/masum/.gradle/caches/transforms-3/6c603d86f448d7b64694ecf9e6252638/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] /Users/masum/.gradle/caches/transforms-3/a4f55c477544ae51b447836316a9014a/transformed/play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-cronet:18.0.1] /Users/masum/.gradle/caches/transforms-3/aedc8cd97242f72cf59f052f2cfbecc3/transformed/play-services-cronet-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/618467fd2c6a3a0e46ae70b9fafe2b53/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/618467fd2c6a3a0e46ae70b9fafe2b53/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/masum/.gradle/caches/transforms-3/0ca10a0f75b03fd92c03811e39e9ed3b/transformed/recaptcha-18.1.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.play:integrity:1.1.0] /Users/masum/.gradle/caches/transforms-3/1de3a31c09dfd9338eb68e367148a109/transformed/integrity-1.1.0/AndroidManifest.xml:4:5-44
@@ -652,8 +672,6 @@ MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] /Users/masum/.grad
 MERGED from [com.google.firebase:firebase-iid-interop:17.1.0] /Users/masum/.gradle/caches/transforms-3/48bb2fe27500cd0dd187821a2e806c9d/transformed/firebase-iid-interop-17.1.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] /Users/masum/.gradle/caches/transforms-3/2e379b3b0f8ef89a022d9b1e9caa0982/transformed/play-services-cloud-messaging-17.0.1/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] /Users/masum/.gradle/caches/transforms-3/2e379b3b0f8ef89a022d9b1e9caa0982/transformed/play-services-cloud-messaging-17.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] /Users/masum/.gradle/caches/transforms-3/9661a8398f4993ed13d827c88afda6ef/transformed/firebase-appcheck-interop-17.0.1/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] /Users/masum/.gradle/caches/transforms-3/9661a8398f4993ed13d827c88afda6ef/transformed/firebase-appcheck-interop-17.0.1/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/masum/.gradle/caches/transforms-3/5c0bb2378e85993228600f061d1a242c/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/masum/.gradle/caches/transforms-3/5c0bb2378e85993228600f061d1a242c/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/masum/.gradle/caches/transforms-3/ccf604eaba2d20ab76deea9f82979057/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
@@ -760,12 +778,12 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/masum/.gra
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/masum/.gradle/caches/transforms-3/6191c7dff92d83b354177c2e985528e5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/masum/.gradle/caches/transforms-3/4833c3bafa14af23644fe48296caae36/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/masum/.gradle/caches/transforms-3/4833c3bafa14af23644fe48296caae36/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [com.google.firebase:firebase-components:17.1.0] /Users/masum/.gradle/caches/transforms-3/4bd51ab62c7aaa4e291c5b47757136fe/transformed/firebase-components-17.1.0/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-components:17.1.0] /Users/masum/.gradle/caches/transforms-3/4bd51ab62c7aaa4e291c5b47757136fe/transformed/firebase-components-17.1.0/AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/masum/.gradle/caches/transforms-3/7dd8509e260e15252e652ea8241960ed/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/masum/.gradle/caches/transforms-3/7dd8509e260e15252e652ea8241960ed/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] /Users/masum/.gradle/caches/transforms-3/04dbe4bb61031a4551c84571f8fe50da/transformed/transport-api-3.0.0/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] /Users/masum/.gradle/caches/transforms-3/04dbe4bb61031a4551c84571f8fe50da/transformed/transport-api-3.0.0/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/masum/.gradle/caches/transforms-3/098c7f01a27564f13b85e48ac95e7fcc/transformed/firebase-components-17.1.5/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/masum/.gradle/caches/transforms-3/098c7f01a27564f13b85e48ac95e7fcc/transformed/firebase-components-17.1.5/AndroidManifest.xml:18:5-44
 MERGED from [androidx.tracing:tracing:1.0.0] /Users/masum/.gradle/caches/transforms-3/eb788ac3716d57825061bad4900e0ef6/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] /Users/masum/.gradle/caches/transforms-3/eb788ac3716d57825061bad4900e0ef6/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/masum/.gradle/caches/transforms-3/8a673f324c4650b2e6da0546b5798241/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
@@ -788,6 +806,8 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/masum/.gradle/caches/
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/masum/.gradle/caches/transforms-3/dc412cd91746a01f7cc974bc301b9602/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/masum/.gradle/caches/transforms-3/28a19f15c6471aa0f0b3341e16967e99/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/masum/.gradle/caches/transforms-3/28a19f15c6471aa0f0b3341e16967e99/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] /Users/masum/.gradle/caches/transforms-3/c896aaa47a75dd275d3df510177c54ce/transformed/libphonenumber-android-8.12.19-2/AndroidManifest.xml:5:5-7:41
+MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] /Users/masum/.gradle/caches/transforms-3/c896aaa47a75dd275d3df510177c54ce/transformed/libphonenumber-android-8.12.19-2/AndroidManifest.xml:5:5-7:41
 MERGED from [org.chromium.net:cronet-api:72.3626.96] /Users/masum/.gradle/caches/transforms-3/20e402986a18839266107076f0f628e3/transformed/cronet-api-72.3626.96/AndroidManifest.xml:18:5-74
 MERGED from [org.chromium.net:cronet-api:72.3626.96] /Users/masum/.gradle/caches/transforms-3/20e402986a18839266107076f0f628e3/transformed/cronet-api-72.3626.96/AndroidManifest.xml:18:5-74
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/masum/.gradle/caches/transforms-3/25a9a8d03d18ac63708527f1383cc892/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
@@ -806,6 +826,60 @@ INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManife
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 		ADDED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:27:9-36:19
+MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:21:9-27:19
+MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:21:9-27:19
+MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] /Users/masum/.gradle/caches/transforms-3/63c653bd29044b8b279b7611b4ebd0a4/transformed/firebase-database-20.2.2/AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] /Users/masum/.gradle/caches/transforms-3/63c653bd29044b8b279b7611b4ebd0a4/transformed/firebase-database-20.2.2/AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/bbc22e3d14fb315fb4ecaae45638d429/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/bbc22e3d14fb315fb4ecaae45638d429/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-dynamic-links:21.1.0] /Users/masum/.gradle/caches/transforms-3/0ca105e818c38430148292e79e0ddefd/transformed/firebase-dynamic-links-21.1.0/AndroidManifest.xml:23:9-29:19
+MERGED from [com.google.firebase:firebase-dynamic-links:21.1.0] /Users/masum/.gradle/caches/transforms-3/0ca105e818c38430148292e79e0ddefd/transformed/firebase-dynamic-links-21.1.0/AndroidManifest.xml:23:9-29:19
+MERGED from [com.google.firebase:firebase-messaging:23.1.2] /Users/masum/.gradle/caches/transforms-3/30299e07836b550d384dfdf664d133cd/transformed/firebase-messaging-23.1.2/AndroidManifest.xml:52:9-58:19
+MERGED from [com.google.firebase:firebase-messaging:23.1.2] /Users/masum/.gradle/caches/transforms-3/30299e07836b550d384dfdf664d133cd/transformed/firebase-messaging-23.1.2/AndroidManifest.xml:52:9-58:19
+MERGED from [com.google.firebase:firebase-crashlytics:18.3.7] /Users/masum/.gradle/caches/transforms-3/63674b1b1bd9a1043fdf6434e931728b/transformed/firebase-crashlytics-18.3.7/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-crashlytics:18.3.7] /Users/masum/.gradle/caches/transforms-3/63674b1b1bd9a1043fdf6434e931728b/transformed/firebase-crashlytics-18.3.7/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-analytics-ktx:21.3.0] /Users/masum/.gradle/caches/transforms-3/61ac77b530e4fe44a6d92f2457de4631/transformed/firebase-analytics-ktx-21.3.0/AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-analytics-ktx:21.3.0] /Users/masum/.gradle/caches/transforms-3/61ac77b530e4fe44a6d92f2457de4631/transformed/firebase-analytics-ktx-21.3.0/AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:13:9-19:19
+MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:13:9-19:19
+MERGED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:11:9-15:19
+MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:11:9-15:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:30:9-38:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:30:9-38:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:29:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:34:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:32:13-43
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:28:13-84
+meta-data#com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar
+ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:31:17-118
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] /Users/masum/.gradle/caches/transforms-3/f2cbc88b89dee939f6d21aa7d6cabc97/transformed/firebase-storage-20.3.0/AndroidManifest.xml:34:17-107
 queries
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:12:5-18:15
 MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:32:5-48:15
@@ -814,44 +888,6 @@ MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gra
 MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:11:5-13:15
 intent#action:name:android.intent.action.VIEW+data:scheme:https
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:13:9-17:18
-service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:21:9-27:19
-MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-auth:22.0.0] /Users/masum/.gradle/caches/transforms-3/becb917710a6b7faec805d38f0150c93/transformed/firebase-auth-22.0.0/AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-database:20.2.2] /Users/masum/.gradle/caches/transforms-3/63c653bd29044b8b279b7611b4ebd0a4/transformed/firebase-database-20.2.2/AndroidManifest.xml:28:9-34:19
-MERGED from [com.google.firebase:firebase-database:20.2.2] /Users/masum/.gradle/caches/transforms-3/63c653bd29044b8b279b7611b4ebd0a4/transformed/firebase-database-20.2.2/AndroidManifest.xml:28:9-34:19
-MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/bbc22e3d14fb315fb4ecaae45638d429/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-dynamic-links-ktx:21.1.0] /Users/masum/.gradle/caches/transforms-3/bbc22e3d14fb315fb4ecaae45638d429/transformed/firebase-dynamic-links-ktx-21.1.0/AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-dynamic-links:21.1.0] /Users/masum/.gradle/caches/transforms-3/0ca105e818c38430148292e79e0ddefd/transformed/firebase-dynamic-links-21.1.0/AndroidManifest.xml:23:9-29:19
-MERGED from [com.google.firebase:firebase-dynamic-links:21.1.0] /Users/masum/.gradle/caches/transforms-3/0ca105e818c38430148292e79e0ddefd/transformed/firebase-dynamic-links-21.1.0/AndroidManifest.xml:23:9-29:19
-MERGED from [com.google.firebase:firebase-messaging:23.1.2] /Users/masum/.gradle/caches/transforms-3/30299e07836b550d384dfdf664d133cd/transformed/firebase-messaging-23.1.2/AndroidManifest.xml:52:9-58:19
-MERGED from [com.google.firebase:firebase-messaging:23.1.2] /Users/masum/.gradle/caches/transforms-3/30299e07836b550d384dfdf664d133cd/transformed/firebase-messaging-23.1.2/AndroidManifest.xml:52:9-58:19
-MERGED from [com.google.firebase:firebase-crashlytics:18.3.7] /Users/masum/.gradle/caches/transforms-3/63674b1b1bd9a1043fdf6434e931728b/transformed/firebase-crashlytics-18.3.7/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-crashlytics:18.3.7] /Users/masum/.gradle/caches/transforms-3/63674b1b1bd9a1043fdf6434e931728b/transformed/firebase-crashlytics-18.3.7/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-analytics-ktx:21.3.0] /Users/masum/.gradle/caches/transforms-3/61ac77b530e4fe44a6d92f2457de4631/transformed/firebase-analytics-ktx-21.3.0/AndroidManifest.xml:8:9-14:19
-MERGED from [com.google.firebase:firebase-analytics-ktx:21.3.0] /Users/masum/.gradle/caches/transforms-3/61ac77b530e4fe44a6d92f2457de4631/transformed/firebase-analytics-ktx-21.3.0/AndroidManifest.xml:8:9-14:19
-MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:28:9-34:19
-MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:28:9-34:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:13:9-19:19
-MERGED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:13:9-19:19
-MERGED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:11:9-15:19
-MERGED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:11:9-15:19
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:32:9-36:35
-	android:exported
-		ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:23:13-37
-	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:36:13-32
-	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:34:13-43
-	android:name
-		ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:22:13-84
 meta-data#com.google.firebase.components:com.google.firebase.inappmessaging.display.FirebaseInAppMessagingDisplayRegistrar
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.2] /Users/masum/.gradle/caches/transforms-3/db40991aa5fbba620080d351a0d517cf/transformed/firebase-inappmessaging-display-20.3.2/AndroidManifest.xml:24:13-26:85
 	android:value
@@ -1000,10 +1036,10 @@ uses-permission#com.google.android.gms.permission.AD_ID
 ADDED from [com.unity3d.ads:unity-ads:4.8.0] /Users/masum/.gradle/caches/transforms-3/9cc487c8beefc4fc53d63dd6a7076125/transformed/unity-ads-4.8.0/AndroidManifest.xml:10:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:27:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.3.0] /Users/masum/.gradle/caches/transforms-3/6031f7f9cf6fd00f1081313446161a3d/transformed/play-services-measurement-impl-21.3.0/AndroidManifest.xml:27:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:26:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/masum/.gradle/caches/transforms-3/6476771ac804581ac0cd8c5b5efb055b/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:23:5-79
 MERGED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:17:5-79
@@ -1134,6 +1170,72 @@ ADDED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/masu
 		ADDED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/masum/.gradle/caches/transforms-3/4304b104139687f416d57ba0aea9daa5/transformed/play-services-measurement-21.3.0/AndroidManifest.xml:43:13-69
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement:21.3.0] /Users/masum/.gradle/caches/transforms-3/4304b104139687f416d57ba0aea9daa5/transformed/play-services-measurement-21.3.0/AndroidManifest.xml:40:13-87
+meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar
+ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:25:13-27:85
+	android:value
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:27:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:26:17-120
+meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar
+ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:28:13-30:85
+	android:value
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:30:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.0] /Users/masum/.gradle/caches/transforms-3/728c9d2e5978386ee83fc5949b95784c/transformed/firebase-appcheck-17.1.0/AndroidManifest.xml:29:17-117
+meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar
+ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] /Users/masum/.gradle/caches/transforms-3/05353be7c4923304f599021de67733c6/transformed/firebase-common-ktx-20.4.2/AndroidManifest.xml:13:17-116
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:31:13-33:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:33:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:32:17-139
+meta-data#com.google.firebase.components:com.google.firebase.inappmessaging.FirebaseInAppMessagingRegistrar
+ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:16:13-18:85
+	android:value
+		ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:18:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:17:17-129
+meta-data#com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar
+ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
+	android:value
+		ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+meta-data#com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar
+ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:17:13-19:85
+	android:value
+		ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:19:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:18:17-127
+meta-data#com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar
+ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:13:17-109
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:23:9-28:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:25:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:27:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:26:13-43
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:28:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:24:13-77
+meta-data#com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar
+ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:35:13-37:85
+	android:value
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:37:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.4.2] /Users/masum/.gradle/caches/transforms-3/273047c8f1c13e3111f5e90aabced53b/transformed/firebase-common-20.4.2/AndroidManifest.xml:36:17-109
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:27:5-29:31
 REJECTED from [androidx.work:work-runtime:2.7.0] /Users/masum/.gradle/caches/transforms-3/84c2137e84cdbd3e3c7d23e0e400f8cc/transformed/work-runtime-2.7.0/AndroidManifest.xml:27:5-81
@@ -1193,12 +1295,6 @@ ADDED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.
 		ADDED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:75:13-122
 	android:name
 		ADDED from [com.google.android.gms:play-services-ads-lite:22.2.0] /Users/masum/.gradle/caches/transforms-3/4c54f9ebf25c2c28f712573b915005a1/transformed/play-services-ads-lite-22.2.0/AndroidManifest.xml:74:13-82
-meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
-ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:31:13-33:85
-	android:value
-		ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:33:17-82
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement-api:21.3.0] /Users/masum/.gradle/caches/transforms-3/27948f5fa381f85088539561d3a1f0f0/transformed/play-services-measurement-api-21.3.0/AndroidManifest.xml:32:17-139
 package#com.facebook.katana
 ADDED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:12:9-55
 	android:name
@@ -1221,48 +1317,6 @@ ADDED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.grad
 		ADDED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:29:13-37
 	android:name
 		ADDED from [com.facebook.android:audience-network-sdk:6.15.0] /Users/masum/.gradle/caches/transforms-3/4f10c9c1f39327570fe357161d3bba86/transformed/audience-network-sdk-6.15.0/AndroidManifest.xml:27:13-75
-meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar
-ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:14:13-16:85
-	android:value
-		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:16:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] /Users/masum/.gradle/caches/transforms-3/4600c353581b407047e51f05593ecf46/transformed/firebase-common-ktx-20.3.3/AndroidManifest.xml:15:17-113
-meta-data#com.google.firebase.components:com.google.firebase.inappmessaging.FirebaseInAppMessagingRegistrar
-ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:16:13-18:85
-	android:value
-		ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:18:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-inappmessaging:20.3.2] /Users/masum/.gradle/caches/transforms-3/315692f58ee2107cde19bce5c705e961/transformed/firebase-inappmessaging-20.3.2/AndroidManifest.xml:17:17-129
-meta-data#com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar
-ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
-	android:value
-		ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-datatransport:18.1.7] /Users/masum/.gradle/caches/transforms-3/ba92d49b9d53b3d2c19918e2ff1038e8/transformed/firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
-meta-data#com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar
-ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:17:13-19:85
-	android:value
-		ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:19:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-installations:17.1.3] /Users/masum/.gradle/caches/transforms-3/d6649ba0f970cc3f7a7050a6d9f2a5bb/transformed/firebase-installations-17.1.3/AndroidManifest.xml:18:17-127
-meta-data#com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar
-ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:12:13-14:85
-	android:value
-		ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:14:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-abt:21.1.1] /Users/masum/.gradle/caches/transforms-3/777821f0b78fe5cf536fa47e5ac3b175/transformed/firebase-abt-21.1.1/AndroidManifest.xml:13:17-109
-provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:25:9-30:39
-	android:authorities
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:27:13-72
-	android:exported
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:29:13-37
-	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:28:13-43
-	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:30:13-36
-	android:name
-		ADDED from [com.google.firebase:firebase-common:20.3.3] /Users/masum/.gradle/caches/transforms-3/2b11ba626b5a25717887dec302e54105/transformed/firebase-common-20.3.3/AndroidManifest.xml:26:13-77
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/masum/.gradle/caches/transforms-3/ccf604eaba2d20ab76deea9f82979057/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
 	android:exported

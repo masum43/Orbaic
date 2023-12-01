@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/bd4be4fd3922f8c8a87a9095c8d80c44/transformed/browser-1.4.0/res/values-en-rXC/values-en-rXC.xml",

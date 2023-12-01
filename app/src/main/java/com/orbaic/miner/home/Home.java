@@ -44,6 +44,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.ads.MobileAds;
@@ -411,6 +412,7 @@ public class Home extends Fragment {
 
     private void startMining() {
         mobAds.showRewardedVideo();
+        data.changeMiningRewardStatus("1");
         startRippleEffect();
 
         runClock();
@@ -675,6 +677,31 @@ public class Home extends Fragment {
                 }
                 //End - Learn and Earn Enable
 
+
+                String miningHours = "0";
+                if (snapshot.hasChild("mining_count")) {
+                    miningHours = snapshot.child("mining_count").getValue().toString();
+                }
+                viewModel.setMiningHoursCount(Integer.parseInt(miningHours));
+
+                String qzCountStr = "0";
+                if (snapshot.hasChild("qz_count")) {
+                    qzCountStr = snapshot.child("qz_count").getValue().toString();
+                }
+                viewModel.setQuizCount(Integer.parseInt(qzCountStr));
+
+                //miningRewardStatus
+                String miningRewardStatus = snapshot.child("extra2").getValue().toString();
+                if (miningRewardStatus.equals("1")) {
+                    miningStartTime = snapshot.child("miningStartTime").getValue().toString();
+                    String miningStatus = checkMiningStatus(miningStartTime);
+                    if (miningStatus.equals(Constants.STATUS_OFF)) {
+                        data.changeMiningRewardStatusWithMiningCount("0",
+                                String.valueOf(viewModel.getMiningHoursCount() + 24));
+                    }
+                }
+                //miningRewardStatus
+
                 SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
                 timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
                 Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
@@ -690,7 +717,9 @@ public class Home extends Fragment {
                 Log.e("BUGS_123", "newMillis: "+ newMillis);
                 Log.e("COIN_UPDATE", "newMillis: " + newMillis);
                 if (newMillis > 0) {
+                    Log.e("BUGS_123", "newMillis > 0");
                     sleepTime = oldMilli - newMillis;
+                    Log.e("BUGS_123", "sleepTime: "+ sleepTime);
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
@@ -705,6 +734,7 @@ public class Home extends Fragment {
                 }
                 //System.out.println("endTime"+timeLeftInMillis);
                 Log.e("COIN_UPDATE", "timeLeftInMillis: " + timeLeftInMillis);
+                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
                 if (timeLeftInMillis < 0) {
                     timeLeftInMillis = 0;
                     timerTask = new TimerTask() {
@@ -816,6 +846,11 @@ public class Home extends Fragment {
                 }
                 viewModel.setQuizCount(Integer.parseInt(qzCountStr));
 
+                String profile_image = "";
+                if (snapshot.hasChild("profile_image")) {
+                    profile_image = snapshot.child("profile_image").getValue().toString();
+                }
+
                 referralStatus = snapshot.child("referralButton").getValue().toString();
                 if (snapshot.child("miningStartTime").exists()) {
                     miningStartTime = snapshot.child("miningStartTime").getValue().toString();
@@ -839,12 +874,6 @@ public class Home extends Fragment {
                 String format = String.format(Locale.getDefault(), "%.5f", Coin);
                 AciCoin.setText(format);
 
-
-//                if (referralStatus.equals("OFF")) {
-//                    referralBy = snapshot.child("referredBy").getValue().toString();
-//                } else {
-//                    //Toast.makeText(getContext(), "You are not user code", Toast.LENGTH_SHORT).show();
-//                }
                 if (snapshot.child("referredBy").exists()) {
                     referralByUserId = snapshot.child("referredBy").getValue().toString();
                 }
@@ -862,7 +891,7 @@ public class Home extends Fragment {
                     isMyTeamLoaded = true;
                     MainActivity2 mainActivity = (MainActivity2) getActivity();
                     if (mainActivity != null) {
-                        mainActivity.updateHeader("", name, email);
+                        mainActivity.updateHeader(profile_image, name, email);
                     }
                 }
 

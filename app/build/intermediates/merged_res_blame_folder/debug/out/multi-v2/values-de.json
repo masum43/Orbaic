@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-de/values-de.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-de/values-de.xml",
             "map": [
                 {
                     "source": "/Users/masum/.gradle/caches/transforms-3/560694caf820d8e245f688f4890f3345/transformed/play-services-ads-22.2.0/res/values-de/values.xml",
