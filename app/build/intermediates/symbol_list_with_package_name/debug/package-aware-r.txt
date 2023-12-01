@@ -4008,6 +4008,7 @@ id header_title
 id hideable
 id holdeLogout
 id holder
+id holderEditProfile
 id holderRefer
 id holder_google_signIn
 id home
@@ -4063,6 +4064,8 @@ id item_status
 id item_touch_helper_previous_elevation
 id ivAvater
 id ivCamera
+id ivCopy
+id ivCopyMyReferCode
 id ivIcon
 id ivMining
 id ivProfile
@@ -4350,6 +4353,7 @@ id submenuarrow
 id submit_area
 id supportMenu
 id supportScrollUp
+id switchNotification
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -4448,6 +4452,7 @@ id tvTeamStatus
 id tvToolbarTitle
 id tvTotalPoint
 id tvUserEmail
+id tvUserId
 id tvUserName
 id tvWithdraw
 id tvWrongAns

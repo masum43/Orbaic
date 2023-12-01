@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class SpManager {
 
-    private static final String PREFERENCES_NAME = "MyAppPreferences";
+    public static final String PREFERENCES_NAME = "MyAppPreferences";
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
     public static String KEY_LAST_QS_INDEX = "last_qs_index";
@@ -15,6 +15,7 @@ public class SpManager {
     public static String KEY_IS_TAP_TARGET_SHOW = "tap_showed";
     public static String KEY_CORRECT_ANS = "correct_ans";
     public static String KEY_WRONG_ANS = "wrong_ans";
+    public static String KEY_IS_NOTIFICATION_ENABLED = "notification";
 
 
     // Initialize SharedPreferences

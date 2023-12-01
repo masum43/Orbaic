@@ -4007,6 +4007,7 @@ int id header_title 0x7f090167
 int id hideable 0x7f090168
 int id holdeLogout 0x7f090169
 int id holder 0x7f09016a
+int id holderEditProfile 0x7f090355
 int id holderRefer 0x7f09016b
 int id holder_google_signIn 0x7f09016c
 int id home 0x7f09016d
@@ -4062,6 +4063,8 @@ int id item_status 0x7f09019e
 int id item_touch_helper_previous_elevation 0x7f09019f
 int id ivAvater 0x7f0901a0
 int id ivCamera 0x7f0901a1
+int id ivCopy 0x7f090356
+int id ivCopyMyReferCode 0x7f090357
 int id ivIcon 0x7f0901a2
 int id ivMining 0x7f0901a3
 int id ivProfile 0x7f0901a4
@@ -4349,6 +4352,7 @@ int id submenuarrow 0x7f0902bd
 int id submit_area 0x7f0902be
 int id supportMenu 0x7f0902bf
 int id supportScrollUp 0x7f0902c0
+int id switchNotification 0x7f090358
 int id tabMode 0x7f0902c1
 int id tag_accessibility_actions 0x7f0902c2
 int id tag_accessibility_clickable_spans 0x7f0902c3
@@ -4447,6 +4451,7 @@ int id tvTeamStatus 0x7f09031f
 int id tvToolbarTitle 0x7f090320
 int id tvTotalPoint 0x7f090321
 int id tvUserEmail 0x7f090322
+int id tvUserId 0x7f090359
 int id tvUserName 0x7f090323
 int id tvWithdraw 0x7f090324
 int id tvWrongAns 0x7f090325

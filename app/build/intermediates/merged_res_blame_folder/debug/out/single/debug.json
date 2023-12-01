@@ -68,24 +68,24 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/notification_icon.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable-xxhdpi_kyc_varification_icon.png.flat",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-pngs-62:/drawable-xxhdpi/kyc_varification_icon.png"
-    },
-    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_background_for_button_profile.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/background_for_button_profile.xml"
+    },
+    {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable-xxhdpi_kyc_varification_icon.png.flat",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-pngs-62:/drawable-xxhdpi/kyc_varification_icon.png"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_kyc_icon.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/kyc_icon.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/layout_fragment_wallet.xml.flat",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_wallet.xml"
-    },
-    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher_foreground.png.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/layout_fragment_wallet.xml.flat",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_wallet.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_people_icon.xml.flat",
@@ -132,12 +132,12 @@
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_home_2.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_user_id_icon.xml.flat",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/user_id_icon.xml"
-    },
-    {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_user_id_icon.xml.flat",
+        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/user_id_icon.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/layout_activity_user_register.xml.flat",
@@ -174,6 +174,10 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_side_nav_bar.xml.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/drawable/side_nav_bar.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/layout_fragment_settings.xml.flat",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_settings.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable_extra_25_dialog_shape.xml.flat",
@@ -758,10 +762,6 @@
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable-xxxhdpi_circle_background.png.flat",
         "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-pngs-62:/drawable-xxxhdpi/circle_background.png"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/layout_header.xml.flat",
-        "source": "com.orbaic.miner.app-main-68:/layout/header.xml"
     },
     {
         "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-merged_res-66:/drawable-anydpi-v24_register_button.xml.flat",

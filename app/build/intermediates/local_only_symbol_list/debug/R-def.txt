@@ -248,6 +248,7 @@ id h
 id hamBurgMenuId
 id holdeLogout
 id holder
+id holderEditProfile
 id holderRefer
 id holder_google_signIn
 id home
@@ -278,6 +279,8 @@ id item_point
 id item_status
 id ivAvater
 id ivCamera
+id ivCopy
+id ivCopyMyReferCode
 id ivIcon
 id ivMining
 id ivProfile
@@ -341,6 +344,7 @@ id stacking
 id statusOffIcon
 id statusOnIcon
 id supportMenu
+id switchNotification
 id teamMemberShow
 id teamMembersRecyclerView
 id teamMenu
@@ -387,6 +391,7 @@ id tvTeamStatus
 id tvToolbarTitle
 id tvTotalPoint
 id tvUserEmail
+id tvUserId
 id tvUserName
 id tvWithdraw
 id tvWrongAns

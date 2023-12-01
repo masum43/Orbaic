@@ -1,4 +1,4 @@
-package com.orbaic.miner;
+package com.orbaic.miner.profile;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.orbaic.miner.R;
 
 public class Profile extends Fragment {
 
