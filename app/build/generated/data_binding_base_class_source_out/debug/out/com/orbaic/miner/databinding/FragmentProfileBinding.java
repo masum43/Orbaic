@@ -38,6 +38,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final ImageView ivCamera;
 
   @NonNull
+  public final ImageView ivIdCopy;
+
+  @NonNull
   public final EditText phone;
 
   @NonNull
@@ -51,14 +54,16 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   private FragmentProfileBinding(@NonNull LinearLayout rootView, @NonNull TextView changeName,
       @NonNull TextView changePhone, @NonNull CountryCodePicker countryCodePicker,
-      @NonNull TextView emailAddressProfile, @NonNull ImageView ivCamera, @NonNull EditText phone,
-      @NonNull ImageView profilePic, @NonNull TextView userID, @NonNull EditText userName) {
+      @NonNull TextView emailAddressProfile, @NonNull ImageView ivCamera,
+      @NonNull ImageView ivIdCopy, @NonNull EditText phone, @NonNull ImageView profilePic,
+      @NonNull TextView userID, @NonNull EditText userName) {
     this.rootView = rootView;
     this.changeName = changeName;
     this.changePhone = changePhone;
     this.countryCodePicker = countryCodePicker;
     this.emailAddressProfile = emailAddressProfile;
     this.ivCamera = ivCamera;
+    this.ivIdCopy = ivIdCopy;
     this.phone = phone;
     this.profilePic = profilePic;
     this.userID = userID;
@@ -122,6 +127,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivIdCopy;
+      ImageView ivIdCopy = ViewBindings.findChildViewById(rootView, id);
+      if (ivIdCopy == null) {
+        break missingId;
+      }
+
       id = R.id.phone;
       EditText phone = ViewBindings.findChildViewById(rootView, id);
       if (phone == null) {
@@ -147,7 +158,8 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((LinearLayout) rootView, changeName, changePhone,
-          countryCodePicker, emailAddressProfile, ivCamera, phone, profilePic, userID, userName);
+          countryCodePicker, emailAddressProfile, ivCamera, ivIdCopy, phone, profilePic, userID,
+          userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

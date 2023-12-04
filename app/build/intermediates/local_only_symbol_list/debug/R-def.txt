@@ -282,6 +282,7 @@ id ivCamera
 id ivCopy
 id ivCopyMyReferCode
 id ivIcon
+id ivIdCopy
 id ivMining
 id ivProfile
 id j
