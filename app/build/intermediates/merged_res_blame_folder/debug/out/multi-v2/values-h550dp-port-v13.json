@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.orbaic.miner.app-mergeDebugResources-63:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+            "outputFile": "com.orbaic.miner.app-mergeDebugResources-64:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-3\\f6bd88b96aca11b1e4b96289759fdb6c\\transformed\\material-1.9.0\\res\\values-h550dp-port-v13\\values-h550dp-port-v13.xml",
+                    "source": "/Users/masum/.gradle/caches/transforms-3/f6bd88b96aca11b1e4b96289759fdb6c/transformed/material-1.9.0/res/values-h550dp-port-v13/values-h550dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

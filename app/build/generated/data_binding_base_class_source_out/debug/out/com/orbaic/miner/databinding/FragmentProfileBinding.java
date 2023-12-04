@@ -5,14 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.mikhaellopez.circularimageview.CircularImageView;
+import com.hbb20.CountryCodePicker;
 import com.orbaic.miner.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,40 +20,28 @@ import java.lang.String;
 
 public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final LinearLayout rootView;
+
+  @NonNull
+  public final TextView changeName;
+
+  @NonNull
+  public final TextView changePhone;
+
+  @NonNull
+  public final CountryCodePicker countryCodePicker;
 
   @NonNull
   public final TextView emailAddressProfile;
 
   @NonNull
-  public final LinearLayout l1;
-
-  @NonNull
-  public final LinearLayout linearLayout6;
-
-  @NonNull
-  public final LinearLayout linearLayout7;
-
-  @NonNull
-  public final LinearLayout linearLayout8;
-
-  @NonNull
-  public final LinearLayout linearLayout9;
-
-  @NonNull
-  public final TextView pEdit;
+  public final ImageView ivCamera;
 
   @NonNull
   public final EditText phone;
 
   @NonNull
-  public final CircularImageView profilePic;
-
-  @NonNull
-  public final TextView profileSubmit;
-
-  @NonNull
-  public final EditText userCountry;
+  public final ImageView profilePic;
 
   @NonNull
   public final TextView userID;
@@ -61,32 +49,25 @@ public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
   public final EditText userName;
 
-  private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView emailAddressProfile, @NonNull LinearLayout l1,
-      @NonNull LinearLayout linearLayout6, @NonNull LinearLayout linearLayout7,
-      @NonNull LinearLayout linearLayout8, @NonNull LinearLayout linearLayout9,
-      @NonNull TextView pEdit, @NonNull EditText phone, @NonNull CircularImageView profilePic,
-      @NonNull TextView profileSubmit, @NonNull EditText userCountry, @NonNull TextView userID,
-      @NonNull EditText userName) {
+  private FragmentProfileBinding(@NonNull LinearLayout rootView, @NonNull TextView changeName,
+      @NonNull TextView changePhone, @NonNull CountryCodePicker countryCodePicker,
+      @NonNull TextView emailAddressProfile, @NonNull ImageView ivCamera, @NonNull EditText phone,
+      @NonNull ImageView profilePic, @NonNull TextView userID, @NonNull EditText userName) {
     this.rootView = rootView;
+    this.changeName = changeName;
+    this.changePhone = changePhone;
+    this.countryCodePicker = countryCodePicker;
     this.emailAddressProfile = emailAddressProfile;
-    this.l1 = l1;
-    this.linearLayout6 = linearLayout6;
-    this.linearLayout7 = linearLayout7;
-    this.linearLayout8 = linearLayout8;
-    this.linearLayout9 = linearLayout9;
-    this.pEdit = pEdit;
+    this.ivCamera = ivCamera;
     this.phone = phone;
     this.profilePic = profilePic;
-    this.profileSubmit = profileSubmit;
-    this.userCountry = userCountry;
     this.userID = userID;
     this.userName = userName;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -111,45 +92,33 @@ public final class FragmentProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.changeName;
+      TextView changeName = ViewBindings.findChildViewById(rootView, id);
+      if (changeName == null) {
+        break missingId;
+      }
+
+      id = R.id.changePhone;
+      TextView changePhone = ViewBindings.findChildViewById(rootView, id);
+      if (changePhone == null) {
+        break missingId;
+      }
+
+      id = R.id.countryCodePicker;
+      CountryCodePicker countryCodePicker = ViewBindings.findChildViewById(rootView, id);
+      if (countryCodePicker == null) {
+        break missingId;
+      }
+
       id = R.id.emailAddress_profile;
       TextView emailAddressProfile = ViewBindings.findChildViewById(rootView, id);
       if (emailAddressProfile == null) {
         break missingId;
       }
 
-      id = R.id.l1;
-      LinearLayout l1 = ViewBindings.findChildViewById(rootView, id);
-      if (l1 == null) {
-        break missingId;
-      }
-
-      id = R.id.linearLayout6;
-      LinearLayout linearLayout6 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayout6 == null) {
-        break missingId;
-      }
-
-      id = R.id.linearLayout7;
-      LinearLayout linearLayout7 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayout7 == null) {
-        break missingId;
-      }
-
-      id = R.id.linearLayout8;
-      LinearLayout linearLayout8 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayout8 == null) {
-        break missingId;
-      }
-
-      id = R.id.linearLayout9;
-      LinearLayout linearLayout9 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayout9 == null) {
-        break missingId;
-      }
-
-      id = R.id.pEdit;
-      TextView pEdit = ViewBindings.findChildViewById(rootView, id);
-      if (pEdit == null) {
+      id = R.id.ivCamera;
+      ImageView ivCamera = ViewBindings.findChildViewById(rootView, id);
+      if (ivCamera == null) {
         break missingId;
       }
 
@@ -160,20 +129,8 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       id = R.id.profile_pic;
-      CircularImageView profilePic = ViewBindings.findChildViewById(rootView, id);
+      ImageView profilePic = ViewBindings.findChildViewById(rootView, id);
       if (profilePic == null) {
-        break missingId;
-      }
-
-      id = R.id.profile_submit;
-      TextView profileSubmit = ViewBindings.findChildViewById(rootView, id);
-      if (profileSubmit == null) {
-        break missingId;
-      }
-
-      id = R.id.userCountry;
-      EditText userCountry = ViewBindings.findChildViewById(rootView, id);
-      if (userCountry == null) {
         break missingId;
       }
 
@@ -189,9 +146,8 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, emailAddressProfile, l1,
-          linearLayout6, linearLayout7, linearLayout8, linearLayout9, pEdit, phone, profilePic,
-          profileSubmit, userCountry, userID, userName);
+      return new FragmentProfileBinding((LinearLayout) rootView, changeName, changePhone,
+          countryCodePicker, emailAddressProfile, ivCamera, phone, profilePic, userID, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
