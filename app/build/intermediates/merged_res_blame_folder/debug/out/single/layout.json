@@ -1,170 +1,166 @@
 [
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/header_layout.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/header_layout.xml"
-    },
-    {
         "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_settings.xml",
         "source": "com.orbaic.miner.app-main-68:/layout/fragment_settings.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_login_layout.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_login_layout.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/item.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/item.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_withdrawal.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_withdrawal.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_forget_password.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_forget_password.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_main2.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_main2.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/team_member_single.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/team_member_single.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team_members.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_team_members.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_user_register.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_user_register.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/header.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/header.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team_members.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_team_members.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_learn_earn_activtity.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_learn_earn_activtity.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/header.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/header.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_profile.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_profile.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/app_bar.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/app_bar.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/layout_home_old.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/layout_home_old.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_team.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/item.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/item.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/itemview_for_ref.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/itemview_for_ref.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_home.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_home.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_login_layout.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_login_layout.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_quiz_start.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_quiz_start.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/item_reward_tokens.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/item_reward_tokens.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/item_reward_tokens.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/item_reward_tokens.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_main2.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_main2.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_referral_data.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_referral_data.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_home.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_home.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/winning_dialog.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/winning_dialog.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_wallet.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_wallet.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/ref.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/ref.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/item_layout.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/item_layout.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/mcq_result_dialog.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/mcq_result_dialog.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/dialog_mining_warning.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/dialog_mining_warning.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/team_member_single.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/team_member_single.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_referral_data.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_referral_data.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_web_view_content.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_web_view_content.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_support.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_support.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_forget_password.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_forget_password.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_firebase_dynamic_link.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_firebase_dynamic_link.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_wallet.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_wallet.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_withdrawal.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_withdrawal.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/item_layout.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/item_layout.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_web_view_content.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_web_view_content.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_user_register.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_user_register.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/winning_dialog.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/winning_dialog.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/dialog_extra_point.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/dialog_extra_point.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/mcq_result_dialog.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/mcq_result_dialog.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_main.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_main.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_home_2.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_home_2.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_firebase_dynamic_link.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/activity_firebase_dynamic_link.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/grid_single_view.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/grid_single_view.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/itemview_for_ref.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/itemview_for_ref.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_quiz_start.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_quiz_start.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_mining_rules.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_mining_rules.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/ref.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/ref.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_settings.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_settings.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/contain_main.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/contain_main.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/app_bar.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/app_bar.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/header_layout.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/header_layout.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_support.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_support.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_faq.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_faq.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_white_paper.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_white_paper.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_white_paper.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_white_paper.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_team.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team_referral.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_team_referral.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/dialog_mining_warning.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/dialog_mining_warning.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/layout_home_old.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/layout_home_old.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_home_2.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_home_2.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_profile.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_profile.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/grid_single_view.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/grid_single_view.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_main.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_faq.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_faq.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/dialog_extra_point.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/dialog_extra_point.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/contain_main.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/contain_main.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/activity_learn_earn_activtity.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/activity_learn_earn_activtity.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/item_view.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/item_view.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/item_view.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/item_view.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/item_horizontal_list.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/item_horizontal_list.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_mining_rules.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/fragment_mining_rules.xml"
     },
     {
-        "merged": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-mergeDebugResources-65:/layout/fragment_team_referral.xml",
-        "source": "/Users/masum/.gradle/daemon/8.0/com.orbaic.miner.app-main-68:/layout/fragment_team_referral.xml"
+        "merged": "com.orbaic.miner.app-mergeDebugResources-65:/layout/item_horizontal_list.xml",
+        "source": "com.orbaic.miner.app-main-68:/layout/item_horizontal_list.xml"
     }
 ]
