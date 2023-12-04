@@ -39,7 +39,7 @@ public class Profile extends Fragment {
     FirebaseDatabase firebaseDatabase;
     TextView id,emailName, changePhone, changeName;
     EditText  Username, phone;
-    ImageView ivCamera, profilePic;
+    ImageView ivCamera, profilePic, ivIdCopy;
     private static final int PICK_IMAGE_REQUEST = 1;
 
     public Profile() {
@@ -50,6 +50,7 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         id = view.findViewById(R.id.userID);
+        ivIdCopy = view.findViewById(R.id.ivIdCopy);
         Username = view.findViewById(R.id.userName);
         changePhone = view.findViewById(R.id.changePhone);
         changeName = view.findViewById(R.id.changeName);
@@ -68,6 +69,13 @@ public class Profile extends Fragment {
     }
 
     private void initClicks() {
+        ivIdCopy.setOnClickListener(v-> {
+            ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
+            clipboard.setText(id.getText());
+
+            Toast.makeText(getContext(), "Copied your ID", Toast.LENGTH_SHORT).show();
+        });
+
         id.setOnClickListener(v-> {
             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
             clipboard.setText(id.getText());
