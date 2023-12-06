@@ -474,10 +474,13 @@ public class Home extends Fragment {
     }
 
     private void stopRippleEffect() {
-        if (rippleEffect.isRippleAnimationRunning()) {
-            rippleCenterImage.setColorFilter(null); //get back to previous logo color while stopping animation
-            rippleEffect.stopRippleAnimation(); //stopping the animation
-        }
+        runOnUiThread(() -> {
+            if (rippleEffect.isRippleAnimationRunning()) {
+                rippleCenterImage.setColorFilter(null); //get back to previous logo color while stopping animation
+                rippleEffect.stopRippleAnimation(); //stopping the animation
+            }
+        });
+
     }
 
     //user team referral user active status
