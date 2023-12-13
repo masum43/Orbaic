@@ -93,7 +93,7 @@ public class LearnEarnActivity extends AppCompatActivity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
-               mobAds.loadRewardedAd();
+               mobAds.loadIntersAndRewardedAd();
             }
         });
 

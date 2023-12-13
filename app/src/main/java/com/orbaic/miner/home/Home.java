@@ -44,7 +44,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.ads.MobileAds;
@@ -168,7 +167,7 @@ public class Home extends Fragment {
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
-                mobAds.loadRewardedAd();
+                mobAds.loadIntersAndRewardedAd();
             }
         });
 

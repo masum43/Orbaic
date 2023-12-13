@@ -2,8 +2,6 @@ package com.orbaic.miner;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -16,14 +14,12 @@ import com.google.android.gms.ads.ResponseInfo;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.rewarded.RewardItem;
-import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
 
 public class AdMobAds {
     private Context context;
-    private InterstitialAd interstitialAd;
+    private InterstitialAd admobInterstitialAd;
     private RewardedInterstitialAd rewardedInterstitialAd;
     private String button = "";
      private Activity getActivity;
@@ -33,7 +29,7 @@ public class AdMobAds {
     }
 
     public void loadRewardInterstitial(){
-        if (rewardedInterstitialAd == null){
+        if (rewardedInterstitialAd == null) {
             RewardedInterstitialAd.load(context, "ca-app-pub-9323045181924630/9843345511",
                     new AdRequest.Builder().build(),  new RewardedInterstitialAdLoadCallback() {
                         @Override
@@ -90,10 +86,8 @@ public class AdMobAds {
         }
     }
 
-    public void loadRewardedAd() {
-
-        if (interstitialAd == null) {
-
+    public void loadIntersAndRewardedAd() {
+        if (admobInterstitialAd == null) {
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
             if (com.orbaic.miner.BuildConfig.DEBUG) {
@@ -105,7 +99,7 @@ public class AdMobAds {
                         public void onAdLoaded(@NonNull InterstitialAd ad) {
                             // The mInterstitialAd reference will be null until
                             // an ad is loaded.
-                            interstitialAd = ad;
+                            admobInterstitialAd = ad;
                             button = "ON";
                             //Log.i(TAG, "onAdLoaded");
                         }
@@ -114,8 +108,8 @@ public class AdMobAds {
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             ResponseInfo responseInfo = loadAdError.getResponseInfo();
                             // Handle the error
-                            interstitialAd = null;
-                            loadRewardedAd();
+                            admobInterstitialAd = null;
+                            loadIntersAndRewardedAd();
                             System.out.printf(String.valueOf(responseInfo));
                         }
                     });
@@ -126,17 +120,17 @@ public class AdMobAds {
 
     public void showRewardedVideo() {
 
-        if (interstitialAd == null) {
+        if (admobInterstitialAd == null) {
             //Log.d("TAG", "The rewarded ad wasn't ready yet.");
             //Toast.makeText(context, "ads not work", Toast.LENGTH_SHORT).show();
-            loadRewardedAd();
+            loadIntersAndRewardedAd();
             return;
         }else{
             //rewardedInterstitialAd.show(getActivity);
-            interstitialAd.show(getActivity);
+            admobInterstitialAd.show(getActivity);
         }
 
-        interstitialAd.setFullScreenContentCallback(
+        admobInterstitialAd.setFullScreenContentCallback(
                 new FullScreenContentCallback() {
                     /** Called when ad showed the full screen content. */
                     @Override
@@ -151,8 +145,8 @@ public class AdMobAds {
 
                         // Don't forget to set the ad reference to null so you
                         // don't show the ad a second time.
-                        interstitialAd = null;
-                        loadRewardedAd();
+                        admobInterstitialAd = null;
+                        loadIntersAndRewardedAd();
                     }
 
                     /** Called when full screen content is dismissed. */
@@ -160,9 +154,9 @@ public class AdMobAds {
                     public void onAdDismissedFullScreenContent() {
                         // Don't forget to set the ad reference to null so you
                         // don't show the ad a second time.
-                        interstitialAd = null;
+                        admobInterstitialAd = null;
                         // Preload the next rewarded interstitial ad.
-                        loadRewardedAd();
+                        loadIntersAndRewardedAd();
                     }
 
                 });
