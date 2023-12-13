@@ -467,10 +467,13 @@ public class Home extends Fragment {
     }
 
     private void startRippleEffect() {
-        if (!rippleEffect.isRippleAnimationRunning()) {
-            rippleCenterImage.setColorFilter(Color.argb(255, 255, 255, 255)); //change the logo color while staring animation
-            rippleEffect.startRippleAnimation(); //starting the animation
-        }
+        runOnUiThread(() -> {
+            if (!rippleEffect.isRippleAnimationRunning()) {
+                rippleCenterImage.setColorFilter(Color.argb(255, 255, 255, 255)); //change the logo color while staring animation
+                rippleEffect.startRippleAnimation(); //starting the animation
+            }
+        });
+
     }
 
     private void stopRippleEffect() {
@@ -1118,8 +1121,19 @@ public class Home extends Fragment {
                 }
 
                 teamRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-                GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
-                teamRecyclerView.setAdapter(adapter);
+                if (teamList.size() <= 5) {
+                    GridBindAdapter adapter = new GridBindAdapter(getActivity(), teamList);
+                    teamRecyclerView.setAdapter(adapter);
+                }
+                else {
+                    List<Team> sortedTeamList = new ArrayList<>();
+                    for (int i = 0; i< 5; i++) {
+                        sortedTeamList.add(teamList.get(i));
+                    }
+                    GridBindAdapter adapter = new GridBindAdapter(getActivity(), sortedTeamList);
+                    teamRecyclerView.setAdapter(adapter);
+                }
+
 
                 for (Team miningData : teamList) {
                     if (miningData.getMiningStatus().equals(Constants.STATUS_ON)) {
