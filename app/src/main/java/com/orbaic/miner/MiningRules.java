@@ -1,7 +1,10 @@
 package com.orbaic.miner;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -37,7 +41,6 @@ public class MiningRules extends Fragment {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-
                 progressDialog.show();
 
             }
@@ -46,7 +49,24 @@ public class MiningRules extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 progressDialog.dismiss();
+            }
 
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // Open links clicked within the WebView itself
+//                view.loadUrl(url);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+
+
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                // Handle SSL errors if needed
+                handler.proceed();
             }
         });
         webView.loadUrl("https://blog.orbaic.com/Mining-rules.html");

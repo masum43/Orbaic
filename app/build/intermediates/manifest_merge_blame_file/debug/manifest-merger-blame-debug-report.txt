@@ -114,12 +114,12 @@
 59-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:17:9-54
 60        android:hardwareAccelerated="true"
 60-->[com.vungle:publisher-sdk-android:6.12.1] /Users/masum/.gradle/caches/transforms-3/822f6f71c5092c39ac2d73220bcec9bc/transformed/publisher-sdk-android-6.12.1/AndroidManifest.xml:16:18-52
-61        android:icon="@drawable/app_logo_new"
-61-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:18:9-46
+61        android:icon="@mipmap/ic_launcher"
+61-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:18:9-43
 62        android:label="@string/app_name"
 62-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:19:9-41
-63        android:roundIcon="@drawable/app_logo_new"
-63-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:20:9-51
+63        android:roundIcon="@mipmap/ic_launcher_round"
+63-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:20:9-54
 64        android:supportsRtl="true"
 64-->/Users/masum/StudioProjects/temp/Orbaic/app/src/main/AndroidManifest.xml:21:9-35
 65        android:testOnly="true"

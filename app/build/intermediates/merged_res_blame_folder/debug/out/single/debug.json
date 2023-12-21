@@ -68,12 +68,12 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-xxhdpi/orbaic_logo_login.png"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-xhdpi_userlogin.png.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-xhdpi/userlogin.png"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_extra_reward_progress_bar_icon.xml.flat",
@@ -112,6 +112,10 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/support_icon.xml"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-anydpi-v24_login_button.xml.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-anydpi-v24/login_button.xml"
     },
@@ -124,20 +128,12 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/quiz_score_icon.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher_foreground.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_telegram.png.flat",
         "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/telegram.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/layout_activity_firebase_dynamic_link.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/layout/activity_firebase_dynamic_link.xml"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/layout_fragment_withdrawal.xml.flat",
@@ -160,12 +156,20 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-mdpi/ic_launcher_foreground.png"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_ic_launcher_background.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/ic_launcher_background.xml"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-anydpi-v24_fb_icon.xml.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-anydpi-v24/fb_icon.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/drawable_app_logo_new.png.flat",
+        "source": "com.orbaic.miner.app-main-68:/drawable/app_logo_new.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-v24_instagram.png.flat",
@@ -272,10 +276,6 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-ldpi/orbaic_logo_first.png"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_telegram_icon.png.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/telegram_icon.png"
     },
@@ -294,10 +294,6 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-ldpi_homepage_circular_icon_background.png.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-ldpi/homepage_circular_icon_background.png"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/drawable_app_logo_new.xml.flat",
-        "source": "com.orbaic.miner.app-main-68:/drawable/app_logo_new.xml"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-mdpi_orbaic_icon.png.flat",
@@ -322,10 +318,6 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-mdpi_fb_icon.png.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-mdpi/fb_icon.png"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_extra_25_dialog_shape.xml.flat",
@@ -392,8 +384,8 @@
         "source": "com.orbaic.miner.app-main-68:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher_foreground.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_password_visibility_on_icon.xml.flat",
@@ -456,10 +448,6 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-mdpi/kyc_varification_icon.png"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/font_poppins_semibold.ttf.flat",
         "source": "com.orbaic.miner.app-main-68:/font/poppins_semibold.ttf"
     },
@@ -496,10 +484,6 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/setting_icons_background.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher_foreground.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_edittext_shape.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/edittext_shape.xml"
     },
@@ -518,6 +502,14 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_circle_low.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/circle_low.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_ic_toolbar_name.png.flat",
@@ -612,10 +604,6 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-anydpi-v24/orbaic_logo_login.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/layout_layout_home_old.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/layout/layout_home_old.xml"
     },
@@ -650,10 +638,6 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_white_paper.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/white_paper.xml"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-xxhdpi_fb_icon.png.flat",
@@ -708,10 +692,6 @@
         "source": "com.orbaic.miner.app-main-68:/layout/header.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_team_members_inactive_box.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/team_members_inactive_box.xml"
     },
@@ -722,6 +702,14 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/layout_fragment_home_2.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/layout/fragment_home_2.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-hdpi_orbaic_logo_first.png.flat",
@@ -776,6 +764,10 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/title_icon.png"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_horizontal_progressbar_layer.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/horizontal_progressbar_layer.xml"
     },
@@ -802,6 +794,10 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_result.png.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/result.png"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_down_arrow.xml.flat",
@@ -840,6 +836,10 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/referral_team_icon.xml"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-v24_bitcoin.png.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable-v24/bitcoin.png"
     },
@@ -870,10 +870,6 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_home_icon.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/home_icon.xml"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_wallet_reward_icon_ltc.png.flat",
@@ -948,6 +944,10 @@
         "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/telegram.png"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_forget_password_text.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/forget_password_text.xml"
     },
@@ -1014,6 +1014,10 @@
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_people_icon.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/people_icon.xml"
+    },
+    {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_circle_2.xml.flat",
@@ -1140,12 +1144,12 @@
         "source": "com.orbaic.miner.app-pngs-62:/drawable-hdpi/orbaic_icon.png"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/drawable_winner_image.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/drawable/winner_image.png"
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.orbaic.miner.app-merged_res-66:/drawable_winner_image.png.flat",
+        "source": "com.orbaic.miner.app-main-68:/drawable/winner_image.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-xxxhdpi_homepage_circular_icon_background.png.flat",
@@ -1208,10 +1212,6 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/password_icon.xml"
     },
     {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xxhdpi/ic_launcher_foreground.png"
-    },
-    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_edit_profile_icon.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/edit_profile_icon.xml"
     },
@@ -1232,16 +1232,16 @@
         "source": "com.orbaic.miner.app-main-68:/drawable/twitter_icon.png"
     },
     {
+        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-ldpi_fb_icon.png.flat",
         "source": "com.orbaic.miner.app-pngs-62:/drawable-ldpi/fb_icon.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable_password_visibility_off_icon.xml.flat",
         "source": "com.orbaic.miner.app-main-68:/drawable/password_visibility_off_icon.xml"
-    },
-    {
-        "merged": "com.orbaic.miner.app-merged_res-66:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.orbaic.miner.app-main-68:/mipmap-xhdpi/ic_launcher.png"
     },
     {
         "merged": "com.orbaic.miner.app-merged_res-66:/drawable-ldpi_wallet_transfer_icon.png.flat",
