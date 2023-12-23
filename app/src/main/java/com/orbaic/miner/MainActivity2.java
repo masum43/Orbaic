@@ -185,9 +185,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             } else if (id == R.id.menuWhitePaper) {
                 loadFragment(new WhitePaper());
             } else if (id == R.id.menuTermsAndConditions) {
-                loadFragment(new faq());
+                loadFragment(new terms());
             } else if (id == R.id.menuPrivacyPolicy) {
-                loadFragment(new faq());
+                loadFragment(new privacy());
             } else if (id == R.id.referralTeam) {
                 loadFragment(new TeamReferral());
             } else if (id == R.id.profile) {
