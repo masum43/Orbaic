@@ -594,7 +594,7 @@ public class Home extends Fragment {
                     System.out.println(Coin);
                     Log.e("COIN_UPDATE", "Coin1: " + Coin);
                     String format = String.format(Locale.getDefault(), "%.5f", Coin);
-                    requireActivity().runOnUiThread(() -> AciCoin.setText(format));
+                    runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
                 } else {
                     Log.e("COIN_UPDATE", "run: No internet connection");
@@ -788,7 +788,7 @@ public class Home extends Fragment {
         edit.putLong("lastMillis", mEndTime);
         edit.apply();
 
-        timerTask.cancel();
+       if (timerTask != null) timerTask.cancel();
 
         //System.out.println(timeLeftInMillis +" "+ mEndTime);
 
