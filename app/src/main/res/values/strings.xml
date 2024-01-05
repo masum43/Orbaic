@@ -63,4 +63,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="url_mining_rules">https://www.orbaic.com/mining_rules.php</string>
+    <string name="url_white_paper">https://www.orbaic.com/whitepaper.php</string>
+    <string name="url_terms">https://www.orbaic.com/terms_condition.php</string>
+    <string name="url_privacy_policy">https://www.orbaic.com/privecy_policy.php</string>
 </resources>

@@ -69,7 +69,7 @@ public class MiningRules extends Fragment {
                 handler.proceed();
             }
         });
-        webView.loadUrl("https://blog.orbaic.com/Mining-rules.html");
+        webView.loadUrl(getString(R.string.url_mining_rules));
 
 
 

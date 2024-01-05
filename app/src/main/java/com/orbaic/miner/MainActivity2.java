@@ -184,7 +184,14 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 loadFragment(new MiningRules());
             } else if (id == R.id.menuWhitePaper) {
                 loadFragment(new WhitePaper());
-            } else if (id == R.id.menuTermsAndConditions) {
+            } else if (id == R.id.menuFaq) {
+                Fragment fragment = new CommonWebview();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", "https://www.orbaic.com/faq.php");
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
+            }
+            else if (id == R.id.menuTermsAndConditions) {
                 loadFragment(new terms());
             } else if (id == R.id.menuPrivacyPolicy) {
                 loadFragment(new privacy());

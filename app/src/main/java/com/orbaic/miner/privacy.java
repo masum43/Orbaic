@@ -45,7 +45,7 @@ public class privacy extends Fragment {
 
             }
         });
-        webView.loadUrl("https://blog.orbaic.com/privecy_policy.html");
+        webView.loadUrl(getString(R.string.url_privacy_policy));
 
 
 

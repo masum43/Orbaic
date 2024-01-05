@@ -20,6 +20,12 @@
 
         <item
             android:icon="@drawable/terms_conditions_icon"
+            android:title="FAQ"
+            android:id="@+id/menuFaq"
+            android:orderInCategory="104"/>
+
+        <item
+            android:icon="@drawable/terms_conditions_icon"
             android:title="Terms and Conditions"
             android:id="@+id/menuTermsAndConditions"
             android:orderInCategory="104"/>

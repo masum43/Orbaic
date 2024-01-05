@@ -48,7 +48,7 @@ public class WhitePaper extends Fragment {
 
             }
         });
-        webView.loadUrl("https://blog.orbaic.com/whitePaper/white.html");
+        webView.loadUrl(getString(R.string.url_white_paper));
 
         return view;
     }
