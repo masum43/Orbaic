@@ -79,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (internetConnectionCheck()){
+                                if (internetConnectionCheck()) {
                                     if( versionCode > appVersionCode) {
                                         updateNotice();
                                         progressBar.setVisibility(View.GONE);

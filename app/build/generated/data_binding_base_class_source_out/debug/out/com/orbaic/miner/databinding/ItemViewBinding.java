@@ -4,6 +4,7 @@ package com.orbaic.miner.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -26,13 +27,17 @@ public final class ItemViewBinding implements ViewBinding {
   public final TextView itemViewTitle;
 
   @NonNull
+  public final ImageView ivShare;
+
+  @NonNull
   public final TextView tvDate;
 
   private ItemViewBinding(@NonNull LinearLayout rootView, @NonNull TextView itemViewContent,
-      @NonNull TextView itemViewTitle, @NonNull TextView tvDate) {
+      @NonNull TextView itemViewTitle, @NonNull ImageView ivShare, @NonNull TextView tvDate) {
     this.rootView = rootView;
     this.itemViewContent = itemViewContent;
     this.itemViewTitle = itemViewTitle;
+    this.ivShare = ivShare;
     this.tvDate = tvDate;
   }
 
@@ -75,13 +80,20 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivShare;
+      ImageView ivShare = ViewBindings.findChildViewById(rootView, id);
+      if (ivShare == null) {
+        break missingId;
+      }
+
       id = R.id.tvDate;
       TextView tvDate = ViewBindings.findChildViewById(rootView, id);
       if (tvDate == null) {
         break missingId;
       }
 
-      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, tvDate);
+      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, ivShare,
+          tvDate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
