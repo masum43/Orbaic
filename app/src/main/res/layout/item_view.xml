@@ -60,6 +60,7 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:id="@+id/ivShare"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:src="@drawable/share_icon" />

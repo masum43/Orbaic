@@ -87,7 +87,9 @@ import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -184,6 +186,7 @@ public class Home extends Fragment {
         initClicks();
         newsFromWordpressBlog(true);
 
+        updateTokenInDatabase();
 
         return view;
 
@@ -510,6 +513,27 @@ public class Home extends Fragment {
 
         }
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Instant now2 = Instant.now();
+            Instant plus24Hours = now2.plusSeconds(24 * 60 * 60); // Adding 24 hours in seconds
+//            Instant plus24Hours = now2.plusSeconds(5 * 60); // for testing
+
+            String utcTime = DateTimeFormatter
+                    .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                    .withZone(ZoneOffset.UTC)
+                    .format(plus24Hours);
+
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("usersToken");
+
+            reference.child(mAuth.getUid()).child("timestamp").setValue(utcTime)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            System.out.println(unused);
+                        }
+                    });
+        }
+
 
     }
 
@@ -538,8 +562,8 @@ public class Home extends Fragment {
                 postList.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 List<Post> firstFiveItems = new ArrayList<>();
-                if (postItemList.size() >= 10) {
-                    firstFiveItems.addAll(postItemList.subList(0, 10));
+                if (postItemList.size() >= 5) {
+                    firstFiveItems.addAll(postItemList.subList(0, 5));
                 } else {
                     firstFiveItems.addAll(postItemList);
                 }
@@ -547,7 +571,6 @@ public class Home extends Fragment {
                 postList.setAdapter(new PostAdapter(getContext(), firstFiveItems));
 
                 if (withProgress) {
-
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
@@ -1100,6 +1123,45 @@ public class Home extends Fragment {
         }
     }
 
+
+    private void updateTokenInDatabase() {
+        if (mAuth.getCurrentUser() != null) {
+            SpManager.init(requireContext());
+            String fcmToken = SpManager.getString(SpManager.KEY_FCM_TOKEN, "");
+            String fcmNewToken = SpManager.getString(SpManager.KEY_FCM_NEW_TOKEN, "");
+
+            if (fcmToken.isEmpty() || !fcmNewToken.equals(fcmToken)) {
+                setToken();
+            }
+        }
+
+    }
+
+    private void setToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        String token = task.getResult();
+                        // Handle the token, you can print or use it as needed
+                        System.out.println("FCM Token: " + token);
+                        String userId = mAuth.getCurrentUser().getUid();
+                        Log.e("userId", "updateTokenInDatabase: "+userId );
+                        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("usersToken");
+                        tokensRef.child(userId).child("fcmToken").setValue(token).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    SpManager.saveString(SpManager.KEY_FCM_TOKEN, token);
+                                    SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
+                                }
+                            }
+                        });
+                    } else {
+                        // Handle the error
+                        System.out.println("Error fetching FCM token: " + task.getException());
+                    }
+                });
+    }
 
     private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

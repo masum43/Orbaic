@@ -27,6 +27,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,6 +58,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     CircularImageView profileIcon;
     BottomNavigationView bottomNavigationView;
     ImageView btnEditProfile;
+    private ConsentInformation consentInformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +97,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         }
 
         initClicks();
+        gdpr();
 
     }
 
@@ -318,4 +324,58 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 .error(R.drawable.demo_avatar2)
                 .into(profileIcon);
     }
+
+
+    private void gdpr() {
+        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                .addTestDeviceHashedId("CCCB127F53A56AAC680FBB669EC85DB8")
+                .build();
+
+        ConsentRequestParameters params;
+        if (BuildConfig.DEBUG) {
+            params = new ConsentRequestParameters.Builder()
+                    .setConsentDebugSettings(debugSettings)
+                    .build();
+        } else {
+            params = new ConsentRequestParameters.Builder()
+                    .setTagForUnderAgeOfConsent(false)
+                    .build();
+        }
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        if (BuildConfig.DEBUG) {
+            consentInformation.reset();
+        }
+
+        consentInformation.requestConsentInfoUpdate(this, params,
+                () -> UserMessagingPlatform.loadAndShowConsentFormIfRequired(MainActivity2.this, loadAndShowError -> {
+                    // Consent gathering failed.
+                    Log.w("TAG", String.format("%s: %s",
+                            loadAndShowError != null ? loadAndShowError.getErrorCode() : "",
+                            loadAndShowError != null ? loadAndShowError.getMessage() : ""));
+
+                    // Consent has been gathered.
+                    if (consentInformation.canRequestAds()) {
+                        initializeMobileAdsSdk();
+                    }
+                }),
+                requestConsentError -> {
+                    // Consent gathering failed.
+                    Log.w("TAG", String.format("%s: %s",
+                            requestConsentError != null ? requestConsentError.getErrorCode() : "",
+                            requestConsentError != null ? requestConsentError.getMessage() : ""));
+                });
+
+        // Check if you can initialize the Google Mobile Ads SDK in parallel
+        // while checking for new consent information. Consent obtained in
+        // the previous session can be used to request ads.
+        if (consentInformation.canRequestAds()) {
+            initializeMobileAdsSdk();
+        }
+    }
+
+    private void initializeMobileAdsSdk() {
+    }
+
 }
