@@ -47,6 +47,7 @@ import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
@@ -129,9 +130,14 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userId = "";
+                String point = "";
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Log.e("addIntoReferTeam", "userSnapshot: " + userSnapshot);
                     userId = userSnapshot.getKey();
+                    if (userSnapshot.hasChild("point")) {
+                        point = userSnapshot.child("point").getValue().toString();
+                    }
+
                 }
 
                 Log.e("addIntoReferTeam", "userId: " + userId);
@@ -148,6 +154,16 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                             }
                         }
                     });
+
+                    if (!point.isEmpty()) {
+                        double pointWithBonus = Double.parseDouble(point) +3 ;
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("point", String.valueOf(pointWithBonus));
+
+                        DatabaseReference userRef = database.getReference("users");
+                        userRef.child(userId).updateChildren(hashMap);
+
+                    }
                 }
             }
 
