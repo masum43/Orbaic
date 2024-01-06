@@ -27,16 +27,21 @@ public final class ItemViewBinding implements ViewBinding {
   public final TextView itemViewTitle;
 
   @NonNull
+  public final ImageView ivMedia;
+
+  @NonNull
   public final ImageView ivShare;
 
   @NonNull
   public final TextView tvDate;
 
   private ItemViewBinding(@NonNull LinearLayout rootView, @NonNull TextView itemViewContent,
-      @NonNull TextView itemViewTitle, @NonNull ImageView ivShare, @NonNull TextView tvDate) {
+      @NonNull TextView itemViewTitle, @NonNull ImageView ivMedia, @NonNull ImageView ivShare,
+      @NonNull TextView tvDate) {
     this.rootView = rootView;
     this.itemViewContent = itemViewContent;
     this.itemViewTitle = itemViewTitle;
+    this.ivMedia = ivMedia;
     this.ivShare = ivShare;
     this.tvDate = tvDate;
   }
@@ -80,6 +85,12 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivMedia;
+      ImageView ivMedia = ViewBindings.findChildViewById(rootView, id);
+      if (ivMedia == null) {
+        break missingId;
+      }
+
       id = R.id.ivShare;
       ImageView ivShare = ViewBindings.findChildViewById(rootView, id);
       if (ivShare == null) {
@@ -92,8 +103,8 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, ivShare,
-          tvDate);
+      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, ivMedia,
+          ivShare, tvDate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -92,6 +92,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -128,7 +130,7 @@ public class Home extends Fragment {
     private LinearLayout mining;
     private RippleBackground rippleEffect;
     ImageView rippleCenterImage;
-    private RecyclerView postList, teamRecyclerView;
+    private RecyclerView rvNews, teamRecyclerView;
 
     Task<Void> currentUser;
 
@@ -457,7 +459,7 @@ public class Home extends Fragment {
 
         hr = view.findViewById(R.id.hour_fragment);
         AciCoin = view.findViewById(R.id.aci_coin);
-        postList = view.findViewById(R.id.recyclerView);
+        rvNews = view.findViewById(R.id.recyclerView);
         teamRecyclerView = view.findViewById(R.id.rvMyTeam);
         tvTeamStatus = view.findViewById(R.id.tvTeamStatus);
         tvQuizCountDown = view.findViewById(R.id.tvQuizCountDown);
@@ -558,8 +560,8 @@ public class Home extends Fragment {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 Log.d("RetrofitResponse", "Status Code " + response.code());
                 postItemList = response.body();
-                postList.setHasFixedSize(true);
-                postList.setLayoutManager(new LinearLayoutManager(getContext()));
+                rvNews.setHasFixedSize(true);
+                rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 List<Post> firstFiveItems = new ArrayList<>();
                 if (postItemList.size() >= 5) {
@@ -567,8 +569,18 @@ public class Home extends Fragment {
                 } else {
                     firstFiveItems.addAll(postItemList);
                 }
+                Collections.sort(firstFiveItems, (o1, o2) -> {
+                    if (o1.getFeatured_media() == 1 && o2.getFeatured_media() != 1) {
+                        return -1; // o1 comes first
+                    } else if (o1.getFeatured_media() != 1 && o2.getFeatured_media() == 1) {
+                        return 1; // o2 comes first
+                    } else {
+                        return 0; // maintain the original order if both or neither have featured_media == 1
+                    }
+                });
+
                 Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
-                postList.setAdapter(new PostAdapter(getContext(), firstFiveItems));
+                rvNews.setAdapter(new PostAdapter(getContext(), firstFiveItems));
 
                 if (withProgress) {
                     timerTask = new TimerTask() {

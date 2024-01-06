@@ -21,15 +21,19 @@ public class Post {
         @SerializedName("featured_media")
         private int featured_media;
 
+        @SerializedName("media_url")
+        private String media_url;
+
         public Post() {
         }
 
-        public Post(int id, JsonObject title, JsonObject content, JsonObject excerpt, int featured_media) {
+        public Post(int id, JsonObject title, JsonObject content, JsonObject excerpt, int featured_media, String media_url) {
                 this.id = id;
                 this.title = title;
                 this.content = content;
                 this.excerpt = excerpt;
                 this.featured_media = featured_media;
+                this.media_url = media_url;
         }
 
         public int getId() {
@@ -70,5 +74,13 @@ public class Post {
 
         public void setFeatured_media(int featured_media) {
                 this.featured_media = featured_media;
+        }
+
+        public String getMedia_url() {
+                return media_url;
+        }
+
+        public void setMedia_url(String media_url) {
+                this.media_url = media_url;
         }
 }

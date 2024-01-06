@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,12 +30,13 @@ public class SplashActivity extends AppCompatActivity {
     Timer timer = new Timer();
 
     int versionCode;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        progressBar = findViewById(R.id.progressBar);
 
         dataRead();
 
@@ -49,17 +49,19 @@ public class SplashActivity extends AppCompatActivity {
         builder.setTitle("Update Notification");
         builder.setMessage("We update our app. Please update the app from Play Store");
         builder.setCancelable(false);
-        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.orbaic.miner"));
-                startActivity(urlIntent);
-            }
+        builder.setPositiveButton("Update", (dialogInterface, i) -> {
+            Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.orbaic.miner"));
+            startActivity(urlIntent);
         });
         builder.create().show();
     }
 
     private void dataRead() {
+        if (!isNetworkConnected()){
+            internetConnectionLost();
+            return;
+        }
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference("app");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,46 +70,60 @@ public class SplashActivity extends AppCompatActivity {
                 String code = snapshot.child("appVersion").getValue().toString();
                 System.out.println(code);
                 versionCode = Integer.parseInt(code);
-                int appVersionCode = BuildConfig.VERSION_CODE;
 
-
-
-                ProgressBar progressBar = findViewById(R.id.progressBar);
-                TimerTask timerTask1 = new TimerTask() {
-                    @Override
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (internetConnectionCheck()) {
-                                    if( versionCode > appVersionCode) {
-                                        updateNotice();
-                                        progressBar.setVisibility(View.GONE);
-                                        return;
-                                    }else {
-                                        Intent intent = new Intent(SplashActivity.this, LoginLayout.class);
-                                        startActivity(intent);
-                                        progressBar.setVisibility(View.GONE);
-                                        finish();
-                                    }
-                                }else {
-                                    Toast.makeText(SplashActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();
-                                    internetConnectionLost();
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            }
-                        });
-                    }
-                };
-                timer.schedule(timerTask1,5000);
+                startTimerTask();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                if (error.getCode() == DatabaseError.NETWORK_ERROR || error.getCode() == DatabaseError.DISCONNECTED) {
+                    // Show dialog for no internet or network issue
+                    internetConnectionLost();
+                }
+                else
+                {
+                    Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
+
+    }
+
+    private void startTimerTask() {
+        TimerTask timerTask1 = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isNetworkConnected()) {
+                            int appVersionCode = BuildConfig.VERSION_CODE;
+                            if( versionCode > appVersionCode) {
+                                updateNotice();
+                                progressBar.setVisibility(View.GONE);
+                                return;
+                            }else {
+                                progressBar.setVisibility(View.GONE);
+                                navigateToNextActivity();
+                            }
+                        }else {
+                            Toast.makeText(SplashActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();
+                            internetConnectionLost();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(timerTask1,5000);
+    }
+
+    private void navigateToNextActivity() {
+        Intent intent = new Intent(SplashActivity.this, LoginLayout.class);
+        startActivity(intent);
+        finish();
     }
 
     private void internetConnectionLost() {
@@ -137,7 +153,7 @@ public class SplashActivity extends AppCompatActivity {
 
     }*/
 
-    private boolean internetConnectionCheck() {
+    private boolean isNetworkConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
