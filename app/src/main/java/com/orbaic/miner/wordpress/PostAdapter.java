@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.orbaic.miner.R;
 import com.orbaic.miner.WebViewContent;
 
@@ -59,6 +60,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY));
             holder.shortContent.setText(Html.fromHtml(excerpt, Html.FROM_HTML_MODE_LEGACY));
         }
+
+        Glide.with(holder.ivMedia.getContext()).load(post.getMedia_url()).into(holder.ivMedia);
     }
 
     @Override
@@ -69,7 +72,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title,shortContent;
-        ImageView ivShare;
+        ImageView ivShare, ivMedia;
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         public ViewHolder(@NonNull View itemView) {
@@ -77,6 +80,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             title = itemView.findViewById(R.id.itemViewTitle);
             shortContent = itemView.findViewById(R.id.itemViewContent);
+            ivMedia = itemView.findViewById(R.id.ivMedia);
             ivShare = itemView.findViewById(R.id.ivShare);
             itemView.setOnClickListener(this::onClick);
 
