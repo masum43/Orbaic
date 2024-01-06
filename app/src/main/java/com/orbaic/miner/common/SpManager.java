@@ -16,6 +16,8 @@ public class SpManager {
     public static String KEY_CORRECT_ANS = "correct_ans";
     public static String KEY_WRONG_ANS = "wrong_ans";
     public static String KEY_IS_NOTIFICATION_ENABLED = "notification";
+    public static String KEY_FCM_TOKEN = "fcm_token";
+    public static String KEY_FCM_NEW_TOKEN = "fcm_new_token";
 
 
     // Initialize SharedPreferences

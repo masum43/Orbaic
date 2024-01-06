@@ -45,7 +45,7 @@ public class terms extends Fragment {
 
             }
         });
-        webView.loadUrl("https://blog.orbaic.com/terms_condition.html");
+        webView.loadUrl(getString(R.string.url_terms));
 
 
 

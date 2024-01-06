@@ -128,7 +128,7 @@
                     android:drawableStart="@drawable/wallet_stacking_icon"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Stacking"
+                    android:text="Staking"
                     android:textColor="#fff"
                     android:textSize="12sp" />
             </LinearLayout>

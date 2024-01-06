@@ -1,5 +1,6 @@
 package com.orbaic.miner.wordpress;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -8,14 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.orbaic.miner.R;
 import com.orbaic.miner.WebViewContent;
 
@@ -49,7 +50,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
       /*  if (excerpt.endsWith("\n")) {
             excerpt = excerpt.substring(0, excerpt.length() - 1);
         }*/
-        excerpt = excerpt.replaceAll("\n", "");
+        excerpt = excerpt.replaceAll("\\\\n$", "");
 
         Log.e("featured_media", "featured_media: "+ post.getFeatured_media());
 
@@ -68,13 +69,40 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title,shortContent;
+        ImageView ivShare;
+
         @RequiresApi(api = Build.VERSION_CODES.N)
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.itemViewTitle);
             shortContent = itemView.findViewById(R.id.itemViewContent);
+            ivShare = itemView.findViewById(R.id.ivShare);
             itemView.setOnClickListener(this::onClick);
+
+            ivShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shareSocial(ivShare.getContext());
+                }
+
+
+            });
+        }
+
+        private void shareSocial(Context context) {
+            int position = this.getAdapterPosition();
+            Post data = posts.get(position);
+            String title = data.getTitle().get("rendered").toString().replaceAll("\"", "");
+            String content = data.getContent().get("rendered").toString().replaceAll("\"", "");
+            String excerpt = data.getExcerpt().get("rendered").toString().replaceAll("\"", "");
+
+            content = contentFilter(content, "<ins", "</ins>");
+            content = videoFilter(content, "<iframe", "/iframe>");
+
+// Modify the content as needed for formatting, filtering, or HTML processing
+
+            shareToSocial((Activity) context, title, excerpt, content);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -109,6 +137,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             //System.out.println(id);
 
         }
+
     }
 
     public String contentFilter(String content, String first, String last) {
@@ -160,5 +189,30 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
         return contentResult;
 
+    }
+
+    public void shareToSocial(Activity activity, String title, String excerpt, String formattedContent) {
+        // Replace "\n" with actual newline characters
+        title = title.replace("\\n", "\n");
+        excerpt = excerpt.replace("\\n", "\n");
+        formattedContent = formattedContent.replace("\\n", "\n");
+
+        String cleanTitle = cleanHtmlTags(title).replaceAll("\\\\n$", "");
+        String cleanExcerpt = cleanHtmlTags(excerpt).replaceAll("\\\\n$", "");
+        String cleanContent = cleanHtmlTags(formattedContent).replaceAll("\\\\n$", "");
+        String message = "Title: " + cleanTitle + "\n\n" +
+                "Excerpt: " + cleanExcerpt + "\n\n" +
+                "Content:\n" + cleanContent;
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+        activity.startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
+
+    private String cleanHtmlTags(String htmlContent) {
+        // Remove HTML tags using regex
+        return htmlContent.replaceAll("<[^>]*>", "");
     }
 }

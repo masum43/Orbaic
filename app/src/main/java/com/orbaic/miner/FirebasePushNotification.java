@@ -7,10 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.orbaic.miner.common.SpManager;
@@ -22,6 +26,7 @@ public class FirebasePushNotification
     private static final String CHANNEL_NAME = "My Channel";
     private static final String CHANNEL_DESCRIPTION = "My Channel Description";
     private int notificationId = 107;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage removeMassage) {
@@ -53,6 +58,15 @@ public class FirebasePushNotification
 
 
     }
+
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        SpManager.init(MyApp.context);
+        SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
+    }
+
+
 
     private static void createNotificationChannel(NotificationManager notificationManager) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

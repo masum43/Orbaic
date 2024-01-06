@@ -11,10 +11,13 @@ import android.webkit.WebViewClient;
 
 import androidx.fragment.app.Fragment;
 
-public class privacy extends Fragment {
-    ProgressDialog progressDialog;
+import java.security.PrivateKey;
 
-    public privacy() {
+public class CommonWebview extends Fragment {
+    ProgressDialog progressDialog;
+    String url;
+
+    public CommonWebview() {
         // Required empty public constructor
     }
     @Override
@@ -45,7 +48,9 @@ public class privacy extends Fragment {
 
             }
         });
-        webView.loadUrl(getString(R.string.url_privacy_policy));
+
+        url = getArguments().getString("url");
+        webView.loadUrl(url);
 
 
 
