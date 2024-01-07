@@ -41,13 +41,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.home.Home;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
+import com.orbaic.miner.myTeam.TeamFragment;
 import com.orbaic.miner.profile.Profile;
 import com.orbaic.miner.settings.SettingsFragment;
 import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
@@ -163,6 +163,10 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                         DatabaseReference userRef = database.getReference("users");
                         userRef.child(userId).updateChildren(hashMap);
 
+                        HashMap<String, Object> hashMap2 = new HashMap<>();
+                        hashMap2.put("point", "3");
+                        userRef.child(mAuth.getUid().toString()).updateChildren(hashMap2);
+
                     }
                 }
             }
@@ -203,20 +207,37 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             if (id == R.id.home) {
                 loadFragment(new Home());
             } else if (id == R.id.menuMiningRules) {
-                loadFragment(new MiningRules());
+                Fragment fragment = new CommonWebview();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", getString(R.string.url_mining_rules));
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
             } else if (id == R.id.menuWhitePaper) {
-                loadFragment(new WhitePaper());
+                Fragment fragment = new CommonWebview();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", getString(R.string.url_white_paper));
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
+
             } else if (id == R.id.menuFaq) {
                 Fragment fragment = new CommonWebview();
                 Bundle bundle = new Bundle();
-                bundle.putString("url", "https://www.orbaic.com/faq.php");
+                bundle.putString("url", getString(R.string.url_faq));
                 fragment.setArguments(bundle);
                 loadFragment(fragment);
             }
             else if (id == R.id.menuTermsAndConditions) {
-                loadFragment(new terms());
+                Fragment fragment = new CommonWebview();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", getString(R.string.url_terms));
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
             } else if (id == R.id.menuPrivacyPolicy) {
-                loadFragment(new privacy());
+                Fragment fragment = new CommonWebview();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", getString(R.string.url_privacy_policy));
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
             } else if (id == R.id.referralTeam) {
                 loadFragment(new TeamReferral());
             } else if (id == R.id.profile) {

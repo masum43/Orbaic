@@ -903,9 +903,6 @@ public class Home extends Fragment {
                     startRippleEffect();
                 } else {
                     stopRippleEffect();
-                    if (miningStartTime.equals("-1")) {
-
-                    }
                     showTapTarget();
                 }
 

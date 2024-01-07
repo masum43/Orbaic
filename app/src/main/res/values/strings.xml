@@ -67,4 +67,5 @@
     <string name="url_white_paper">https://www.orbaic.com/whitepaper.php</string>
     <string name="url_terms">https://www.orbaic.com/terms_condition.php</string>
     <string name="url_privacy_policy">https://www.orbaic.com/privecy_policy.php</string>
+    <string name="url_faq">https://www.orbaic.com/faq.php</string>
 </resources>
