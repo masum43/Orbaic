@@ -102,12 +102,6 @@ public class AllNewsFragment extends Fragment {
                 binding.rvNews.setHasFixedSize(true);
                 binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
 
-                List<Post2.Post2Item> firstFiveItems = new ArrayList<>();
-                if (postItemList2.size() >= 5) {
-                    firstFiveItems.addAll(postItemList2.subList(0, 5));
-                } else {
-                    firstFiveItems.addAll(postItemList2);
-                }
 /*                Collections.sort(firstFiveItems, (o1, o2) -> {
                     if (o1.getFeatured_media() == 1 && o2.getFeatured_media() != 1) {
                         return -1; // o1 comes first
@@ -118,8 +112,7 @@ public class AllNewsFragment extends Fragment {
                     }
                 });*/
 
-                Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
-                binding.rvNews.setAdapter(new PostAdapter2(getContext(), firstFiveItems));
+                binding.rvNews.setAdapter(new PostAdapter2(getContext(), postItemList2));
 
 
 
