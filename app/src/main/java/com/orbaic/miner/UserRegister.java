@@ -74,6 +74,7 @@ public class UserRegister extends AppCompatActivity {
     private Context context;
     String country = "";
     TextView tvTerms;
+    LinearLayout facebookImageRegister;
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -86,6 +87,7 @@ public class UserRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         tvTerms = findViewById(R.id.tvTerms);
+        facebookImageRegister = findViewById(R.id.facebookImageRegister);
 
         //id create
         context = this;
@@ -169,6 +171,13 @@ public class UserRegister extends AppCompatActivity {
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             } else {
+            }
+        });
+
+        facebookImageRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Facebook login not available at this moment", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -71,9 +71,12 @@ import com.orbaic.miner.PushNotificationExtra;
 import com.orbaic.miner.R;
 import com.orbaic.miner.ReferralDataRecive;
 import com.orbaic.miner.SendDataFirebaseDatabase;
+import com.orbaic.miner.TeamMembersFragment;
 import com.orbaic.miner.TeamReferral;
 import com.orbaic.miner.WhitePaper;
+import com.orbaic.miner.allNews.AllNewsFragment;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.RetrofitClient2;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.databinding.FragmentHome2Binding;
 import com.orbaic.miner.myTeam.GridBindAdapter;
@@ -81,6 +84,7 @@ import com.orbaic.miner.myTeam.Team;
 import com.orbaic.miner.quiz.QuizStartActivity;
 import com.orbaic.miner.wordpress.Post;
 import com.orbaic.miner.wordpress.PostAdapter;
+import com.orbaic.miner.wordpress.PostAdapter2;
 import com.orbaic.miner.wordpress.RetrofitClient;
 import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
@@ -138,6 +142,7 @@ public class Home extends Fragment {
     String referralStatus, myReferCode, miningStatus, miningStartTime;
     String referralByUserId = "";
     private List<Post> postItemList;
+    private List<Post2.Post2Item> postItemList2;
     FirebaseData data = new FirebaseData();
     List<Team> teamList = new ArrayList<>();
     List<Team> onMiningDataList = new ArrayList<>();
@@ -186,7 +191,7 @@ public class Home extends Fragment {
         checkEmailVerifyStatus();
 
         initClicks();
-        newsFromWordpressBlog(true);
+        newsFromWordpressBlog2(true);
 
         updateTokenInDatabase();
 
@@ -212,7 +217,7 @@ public class Home extends Fragment {
                         .textTypeface(Typeface.SANS_SERIF)  // Specify a typeface for the text
                         .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
                         .drawShadow(true)                   // Whether to draw a drop shadow or not
-                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                        .cancelable(true)                  // Whether tapping outside the outer circle dismisses the view
                         .tintTarget(true)                   // Whether to tint the target view's color
                         .transparentTarget(false)           // Specify whether the target is transparent (displays the content underneath)
 //                        .icon(Drawable)                     // Specify a custom drawable to draw as the target
@@ -223,7 +228,7 @@ public class Home extends Fragment {
                         super.onTargetClick(view);      // This call is optional
                         runOnUiThread(() -> {
                             SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
-                            startMining();
+                            miningLogic();
                         });
 
                     }
@@ -272,30 +277,7 @@ public class Home extends Fragment {
 
     private void initClicks() {
         mining.setOnClickListener(v -> {
-            getMiningStatus(miningStatus -> {
-                if (miningStatus.equals(Constants.STATUS_OFF)) {
-                    if (!onMiningDataList.isEmpty()) {
-                        Dialog dialog = new Dialog(requireActivity());
-                        dialog.setContentView(R.layout.dialog_extra_point);
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        TextView tvNotice = dialog.findViewById(R.id.tvNotice);
-                        tvNotice.setText("Your " + onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10 * onMiningDataList.size()) + "%.");
-                        dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
-                            dialog.dismiss();
-                            startMining();
-
-                        });
-                        dialog.show();
-                    } else {
-                        startMining();
-                    }
-
-                } else {
-                    miningAlreadyRunningWarning();
-                }
-            });
-
-
+            miningLogic();
         });
 
         transfer.setOnClickListener(v -> {
@@ -398,6 +380,44 @@ public class Home extends Fragment {
             @Override
             public void onClick(View v) {
                 refer();
+            }
+        });
+
+        binding.tvTeamMore.setOnClickListener(view -> getParentFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new TeamMembersFragment())
+                .addToBackStack(null)
+                .commit());
+
+        binding.tvNewsMore.setOnClickListener(view -> getParentFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new AllNewsFragment())
+                .addToBackStack(null)
+                .commit());
+
+    }
+
+    private void miningLogic() {
+        getMiningStatus(miningStatus -> {
+            if (miningStatus.equals(Constants.STATUS_OFF)) {
+                if (!onMiningDataList.isEmpty()) {
+                    Dialog dialog = new Dialog(requireActivity());
+                    dialog.setContentView(R.layout.dialog_extra_point);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    TextView tvNotice = dialog.findViewById(R.id.tvNotice);
+                    tvNotice.setText("Your " + onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10 * onMiningDataList.size()) + "%.");
+                    dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+                        dialog.dismiss();
+                        startMining();
+
+                    });
+                    dialog.show();
+                } else {
+                    startMining();
+                }
+
+            } else {
+                miningAlreadyRunningWarning();
             }
         });
     }
@@ -597,6 +617,72 @@ public class Home extends Fragment {
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.d("RetrofitResponse", "Error");
+                if (withProgress) {
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+    }
+
+    private void newsFromWordpressBlog2(boolean withProgress) {
+
+        WordpressData api = RetrofitClient2.getApiService();
+        Call<List<Post2.Post2Item>> call = api.getPost2();
+
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle(getString(R.string.progressdialog_title));
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getString(R.string.progressdialog_message));
+
+        if (withProgress) {
+            progressDialog.show();
+        }
+
+        call.enqueue(new Callback<List<Post2.Post2Item>>() {
+            @Override
+            public void onResponse(Call<List<Post2.Post2Item>> call, Response<List<Post2.Post2Item>> response) {
+                Log.d("RetrofitResponse", "Status Code " + response.code());
+                postItemList2 = response.body();
+                rvNews.setHasFixedSize(true);
+                rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                List<Post2.Post2Item> firstFiveItems = new ArrayList<>();
+                if (postItemList2.size() >= 5) {
+                    firstFiveItems.addAll(postItemList2.subList(0, 5));
+                } else {
+                    firstFiveItems.addAll(postItemList2);
+                }
+/*                Collections.sort(firstFiveItems, (o1, o2) -> {
+                    if (o1.getFeatured_media() == 1 && o2.getFeatured_media() != 1) {
+                        return -1; // o1 comes first
+                    } else if (o1.getFeatured_media() != 1 && o2.getFeatured_media() == 1) {
+                        return 1; // o2 comes first
+                    } else {
+                        return 0; // maintain the original order if both or neither have featured_media == 1
+                    }
+                });*/
+
+                Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
+                rvNews.setAdapter(new PostAdapter2(getContext(), firstFiveItems));
+
+                if (withProgress) {
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    };
+                    time.schedule(timerTask, 1000);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Post2.Post2Item>> call, Throwable t) {
                 Log.d("RetrofitResponse", "Error");
                 if (withProgress) {
                     progressDialog.dismiss();

@@ -1,5 +1,6 @@
 package com.orbaic.miner.myTeam;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -239,6 +240,8 @@ public class TeamFragment extends Fragment {
                         etReferByCode.setClickable(false);
                         etReferByCode.setEnabled(false);
                         tvSubmit.setVisibility(View.GONE);
+                        showSuccessDialog();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -288,6 +291,7 @@ public class TeamFragment extends Fragment {
                         etReferByCode.setClickable(false);
                         etReferByCode.setEnabled(false);
                         tvSubmit.setVisibility(View.GONE);
+
                     }
 
                 }
@@ -379,5 +383,18 @@ public class TeamFragment extends Fragment {
             // Your code here
             return Constants.STATUS_ON;
         }
+    }
+
+    private void showSuccessDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Success!");
+        builder.setMessage("Your referral code was successful, and you've been credited with 3 ACI tokens. Please verify your balance.");
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

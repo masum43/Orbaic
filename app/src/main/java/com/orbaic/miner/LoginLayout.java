@@ -70,11 +70,14 @@ public class LoginLayout extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private String country = "";
     private int userTotal = 0;
+    LinearLayout facebookImageRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
+
+        facebookImageRegister = findViewById(R.id.facebookImageRegister);
 
         //register
         TextView register_activity = findViewById(R.id.sign_up);
@@ -139,6 +142,14 @@ public class LoginLayout extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.show();
             sign_function();
+        });
+
+
+        facebookImageRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Facebook login not available at this moment", Toast.LENGTH_SHORT).show();
+            }
         });
 
 

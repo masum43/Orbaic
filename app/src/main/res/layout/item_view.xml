@@ -1,125 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/ivMedia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/rectangular_shape"
-        android:src="@drawable/demo_news_icon" />
-
+    app:cardBackgroundColor="#FF364156"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="5dp"
+    >
     <LinearLayout
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        >
 
-        <TextView
-            android:id="@+id/itemViewTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="-1sp"
-            android:textStyle="bold"
-            tools:text="Lorem ipsum dolor sit amet conssetur. Parturient molestie at neque non laoet vulputate nisi"
-            android:textColor="#fff"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/itemViewContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="-1sp"
-            tools:text="Lorem ipsum dolor sit amet conssetur. Parturient molestie at neque non laoet vulputate nisi"
-            android:textColor="#fff"
-            android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/ivMedia"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rectangular_shape"
+            android:src="@drawable/demo_news_icon" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="-2sp"
-                android:text="Jun 16, 2023"
-                android:textColor="#aaa" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/ivShare"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/share_icon" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
-
-<!--
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.cardview.widget.CardView
-        android:layout_margin="3dp"
-        app:cardBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:elevation="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.021" >
-        <RelativeLayout
-            android:layout_margin="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/itemViewTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="2dp"
-                android:text="Content Title"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="-1sp"
+                android:textStyle="bold"
+                tools:text="Lorem ipsum dolor sit amet conssetur. Parturient molestie at neque non laoet vulputate nisi"
+                android:textColor="#fff"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/itemViewContent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/itemViewTitle"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="2dp"
-                android:maxLines="3"
-                android:text="It is a simple."
-                android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="-1sp"
+                android:lines="2"
+                tools:text="Lorem ipsum dodlklfjdfjdsjfkjsdl;kjfl;kjsdfjlkdsdlkjfldjkfdklfjlkdjlkfjdlklor sit amet conssetur. Parturient molestie at neque non laoet vulputate nisi"
+                android:textColor="#fff"
+                android:textSize="12sp" />
 
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="Jun 16, 2023"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#aaa" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/ivShare"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/share_icon" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
