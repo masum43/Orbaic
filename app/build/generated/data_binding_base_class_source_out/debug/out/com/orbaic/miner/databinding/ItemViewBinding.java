@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.orbaic.miner.R;
@@ -18,7 +18,7 @@ import java.lang.String;
 
 public final class ItemViewBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final TextView itemViewContent;
@@ -35,7 +35,7 @@ public final class ItemViewBinding implements ViewBinding {
   @NonNull
   public final TextView tvDate;
 
-  private ItemViewBinding(@NonNull LinearLayout rootView, @NonNull TextView itemViewContent,
+  private ItemViewBinding(@NonNull CardView rootView, @NonNull TextView itemViewContent,
       @NonNull TextView itemViewTitle, @NonNull ImageView ivMedia, @NonNull ImageView ivShare,
       @NonNull TextView tvDate) {
     this.rootView = rootView;
@@ -48,7 +48,7 @@ public final class ItemViewBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -103,7 +103,7 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemViewBinding((LinearLayout) rootView, itemViewContent, itemViewTitle, ivMedia,
+      return new ItemViewBinding((CardView) rootView, itemViewContent, itemViewTitle, ivMedia,
           ivShare, tvDate);
     }
     String missingId = rootView.getResources().getResourceName(id);

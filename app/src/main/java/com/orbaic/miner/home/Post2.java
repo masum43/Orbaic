@@ -14,6 +14,8 @@ public class Post2 extends ArrayList<Post2.Post2Item> {
         private String postLink;
         @SerializedName("post_title")
         private String postTitle;
+        @SerializedName("post_date")
+        private String postDate;
 
         public String getPostBody() {
             return postBody;
@@ -45,6 +47,14 @@ public class Post2 extends ArrayList<Post2.Post2Item> {
 
         public void setPostTitle(String postTitle) {
             this.postTitle = postTitle;
+        }
+
+        public String getPostDate() {
+            return postDate;
+        }
+
+        public void setPostDate(String postDate) {
+            this.postDate = postDate;
         }
     }
 }

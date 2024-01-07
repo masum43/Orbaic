@@ -276,7 +276,7 @@ public class LoginLayout extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginLayout.this,"token Successful",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser uid = mAuth.getCurrentUser();
                             Map<String, Object> userInfo = new HashMap<>();
@@ -350,7 +350,7 @@ public class LoginLayout extends AppCompatActivity {
                                                     }
                                                 });
 
-                                        Toast.makeText(LoginLayout.this, "token Successful", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginLayout.this, "You have successfully logged into your account", Toast.LENGTH_LONG).show();
                                     }else {
 //                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
                                         updateUI();

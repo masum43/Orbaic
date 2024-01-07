@@ -66,6 +66,8 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
             holder.shortContent.setText(Html.fromHtml(excerpt, Html.FROM_HTML_MODE_LEGACY));
         }
 
+        holder.tvDate.setText(post.getPostDate());
+
         RequestOptions requestOptions = new RequestOptions()
                 .transform(new RoundedCorners(5));
         Glide.with(holder.ivMedia.getContext())
@@ -81,7 +83,7 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView title,shortContent;
+        TextView title,shortContent, tvDate;
         ImageView ivShare, ivMedia;
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -90,6 +92,7 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
 
             title = itemView.findViewById(R.id.itemViewTitle);
             shortContent = itemView.findViewById(R.id.itemViewContent);
+            tvDate = itemView.findViewById(R.id.tvDate);
             ivMedia = itemView.findViewById(R.id.ivMedia);
             ivShare = itemView.findViewById(R.id.ivShare);
             itemView.setOnClickListener(this::onClick);
