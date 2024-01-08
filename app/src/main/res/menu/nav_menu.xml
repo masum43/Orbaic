@@ -19,8 +19,9 @@
             android:orderInCategory="103"/>
 
         <item
-            android:icon="@drawable/terms_conditions_icon"
+            android:icon="@drawable/ic_faq"
             android:title="FAQ"
+            android:iconTint="@color/white"
             android:id="@+id/menuFaq"
             android:orderInCategory="104"/>
 
@@ -31,7 +32,7 @@
             android:orderInCategory="104"/>
 
         <item
-            android:icon="@drawable/terms_conditions_icon"
+            android:icon="@drawable/ic_privacy"
             android:title="Privacy Policy"
             android:id="@+id/menuPrivacyPolicy"
             android:orderInCategory="105"/>

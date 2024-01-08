@@ -23,6 +23,9 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
   private final NestedScrollView rootView;
 
   @NonNull
+  public final LinearLayout facebookImageRegister;
+
+  @NonNull
   public final ImageView forgetPasswordLogin;
 
   @NonNull
@@ -41,10 +44,11 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
   public final EditText userLoginEmail;
 
   private ActivityLoginLayoutBinding(@NonNull NestedScrollView rootView,
-      @NonNull ImageView forgetPasswordLogin, @NonNull LinearLayout holderGoogleSignIn,
-      @NonNull ImageView loginButton, @NonNull EditText loginPassword, @NonNull TextView signUp,
-      @NonNull EditText userLoginEmail) {
+      @NonNull LinearLayout facebookImageRegister, @NonNull ImageView forgetPasswordLogin,
+      @NonNull LinearLayout holderGoogleSignIn, @NonNull ImageView loginButton,
+      @NonNull EditText loginPassword, @NonNull TextView signUp, @NonNull EditText userLoginEmail) {
     this.rootView = rootView;
+    this.facebookImageRegister = facebookImageRegister;
     this.forgetPasswordLogin = forgetPasswordLogin;
     this.holderGoogleSignIn = holderGoogleSignIn;
     this.loginButton = loginButton;
@@ -80,6 +84,12 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.facebookImageRegister;
+      LinearLayout facebookImageRegister = ViewBindings.findChildViewById(rootView, id);
+      if (facebookImageRegister == null) {
+        break missingId;
+      }
+
       id = R.id.forget_password_login;
       ImageView forgetPasswordLogin = ViewBindings.findChildViewById(rootView, id);
       if (forgetPasswordLogin == null) {
@@ -116,8 +126,9 @@ public final class ActivityLoginLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityLoginLayoutBinding((NestedScrollView) rootView, forgetPasswordLogin,
-          holderGoogleSignIn, loginButton, loginPassword, signUp, userLoginEmail);
+      return new ActivityLoginLayoutBinding((NestedScrollView) rootView, facebookImageRegister,
+          forgetPasswordLogin, holderGoogleSignIn, loginButton, loginPassword, signUp,
+          userLoginEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

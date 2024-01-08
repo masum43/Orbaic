@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
@@ -52,7 +52,7 @@
             android:id="@+id/user_name_registration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="8dp"
             android:background="@drawable/email_edittext_background"
             android:inputType="textEmailAddress"
@@ -64,7 +64,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -87,7 +87,7 @@
             android:id="@+id/user_email_registration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="8dp"
             android:background="@drawable/email_edittext_background"
             android:inputType="textEmailAddress"
@@ -98,7 +98,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -120,7 +120,7 @@
             android:id="@+id/registration_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="8dp"
             android:background="@drawable/email_edittext_background"
             android:drawableEnd="@drawable/password_visibility_on_icon"
@@ -136,7 +136,7 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -159,7 +159,7 @@
             android:id="@+id/registration_refer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="8dp"
             android:background="@drawable/email_edittext_background"
             android:drawablePadding="10dp"
@@ -172,7 +172,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -183,32 +183,33 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="I accept all "
                 android:textColor="#fff"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvTerms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Terms and Condition"
                 android:textColor="#64D2FF"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_medium"
-                android:text=" of ORBAIC"
+                android:text=" of Orbaic"
                 android:textColor="#fff"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="30dp"
             android:src="@drawable/register_button" />
 

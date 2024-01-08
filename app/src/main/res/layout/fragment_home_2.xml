@@ -599,6 +599,7 @@ team. Bonus rate uncapped "
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/tvTeamMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="more >>"
@@ -639,6 +640,7 @@ team. Bonus rate uncapped "
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/tvNewsMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="more >>"

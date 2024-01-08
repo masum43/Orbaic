@@ -41,6 +41,9 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
   public final TextView signUp;
 
   @NonNull
+  public final TextView tvTerms;
+
+  @NonNull
   public final EditText userEmailRegistration;
 
   @NonNull
@@ -49,7 +52,7 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
   private ActivityUserRegisterBinding(@NonNull NestedScrollView rootView,
       @NonNull LinearLayout facebookImageRegister, @NonNull LinearLayout googleImageRegister,
       @NonNull ImageView registerButton, @NonNull EditText registrationPassword,
-      @NonNull EditText registrationRefer, @NonNull TextView signUp,
+      @NonNull EditText registrationRefer, @NonNull TextView signUp, @NonNull TextView tvTerms,
       @NonNull EditText userEmailRegistration, @NonNull EditText userNameRegistration) {
     this.rootView = rootView;
     this.facebookImageRegister = facebookImageRegister;
@@ -58,6 +61,7 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
     this.registrationPassword = registrationPassword;
     this.registrationRefer = registrationRefer;
     this.signUp = signUp;
+    this.tvTerms = tvTerms;
     this.userEmailRegistration = userEmailRegistration;
     this.userNameRegistration = userNameRegistration;
   }
@@ -125,6 +129,12 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvTerms;
+      TextView tvTerms = ViewBindings.findChildViewById(rootView, id);
+      if (tvTerms == null) {
+        break missingId;
+      }
+
       id = R.id.user_email_registration;
       EditText userEmailRegistration = ViewBindings.findChildViewById(rootView, id);
       if (userEmailRegistration == null) {
@@ -139,7 +149,7 @@ public final class ActivityUserRegisterBinding implements ViewBinding {
 
       return new ActivityUserRegisterBinding((NestedScrollView) rootView, facebookImageRegister,
           googleImageRegister, registerButton, registrationPassword, registrationRefer, signUp,
-          userEmailRegistration, userNameRegistration);
+          tvTerms, userEmailRegistration, userNameRegistration);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -17,6 +17,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -72,6 +73,8 @@ public class UserRegister extends AppCompatActivity {
     int userTotal;
     private Context context;
     String country = "";
+    TextView tvTerms;
+    LinearLayout facebookImageRegister;
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -82,6 +85,9 @@ public class UserRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_register);
         mAuth = FirebaseAuth.getInstance();
+
+        tvTerms = findViewById(R.id.tvTerms);
+        facebookImageRegister = findViewById(R.id.facebookImageRegister);
 
         //id create
         context = this;
@@ -157,6 +163,22 @@ public class UserRegister extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.show();
             sign_up();
+        });
+
+        tvTerms.setOnClickListener(view -> {
+            String urlToOpen = getString(R.string.url_terms);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToOpen));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+            }
+        });
+
+        facebookImageRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Facebook login not available at this moment", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }

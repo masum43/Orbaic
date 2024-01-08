@@ -70,11 +70,14 @@ public class LoginLayout extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private String country = "";
     private int userTotal = 0;
+    LinearLayout facebookImageRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
+
+        facebookImageRegister = findViewById(R.id.facebookImageRegister);
 
         //register
         TextView register_activity = findViewById(R.id.sign_up);
@@ -139,6 +142,14 @@ public class LoginLayout extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.show();
             sign_function();
+        });
+
+
+        facebookImageRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Facebook login not available at this moment", Toast.LENGTH_SHORT).show();
+            }
         });
 
 
@@ -265,7 +276,7 @@ public class LoginLayout extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginLayout.this,"token Successful",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser uid = mAuth.getCurrentUser();
                             Map<String, Object> userInfo = new HashMap<>();
@@ -339,7 +350,7 @@ public class LoginLayout extends AppCompatActivity {
                                                     }
                                                 });
 
-                                        Toast.makeText(LoginLayout.this, "token Successful", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginLayout.this, "You have successfully logged into your account", Toast.LENGTH_LONG).show();
                                     }else {
 //                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
                                         updateUI();

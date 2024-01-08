@@ -64,6 +64,19 @@ public class FirebasePushNotification
         super.onNewToken(token);
         SpManager.init(MyApp.context);
         SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
+
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            String userId = mAuth.getCurrentUser().getUid();
+            DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("usersToken");
+            tokensRef.child(userId).child("fcmToken").setValue(token)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            SpManager.saveString(SpManager.KEY_FCM_TOKEN, token);
+                            SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
+                        }
+                    });
+        }
     }
 
 
