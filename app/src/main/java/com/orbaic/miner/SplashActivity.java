@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -198,8 +199,13 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean isNotificationPermissionGranted() {
-        // Check if the permission is granted
-        return ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
-                PackageManager.PERMISSION_GRANTED;
+        if (Build.VERSION.SDK_INT >= 33) {
+            // For Android 13 (or later), check the notification permission
+            return ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED;
+        } else {
+            // For versions older than Android 13, assume permission is granted
+            return true;
+        }
     }
 }
