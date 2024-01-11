@@ -90,7 +90,10 @@ import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -1311,14 +1314,29 @@ public class Home extends Fragment {
     }
 
 
-    private boolean internetConnectionCheck() {
+/*    private boolean internetConnectionCheck() {
         try {
             InetAddress address = InetAddress.getByName("google.com");
             return address.isReachable(5000); // Timeout in milliseconds
         } catch (IOException e) {
             return false;
         }
+    }*/
+private boolean internetConnectionCheck() {
+    try {
+        URL url = new URL("https://www.google.com");
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.setRequestProperty("User-Agent", "Android");
+
+        int statusCode = urlConnection.getResponseCode();
+        return statusCode == 200; // Assuming 200 OK is a successful response
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+    return false;
+}
 
 /*    private boolean internetConnectionCheck() {
         try {
