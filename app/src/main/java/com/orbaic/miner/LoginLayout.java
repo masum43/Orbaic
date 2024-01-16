@@ -51,6 +51,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orbaic.miner.common.Methods;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -192,41 +193,32 @@ public class LoginLayout extends AppCompatActivity {
     }
 
     private void sign_function() {
-//        TextView fail_login = (TextView) findViewById(R.id.login_incorrect_password);
         EditText username = (EditText) findViewById(R.id.user_login_email);
         EditText Login_password = (EditText) findViewById(R.id.login_password);
         String email = username.getText().toString().trim();
         String password = Login_password.getText().toString().trim();
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            progressDialog.dismiss();
-                            updateUI();
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-//                            fail_login.setVisibility(View.VISIBLE);
-                            //Toast.makeText(context, "Please check email and password!!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                            Exception exception = task.getException();
-                            if (exception != null) {
-                                Log.e("LoginIssue", "onComplete: " + exception.getMessage());
-                            }
-                            // Handle the error or display a more specific error message to the user.
-                            // For example, you can check the exception's type and provide custom error messages.
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        updateUI();
+                    } else {
+                        progressDialog.dismiss();
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            Log.e("LoginIssue", "onComplete: " + exception.getMessage());
                             if (exception instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                                Methods.showErrorDialog(LoginLayout.this, "Authentication Error", "Invalid email or password");
                             } else {
-                                Toast.makeText(context, "Authentication failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                Methods.showErrorDialog(LoginLayout.this, "Authentication Error", exception.getMessage());
                             }
+
+
                         }
+
                     }
                 });
-        // [END sign_in_with_email]
     }
 
     @Override
