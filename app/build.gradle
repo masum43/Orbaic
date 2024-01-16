@@ -28,7 +28,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -54,12 +54,11 @@ dependencies {
     }
     implementation 'com.mikhaellopez:circularimageview:4.3.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation 'com.google.android.gms:play-services-auth:20.6.0'
-
-    implementation platform('com.google.firebase:firebase-bom:32.1.1')
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation 'com.google.firebase:firebase-auth' //:22.1.1
     implementation 'com.google.firebase:firebase-database' //:20.2.2
     implementation 'com.google.firebase:firebase-dynamic-links' //:21.1.0
@@ -70,31 +69,31 @@ dependencies {
     implementation 'com.google.firebase:firebase-dynamic-links-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
-    implementation 'androidx.navigation:navigation-fragment:2.6.0'
-    implementation 'androidx.navigation:navigation-ui:2.6.0'
+    implementation 'androidx.navigation:navigation-fragment:2.7.6'
+    implementation 'androidx.navigation:navigation-ui:2.7.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.google.android.gms:play-services-ads:22.2.0'
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation("com.google.android.ump:user-messaging-platform:2.1.0")
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.unity3d.ads:unity-ads:4.8.0'
-    implementation 'com.google.ads.mediation:unity:4.8.0.0'
-    implementation 'com.google.ads.mediation:vungle:6.12.1.1'
-    implementation 'com.google.ads.mediation:facebook:6.15.0.0'
+    implementation 'com.google.ads.mediation:unity:4.9.2.0'
+    implementation 'com.google.ads.mediation:vungle:7.1.0.0'
+    implementation 'com.google.ads.mediation:facebook:6.16.0.0'
     implementation 'com.android.volley:volley:1.2.1'
 
     implementation 'com.github.chesire:lifecyklelog:3.1.1'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
-
-    def lifecycle_version = "2.4.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    // https://mvnrepository.com/artifact/commons-net/commons-net
+    implementation 'commons-net:commons-net:3.6'
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.6.2"
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
     implementation 'com.hbb20:ccp:2.5.0'
 

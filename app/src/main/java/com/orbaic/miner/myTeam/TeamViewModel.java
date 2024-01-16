@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Locale;
 
 public class TeamViewModel extends ViewModel {
+
     private double point = 0.0;
     private int quizCount = 0;
     private int miningHoursCount = 0;

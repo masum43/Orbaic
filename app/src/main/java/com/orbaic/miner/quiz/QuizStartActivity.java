@@ -40,6 +40,7 @@ public class QuizStartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(QuizStartActivity.this, LearnEarnActivity.class));
+                finish();
             }
         });
 

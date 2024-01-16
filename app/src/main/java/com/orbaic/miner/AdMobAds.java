@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdLoadCallback;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -16,9 +18,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
+import com.orbaic.miner.quiz.AdmobDataChange;
 
 public class AdMobAds {
     private Context context;
+    private AdmobDataChange dataChange;
+
+    private AdLoadCallback listener;
     private InterstitialAd admobInterstitialAd;
     private RewardedInterstitialAd rewardedInterstitialAd;
     private String button = "";
@@ -26,6 +32,10 @@ public class AdMobAds {
     public AdMobAds(Context context, Activity getActivity){
         this.context = context;
         this.getActivity = getActivity;
+    }
+
+    public void setAdLoadCallback(AdLoadCallback listener) {
+        this.listener = listener;
     }
 
     public void loadRewardInterstitial(){
@@ -36,6 +46,7 @@ public class AdMobAds {
                         public void onAdLoaded(RewardedInterstitialAd ad) {
                             ResponseInfo responseInfo = ad.getResponseInfo();
                             System.out.printf(responseInfo.toString());
+
                             button = "ON";
                             rewardedInterstitialAd = ad;
                             System.out.println(ad);
@@ -87,7 +98,8 @@ public class AdMobAds {
     }
 
     public void loadIntersAndRewardedAd() {
-        if (admobInterstitialAd == null) {
+        if (admobInterstitialAd != null) {
+            admobInterstitialAd = null;
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
             if (com.orbaic.miner.BuildConfig.DEBUG) {
@@ -113,8 +125,32 @@ public class AdMobAds {
                             System.out.printf(String.valueOf(responseInfo));
                         }
                     });
+        }else{
+            AdRequest adRequest = new AdRequest.Builder().build();
+            String intersId = "ca-app-pub-9323045181924630/7438005611";
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
+                intersId = "ca-app-pub-3940256099942544/1033173712";
+            }
+            InterstitialAd.load(context,intersId, adRequest,
+                    new InterstitialAdLoadCallback() {
+                        @Override
+                        public void onAdLoaded(@NonNull InterstitialAd ad) {
+                            // The mInterstitialAd reference will be null until
+                            // an ad is loaded.
+                            admobInterstitialAd = ad;
+                            button = "ON";
+                            //Log.i(TAG, "onAdLoaded");
+                        }
 
-
+                        @Override
+                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                            ResponseInfo responseInfo = loadAdError.getResponseInfo();
+                            // Handle the error
+                            admobInterstitialAd = null;
+                            loadIntersAndRewardedAd();
+                            System.out.printf(String.valueOf(responseInfo));
+                        }
+                    });
         }
     }
 

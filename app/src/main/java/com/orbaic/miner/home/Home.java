@@ -1,8 +1,8 @@
 package com.orbaic.miner.home;
 
 
+import static com.unity3d.services.core.misc.Utilities.runOnUiThread;
 import static com.unity3d.services.core.properties.ClientProperties.getApplicationContext;
-import static com.vungle.warren.utility.ThreadUtil.runOnUiThread;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -76,6 +76,7 @@ import com.orbaic.miner.TeamReferral;
 import com.orbaic.miner.WhitePaper;
 import com.orbaic.miner.allNews.AllNewsFragment;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.GetNetTime;
 import com.orbaic.miner.common.RetrofitClient2;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.databinding.FragmentHome2Binding;
@@ -90,17 +91,13 @@ import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -127,7 +124,7 @@ public class Home extends Fragment {
     private double Coin = 0.0F;
     Timer time = new Timer();
     TimerTask timerTask;
-    public long mEndTime, timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime = -1;
+    public long mEndTime, quizTimestamp = 0,  timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime = -1;
     private static long START_TIME_IN_MILLIS = 86400000;
     TextView hr, AciCoin;
     TextView tvTeamStatus;
@@ -150,6 +147,7 @@ public class Home extends Fragment {
     List<Team> teamList = new ArrayList<>();
     List<Team> onMiningDataList = new ArrayList<>();
     TextView tvQuizCountDown;
+    GetNetTime netTime = new GetNetTime();
     TextView tvRate;
     ProgressBar waitingQuizProgressbar, earnRewardProgressBar, quizRewardProgressBar;
     TextView tvMiningHoursCount, tvQuizCount;
@@ -202,10 +200,21 @@ public class Home extends Fragment {
 
     }
 
+    private void tapDone() {
+        if(timeLeftInMillis <= 0){
+            SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, false);
+            showTapTarget();
+        }else {
+            SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
+            showTapTarget();
+        }
+    }
+
     private void showTapTarget() {
         boolean isTapDone = SpManager.getBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, false);
-        if (isTapDone) return;
-
+        if (isTapDone){
+            return;
+        }
         TapTargetView.showFor(requireActivity(),                 // `this` is an Activity
                 TapTarget.forView(ivMining, "Start Mining", "Click here to start your mining")
                         // All options below are optional
@@ -236,11 +245,24 @@ public class Home extends Fragment {
 
                     }
                 });
+
+
     }
 
     private void quizCountDown(String enableTime) {
+        long currentTime;
 
-        long currentTime = System.currentTimeMillis();
+        quizTimestamp = netTime.getNetTime(getContext());
+        if (!netTime.isError()) {
+            currentTime = quizTimestamp;
+            System.out.println("current time from net: " + currentTime);
+        }else {
+            currentTime = System.currentTimeMillis();
+            System.out.println("current time from net: " + currentTime);
+        }
+
+
+
         long timeDifference = Long.parseLong(enableTime) - currentTime;
 
 
@@ -401,28 +423,26 @@ public class Home extends Fragment {
     }
 
     private void miningLogic() {
-        getMiningStatus(miningStatus -> {
-            if (miningStatus.equals(Constants.STATUS_OFF)) {
-                if (!onMiningDataList.isEmpty()) {
-                    Dialog dialog = new Dialog(requireActivity());
-                    dialog.setContentView(R.layout.dialog_extra_point);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    TextView tvNotice = dialog.findViewById(R.id.tvNotice);
-                    tvNotice.setText("Your " + onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10 * onMiningDataList.size()) + "%.");
-                    dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
-                        dialog.dismiss();
-                        startMining();
-
-                    });
-                    dialog.show();
-                } else {
+        if (timeLeftInMillis <= 0) {
+            if (!onMiningDataList.isEmpty()) {
+                Dialog dialog = new Dialog(requireActivity());
+                dialog.setContentView(R.layout.dialog_extra_point);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                TextView tvNotice = dialog.findViewById(R.id.tvNotice);
+                tvNotice.setText("Your " + onMiningDataList.size() + " team member is mining now. So you will get extra : " + (10 * onMiningDataList.size()) + "%.");
+                dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+                    dialog.dismiss();
                     startMining();
-                }
 
+                });
+                dialog.show();
             } else {
-                miningAlreadyRunningWarning();
+                startMining();
             }
-        });
+
+        } else {
+            miningAlreadyRunningWarning();
+        }
     }
 
     private void miningAlreadyRunningWarning() {
@@ -668,7 +688,7 @@ public class Home extends Fragment {
                     }
                 });*/
 
-                Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
+                //Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
                 rvNews.setAdapter(new PostAdapter2(getContext(), firstFiveItems));
 
                 if (withProgress) {
@@ -686,7 +706,7 @@ public class Home extends Fragment {
 
             @Override
             public void onFailure(Call<List<Post2.Post2Item>> call, Throwable t) {
-                Log.d("RetrofitResponse", "Error");
+                //Log.d("RetrofitResponse", "Error");
                 if (withProgress) {
                     progressDialog.dismiss();
                 }
@@ -795,7 +815,22 @@ public class Home extends Fragment {
                 //Start - Learn and Earn Enable
                 String enableTime = snapshot.child("extra1").getValue().toString();
                 endTime = Long.parseLong(enableTime);
-                long currentTime = System.currentTimeMillis();
+
+                // new update tomal
+                long currentTime;
+
+                quizTimestamp = netTime.getNetTime(getContext());
+                System.out.println("current time from net: " + quizTimestamp);
+
+                if (!netTime.isError()) {
+                    currentTime = quizTimestamp;
+                    System.out.println("current time from net: " + currentTime);
+                }else {
+                    currentTime = System.currentTimeMillis();
+                    System.out.println("current time from local: " + currentTime);
+                }
+
+
                 if (currentTime > endTime) {
                     quizWaitingLayout.setVisibility(View.GONE);
                     available.setVisibility(View.VISIBLE);
@@ -889,11 +924,13 @@ public class Home extends Fragment {
                     runClock();
                     addPoints();
                 }
+                tapDone();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("TAG", "onCancelled: " + error.getMessage());
 
             }
         });
@@ -919,6 +956,7 @@ public class Home extends Fragment {
         if (count != null) {
             count.cancel();
         }
+        stopRippleEffect();
     }
 
     public void getMiningStatus(MiningStatusCallback callback) {
@@ -933,11 +971,11 @@ public class Home extends Fragment {
                 } else miningStartTime = "-1";
 
                 String miningStatus = checkMiningStatus(miningStartTime);
-                if (miningStatus.equals(Constants.STATUS_ON)) {
+                /*if (miningStatus.equals(Constants.STATUS_ON)) {
                     startRippleEffect();
                 } else {
                     stopRippleEffect();
-                }
+                }*/
                 callback.onMiningStatusChanged(miningStatus);
 
             }
@@ -955,6 +993,7 @@ public class Home extends Fragment {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -988,12 +1027,12 @@ public class Home extends Fragment {
                 Log.e("miningStartTime", "onDataChange: " + miningStartTime);
 
                 String miningStatus = checkMiningStatus(miningStartTime);
-                if (miningStatus.equals(Constants.STATUS_ON)) {
+                /*if (miningStatus.equals(Constants.STATUS_ON)) {
                     startRippleEffect();
                 } else {
                     stopRippleEffect();
                     showTapTarget();
-                }
+                }*/
 
                 // System.out.println(referralStatus);
                 Coin = Double.valueOf(point);
@@ -1101,6 +1140,7 @@ public class Home extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("TAG", "Failed to update rewarded balance! " + error.getDetails(), error.toException());
 
                     }
                 });
@@ -1314,29 +1354,14 @@ public class Home extends Fragment {
     }
 
 
-/*    private boolean internetConnectionCheck() {
+    private boolean internetConnectionCheck() {
         try {
             InetAddress address = InetAddress.getByName("google.com");
             return address.isReachable(5000); // Timeout in milliseconds
         } catch (IOException e) {
             return false;
         }
-    }*/
-private boolean internetConnectionCheck() {
-    try {
-        URL url = new URL("https://www.google.com");
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestProperty("User-Agent", "Android");
-
-        int statusCode = urlConnection.getResponseCode();
-        return statusCode == 200; // Assuming 200 OK is a successful response
-    } catch (MalformedURLException e) {
-        e.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-    return false;
-}
 
 /*    private boolean internetConnectionCheck() {
         try {

@@ -1,6 +1,8 @@
 package com.orbaic.miner;
 
 import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -10,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class FirebaseData {
@@ -150,4 +153,15 @@ public class FirebaseData {
         });
     }
 
+    //tomal
+    public void updateDataWithUid(Map<String, Object> value, String pathName){
+        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference userDataref = FirebaseDatabase.getInstance().getReference(pathName).child(mAuth.getUid());
+        userDataref.updateChildren(value).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println(unused);
+            }
+        });
+    }
 }
