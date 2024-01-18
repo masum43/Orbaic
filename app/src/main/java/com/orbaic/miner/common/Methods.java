@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
 
+import java.text.DecimalFormat;
+
 public class Methods {
     public static void showErrorDialog(Context context, String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -13,5 +15,11 @@ public class Methods {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public static double roundToFourDecimalPlaces(double value) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.####");
+        String formattedValue = decimalFormat.format(value);
+        return Double.parseDouble(formattedValue);
     }
 }

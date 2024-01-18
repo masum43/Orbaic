@@ -77,6 +77,7 @@ import com.orbaic.miner.WhitePaper;
 import com.orbaic.miner.allNews.AllNewsFragment;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.GetNetTime;
+import com.orbaic.miner.common.Methods;
 import com.orbaic.miner.common.RetrofitClient2;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.databinding.FragmentHome2Binding;
@@ -667,39 +668,34 @@ public class Home extends Fragment {
         call.enqueue(new Callback<List<Post2.Post2Item>>() {
             @Override
             public void onResponse(Call<List<Post2.Post2Item>> call, Response<List<Post2.Post2Item>> response) {
-                Log.d("RetrofitResponse", "Status Code " + response.code());
-                postItemList2 = response.body();
-                rvNews.setHasFixedSize(true);
-                rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
+                if (response.body() != null) {
+                    Log.d("RetrofitResponse", "Status Code " + response.code());
+                    postItemList2 = response.body();
+                    rvNews.setHasFixedSize(true);
+                    rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
 
-                List<Post2.Post2Item> firstFiveItems = new ArrayList<>();
-                if (postItemList2.size() >= 5) {
-                    firstFiveItems.addAll(postItemList2.subList(0, 5));
-                } else {
-                    firstFiveItems.addAll(postItemList2);
-                }
-/*                Collections.sort(firstFiveItems, (o1, o2) -> {
-                    if (o1.getFeatured_media() == 1 && o2.getFeatured_media() != 1) {
-                        return -1; // o1 comes first
-                    } else if (o1.getFeatured_media() != 1 && o2.getFeatured_media() == 1) {
-                        return 1; // o2 comes first
+                    List<Post2.Post2Item> firstFiveItems = new ArrayList<>();
+                    if (postItemList2.size() >= 5) {
+                        firstFiveItems.addAll(postItemList2.subList(0, 5));
                     } else {
-                        return 0; // maintain the original order if both or neither have featured_media == 1
+                        firstFiveItems.addAll(postItemList2);
                     }
-                });*/
+                    rvNews.setAdapter(new PostAdapter2(getContext(), firstFiveItems));
 
-                //Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
-                rvNews.setAdapter(new PostAdapter2(getContext(), firstFiveItems));
-
-                if (withProgress) {
-                    timerTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            progressDialog.dismiss();
-                        }
-                    };
-                    time.schedule(timerTask, 1000);
+                    if (withProgress) {
+                        timerTask = new TimerTask() {
+                            @Override
+                            public void run() {
+                                progressDialog.dismiss();
+                            }
+                        };
+                        time.schedule(timerTask, 1000);
+                    }
                 }
+                else {
+                    progressDialog.dismiss();
+                }
+
 
 
             }
@@ -724,13 +720,15 @@ public class Home extends Fragment {
                 if (internetConnectionCheck()) {
                     int myTeamMiningCount = onMiningDataList.size();
                     double hourRate = 0.045;
+                    Log.e("HASH_RATE", "Coin: " + Coin);
+
                     if (myTeamMiningCount != 0) {
                         Coin = Coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
                         hourRate = hourRate + hourRate * 0.10 * myTeamMiningCount;
                     } else {
                         Coin = Coin + (0.000012 * 5);
                     }
-                    double finalHourRate = hourRate;
+                    double finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
                     runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
 
 
