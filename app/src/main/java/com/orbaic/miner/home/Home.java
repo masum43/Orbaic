@@ -63,6 +63,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.orbaic.miner.AdMobAds;
+import com.orbaic.miner.BuildConfig;
 import com.orbaic.miner.FirebaseData;
 import com.orbaic.miner.LoginLayout;
 import com.orbaic.miner.MainActivity2;
@@ -193,7 +194,7 @@ public class Home extends Fragment {
         checkEmailVerifyStatus();
 
         initClicks();
-        newsFromWordpressBlog2(true);
+        newsFromWordpressBlog2(false);
 
         updateTokenInDatabase();
 
@@ -230,7 +231,7 @@ public class Home extends Fragment {
                         .textTypeface(Typeface.SANS_SERIF)  // Specify a typeface for the text
                         .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
                         .drawShadow(true)                   // Whether to draw a drop shadow or not
-                        .cancelable(true)                  // Whether tapping outside the outer circle dismisses the view
+                        .cancelable(com.orbaic.miner.BuildConfig.DEBUG)                  // true only in debug mode
                         .tintTarget(true)                   // Whether to tint the target view's color
                         .transparentTarget(false)           // Specify whether the target is transparent (displays the content underneath)
 //                        .icon(Drawable)                     // Specify a custom drawable to draw as the target
@@ -669,7 +670,6 @@ public class Home extends Fragment {
             @Override
             public void onResponse(Call<List<Post2.Post2Item>> call, Response<List<Post2.Post2Item>> response) {
                 if (response.body() != null) {
-                    Log.d("RetrofitResponse", "Status Code " + response.code());
                     postItemList2 = response.body();
                     rvNews.setHasFixedSize(true);
                     rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -693,7 +693,9 @@ public class Home extends Fragment {
                     }
                 }
                 else {
-                    progressDialog.dismiss();
+                    if (withProgress) {
+                        progressDialog.dismiss();
+                    }
                 }
 
 

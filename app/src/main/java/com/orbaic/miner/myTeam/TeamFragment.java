@@ -36,8 +36,6 @@ import com.orbaic.miner.TeamMembersFragment;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.Loading;
 import com.orbaic.miner.common.SpManager;
-import com.orbaic.miner.myTeam.Team;
-import com.orbaic.miner.wallet.WalletViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +48,6 @@ public class TeamFragment extends Fragment {
     RecyclerView recyclerView;
     EditText etReferByCode;
     TextView tvSubmit, tvMyReferCode, tvTotalPoint, tvCopy;
-    HorizontalListAdapter horizontalListAdapter;
     TextView tvTeamMemberCount, viewAll;
     List<Team> teamList = new ArrayList<>();
     FirebaseDatabase database;
@@ -91,8 +88,8 @@ public class TeamFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(requireContext(), "Coming very soon...", Toast.LENGTH_SHORT).show();
-                if (!viewModel.isPointAdded()) {
-                    Toast.makeText(requireContext(), "Something went wrong!! Please try again later!", Toast.LENGTH_SHORT).show();
+                if (!viewModel.isMyDataRead()) {
+                    Toast.makeText(requireContext(), "Failed to get your data. Please check internet connection or try again.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String referBy = etReferByCode.getText().toString();
@@ -210,7 +207,7 @@ public class TeamFragment extends Fragment {
             DatabaseReference referralRef = database.getReference("referralUser");
             HashMap<String, String> map = new HashMap<>();
             map.put("name", name);
-            map.put("status", "-1");
+            map.put("status", viewModel.getMiningStartTime());
             referralRef.child(userId).child(mAuth.getUid().toString()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -254,7 +251,7 @@ public class TeamFragment extends Fragment {
 
 
     public void readData() {
-        viewModel.setPointAdded(false);
+        viewModel.setMyDataRead(false);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -267,8 +264,15 @@ public class TeamFragment extends Fragment {
                 String point = snapshot.child("point").getValue().toString();
                 String referral = snapshot.child("referral").getValue().toString();
 
+                if (snapshot.hasChild("miningStartTime")) {
+                    String miningStartTime = snapshot.child("miningStartTime").getValue().toString();
+                    viewModel.setMiningStartTime(miningStartTime);
+                }
+                else {
+                    viewModel.setMiningStartTime("-1");
+                }
                 viewModel.setPoint(Double.parseDouble(point));
-                viewModel.setPointAdded(true);
+                viewModel.setMyDataRead(true);
 
 
 

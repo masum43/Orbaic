@@ -158,7 +158,7 @@ public class Profile extends Fragment {
                 emailName.setText(email);
                 if (snapshot.hasChild("profile_image")) {
                     String profile_image = snapshot.child("profile_image").getValue().toString();
-                    Glide.with(requireContext()).load(profile_image).into(profilePic);
+                    //Glide.with(requireContext()).load(profile_image).into(profilePic);
                 }
 
 

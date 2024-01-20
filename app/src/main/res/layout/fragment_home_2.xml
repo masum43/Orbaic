@@ -45,7 +45,7 @@
                     android:id="@+id/tvRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.045/h ACI"
+                    android:text="Loading...."
                     android:textColor="#fff"
                     android:textSize="16sp" />
 
@@ -514,6 +514,7 @@
             android:background="#777" />
 
         <LinearLayout
+            android:id="@+id/holderRefer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -534,7 +535,6 @@
                 android:src="@drawable/person_add" />
 
             <LinearLayout
-                android:id="@+id/holderRefer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
@@ -558,6 +558,7 @@ team. Bonus rate uncapped "
             </LinearLayout>
 
             <TextView
+                android:id="@+id/arrowInvite"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
