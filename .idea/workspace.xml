@@ -86,7 +86,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[8d712659]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -408,13 +408,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674986654094</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Initial commit">
-      <created>1689832312721</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1689832312721</updated>
     </task>
     <task id="LOCAL-00011" summary="bug fixed">
       <created>1692032702724</created>
@@ -752,6 +745,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703182484484</updated>
     </task>
+    <task id="LOCAL-00068" summary="modified internet connection check">
+      <created>1704951157931</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1704951157931</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <option name="localTasksCounter" value="71" />
     <servers />
   </component>
@@ -768,6 +769,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="data read update" />
+    <MESSAGE value="data read update bug fixed" />
     <MESSAGE value="code improving" />
     <MESSAGE value="release 17" />
     <MESSAGE value="team refer" />
@@ -794,6 +797,8 @@
     <MESSAGE value="tomal branch codes merged" />
     <MESSAGE value="alert dialog added on login exception, hash rate increase realtime" />
     <option name="LAST_COMMIT_MESSAGE" value="alert dialog added on login exception, hash rate increase realtime" />
+    <MESSAGE value="modified internet connection check" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified internet connection check" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
