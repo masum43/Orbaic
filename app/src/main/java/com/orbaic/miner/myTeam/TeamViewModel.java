@@ -1,25 +1,14 @@
 package com.orbaic.miner.myTeam;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Locale;
 
 public class TeamViewModel extends ViewModel {
 
     private double point = 0.0;
     private int quizCount = 0;
     private int miningHoursCount = 0;
-    private boolean isPointAdded = false;
+    private boolean isMyDataRead = false;
+    private String miningStartTime;
 
     public double getPoint() {
         return point;
@@ -27,6 +16,14 @@ public class TeamViewModel extends ViewModel {
 
     public void setPoint(double point) {
         this.point = point;
+    }
+
+    public String getMiningStartTime() {
+        return miningStartTime;
+    }
+
+    public void setMiningStartTime(String miningStartTime) {
+        this.miningStartTime = miningStartTime;
     }
 
     public int getQuizCount() {
@@ -45,11 +42,11 @@ public class TeamViewModel extends ViewModel {
         this.miningHoursCount = miningHoursCount;
     }
 
-    public boolean isPointAdded() {
-        return isPointAdded;
+    public boolean isMyDataRead() {
+        return isMyDataRead;
     }
 
-    public void setPointAdded(boolean pointAdded) {
-        isPointAdded = pointAdded;
+    public void setMyDataRead(boolean myDataRead) {
+        isMyDataRead = myDataRead;
     }
 }
