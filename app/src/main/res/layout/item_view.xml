@@ -11,13 +11,13 @@
     android:layout_marginBottom="5dp"
     >
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/ivMedia"
             android:layout_width="120dp"
             android:layout_height="match_parent"
@@ -26,9 +26,18 @@
             android:background="@drawable/rectangular_shape"
             android:src="@drawable/demo_news_icon" />
 
+        <View
+            android:id="@+id/view1"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            />
+
         <LinearLayout
+            android:id="@+id/newsHolder2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -81,6 +90,8 @@
                     android:src="@drawable/share_icon" />
             </LinearLayout>
         </LinearLayout>
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 

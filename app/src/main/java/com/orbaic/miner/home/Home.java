@@ -474,9 +474,7 @@ public class Home extends Fragment {
             @Override
             public void onSuccess(Void unused) {
                 System.out.println(user.isEmailVerified());
-                if (user.isEmailVerified()) {
-                    /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
-                } else {
+                if (!user.isEmailVerified()) {
                     dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                 }
             }
@@ -730,7 +728,7 @@ public class Home extends Fragment {
                     } else {
                         Coin = Coin + (0.000012 * 5);
                     }
-                    double finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
+                    String finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
                     runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
 
 
@@ -998,7 +996,10 @@ public class Home extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("DATA_READ", "readData");
-                String name = snapshot.child("name").getValue().toString();
+                String name = "";
+                if (snapshot.hasChild("name")) {
+                    name = snapshot.child("name").getValue().toString();
+                }
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
 
@@ -1381,30 +1382,27 @@ public class Home extends Fragment {
         builder.setTitle(title);
         builder.setMessage(msg);
         builder.setCancelable(false);
-        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (currentUser == null) {
-                    Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
-                }
-                currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
-
-
-                currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-
-                        System.out.println(user.isEmailVerified());
-                        if (user.isEmailVerified()) {
-                            Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
-                        } else {
-                            dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
-                        }
-                    }
-                });
-
-
+        builder.setPositiveButton("Verify", (dialogInterface, i) -> {
+            if (currentUser == null) {
+                Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
             }
+            currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
+
+
+            currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                    System.out.println(user.isEmailVerified());
+                    if (user.isEmailVerified()) {
+                        Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                    }
+                }
+            });
+
+
         });
         builder.setNegativeButton("Send Email", new DialogInterface.OnClickListener() {
             @Override
