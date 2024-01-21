@@ -678,8 +678,8 @@ team. Bonus rate uncapped "
             android:layout_marginBottom="100dp"
             android:background="@color/background" />
 
-        <include
-            android:visibility="gone"
-            layout="@layout/layout_home_old" />
+<!--        <include-->
+<!--            android:visibility="gone"-->
+<!--            layout="@layout/layout_home_old" />-->
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

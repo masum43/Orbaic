@@ -120,7 +120,7 @@ public class Home extends Fragment {
     }
 
     public CountDownTimer count;
-    ConstraintLayout transfer;
+//    ConstraintLayout transfer;
     TextView learnEarn;
 
     private double Coin = 0.0F;
@@ -307,7 +307,7 @@ public class Home extends Fragment {
             miningLogic();
         });
 
-        transfer.setOnClickListener(v -> {
+    /*    transfer.setOnClickListener(v -> {
             PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -335,8 +335,8 @@ public class Home extends Fragment {
                     notificationExtra.sendNotification(token, "Test", "body");
                 }
             });
-            /*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*/
-        });
+            *//*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*//*
+        });*/
 
         learnEarn.setOnClickListener(v -> {
             //startActivity(new Intent(getContext(), QuizStartActivity.class));
@@ -487,7 +487,6 @@ public class Home extends Fragment {
         tvQuizCount = view.findViewById(R.id.tvQuizCount);
         available = view.findViewById(R.id.learnAvailable);
         quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
-        transfer = view.findViewById(R.id.trans);
         mining = view.findViewById(R.id.mining);
         rippleEffect = view.findViewById(R.id.rippleEffect);
         rippleCenterImage = view.findViewById(R.id.centerImage);
