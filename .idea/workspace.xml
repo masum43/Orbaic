@@ -73,10 +73,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ab9893-d850-4a8b-9b89-14af3c4b3aee" name="Changes" comment="alert dialog added on login exception, hash rate increase realtime">
+    <list default="true" id="85ab9893-d850-4a8b-9b89-14af3c4b3aee" name="Changes" comment="update on profile, team">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/Methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/Methods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/home/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/home/Home.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +84,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[8d712659]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -192,7 +190,7 @@
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;last_directory_selection&quot;: &quot;/Users/masum/Development/StudioProjects/temp/Orbaic/app/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/masum/Development/StudioProjects/temp/Orbaic/app/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/domino/codecanyon-Hj0sCH9T-domino-vegas-admob-gdpr-android-studio/domino_main_files/android_domino30&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -219,11 +217,11 @@
       <recent name="com.orbaic.miner" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Orbaic\app\src\main\res\layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res" />
-      <recent name="C:\Users\ASUS\StudioProjects\Orbaic\app\src\main\res\menu" />
     </key>
     <key name="android.template.-909358289">
       <recent name="com.orbaic.miner" />
@@ -271,7 +269,6 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
-      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -347,7 +344,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Orbaic2 [signreport]" type="GradleRunConfiguration" factoryName="Gradle">
@@ -369,7 +365,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Orbaic:app [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -391,7 +386,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -408,20 +402,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674986654094</updated>
-    </task>
-    <task id="LOCAL-00011" summary="bug fixed">
-      <created>1692032702724</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1692032702724</updated>
-    </task>
-    <task id="LOCAL-00012" summary="quiz done">
-      <created>1693156154464</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1693156154464</updated>
     </task>
     <task id="LOCAL-00013" summary="quiz done">
       <created>1693243320373</created>
@@ -752,8 +732,21 @@
       <option name="project" value="LOCAL" />
       <updated>1704951157931</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="local commit">
+      <created>1705720950772</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1705720950776</updated>
+    </task>
+    <task id="LOCAL-00072" summary="update on profile, team">
+      <created>1705745845975</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1705745845975</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -769,9 +762,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="data read update" />
-    <MESSAGE value="data read update bug fixed" />
-    <MESSAGE value="code improving" />
     <MESSAGE value="release 17" />
     <MESSAGE value="team refer" />
     <MESSAGE value="adapter" />
@@ -788,7 +778,6 @@
     <MESSAGE value="crash fixed" />
     <MESSAGE value="crash fixed and url changed" />
     <MESSAGE value="bug fixing" />
-    <MESSAGE value="local commit" />
     <MESSAGE value="external browser open" />
     <MESSAGE value="news" />
     <MESSAGE value="push notification" />
@@ -796,9 +785,10 @@
     <MESSAGE value="release v 24" />
     <MESSAGE value="tomal branch codes merged" />
     <MESSAGE value="alert dialog added on login exception, hash rate increase realtime" />
-    <option name="LAST_COMMIT_MESSAGE" value="alert dialog added on login exception, hash rate increase realtime" />
     <MESSAGE value="modified internet connection check" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified internet connection check" />
+    <MESSAGE value="local commit" />
+    <MESSAGE value="update on profile, team" />
+    <option name="LAST_COMMIT_MESSAGE" value="update on profile, team" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
