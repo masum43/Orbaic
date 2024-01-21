@@ -131,8 +131,6 @@ public class Home extends Fragment {
     TextView hr, AciCoin;
     TextView tvTeamStatus;
     LinearLayout available, quizWaitingLayout;
-    private ImageView referral, facebook, twitter, telegram, instagram;
-    private ImageView white;
     private LinearLayout mining;
     private RippleBackground rippleEffect;
     ImageView rippleCenterImage;
@@ -168,7 +166,6 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHome2Binding.inflate(getLayoutInflater(), container, false);
-//        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
         View view = binding.getRoot();
 
         SpManager.init(requireActivity());
@@ -339,7 +336,6 @@ public class Home extends Fragment {
         });*/
 
         learnEarn.setOnClickListener(v -> {
-            //startActivity(new Intent(getContext(), QuizStartActivity.class));
             if (endTime != -1) {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime > endTime) {
@@ -348,59 +344,6 @@ public class Home extends Fragment {
                     Toast.makeText(getContext(), "After Every 12 Hours", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-
-        referral.setOnClickListener(v -> {
-            Fragment newFragment = new TeamReferral();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, newFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        });
-
-        white.setOnClickListener(v -> {
-
-            Fragment newFragment = new WhitePaper();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, newFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-        });
-
-        facebook.setOnClickListener(v -> {
-            String url = "https://www.facebook.com/orbaic/";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        });
-
-        twitter.setOnClickListener(v -> {
-            String url = "https://twitter.com/Orbaicproject?s=08";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
-
-        telegram.setOnClickListener(v -> {
-            String url = "https://t.me/OrbaicEnglish";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        });
-
-        instagram.setOnClickListener(v -> {
-            String url = "https://www.instagram.com/orbaicproject/";
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
         });
 
         binding.holderRefer.setOnClickListener(new View.OnClickListener() {
@@ -490,14 +433,6 @@ public class Home extends Fragment {
         mining = view.findViewById(R.id.mining);
         rippleEffect = view.findViewById(R.id.rippleEffect);
         rippleCenterImage = view.findViewById(R.id.centerImage);
-
-        instagram = view.findViewById(R.id.instagram_h);
-        telegram = view.findViewById(R.id.telegram_h);
-        twitter = view.findViewById(R.id.twitter_h);
-        facebook = view.findViewById(R.id.facebookIcon_h);
-        referral = view.findViewById(R.id.refe);
-
-        white = view.findViewById(R.id.white_paper);
 
         hr = view.findViewById(R.id.hour_fragment);
         AciCoin = view.findViewById(R.id.aci_coin);
