@@ -163,14 +163,14 @@
             android:orientation="vertical"
             android:padding="15dp">
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/refe"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:src="@drawable/ic_baseline_people_outline_24" />
+<!--            <ImageView-->
+<!--                android:visibility="gone"-->
+<!--                android:id="@+id/refe"-->
+<!--                android:layout_width="43dp"-->
+<!--                android:layout_height="43dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:src="@drawable/ic_baseline_people_outline_24" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -678,8 +678,8 @@ team. Bonus rate uncapped "
             android:layout_marginBottom="100dp"
             android:background="@color/background" />
 
-        <include
-            android:visibility="gone"
-            layout="@layout/layout_home_old" />
+<!--        <include-->
+<!--            android:visibility="gone"-->
+<!--            layout="@layout/layout_home_old" />-->
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

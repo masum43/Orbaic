@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,17 +34,25 @@ public final class ItemViewBinding implements ViewBinding {
   public final ImageView ivShare;
 
   @NonNull
+  public final LinearLayout newsHolder2;
+
+  @NonNull
   public final TextView tvDate;
+
+  @NonNull
+  public final View view1;
 
   private ItemViewBinding(@NonNull CardView rootView, @NonNull TextView itemViewContent,
       @NonNull TextView itemViewTitle, @NonNull ImageView ivMedia, @NonNull ImageView ivShare,
-      @NonNull TextView tvDate) {
+      @NonNull LinearLayout newsHolder2, @NonNull TextView tvDate, @NonNull View view1) {
     this.rootView = rootView;
     this.itemViewContent = itemViewContent;
     this.itemViewTitle = itemViewTitle;
     this.ivMedia = ivMedia;
     this.ivShare = ivShare;
+    this.newsHolder2 = newsHolder2;
     this.tvDate = tvDate;
+    this.view1 = view1;
   }
 
   @Override
@@ -97,14 +106,26 @@ public final class ItemViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.newsHolder2;
+      LinearLayout newsHolder2 = ViewBindings.findChildViewById(rootView, id);
+      if (newsHolder2 == null) {
+        break missingId;
+      }
+
       id = R.id.tvDate;
       TextView tvDate = ViewBindings.findChildViewById(rootView, id);
       if (tvDate == null) {
         break missingId;
       }
 
+      id = R.id.view1;
+      View view1 = ViewBindings.findChildViewById(rootView, id);
+      if (view1 == null) {
+        break missingId;
+      }
+
       return new ItemViewBinding((CardView) rootView, itemViewContent, itemViewTitle, ivMedia,
-          ivShare, tvDate);
+          ivShare, newsHolder2, tvDate, view1);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -120,7 +120,7 @@ public class Home extends Fragment {
     }
 
     public CountDownTimer count;
-    ConstraintLayout transfer;
+//    ConstraintLayout transfer;
     TextView learnEarn;
 
     private double Coin = 0.0F;
@@ -131,8 +131,6 @@ public class Home extends Fragment {
     TextView hr, AciCoin;
     TextView tvTeamStatus;
     LinearLayout available, quizWaitingLayout;
-    private ImageView referral, facebook, twitter, telegram, instagram;
-    private ImageView white;
     private LinearLayout mining;
     private RippleBackground rippleEffect;
     ImageView rippleCenterImage;
@@ -168,7 +166,6 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHome2Binding.inflate(getLayoutInflater(), container, false);
-//        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
         View view = binding.getRoot();
 
         SpManager.init(requireActivity());
@@ -307,7 +304,7 @@ public class Home extends Fragment {
             miningLogic();
         });
 
-        transfer.setOnClickListener(v -> {
+    /*    transfer.setOnClickListener(v -> {
             PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -335,11 +332,10 @@ public class Home extends Fragment {
                     notificationExtra.sendNotification(token, "Test", "body");
                 }
             });
-            /*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*/
-        });
+            *//*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*//*
+        });*/
 
         learnEarn.setOnClickListener(v -> {
-            //startActivity(new Intent(getContext(), QuizStartActivity.class));
             if (endTime != -1) {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime > endTime) {
@@ -348,59 +344,6 @@ public class Home extends Fragment {
                     Toast.makeText(getContext(), "After Every 12 Hours", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-
-        referral.setOnClickListener(v -> {
-            Fragment newFragment = new TeamReferral();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, newFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        });
-
-        white.setOnClickListener(v -> {
-
-            Fragment newFragment = new WhitePaper();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, newFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-        });
-
-        facebook.setOnClickListener(v -> {
-            String url = "https://www.facebook.com/orbaic/";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        });
-
-        twitter.setOnClickListener(v -> {
-            String url = "https://twitter.com/Orbaicproject?s=08";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
-
-        telegram.setOnClickListener(v -> {
-            String url = "https://t.me/OrbaicEnglish";
-
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        });
-
-        instagram.setOnClickListener(v -> {
-            String url = "https://www.instagram.com/orbaicproject/";
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
         });
 
         binding.holderRefer.setOnClickListener(new View.OnClickListener() {
@@ -474,9 +417,7 @@ public class Home extends Fragment {
             @Override
             public void onSuccess(Void unused) {
                 System.out.println(user.isEmailVerified());
-                if (user.isEmailVerified()) {
-                    /* Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();*/
-                } else {
+                if (!user.isEmailVerified()) {
                     dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
                 }
             }
@@ -489,18 +430,9 @@ public class Home extends Fragment {
         tvQuizCount = view.findViewById(R.id.tvQuizCount);
         available = view.findViewById(R.id.learnAvailable);
         quizWaitingLayout = view.findViewById(R.id.quizWaitingLayout);
-        transfer = view.findViewById(R.id.trans);
         mining = view.findViewById(R.id.mining);
         rippleEffect = view.findViewById(R.id.rippleEffect);
         rippleCenterImage = view.findViewById(R.id.centerImage);
-
-        instagram = view.findViewById(R.id.instagram_h);
-        telegram = view.findViewById(R.id.telegram_h);
-        twitter = view.findViewById(R.id.twitter_h);
-        facebook = view.findViewById(R.id.facebookIcon_h);
-        referral = view.findViewById(R.id.refe);
-
-        white = view.findViewById(R.id.white_paper);
 
         hr = view.findViewById(R.id.hour_fragment);
         AciCoin = view.findViewById(R.id.aci_coin);
@@ -730,7 +662,7 @@ public class Home extends Fragment {
                     } else {
                         Coin = Coin + (0.000012 * 5);
                     }
-                    double finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
+                    String finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
                     runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
 
 
@@ -998,7 +930,10 @@ public class Home extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("DATA_READ", "readData");
-                String name = snapshot.child("name").getValue().toString();
+                String name = "";
+                if (snapshot.hasChild("name")) {
+                    name = snapshot.child("name").getValue().toString();
+                }
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
 
@@ -1381,30 +1316,27 @@ public class Home extends Fragment {
         builder.setTitle(title);
         builder.setMessage(msg);
         builder.setCancelable(false);
-        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (currentUser == null) {
-                    Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
-                }
-                currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
-
-
-                currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-
-                        System.out.println(user.isEmailVerified());
-                        if (user.isEmailVerified()) {
-                            Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
-                        } else {
-                            dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
-                        }
-                    }
-                });
-
-
+        builder.setPositiveButton("Verify", (dialogInterface, i) -> {
+            if (currentUser == null) {
+                Toast.makeText(getContext(), "You are not a user. Please connect with Orbaic Support", Toast.LENGTH_SHORT).show();
             }
+            currentUser = FirebaseAuth.getInstance().getCurrentUser().reload();
+
+
+            currentUser.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                    System.out.println(user.isEmailVerified());
+                    if (user.isEmailVerified()) {
+                        Toast.makeText(getContext(), "email Verified", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dialogShow("Email verification", "Your email is not verified. Please check your email and verify the mail.");
+                    }
+                }
+            });
+
+
         });
         builder.setNegativeButton("Send Email", new DialogInterface.OnClickListener() {
             @Override

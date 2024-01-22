@@ -50,15 +50,8 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
         Post2.Post2Item post = posts.get(position);
         String title = post.getPostTitle().toString().replaceAll("\"", "");
         String excerpt = post.getPostBody().toString().trim().replaceAll("\"", "");
-      /*  if (excerpt.endsWith("\n")) {
-            excerpt = excerpt.substring(0, excerpt.length() - 1);
-        }*/
-        excerpt = excerpt.replaceAll("\\\\n$", "");
-//        if (excerpt.length() > 80) {
-//            // Truncate the string to 80 characters
-//            excerpt = excerpt.substring(0, 80);
-//        }
 
+        excerpt = excerpt.replaceAll("\\\\n$", "");
 
         Log.e("NEWS", "excerpt: "+excerpt );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -68,12 +61,21 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
 
         holder.tvDate.setText(post.getPostDate());
 
-        RequestOptions requestOptions = new RequestOptions()
-                .transform(new RoundedCorners(5));
-        Glide.with(holder.ivMedia.getContext())
-                .load(post.getPostImage())
-                .apply(requestOptions)
-                .into(holder.ivMedia);
+        if (!post.getPostImage().isEmpty()) {
+            holder.ivMedia.setVisibility(View.VISIBLE);
+            holder.view1.setVisibility(View.GONE);
+            RequestOptions requestOptions = new RequestOptions()
+                    .transform(new RoundedCorners(5));
+            Glide.with(holder.ivMedia.getContext())
+                    .load(post.getPostImage())
+                    .apply(requestOptions)
+                    .into(holder.ivMedia);
+        }
+        else {
+            holder.ivMedia.setVisibility(View.GONE);
+            holder.view1.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -85,6 +87,7 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
 
         TextView title,shortContent, tvDate;
         ImageView ivShare, ivMedia;
+        View view1;
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         public ViewHolder(@NonNull View itemView) {
@@ -95,6 +98,7 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
             tvDate = itemView.findViewById(R.id.tvDate);
             ivMedia = itemView.findViewById(R.id.ivMedia);
             ivShare = itemView.findViewById(R.id.ivShare);
+            view1 = itemView.findViewById(R.id.view1);
             itemView.setOnClickListener(this::onClick);
 
             ivShare.setOnClickListener(new View.OnClickListener() {
@@ -114,11 +118,6 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
             String link = data.getPostLink().toString().replaceAll("\"", "");
             String excerpt = data.getPostBody().toString().replaceAll("\"", "");
 
-//            link = contentFilter(link, "<ins", "</ins>");
-//            link = videoFilter(link, "<iframe", "/iframe>");
-
-// Modify the content as needed for formatting, filtering, or HTML processing
-
             shareToSocial((Activity) context, title, link);
         }
 
@@ -129,22 +128,9 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
             int position = this.getAdapterPosition();
             Post2.Post2Item data = posts.get(position);
 
-            /*int id = data.getId();
-            String title = data.getTitle().get("rendered").toString().replaceAll("\"", "");
-            String content = data.getContent().get("rendered").toString();
-
-            Intent intent = new Intent(context, WebViewContent.class);
-            intent.putExtra("title", title);
-            intent.putExtra("content", content);
-            context.startActivity(intent);*/
-
             String title = data.getPostTitle().toString().replaceAll("\"", "");
             String content = data.getPostBody().toString().replaceAll("\"", "");
             String excerpt = data.getPostBody().toString().replaceAll("\"", "");
-//            if (excerpt.length() > 80) {
-//                // Truncate the string to 80 characters
-//                excerpt = excerpt.substring(0, 80);
-//            }
 
             content = contentFilter(content, "<ins", "</ins>");
             content = videoFilter(content, "<iframe", "/iframe>");
@@ -154,8 +140,6 @@ public class PostAdapter2 extends RecyclerView.Adapter<PostAdapter2.ViewHolder> 
                         Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString(), excerpt, content);
 
             view.getContext().startActivity(intent);
-
-            //System.out.println(id);
 
         }
 

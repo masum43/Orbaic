@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.appcompat.app.AlertDialog;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class Methods {
     public static void showErrorDialog(Context context, String title, String message) {
@@ -17,9 +19,10 @@ public class Methods {
         alertDialog.show();
     }
 
-    public static double roundToFourDecimalPlaces(double value) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.####");
-        String formattedValue = decimalFormat.format(value);
-        return Double.parseDouble(formattedValue);
+    public static String roundToFourDecimalPlaces(double value) {
+        Locale locale = Locale.US;
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(locale);
+        DecimalFormat decimalFormat = new DecimalFormat("#.####", symbols);
+        return decimalFormat.format(value);
     }
 }

@@ -73,8 +73,12 @@ public class SplashActivity extends AppCompatActivity {
         builder.setMessage("We update our app. Please update the app from Play Store");
         builder.setCancelable(false);
         builder.setPositiveButton("Update", (dialogInterface, i) -> {
-            Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.orbaic.miner"));
-            startActivity(urlIntent);
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
         });
         builder.create().show();
     }
