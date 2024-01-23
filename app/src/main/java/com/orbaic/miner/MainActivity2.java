@@ -88,6 +88,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         toggle.syncState();
         loadFragment(new Home());
 
+        refer();
+        initClicks();
+        gdpr();
+
+    }
+
+    private void refer() {
         if (getIntent().hasExtra("referBy")) {
             String name = getIntent().getStringExtra("name");
             String referBy = getIntent().getStringExtra("referBy");
@@ -98,10 +105,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             }
 
         }
-
-        initClicks();
-        gdpr();
-
     }
 
     private void initClicks() {
