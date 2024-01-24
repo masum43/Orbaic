@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -62,6 +64,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     BottomNavigationView bottomNavigationView;
     ImageView btnEditProfile;
     private ConsentInformation consentInformation;
+    private boolean isClickable = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +189,38 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     private void setBottomNavigationMenu() {
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 item -> {
+                    if (isClickable) {
+                        switch (item.getItemId()) {
+                            case R.id.homeMenu:
+                                loadFragment(new Home());
+                                break;
+                            case R.id.walletMenu:
+                                loadFragment(new WalletFragment());
+                                break;
+                            case R.id.supportMenu:
+                                loadFragment(new SupportFragment());
+                                break;
+                            case R.id.teamMenu:
+                                loadFragment(new TeamFragment());
+                                break;
+                        }
+                        disableClickForDelay();
+                        return true;
+                    }
+                    return false;
+                });
+    }
+
+    private void disableClickForDelay() {
+        isClickable = false;
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            isClickable = true;
+        }, 1000); // 1000 milliseconds (1 second) delay
+    }
+
+/*    private void setBottomNavigationMenu() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                item -> {
                     switch (item.getItemId()) {
                         case R.id.homeMenu:
                             loadFragment(new Home());
@@ -202,7 +237,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                     }
                     return false;
                 });
-    }
+    }*/
 
     private void setNavigationDrawerMenu() {
         navigationView.setItemIconTintList(null);
@@ -284,6 +319,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         Toast.makeText(MainActivity2.this, "Logout your Account", Toast.LENGTH_SHORT).show();
         clearAppData();
     }
+
+
 
     private void loadFragment(Fragment f) {
         FragmentManager fragmentManager = getSupportFragmentManager();

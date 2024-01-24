@@ -93,6 +93,7 @@ import com.orbaic.miner.wordpress.WordpressData;
 import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -120,10 +121,7 @@ public class Home extends Fragment {
     }
 
     public CountDownTimer count;
-//    ConstraintLayout transfer;
     TextView learnEarn;
-
-    private double Coin = 0.0F;
     Timer time = new Timer();
     TimerTask timerTask;
     public long mEndTime, quizTimestamp = 0,  timeLeftInMillis, oldMilli = 0, newMillis = 0, sleepTime = 0, endTime = -1;
@@ -396,8 +394,6 @@ public class Home extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
             dialog.dismiss();
-
-
         });
         dialog.show();
     }
@@ -654,22 +650,23 @@ public class Home extends Fragment {
                 if (internetConnectionCheck()) {
                     int myTeamMiningCount = onMiningDataList.size();
                     double hourRate = 0.045;
-                    Log.e("HASH_RATE", "Coin: " + Coin);
+                    Log.e("HASH_RATE", "Coin: " + viewModel.getPoint());
 
+                    double coin = viewModel.getPoint();
                     if (myTeamMiningCount != 0) {
-                        Coin = Coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
+                        coin = coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
                         hourRate = hourRate + hourRate * 0.10 * myTeamMiningCount;
                     } else {
-                        Coin = Coin + (0.000012 * 5);
+                        coin = coin + (0.000012 * 5);
                     }
+                    viewModel.setPoint(coin);
                     String finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
                     runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
 
 
-                    data.addMiningPoints(String.valueOf(Coin));
-                    System.out.println(Coin);
-                    Log.e("COIN_UPDATE", "Coin1: " + Coin);
-                    String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                    data.addMiningPoints(String.valueOf(coin));
+
+                    String format = String.format(Locale.getDefault(), "%.5f", coin);
                     runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
                 } else {
@@ -725,12 +722,12 @@ public class Home extends Fragment {
     public void onStart() {
         super.onStart();
         readData();
-        startOnFun();
+        //startOnFun();
         getMyTeam();
 
     }
 
-    private void startOnFun() {
+ /*   private void startOnFun() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
@@ -740,8 +737,9 @@ public class Home extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("DATA_READ", "startOnFun");
                 String point = snapshot.child("point").getValue().toString();
-                Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                long coin = Long.parseLong(point);
+//                Coin = Double.valueOf(point);
+                String format = String.format(Locale.getDefault(), "%.5f", coin);
                 AciCoin.setText(format);
 
                 //Start - Learn and Earn Enable
@@ -868,7 +866,7 @@ public class Home extends Fragment {
         });
 
 
-    }
+    }*/
 
     @Override
     public void onStop() {
@@ -929,7 +927,6 @@ public class Home extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("DATA_READ", "readData");
                 String name = "";
                 if (snapshot.hasChild("name")) {
                     name = snapshot.child("name").getValue().toString();
@@ -970,8 +967,9 @@ public class Home extends Fragment {
                 }*/
 
                 // System.out.println(referralStatus);
-                Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                viewModel.setPoint(point);
+                double coin = viewModel.getPoint();
+                String format = String.format(Locale.getDefault(), "%.5f", coin);
                 AciCoin.setText(format);
 
                 if (snapshot.child("referredBy").exists()) {
@@ -997,6 +995,7 @@ public class Home extends Fragment {
 
                 miningRewardProgress();
                 quizRewardProgress();
+                startOnFun(snapshot);
 
             }
 
@@ -1007,6 +1006,133 @@ public class Home extends Fragment {
         });
 
 
+    }
+
+    private void startOnFun(DataSnapshot snapshot) {
+        Log.e("DATA_READ", "startOnFun");
+//        String point = snapshot.child("point").getValue().toString();
+//        long coin = Long.parseLong(point);
+//                Coin = Double.valueOf(point);
+        String format = String.format(Locale.getDefault(), "%.5f", viewModel.getPoint());
+        AciCoin.setText(format);
+
+        //Start - Learn and Earn Enable
+        String enableTime = snapshot.child("extra1").getValue().toString();
+        endTime = Long.parseLong(enableTime);
+
+        // new update tomal
+        long currentTime;
+
+        quizTimestamp = netTime.getNetTime(getContext());
+        System.out.println("current time from net: " + quizTimestamp);
+
+        if (!netTime.isError()) {
+            currentTime = quizTimestamp;
+            System.out.println("current time from net: " + currentTime);
+        }else {
+            currentTime = System.currentTimeMillis();
+            System.out.println("current time from local: " + currentTime);
+        }
+
+
+        if (currentTime > endTime) {
+            quizWaitingLayout.setVisibility(View.GONE);
+            available.setVisibility(View.VISIBLE);
+        } else {
+            quizWaitingLayout.setVisibility(View.VISIBLE);
+            available.setVisibility(View.GONE);
+            quizCountDown(enableTime);
+        }
+        //End - Learn and Earn Enable
+
+
+        String miningHours = "0";
+        if (snapshot.hasChild("mining_count")) {
+            miningHours = snapshot.child("mining_count").getValue().toString();
+        }
+        viewModel.setMiningHoursCount(Integer.parseInt(miningHours));
+
+        String qzCountStr = "0";
+        if (snapshot.hasChild("qz_count")) {
+            qzCountStr = snapshot.child("qz_count").getValue().toString();
+        }
+        viewModel.setQuizCount(Integer.parseInt(qzCountStr));
+
+        //miningRewardStatus
+        String miningRewardStatus = snapshot.child("extra2").getValue().toString();
+        if (miningRewardStatus.equals("1")) {
+            miningStartTime = snapshot.child("miningStartTime").getValue().toString();
+            String miningStatus = checkMiningStatus(miningStartTime);
+            if (miningStatus.equals(Constants.STATUS_OFF)) {
+                data.changeMiningRewardStatusWithMiningCount("0",
+                        String.valueOf(viewModel.getMiningHoursCount() + 24));
+            }
+        }
+        //miningRewardStatus
+
+        SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
+        timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
+        Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
+        oldMilli = timeLeftInMillis;
+        Log.e("BUGS_123", "oldMilli: "+ oldMilli);
+        updateText();
+        mEndTime = preferences.getLong("lastMillis", 0);
+        Log.e("BUGS_123", "mEndTime: "+ mEndTime);
+        timeLeftInMillis = mEndTime - System.currentTimeMillis();
+        Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
+        Log.e("BUGS_123", "System.currentTimeMillis(): "+ System.currentTimeMillis());
+        newMillis = timeLeftInMillis;
+        Log.e("BUGS_123", "newMillis: "+ newMillis);
+        Log.e("COIN_UPDATE", "newMillis: " + newMillis);
+        if (newMillis > 0) {
+            Log.e("BUGS_123", "newMillis > 0");
+            sleepTime = oldMilli - newMillis;
+            Log.e("BUGS_123", "sleepTime: "+ sleepTime);
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    double coin = viewModel.getPoint();
+                    coin = coin + ((sleepTime / 1000) * 0.000012);
+                    viewModel.setPoint(String.valueOf(coin));
+                    data.addMiningPoints(String.valueOf(coin));
+                    String format = String.format(Locale.getDefault(), "%.5f", coin);
+                    Log.e("COIN_UPDATE", "Coin1: " + coin);
+                    requireActivity().runOnUiThread(() -> AciCoin.setText(format));
+                }
+            };
+            time.schedule(timerTask, 1000);
+        }
+        //System.out.println("endTime"+timeLeftInMillis);
+        Log.e("COIN_UPDATE", "timeLeftInMillis: " + timeLeftInMillis);
+        Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
+        if (timeLeftInMillis < 0) {
+            timeLeftInMillis = 0;
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    double coin = viewModel.getPoint();
+                    coin = coin + ((oldMilli / 1000) * 0.000012);
+                    viewModel.setPoint(String.valueOf(coin));
+                    if (coin >= 0) {
+                        data.addMiningPoints(String.valueOf(coin));
+                        String format = String.format(Locale.getDefault(), "%.5f", coin);
+                        Log.e("COIN_UPDATE", "Coin2: " + coin);
+                        requireActivity().runOnUiThread(() -> AciCoin.setText(format));
+                        //System.out.println("finish" + Coin);
+                    }
+                }
+            };
+            time.schedule(timerTask, 4000);
+            updateText();
+            START_TIME_IN_MILLIS = 86400000;
+        } else {
+            START_TIME_IN_MILLIS = timeLeftInMillis;
+//                    mining.setVisibility(View.GONE);
+            startRippleEffect();
+            runClock();
+            addPoints();
+        }
+        tapDone();
     }
 
     private void quizRewardProgress() {
