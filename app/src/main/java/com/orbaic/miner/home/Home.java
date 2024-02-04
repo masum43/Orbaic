@@ -302,37 +302,6 @@ public class Home extends Fragment {
             miningLogic();
         });
 
-    /*    transfer.setOnClickListener(v -> {
-            PushNotificationExtra notificationExtra = new PushNotificationExtra(getContext());
-            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                @RequiresApi(api = Build.VERSION_CODES.O)
-                @Override
-                public void onComplete(@NonNull Task<String> task) {
-                    //get token
-                    String uid = FirebaseAuth.getInstance().getUid();
-                    String token = task.getResult();
-                    System.out.println("Device Token : " + token);
-
-                    //get Time
-                    LocalDateTime currentTime = LocalDateTime.now().plusDays(1);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                    String oneDayPlus = currentTime.format(formatter);
-
-                    //token and timestamp map
-                    Map<String, String> fcmData = new HashMap<>();
-                    fcmData.put("fcmToken", token);
-                    fcmData.put("timestamp", oneDayPlus);
-                    System.out.println(fcmData);
-
-                    //send FCM token and Timestamp
-                    SendDataFirebaseDatabase database = new SendDataFirebaseDatabase();
-                    database.sendUserData(uid, fcmData);
-                    notificationExtra.sendNotification(token, "Test", "body");
-                }
-            });
-            *//*Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();*//*
-        });*/
-
         learnEarn.setOnClickListener(v -> {
             if (endTime != -1) {
                 long currentTime = System.currentTimeMillis();
@@ -512,73 +481,6 @@ public class Home extends Fragment {
 
     }
 
-    //news from wordpress blog
-    private void newsFromWordpressBlog(boolean withProgress) {
-
-        WordpressData api = RetrofitClient.getApiService();
-        Call<List<Post>> call = api.getPost();
-
-        final ProgressDialog progressDialog;
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle(getString(R.string.progressdialog_title));
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(getString(R.string.progressdialog_message));
-
-        if (withProgress) {
-            progressDialog.show();
-        }
-
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                Log.d("RetrofitResponse", "Status Code " + response.code());
-                postItemList = response.body();
-                rvNews.setHasFixedSize(true);
-                rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
-
-                List<Post> firstFiveItems = new ArrayList<>();
-                if (postItemList.size() >= 5) {
-                    firstFiveItems.addAll(postItemList.subList(0, 5));
-                } else {
-                    firstFiveItems.addAll(postItemList);
-                }
-                Collections.sort(firstFiveItems, (o1, o2) -> {
-                    if (o1.getFeatured_media() == 1 && o2.getFeatured_media() != 1) {
-                        return -1; // o1 comes first
-                    } else if (o1.getFeatured_media() != 1 && o2.getFeatured_media() == 1) {
-                        return 1; // o2 comes first
-                    } else {
-                        return 0; // maintain the original order if both or neither have featured_media == 1
-                    }
-                });
-
-                Log.e("enque1122", "onResponse: "+ new Gson().toJson(firstFiveItems));
-                rvNews.setAdapter(new PostAdapter(getContext(), firstFiveItems));
-
-                if (withProgress) {
-                    timerTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            progressDialog.dismiss();
-                        }
-                    };
-                    time.schedule(timerTask, 1000);
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Log.d("RetrofitResponse", "Error");
-                if (withProgress) {
-                    progressDialog.dismiss();
-                }
-            }
-        });
-
-    }
-
     private void newsFromWordpressBlog2(boolean withProgress) {
 
         WordpressData api = RetrofitClient2.getApiService();
@@ -641,44 +543,7 @@ public class Home extends Fragment {
 
     }
 
-    // Mining system
-    private void addPoints() {
-        Log.e("DATA_READ", "addPoints: ");
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                if (internetConnectionCheck()) {
-                    int myTeamMiningCount = onMiningDataList.size();
-                    double hourRate = 0.045;
-                    Log.e("HASH_RATE", "Coin: " + viewModel.getPoint());
 
-                    double coin = viewModel.getPoint();
-                    if (myTeamMiningCount != 0) {
-                        coin = coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
-                        hourRate = hourRate + hourRate * 0.10 * myTeamMiningCount;
-                    } else {
-                        coin = coin + (0.000012 * 5);
-                    }
-                    viewModel.setPoint(coin);
-                    String finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
-                    runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
-
-
-                    data.addMiningPoints(String.valueOf(coin));
-
-                    String format = String.format(Locale.getDefault(), "%.5f", coin);
-                    runOnUiThread(() -> AciCoin.setText(format));
-                    addPoints();
-                } else {
-                    Log.e("COIN_UPDATE", "run: No internet connection");
-                    stop();
-                }
-            }
-        };
-        time.schedule(timerTask, 5000);
-
-
-    }
 
     //stop timer and timer task
     private void stop() {
@@ -727,147 +592,6 @@ public class Home extends Fragment {
 
     }
 
- /*   private void startOnFun() {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("DATA_READ", "startOnFun");
-                String point = snapshot.child("point").getValue().toString();
-                long coin = Long.parseLong(point);
-//                Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(), "%.5f", coin);
-                AciCoin.setText(format);
-
-                //Start - Learn and Earn Enable
-                String enableTime = snapshot.child("extra1").getValue().toString();
-                endTime = Long.parseLong(enableTime);
-
-                // new update tomal
-                long currentTime;
-
-                quizTimestamp = netTime.getNetTime(getContext());
-                System.out.println("current time from net: " + quizTimestamp);
-
-                if (!netTime.isError()) {
-                    currentTime = quizTimestamp;
-                    System.out.println("current time from net: " + currentTime);
-                }else {
-                    currentTime = System.currentTimeMillis();
-                    System.out.println("current time from local: " + currentTime);
-                }
-
-
-                if (currentTime > endTime) {
-                    quizWaitingLayout.setVisibility(View.GONE);
-                    available.setVisibility(View.VISIBLE);
-                } else {
-                    quizWaitingLayout.setVisibility(View.VISIBLE);
-                    available.setVisibility(View.GONE);
-                    quizCountDown(enableTime);
-                }
-                //End - Learn and Earn Enable
-
-
-                String miningHours = "0";
-                if (snapshot.hasChild("mining_count")) {
-                    miningHours = snapshot.child("mining_count").getValue().toString();
-                }
-                viewModel.setMiningHoursCount(Integer.parseInt(miningHours));
-
-                String qzCountStr = "0";
-                if (snapshot.hasChild("qz_count")) {
-                    qzCountStr = snapshot.child("qz_count").getValue().toString();
-                }
-                viewModel.setQuizCount(Integer.parseInt(qzCountStr));
-
-                //miningRewardStatus
-                String miningRewardStatus = snapshot.child("extra2").getValue().toString();
-                if (miningRewardStatus.equals("1")) {
-                    miningStartTime = snapshot.child("miningStartTime").getValue().toString();
-                    String miningStatus = checkMiningStatus(miningStartTime);
-                    if (miningStatus.equals(Constants.STATUS_OFF)) {
-                        data.changeMiningRewardStatusWithMiningCount("0",
-                                String.valueOf(viewModel.getMiningHoursCount() + 24));
-                    }
-                }
-                //miningRewardStatus
-
-                SharedPreferences preferences = getContext().getSharedPreferences("perf", Context.MODE_PRIVATE);
-                timeLeftInMillis = preferences.getLong("millis", timeLeftInMillis);
-                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
-                oldMilli = timeLeftInMillis;
-                Log.e("BUGS_123", "oldMilli: "+ oldMilli);
-                updateText();
-                mEndTime = preferences.getLong("lastMillis", 0);
-                Log.e("BUGS_123", "mEndTime: "+ mEndTime);
-                timeLeftInMillis = mEndTime - System.currentTimeMillis();
-                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
-                Log.e("BUGS_123", "System.currentTimeMillis(): "+ System.currentTimeMillis());
-                newMillis = timeLeftInMillis;
-                Log.e("BUGS_123", "newMillis: "+ newMillis);
-                Log.e("COIN_UPDATE", "newMillis: " + newMillis);
-                if (newMillis > 0) {
-                    Log.e("BUGS_123", "newMillis > 0");
-                    sleepTime = oldMilli - newMillis;
-                    Log.e("BUGS_123", "sleepTime: "+ sleepTime);
-                    timerTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Coin = Coin + ((sleepTime / 1000) * 0.000012);
-                            data.addMiningPoints(String.valueOf(Coin));
-                            String format = String.format(Locale.getDefault(), "%.5f", Coin);
-                            Log.e("COIN_UPDATE", "Coin1: " + Coin);
-                            requireActivity().runOnUiThread(() -> AciCoin.setText(format));
-                        }
-                    };
-                    time.schedule(timerTask, 1000);
-                }
-                //System.out.println("endTime"+timeLeftInMillis);
-                Log.e("COIN_UPDATE", "timeLeftInMillis: " + timeLeftInMillis);
-                Log.e("BUGS_123", "timeLeftInMillis: "+ timeLeftInMillis);
-                if (timeLeftInMillis < 0) {
-                    timeLeftInMillis = 0;
-                    timerTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Coin = Coin + ((oldMilli / 1000) * 0.000012);
-                            if (Coin >= 0) {
-                                data.addMiningPoints(String.valueOf(Coin));
-                                String format = String.format(Locale.getDefault(), "%.5f", Coin);
-                                Log.e("COIN_UPDATE", "Coin2: " + Coin);
-                                requireActivity().runOnUiThread(() -> AciCoin.setText(format));
-                                //System.out.println("finish" + Coin);
-                            }
-                        }
-                    };
-                    time.schedule(timerTask, 4000);
-                    updateText();
-                    START_TIME_IN_MILLIS = 86400000;
-                } else {
-                    START_TIME_IN_MILLIS = timeLeftInMillis;
-//                    mining.setVisibility(View.GONE);
-                    startRippleEffect();
-                    runClock();
-                    addPoints();
-                }
-                tapDone();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("TAG", "onCancelled: " + error.getMessage());
-
-            }
-        });
-
-
-    }*/
-
     @Override
     public void onStop() {
         super.onStop();
@@ -887,34 +611,6 @@ public class Home extends Fragment {
             count.cancel();
         }
         stopRippleEffect();
-    }
-
-    public void getMiningStatus(MiningStatusCallback callback) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child("miningStartTime").exists()) {
-                    miningStartTime = snapshot.child("miningStartTime").getValue().toString();
-                } else miningStartTime = "-1";
-
-                String miningStatus = checkMiningStatus(miningStartTime);
-                /*if (miningStatus.equals(Constants.STATUS_ON)) {
-                    startRippleEffect();
-                } else {
-                    stopRippleEffect();
-                }*/
-                callback.onMiningStatusChanged(miningStatus);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                callback.onMiningStatusChanged(Constants.STATUS_OFF);
-            }
-        });
     }
 
     public void readData() {
@@ -1010,9 +706,6 @@ public class Home extends Fragment {
 
     private void startOnFun(DataSnapshot snapshot) {
         Log.e("DATA_READ", "startOnFun");
-//        String point = snapshot.child("point").getValue().toString();
-//        long coin = Long.parseLong(point);
-//                Coin = Double.valueOf(point);
         String format = String.format(Locale.getDefault(), "%.5f", viewModel.getPoint());
         AciCoin.setText(format);
 
@@ -1133,6 +826,45 @@ public class Home extends Fragment {
             addPoints();
         }
         tapDone();
+    }
+
+    // Mining system
+    private void addPoints() {
+        Log.e("DATA_READ", "addPoints: ");
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (internetConnectionCheck()) {
+                    int myTeamMiningCount = onMiningDataList.size();
+                    double hourRate = 0.045;
+                    Log.e("HASH_RATE", "Coin: " + viewModel.getPoint());
+
+                    double coin = viewModel.getPoint();
+                    if (myTeamMiningCount != 0) {
+                        coin = coin + ((0.000012 * 5) + (0.000012 * 5 * 0.10 * myTeamMiningCount));
+                        hourRate = hourRate + hourRate * 0.10 * myTeamMiningCount;
+                    } else {
+                        coin = coin + (0.000012 * 5);
+                    }
+                    viewModel.setPoint(coin);
+                    String finalHourRate = Methods.roundToFourDecimalPlaces(hourRate);
+                    runOnUiThread(() -> tvRate.setText(finalHourRate + "/h ACI"));
+
+
+                    data.addMiningPoints(String.valueOf(coin));
+
+                    String format = String.format(Locale.getDefault(), "%.5f", coin);
+                    runOnUiThread(() -> AciCoin.setText(format));
+                    addPoints();
+                } else {
+                    Log.e("COIN_UPDATE", "run: No internet connection");
+                    stop();
+                }
+            }
+        };
+        time.schedule(timerTask, 5000);
+
+
     }
 
     private void quizRewardProgress() {
@@ -1322,46 +1054,6 @@ public class Home extends Fragment {
         }
     }
 
-
-    private void updateTokenInDatabase() {
-        if (mAuth.getCurrentUser() != null) {
-            SpManager.init(requireContext());
-            String fcmToken = SpManager.getString(SpManager.KEY_FCM_TOKEN, "");
-            String fcmNewToken = SpManager.getString(SpManager.KEY_FCM_NEW_TOKEN, "");
-
-            if (fcmToken.isEmpty() || !fcmNewToken.equals(fcmToken)) {
-                setToken();
-            }
-        }
-
-    }
-
-    private void setToken() {
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        String token = task.getResult();
-                        // Handle the token, you can print or use it as needed
-                        System.out.println("FCM Token: " + token);
-                        String userId = mAuth.getCurrentUser().getUid();
-                        Log.e("userId", "updateTokenInDatabase: "+userId );
-                        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("usersToken");
-                        tokensRef.child(userId).child("fcmToken").setValue(token).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    SpManager.saveString(SpManager.KEY_FCM_TOKEN, token);
-                                    SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
-                                }
-                            }
-                        });
-                    } else {
-                        // Handle the error
-                        System.out.println("Error fetching FCM token: " + task.getException());
-                    }
-                });
-    }
-
     private void getMyTeam() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -1415,6 +1107,48 @@ public class Home extends Fragment {
     }
 
 
+    private void updateTokenInDatabase() {
+        if (mAuth.getCurrentUser() != null) {
+            SpManager.init(requireContext());
+            String fcmToken = SpManager.getString(SpManager.KEY_FCM_TOKEN, "");
+            String fcmNewToken = SpManager.getString(SpManager.KEY_FCM_NEW_TOKEN, "");
+
+            if (fcmToken.isEmpty() || !fcmNewToken.equals(fcmToken)) {
+                setToken();
+            }
+        }
+
+    }
+
+    private void setToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        String token = task.getResult();
+                        // Handle the token, you can print or use it as needed
+                        System.out.println("FCM Token: " + token);
+                        String userId = mAuth.getCurrentUser().getUid();
+                        Log.e("userId", "updateTokenInDatabase: "+userId );
+                        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("usersToken");
+                        tokensRef.child(userId).child("fcmToken").setValue(token).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    SpManager.saveString(SpManager.KEY_FCM_TOKEN, token);
+                                    SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token);
+                                }
+                            }
+                        });
+                    } else {
+                        // Handle the error
+                        System.out.println("Error fetching FCM token: " + task.getException());
+                    }
+                });
+    }
+
+
+
+
     private boolean internetConnectionCheck() {
         try {
             InetAddress address = InetAddress.getByName("google.com");
@@ -1423,19 +1157,6 @@ public class Home extends Fragment {
             return false;
         }
     }
-
-/*    private boolean internetConnectionCheck() {
-        try {
-            String cmd = "ping -c 1 google.com";
-            return (Runtime.getRuntime().exec(cmd).waitFor() == 0);
-        } catch (IOException e) {
-            return false;
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-    }*/
 
     private void dialogShow(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

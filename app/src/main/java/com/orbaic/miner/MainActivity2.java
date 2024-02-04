@@ -44,6 +44,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.home.Home;
+import com.orbaic.miner.homeNew.NewHomeFragment;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
 import com.orbaic.miner.myTeam.TeamFragment;
 import com.orbaic.miner.profile.Profile;
@@ -89,7 +90,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        loadFragment(new Home());
+        loadFragment(new NewHomeFragment());
 
         refer();
         initClicks();
@@ -192,7 +193,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                     if (isClickable) {
                         switch (item.getItemId()) {
                             case R.id.homeMenu:
-                                loadFragment(new Home());
+                                loadFragment(new NewHomeFragment());
                                 break;
                             case R.id.walletMenu:
                                 loadFragment(new WalletFragment());
@@ -245,7 +246,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             int id = item.getItemId();
             Log.e("DrawerMenu", "setNavigationDrawerMenu: " + id);
             if (id == R.id.home) {
-                loadFragment(new Home());
+                loadFragment(new NewHomeFragment());
             } else if (id == R.id.menuMiningRules) {
                 Fragment fragment = new CommonWebview();
                 Bundle bundle = new Bundle();

@@ -193,7 +193,7 @@ public class LearnEarnActivity extends AppCompatActivity {
 
     private int getRandomNumbers() {
         Random random = new Random();
-        return random.nextInt(93);
+        return random.nextInt(381);
     }
 
 

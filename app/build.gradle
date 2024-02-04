@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -36,6 +37,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildToolsVersion '33.0.1'
     buildFeatures {
         viewBinding true
@@ -96,5 +102,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.6.2"
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
     implementation 'com.hbb20:ccp:2.5.0'
+
+
+    //Binding
+    implementation 'com.github.wada811:ViewBinding-ktx:1.2.3'
+    implementation 'com.github.wada811:DataBinding-ktx:5.0.2'
 
 }
