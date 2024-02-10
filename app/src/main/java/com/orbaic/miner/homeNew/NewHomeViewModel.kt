@@ -10,6 +10,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.orbaic.miner.ReferralDataRecive
+import com.orbaic.miner.common.Constants
+import com.orbaic.miner.common.checkMiningStatusTeam
+import com.orbaic.miner.myTeam.Team
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -47,7 +51,7 @@ class NewHomeViewModel : ViewModel() {
 
     fun startCountdown(miningStartTimeMillis: Long) {
         viewModelScope.launch {
-            countdownStateFlow.emit(CountdownState.Running(miningStartTimeMillis.toString()))
+            countdownStateFlow.emit(CountdownState.Idle)
 
             val currentTimeMillis = System.currentTimeMillis()
             val timeDifference = miningStartTimeMillis - currentTimeMillis
@@ -67,10 +71,13 @@ class NewHomeViewModel : ViewModel() {
                 delay(delayMillis)
                 remainingTimeMillis -= delayMillis
 
-                val secondsRemaining = remainingTimeMillis / 1000
-                val minutes = secondsRemaining / 60
-                val seconds = secondsRemaining % 60
-                countdownStateFlow.emit(CountdownState.Running("$minutes:$seconds"))
+                val totalSecondsRemaining = remainingTimeMillis / 1000
+                val hours = totalSecondsRemaining / 3600
+                val minutes = (totalSecondsRemaining % 3600) / 60
+                val seconds = totalSecondsRemaining % 60
+
+                val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                countdownStateFlow.emit(CountdownState.Running(formattedTime))
             }
 
             countdownStateFlow.emit(CountdownState.Finished)
@@ -79,6 +86,52 @@ class NewHomeViewModel : ViewModel() {
 
     fun getCountdownStateFlow(): Flow<CountdownState> {
         return countdownStateFlow
+    }
+
+
+
+    private val _teamListLiveData = MutableLiveData<List<Team>>()
+    val teamListLiveData: LiveData<List<Team>> = _teamListLiveData
+
+
+    val onMiningDataList = mutableListOf<Team>()
+
+    fun getMyTeam() {
+        viewModelScope.launch {
+            try {
+                val teamList = mutableListOf<Team>()
+
+                val ref = FirebaseDatabase.getInstance().getReference("referralUser")
+                    .child(mAuth.uid ?: "")
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (dataSnapshot in snapshot.children) {
+                            val data = dataSnapshot.getValue(ReferralDataRecive::class.java)
+                            val miningStatus = data?.status?.checkMiningStatusTeam()
+                            teamList.add(Team(dataSnapshot.key ?: "", data?.name ?: "", "", "",
+                                data?.status ?: "", miningStatus))
+                        }
+
+                        teamList.sortBy { it.userName }
+                        val sortedTeamList = teamList.take(5)
+
+                        for (miningData in teamList) {
+                            if (miningData.miningStatus == Constants.STATUS_ON) {
+                                onMiningDataList.add(miningData)
+                            }
+                        }
+
+                        _teamListLiveData.value = teamList
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        println("$error")
+                    }
+                })
+            } catch (e: Exception) {
+                println("Error: $e")
+            }
+        }
     }
 }
 

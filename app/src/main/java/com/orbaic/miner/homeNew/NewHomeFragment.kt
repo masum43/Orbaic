@@ -1,9 +1,11 @@
 package com.orbaic.miner.homeNew
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.orbaic.miner.R
@@ -24,6 +26,7 @@ class NewHomeFragment : Fragment(R.layout.fragment_new_home) {
         observeCountdownState()
     }
 
+
     private fun fetchData() {
         viewModel.fetchData()
         viewModel.userData.observe(viewLifecycleOwner) { user ->
@@ -34,6 +37,11 @@ class NewHomeFragment : Fragment(R.layout.fragment_new_home) {
                 val timeStatus = user?.isWithin24Hours()
                 handleTimeStatus(timeStatus, user?.miningStartTime.toString())
             }
+        }
+
+        viewModel.getMyTeam()
+        viewModel.teamListLiveData.observe(viewLifecycleOwner) {
+            val sortedTeamList = it.take(5)
         }
     }
 

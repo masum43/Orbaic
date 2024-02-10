@@ -1,6 +1,8 @@
 package com.orbaic.miner.homeNew
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.MyApp
 import com.orbaic.miner.common.GetNetTime
@@ -27,6 +29,7 @@ data class User(
     var referredByCode: String = "",
     var type: String = ""
 ) {
+
     suspend fun isWithin24Hours(): TimeStatus {
         if (miningStartTime.isEmpty()) {
             return TimeStatus(0, "Mining start time is empty.")
@@ -60,8 +63,8 @@ data class User(
 
     private suspend fun getServerTime(): Long {
         return try {
-            val getNetTime = GetNetTime()
-            getNetTime.getNetTime(MyApp.context)
+            val getNetTime = GetServerTime()
+            getNetTime.getTime()
         } catch (e: Exception) {
             // Error handling
             System.currentTimeMillis() // Fall back to device time in case of failure
