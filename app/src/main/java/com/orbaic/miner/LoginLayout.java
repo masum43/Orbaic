@@ -295,15 +295,79 @@ public class LoginLayout extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser uid = mAuth.getCurrentUser();
-                            Map<String, Object> userInfo = new HashMap<>();
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-                            ref.child(uid.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    System.out.println("work");
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            //Map<String, Object> userInfo = new HashMap<>();
+                            if (currentUser != null) {
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+                                String uid = currentUser.getUid();
+                                ref.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (!snapshot.exists()) {
+                                        /*int id = userTotal + 1;
+                                        String userID = String.valueOf(id);*/
+
+                                            Random a = new Random();
+                                            int b = a.nextInt(9999);
+                                            int c = a.nextInt(9999);
+                                            String code = String.valueOf(b) + String.valueOf(c);
+
+                                            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
+                                            if (account == null){
+                                                return;
+                                            }
+                                            String name = account.getDisplayName();
+                                            String email = account.getEmail();
+
+                                            /*FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference myRef = database.getReference("users");*/
+                                            Map<String, String> map = new HashMap<>();
+                                            map.put("point","0");
+                                            map.put("phone","0");
+                                            map.put("click","0");
+                                            map.put("country",country);
+                                            map.put("birthdate","0");
+                                            map.put("referral",code);
+                                            map.put("referralButton","ON");
+                                            map.put("type","0");
+                                            map.put("name",name);
+                                            map.put("email",email);
+                                            map.put("id",uid);
+                                            map.put("extra1","0");
+                                            map.put("extra2","0");
+                                            map.put("extra3","0");
+                                            /*if (mAuth.getUid() == null){
+                                                return;
+                                            }*/
+                                            /*FirebaseUser currentUser = mAuth.getCurrentUser();
+                                            if (currentUser != null) {
+                                                currentUser.sendEmailVerification();
+                                            }*/
+                                            currentUser.sendEmailVerification();
+                                            ref.child(uid).setValue(map);
+
+                                            progressDialog.dismiss();
+                                            Toast.makeText(LoginLayout.this, "New account created successfully", Toast.LENGTH_SHORT).show();
+                                            updateUI();
+/*
+                                        DatabaseReference reference = database.getReference("userId");
+                                        reference.child("totalUserId").setValue(userID)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        updateUI();
+                                                        progressDialog.dismiss();
+                                                    }
+                                                });*/
+
+                                        } else {
+                                            Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();
+                                            progressDialog.dismiss();
+                                            updateUI();
+                                        }
+
+/*                                    System.out.println("work");
                                     String point = "1";
                                     for (DataSnapshot userData : snapshot.getChildren()){
                                         String key = userData.getKey();
@@ -315,74 +379,24 @@ public class LoginLayout extends AppCompatActivity {
                                     point = String.valueOf(userInfo.get("point"));
                                     System.out.println(point);
                                     if (point.equals("1") | point.equals("null")){
-                                        Toast.makeText(LoginLayout.this, "You have created a new account ", Toast.LENGTH_SHORT).show();
-                                        int id = userTotal + 1;
-                                        String userID = String.valueOf(id);
 
-                                        Random a = new Random();
-                                        int b = a.nextInt(9999);
-                                        int c = a.nextInt(9999);
-                                        String code = String.valueOf(b) + String.valueOf(c);
-
-                                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
-                                        if (account == null){
-                                            return;
-                                        }
-                                        String name = account.getDisplayName();
-                                        String email = account.getEmail();
-
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference myRef = database.getReference("users");
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put("point","0");
-                                        map.put("phone","0");
-                                        map.put("click","0");
-                                        map.put("country",country);
-                                        map.put("birthdate","0");
-                                        map.put("referral",code);
-                                        map.put("referralButton","ON");
-                                        map.put("type","0");
-                                        map.put("name",name);
-                                        map.put("email",email);
-                                        map.put("id",userID);
-                                        map.put("extra1","0");
-                                        map.put("extra2","0");
-                                        map.put("extra3","0");
-                                        if (mAuth.getUid() == null){
-                                            return;
-                                        }
-                                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                                        if (currentUser != null) {
-                                            currentUser.sendEmailVerification();
-                                        }
-
-                                        mAuth.getCurrentUser().sendEmailVerification();
-                                        myRef.child(mAuth.getUid()).setValue(map);
-
-                                        DatabaseReference reference = database.getReference("userId");
-                                        reference.child("totalUserId").setValue(userID)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        updateUI();
-                                                        progressDialog.dismiss();
-                                                    }
-                                                });
-
-                                        Toast.makeText(LoginLayout.this, "You have successfully logged into your account", Toast.LENGTH_LONG).show();
                                     }else {
 //                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
-                                        updateUI();
+
+                                    }*/
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(LoginLayout.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                     }
-                                }
+                                });
+                            } else {
+                                Toast.makeText(LoginLayout.this,"Something went wrong. Try again",Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(LoginLayout.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
-                            });
                             /*if (uid != null){
                                 progressDialog.dismiss();
                                 updateUI();
@@ -391,7 +405,7 @@ public class LoginLayout extends AppCompatActivity {
                             }*/
                         } else {
 
-                            Toast.makeText(LoginLayout.this,"token Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginLayout.this,"Token Error",Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                             // If sign in fails, display a message to the user.
                         }
