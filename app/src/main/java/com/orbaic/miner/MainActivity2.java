@@ -90,7 +90,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        loadFragment(new NewHomeFragment());
+        loadFragment(new Home());
 
         refer();
         initClicks();
@@ -193,7 +193,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                     if (isClickable) {
                         switch (item.getItemId()) {
                             case R.id.homeMenu:
-                                loadFragment(new NewHomeFragment());
+                                loadFragment(new Home());
                                 break;
                             case R.id.walletMenu:
                                 loadFragment(new WalletFragment());
@@ -246,7 +246,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             int id = item.getItemId();
             Log.e("DrawerMenu", "setNavigationDrawerMenu: " + id);
             if (id == R.id.home) {
-                loadFragment(new NewHomeFragment());
+                loadFragment(new Home());
             } else if (id == R.id.menuMiningRules) {
                 Fragment fragment = new CommonWebview();
                 Bundle bundle = new Bundle();
