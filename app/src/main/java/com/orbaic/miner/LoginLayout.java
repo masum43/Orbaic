@@ -93,9 +93,12 @@ public class LoginLayout extends AppCompatActivity {
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestIdToken(getString(R.string.web_client_id))
+                .requestIdToken(getString(R.string.web_client_debug_id))
                 .requestEmail()
                 .build();
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //end google login configure
 
@@ -269,6 +272,7 @@ public class LoginLayout extends AppCompatActivity {
             firebaseAuthWithGoogle(account.getIdToken());
         } catch (ApiException e) {
             System.out.println(e.getMessage());
+            Toast.makeText(context, ""+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

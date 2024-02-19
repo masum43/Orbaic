@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Orbaic</string>
+
+    <string name="web_client_id" translatable="false">545894903810-1km8koom45tkorpgu9v1u55nvjmhoas6.apps.googleusercontent.com</string>
+    <string name="web_client_debug_id" translatable="false">545894903810-ledinhnoaiaprt1co9u165e5ohfcr2a2.apps.googleusercontent.com</string>
+
     <string name="title_activity_main2">ORBAIC (ACI)</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
