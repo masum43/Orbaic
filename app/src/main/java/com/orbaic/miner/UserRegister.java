@@ -53,6 +53,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.Methods;
 import com.orbaic.miner.myTeam.GridBindAdapter;
 import com.orbaic.miner.myTeam.Team;
 
@@ -98,8 +99,7 @@ public class UserRegister extends AppCompatActivity {
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestIdToken(getString(R.string.web_client_id))
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -269,10 +269,11 @@ public class UserRegister extends AppCompatActivity {
                             DatabaseReference ref = database.getReference("users");
                             String uid = currentUser.getUid();
 
-                            Random a = new Random();
-                            int b = a.nextInt(9999);
-                            int c = a.nextInt(9999);
-                            String code = String.valueOf(b) + String.valueOf(c);
+//                            Random a = new Random();
+//                            int b = a.nextInt(9999);
+//                            int c = a.nextInt(9999);
+//                            String code = String.valueOf(b) + String.valueOf(c);
+                            String code = Methods.generateUniqueCode();
 
                         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("users");*/
@@ -432,10 +433,11 @@ public class UserRegister extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (!snapshot.exists()) {
                                             DatabaseReference referKeys = database.getReference("referKeys");
-                                            Random a = new Random();
-                                            int b = a.nextInt(9999);
-                                            int c = a.nextInt(9999);
-                                            String code = String.valueOf(b) + String.valueOf(c);
+//                                            Random a = new Random();
+//                                            int b = a.nextInt(9999);
+//                                            int c = a.nextInt(9999);
+//                                            String code = String.valueOf(b) + String.valueOf(c);
+                                            String code = Methods.generateUniqueCode();
 
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
                                             if (account == null) {
