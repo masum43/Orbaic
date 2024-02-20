@@ -1,14 +1,5 @@
 package com.orbaic.miner;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,13 +14,18 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.window.OnBackInvokedDispatcher;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -37,8 +33,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -58,7 +52,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 
 
 public class LoginLayout extends AppCompatActivity {
@@ -93,9 +86,7 @@ public class LoginLayout extends AppCompatActivity {
 
         //google login configure
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestIdToken(getString(R.string.web_client_id))
-                .requestIdToken(getString(R.string.web_client_debug_id))
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -312,10 +303,11 @@ public class LoginLayout extends AppCompatActivity {
                                         /*int id = userTotal + 1;
                                         String userID = String.valueOf(id);*/
 
-                                            Random a = new Random();
+                     /*                       Random a = new Random();
                                             int b = a.nextInt(9999);
                                             int c = a.nextInt(9999);
-                                            String code = String.valueOf(b) + String.valueOf(c);
+                                            String code = String.valueOf(b) + String.valueOf(c);*/
+                                            String code = Methods.generateUniqueCode();
 
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
                                             if (account == null){
