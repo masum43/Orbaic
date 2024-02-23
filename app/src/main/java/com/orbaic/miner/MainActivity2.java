@@ -246,7 +246,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             int id = item.getItemId();
             Log.e("DrawerMenu", "setNavigationDrawerMenu: " + id);
             if (id == R.id.home) {
-                loadFragment(new Home());
+                loadFragment(new NewHomeFragment());
             } else if (id == R.id.menuMiningRules) {
                 Fragment fragment = new CommonWebview();
                 Bundle bundle = new Bundle();
