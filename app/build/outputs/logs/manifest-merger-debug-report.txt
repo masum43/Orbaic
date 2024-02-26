@@ -35,6 +35,7 @@ MERGED from [androidx.navigation:navigation-fragment:2.7.6] /Users/masum/.gradle
 MERGED from [androidx.navigation:navigation-ui:2.7.6] /Users/masum/.gradle/caches/transforms-3/e748caf27196115bed700314083de784/transformed/navigation-ui-2.7.6/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/masum/.gradle/caches/transforms-3/d3d0f236b675106544e96778526ec0e9/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.vungle:vungle-ads:7.1.0] /Users/masum/.gradle/caches/transforms-3/f7d821caef3a7efcddb9ccd43a6b0f4c/transformed/vungle-ads-7.1.0/AndroidManifest.xml:2:1-27:12
+MERGED from [com.airbnb.android:lottie:3.6.1] /Users/masum/.gradle/caches/transforms-3/5762a6ad7d4cf585a2d6fd4577074f59/transformed/lottie-3.6.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:firebase-datatransport:18.2.0] /Users/masum/.gradle/caches/transforms-3/018dc7e557626e3570b80aa1403d4b6a/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:15:1-31:12
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/masum/.gradle/caches/transforms-3/e916cb1484084c5acd73a4645574d518/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:15:1-37:12
 MERGED from [com.google.firebase:firebase-config-interop:16.0.0] /Users/masum/.gradle/caches/transforms-3/9fadc59d9c057edc638f2e27e2df3b1a/transformed/firebase-config-interop-16.0.0/AndroidManifest.xml:15:1-20:12
@@ -129,6 +130,7 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/masum/.gradle/
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/masum/.gradle/caches/transforms-3/552906c8182c018b2fd56ca1b94d8b51/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transforms-3/53e5aca39b908eeb1983cc7d17b50e1c/transformed/volley-1.2.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/b4f637283cab8d3f1d93de2027fbdc65/transformed/library-1.0.1/AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.ybq:Android-SpinKit:1.4.0] /Users/masum/.gradle/caches/transforms-3/645c947e4e8d1d4607d96e49ab7970cd/transformed/Android-SpinKit-1.4.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.9] /Users/masum/.gradle/caches/transforms-3/c2eabc0cc0f233a689c174fe78fe79f7/transformed/transport-runtime-3.1.9/AndroidManifest.xml:15:1-41:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/masum/.gradle/caches/transforms-3/8bfe2b16f7a251470266dc42b9aa8812/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/masum/.gradle/caches/transforms-3/9c421897533a7b6d73b6e46458004c19/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -330,6 +332,8 @@ MERGED from [com.google.android.material:material:1.11.0] /Users/masum/.gradle/c
 MERGED from [com.google.android.material:material:1.11.0] /Users/masum/.gradle/caches/transforms-3/d3d0f236b675106544e96778526ec0e9/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.vungle:vungle-ads:7.1.0] /Users/masum/.gradle/caches/transforms-3/f7d821caef3a7efcddb9ccd43a6b0f4c/transformed/vungle-ads-7.1.0/AndroidManifest.xml:14:5-25:19
 MERGED from [com.vungle:vungle-ads:7.1.0] /Users/masum/.gradle/caches/transforms-3/f7d821caef3a7efcddb9ccd43a6b0f4c/transformed/vungle-ads-7.1.0/AndroidManifest.xml:14:5-25:19
+MERGED from [com.airbnb.android:lottie:3.6.1] /Users/masum/.gradle/caches/transforms-3/5762a6ad7d4cf585a2d6fd4577074f59/transformed/lottie-3.6.1/AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:3.6.1] /Users/masum/.gradle/caches/transforms-3/5762a6ad7d4cf585a2d6fd4577074f59/transformed/lottie-3.6.1/AndroidManifest.xml:9:5-20
 MERGED from [com.google.firebase:firebase-datatransport:18.2.0] /Users/masum/.gradle/caches/transforms-3/018dc7e557626e3570b80aa1403d4b6a/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:21:5-29:19
 MERGED from [com.google.firebase:firebase-datatransport:18.2.0] /Users/masum/.gradle/caches/transforms-3/018dc7e557626e3570b80aa1403d4b6a/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:21:5-29:19
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/masum/.gradle/caches/transforms-3/e916cb1484084c5acd73a4645574d518/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:27:5-35:19
@@ -624,6 +628,8 @@ MERGED from [com.google.android.material:material:1.11.0] /Users/masum/.gradle/c
 MERGED from [com.google.android.material:material:1.11.0] /Users/masum/.gradle/caches/transforms-3/d3d0f236b675106544e96778526ec0e9/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
 MERGED from [com.vungle:vungle-ads:7.1.0] /Users/masum/.gradle/caches/transforms-3/f7d821caef3a7efcddb9ccd43a6b0f4c/transformed/vungle-ads-7.1.0/AndroidManifest.xml:6:5-9:63
 MERGED from [com.vungle:vungle-ads:7.1.0] /Users/masum/.gradle/caches/transforms-3/f7d821caef3a7efcddb9ccd43a6b0f4c/transformed/vungle-ads-7.1.0/AndroidManifest.xml:6:5-9:63
+MERGED from [com.airbnb.android:lottie:3.6.1] /Users/masum/.gradle/caches/transforms-3/5762a6ad7d4cf585a2d6fd4577074f59/transformed/lottie-3.6.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:3.6.1] /Users/masum/.gradle/caches/transforms-3/5762a6ad7d4cf585a2d6fd4577074f59/transformed/lottie-3.6.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-datatransport:18.2.0] /Users/masum/.gradle/caches/transforms-3/018dc7e557626e3570b80aa1403d4b6a/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-datatransport:18.2.0] /Users/masum/.gradle/caches/transforms-3/018dc7e557626e3570b80aa1403d4b6a/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:18:5-44
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/masum/.gradle/caches/transforms-3/e916cb1484084c5acd73a4645574d518/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:18:5-20:41
@@ -812,6 +818,8 @@ MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transf
 MERGED from [com.android.volley:volley:1.2.1] /Users/masum/.gradle/caches/transforms-3/53e5aca39b908eeb1983cc7d17b50e1c/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
 MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/b4f637283cab8d3f1d93de2027fbdc65/transformed/library-1.0.1/AndroidManifest.xml:7:5-9:41
 MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] /Users/masum/.gradle/caches/transforms-3/b4f637283cab8d3f1d93de2027fbdc65/transformed/library-1.0.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.ybq:Android-SpinKit:1.4.0] /Users/masum/.gradle/caches/transforms-3/645c947e4e8d1d4607d96e49ab7970cd/transformed/Android-SpinKit-1.4.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.ybq:Android-SpinKit:1.4.0] /Users/masum/.gradle/caches/transforms-3/645c947e4e8d1d4607d96e49ab7970cd/transformed/Android-SpinKit-1.4.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.9] /Users/masum/.gradle/caches/transforms-3/c2eabc0cc0f233a689c174fe78fe79f7/transformed/transport-runtime-3.1.9/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.9] /Users/masum/.gradle/caches/transforms-3/c2eabc0cc0f233a689c174fe78fe79f7/transformed/transport-runtime-3.1.9/AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/masum/.gradle/caches/transforms-3/8bfe2b16f7a251470266dc42b9aa8812/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44

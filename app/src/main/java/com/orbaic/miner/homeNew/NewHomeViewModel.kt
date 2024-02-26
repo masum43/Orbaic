@@ -8,11 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.orbaic.miner.ReferralDataRecive
 import com.orbaic.miner.common.Constants
 import com.orbaic.miner.common.checkMiningStatusTeam
+import com.orbaic.miner.common.getRewardTokenFromJson
+import com.orbaic.miner.home.MyRewardedTokenItem
 import com.orbaic.miner.myTeam.Team
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -23,7 +26,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class NewHomeViewModel : ViewModel() {
-    private val mAuth = FirebaseAuth.getInstance()
+    private var mAuth = FirebaseAuth.getInstance()
     private val rootRef = FirebaseDatabase.getInstance().reference
 
     private val _userData = MutableLiveData<User?>()
@@ -48,7 +51,6 @@ class NewHomeViewModel : ViewModel() {
     }
 
     private val countdownStateFlow: MutableStateFlow<CountdownState> = MutableStateFlow(CountdownState.Idle)
-
     fun startCountdown(miningStartTimeMillis: Long) {
         viewModelScope.launch {
             countdownStateFlow.emit(CountdownState.Idle)
@@ -83,9 +85,51 @@ class NewHomeViewModel : ViewModel() {
             countdownStateFlow.emit(CountdownState.Finished)
         }
     }
-
     fun getCountdownStateFlow(): Flow<CountdownState> {
         return countdownStateFlow
+    }
+
+
+    private val quizCountdownStateFlow: MutableStateFlow<CountdownState> = MutableStateFlow(CountdownState.Idle)
+    fun startQuizCountdown(miningEndTimeMillis: Long, plusHours: Int) {
+        viewModelScope.launch {
+            quizCountdownStateFlow.emit(CountdownState.Idle)
+
+            val currentTimeMillis = System.currentTimeMillis()
+            val endTimeMillis = miningEndTimeMillis + plusHours * 3600 * 1000 // Convert hours to milliseconds
+
+            val timeDifference = endTimeMillis - currentTimeMillis
+
+            Log.e("startQuizCountdown", "miningEndTimeMillis: $miningEndTimeMillis")
+            Log.e("startQuizCountdown", "currentTimeMillis: $currentTimeMillis")
+            Log.e("startQuizCountdown", "timeDifference: $timeDifference")
+
+            if (timeDifference <= 0) {
+                quizCountdownStateFlow.emit(CountdownState.Finished)
+                return@launch
+            }
+
+            var remainingTimeMillis = timeDifference
+            while (remainingTimeMillis > 0) {
+                val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
+                delay(delayMillis)
+                remainingTimeMillis -= delayMillis
+
+                val totalSecondsRemaining = remainingTimeMillis / 1000
+                val hours = totalSecondsRemaining / 3600
+                val minutes = (totalSecondsRemaining % 3600) / 60
+                val seconds = totalSecondsRemaining % 60
+
+                val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                Log.e("startQuizCountdown", "formattedTime: $formattedTime")
+                quizCountdownStateFlow.emit(CountdownState.Running(formattedTime))
+            }
+
+            quizCountdownStateFlow.emit(CountdownState.Finished)
+        }
+    }
+    fun getQuizCountdownStateFlow(): Flow<CountdownState> {
+        return quizCountdownStateFlow
     }
 
 
@@ -133,5 +177,71 @@ class NewHomeViewModel : ViewModel() {
             }
         }
     }
+
+
+
+    fun claimReward(
+        rewardedTokenCode: String,
+        bonusToken: Long,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        val myRewardedTokensRef = mAuth.currentUser?.uid?.let { rootRef.child("my_rewarded_tokens").child(it) }
+        myRewardedTokensRef?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var tokenFound = false
+                if (dataSnapshot.exists()) {
+                    for (mSnap in dataSnapshot.children) {
+                        val rewardedTokenItem = mSnap.getValue(MyRewardedTokenItem::class.java)
+                        if (rewardedTokenItem!!.code == rewardedTokenCode) {
+                            tokenFound = true
+                            val balance = rewardedTokenItem.balance.toLong()
+                            val updatedBalance = balance + bonusToken
+                            myRewardedTokensRef.child(rewardedTokenItem.id.toString())
+                                .child("balance").setValue(updatedBalance.toString())
+                                .addOnSuccessListener {
+                                    onSuccess.invoke()
+                                }
+                                .addOnFailureListener { e ->
+                                    onFailure.invoke()
+                                }
+                            break
+                        }
+                    }
+                }
+
+                if (!tokenFound) {
+                    val rewardedTokenItemFromJson = getRewardTokenFromJson(rewardedTokenCode)
+                    rewardedTokenItemFromJson.balance = bonusToken.toString()
+                    myRewardedTokensRef.push()
+                        .setValue(rewardedTokenItemFromJson)
+                        .addOnSuccessListener {
+                            onSuccess.invoke()
+                        }
+                        .addOnFailureListener {
+                            onFailure.invoke()
+                        }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onFailure.invoke()
+            }
+        })
+    }
+
+
+    fun addMiningCount(count: String?) {
+        val myRef: DatabaseReference? = mAuth.currentUser?.uid?.let { rootRef.child("users").child(it) }
+        myRef?.child("mining_count")?.setValue(count)
+    }
+
+    fun addQuizCount(qzCountStr: String) {
+        val hashMap = HashMap<String, Any>()
+        hashMap["qz_count"] = qzCountStr
+        val myRef: DatabaseReference? = mAuth.currentUser?.uid?.let { rootRef.child("users").child(it) }
+        myRef?.updateChildren(hashMap)
+    }
+
 }
 

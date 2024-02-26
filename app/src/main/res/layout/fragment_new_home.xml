@@ -150,7 +150,7 @@
                 android:gravity="center"
                 android:lineHeight="37dp"
                 android:lineSpacingExtra="10sp"
-                android:text="23:59:31"
+                android:text="00:00:00"
                 android:textColor="#64D2FF"
                 android:textSize="19sp" />
         </LinearLayout>
@@ -255,7 +255,7 @@
                     android:id="@+id/tvQuizCountDown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 12:59:31"
+                    android:text=" 00:00:00"
                     android:layout_marginStart="2dp"
                     android:textColor="#64D2FF"
                     android:textSize="12sp" />
