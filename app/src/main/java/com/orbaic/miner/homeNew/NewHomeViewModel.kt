@@ -18,6 +18,7 @@ import com.orbaic.miner.common.getRewardTokenFromJson
 import com.orbaic.miner.home.MyRewardedTokenItem
 import com.orbaic.miner.myTeam.Team
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -51,14 +52,16 @@ class NewHomeViewModel : ViewModel() {
     }
 
     private val countdownStateFlow: MutableStateFlow<CountdownState> = MutableStateFlow(CountdownState.Idle)
-    fun startCountdown(miningStartTimeMillis: Long) {
+    private var countdownJob: Job? = null
+    fun startMiningCountdown(miningStartTimeMillis: Long) {
         viewModelScope.launch {
             countdownStateFlow.emit(CountdownState.Idle)
-
+            val miningEndTimeMillis = miningStartTimeMillis + (24 * 60 * 60 * 1000)
             val currentTimeMillis = System.currentTimeMillis()
-            val timeDifference = miningStartTimeMillis - currentTimeMillis
+            val timeDifference = miningEndTimeMillis - currentTimeMillis
 
             Log.e("remainingTime", "miningStartTimeMillis: $miningStartTimeMillis")
+            Log.e("remainingTime", "miningEndTimeMillis: $miningEndTimeMillis")
             Log.e("remainingTime", "currentTimeMillis: $currentTimeMillis")
             Log.e("remainingTime", "timeDifference: $timeDifference")
 
@@ -67,30 +70,39 @@ class NewHomeViewModel : ViewModel() {
                 return@launch
             }
 
-            var remainingTimeMillis = timeDifference
-            while (remainingTimeMillis > 0) {
-                val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
-                delay(delayMillis)
-                remainingTimeMillis -= delayMillis
+            countdownJob?.cancel()
+            countdownJob = viewModelScope.launch {
+                var remainingTimeMillis = timeDifference
+                while (remainingTimeMillis > 0) {
+                    val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
+                    delay(delayMillis)
+                    remainingTimeMillis -= delayMillis
 
-                val totalSecondsRemaining = remainingTimeMillis / 1000
-                val hours = totalSecondsRemaining / 3600
-                val minutes = (totalSecondsRemaining % 3600) / 60
-                val seconds = totalSecondsRemaining % 60
+                    val totalSecondsRemaining = remainingTimeMillis / 1000
+                    val hours = totalSecondsRemaining / 3600
+                    val minutes = (totalSecondsRemaining % 3600) / 60
+                    val seconds = totalSecondsRemaining % 60
 
-                val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
-                countdownStateFlow.emit(CountdownState.Running(formattedTime))
+                    val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                    countdownStateFlow.emit(CountdownState.Running(formattedTime))
+                }
+
+                countdownStateFlow.emit(CountdownState.Finished)
             }
 
-            countdownStateFlow.emit(CountdownState.Finished)
         }
     }
     fun getCountdownStateFlow(): Flow<CountdownState> {
         return countdownStateFlow
     }
+    fun stopMiningCountdown() {
+        countdownJob?.cancel()
+        countdownStateFlow.value = CountdownState.Idle // Reset the countdown state to Idle
+    }
 
 
     private val quizCountdownStateFlow: MutableStateFlow<CountdownState> = MutableStateFlow(CountdownState.Idle)
+    private var quizCountdownJob: Job? = null
     fun startQuizCountdown(miningEndTimeMillis: Long, plusHours: Int) {
         viewModelScope.launch {
             quizCountdownStateFlow.emit(CountdownState.Idle)
@@ -100,7 +112,7 @@ class NewHomeViewModel : ViewModel() {
 
             val timeDifference = endTimeMillis - currentTimeMillis
 
-            Log.e("startQuizCountdown", "miningEndTimeMillis: $miningEndTimeMillis")
+            Log.e("startQuizCountdown", "quizEndTimeMillis: $miningEndTimeMillis")
             Log.e("startQuizCountdown", "currentTimeMillis: $currentTimeMillis")
             Log.e("startQuizCountdown", "timeDifference: $timeDifference")
 
@@ -109,27 +121,35 @@ class NewHomeViewModel : ViewModel() {
                 return@launch
             }
 
-            var remainingTimeMillis = timeDifference
-            while (remainingTimeMillis > 0) {
-                val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
-                delay(delayMillis)
-                remainingTimeMillis -= delayMillis
+            quizCountdownJob?.cancel()
+            quizCountdownJob = viewModelScope.launch {
+                var remainingTimeMillis = timeDifference
+                while (remainingTimeMillis > 0) {
+                    val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
+                    delay(delayMillis)
+                    remainingTimeMillis -= delayMillis
 
-                val totalSecondsRemaining = remainingTimeMillis / 1000
-                val hours = totalSecondsRemaining / 3600
-                val minutes = (totalSecondsRemaining % 3600) / 60
-                val seconds = totalSecondsRemaining % 60
+                    val totalSecondsRemaining = remainingTimeMillis / 1000
+                    val hours = totalSecondsRemaining / 3600
+                    val minutes = (totalSecondsRemaining % 3600) / 60
+                    val seconds = totalSecondsRemaining % 60
 
-                val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
-                Log.e("startQuizCountdown", "formattedTime: $formattedTime")
-                quizCountdownStateFlow.emit(CountdownState.Running(formattedTime))
+                    val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                    Log.e("startQuizCountdown", "formattedTime: $formattedTime")
+                    quizCountdownStateFlow.emit(CountdownState.Running(formattedTime))
+                }
+
+                quizCountdownStateFlow.emit(CountdownState.Finished)
             }
 
-            quizCountdownStateFlow.emit(CountdownState.Finished)
         }
     }
     fun getQuizCountdownStateFlow(): Flow<CountdownState> {
         return quizCountdownStateFlow
+    }
+    fun stopQuizCountdown() {
+        quizCountdownJob?.cancel()
+        quizCountdownStateFlow.value = CountdownState.Idle // Reset the countdown state to Idle
     }
 
 

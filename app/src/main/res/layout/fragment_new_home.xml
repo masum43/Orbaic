@@ -268,7 +268,9 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                tools:visibility="visible"
+                android:visibility="gone"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -619,6 +621,8 @@ team. Bonus rate uncapped "
                 android:layout_marginBottom="5dp" />
 
             <LinearLayout
+                android:id="@+id/holderNewsTitle"
+                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"

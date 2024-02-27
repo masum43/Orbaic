@@ -1,5 +1,6 @@
 package com.orbaic.miner.homeNew
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,10 +22,12 @@ import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
 import com.orbaic.miner.allNews.AllNewsFragment
 import com.orbaic.miner.common.Config
+import com.orbaic.miner.common.ErrorDialog
 import com.orbaic.miner.common.ProgressDialog
 import com.orbaic.miner.common.RetrofitClient2
 import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.gone
+import com.orbaic.miner.common.invisible
 import com.orbaic.miner.common.roundTo
 import com.orbaic.miner.common.show
 import com.orbaic.miner.common.toast
@@ -34,7 +38,6 @@ import com.orbaic.miner.quiz.QuizStartActivity
 import com.orbaic.miner.wordpress.PostAdapter2
 import com.unity3d.services.core.properties.ClientProperties
 import com.vungle.ads.internal.util.ThreadUtil.runOnUiThread
-import com.wada811.viewbinding.viewBinding
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +48,14 @@ class NewHomeFragment : Fragment() {
     private val viewModel: NewHomeViewModel by viewModels()
     private val adapterTeam by lazy { MyTeamAdapter() }
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
+    private val errorDialog by lazy { ErrorDialog(requireActivity()) }
+
+
+    private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+//            fetchData()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
@@ -53,12 +64,15 @@ class NewHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         SpManager.init(requireContext())
         prepareRv()
         initClicks()
-        fetchData()
         observeCountdownState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchData()
     }
 
     private fun prepareRv() {
@@ -71,6 +85,7 @@ class NewHomeFragment : Fragment() {
 
 
     private fun fetchData() {
+        Log.e("timeStatus123", "fetchData: calling")
         progressDialog.show()
         viewModel.fetchData()
         viewModel.userData.observe(viewLifecycleOwner) { user ->
@@ -80,7 +95,8 @@ class NewHomeFragment : Fragment() {
             SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
 
             lifecycleScope.launch {
-                val timeStatus = user?.isWithin24Hours()
+                val timeStatus = user?.isMiningWithin24Hours()
+                Log.e("timeStatus123", "fetchData: $timeStatus")
                 handleMiningTimeStatus(timeStatus, user?.miningStartTime.toString())
             }
 
@@ -104,8 +120,7 @@ class NewHomeFragment : Fragment() {
             val sortedTeamList = it.take(5)
             adapterTeam.updateData(sortedTeamList)
         }
-
-//        newsFromWordpressBlog()
+        newsFromWordpressBlog()
     }
 
     private fun initClicks() {
@@ -114,7 +129,8 @@ class NewHomeFragment : Fragment() {
         }
 
         binding.learnAndEarn.setOnClickListener {
-            startActivity(Intent(context, QuizStartActivity::class.java))
+            val intent = Intent(context, QuizStartActivity::class.java)
+            dataFetchActivityLauncher.launch(intent)
         }
 
         binding.claimRewardLayout.setOnClickListener { v ->
@@ -180,8 +196,8 @@ class NewHomeFragment : Fragment() {
                 binding.learnAvailable.gone()
             }
             2 -> { // Time difference between server and device
-                val errorMessage = timeStatus.message ?: "Unknown error"
-                errorMessage.toast()
+//                val errorMessage = timeStatus.message ?: "Unknown error"
+//                errorMessage.toast()
             }
             else -> { // Quiz start time is not within 12 hours
                 binding.quizWaitingLayout.gone()
@@ -193,23 +209,28 @@ class NewHomeFragment : Fragment() {
     private fun handleMiningTimeStatus(timeStatus: TimeStatus?, miningStartTime: String) {
         when (timeStatus?.status) {
             1 -> { // Mining start time is within 24 hours
-                viewModel.startCountdown(miningStartTime.toLong())
+                viewModel.startMiningCountdown(miningStartTime.toLong())
                 startRippleEffect()
+                errorDialog.dismissDialog()
                 progressDialog.dismiss()
             }
             2 -> { // Time difference between server and device
+                viewModel.stopMiningCountdown()
+                viewModel.stopQuizCountdown()
+                stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorMessage.toast()
+                errorDialog.showTimeDiffWithServerError(errorMessage)
                 progressDialog.dismiss()
             }
             else -> { // Mining start time is not within 24 hours
+                errorDialog.dismissDialog()
                 stopRippleEffect()
-//                val errorMessage = timeStatus?.message ?: "Unknown error"
-//                errorMessage.toast()
+                showTapTarget()
                 progressDialog.dismiss()
             }
         }
     }
+
 
     private fun observeCountdownState() {
         lifecycleScope.launch {
@@ -224,6 +245,7 @@ class NewHomeFragment : Fragment() {
                     is CountdownState.Finished -> {
                         Log.e("remainingTime", "state: Finished")
                         stopRippleEffect()
+                        showTapTarget()
                     }
                     else -> {
                         // Handle other states if needed
@@ -295,6 +317,7 @@ class NewHomeFragment : Fragment() {
                 response: Response<List<Post2Item?>>
             ) {
                 if (response.body() != null) {
+                    binding.holderNewsTitle.show()
                     val postItemList2 = response.body()
                     val sortedTeamList = postItemList2?.take(5)
                     Log.e("sortedTeamList", "size: "+ sortedTeamList?.size )
@@ -302,11 +325,13 @@ class NewHomeFragment : Fragment() {
                 }
                 else {
                     Log.e("sortedTeamList", "response is null" )
+                    binding.holderNewsTitle.invisible()
                 }
             }
 
             override fun onFailure(call: Call<List<Post2Item?>>, t: Throwable) {
                 Log.e("sortedTeamList", "onFailure: "+ t.localizedMessage )
+                binding.holderNewsTitle.invisible()
             }
         })
     }
@@ -334,7 +359,6 @@ class NewHomeFragment : Fragment() {
                 binding.centerImage.colorFilter = null //get back to previous logo color while stopping animation
                 binding.rippleEffect.stopRippleAnimation() //stopping the animation
             }
-            showTapTarget()
         }
 
     }
