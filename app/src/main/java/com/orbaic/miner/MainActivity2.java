@@ -3,7 +3,6 @@ package com.orbaic.miner;
 import android.app.ActivityManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +18,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -90,7 +88,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        loadFragment(new Home());
+        loadFragment(new NewHomeFragment());
 
         refer();
         initClicks();
@@ -193,7 +191,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                     if (isClickable) {
                         switch (item.getItemId()) {
                             case R.id.homeMenu:
-                                loadFragment(new Home());
+                                loadFragment(new NewHomeFragment());
                                 break;
                             case R.id.walletMenu:
                                 loadFragment(new WalletFragment());
@@ -246,7 +244,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             int id = item.getItemId();
             Log.e("DrawerMenu", "setNavigationDrawerMenu: " + id);
             if (id == R.id.home) {
-                loadFragment(new Home());
+                loadFragment(new NewHomeFragment());
             } else if (id == R.id.menuMiningRules) {
                 Fragment fragment = new CommonWebview();
                 Bundle bundle = new Bundle();

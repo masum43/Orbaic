@@ -273,7 +273,7 @@ public class UserRegister extends AppCompatActivity {
 //                            int b = a.nextInt(9999);
 //                            int c = a.nextInt(9999);
 //                            String code = String.valueOf(b) + String.valueOf(c);
-                            String code = Methods.generateUniqueCode();
+                            String code = Methods.generateReferralCode(uid);
 
                         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("users");*/
@@ -437,7 +437,7 @@ public class UserRegister extends AppCompatActivity {
 //                                            int b = a.nextInt(9999);
 //                                            int c = a.nextInt(9999);
 //                                            String code = String.valueOf(b) + String.valueOf(c);
-                                            String code = Methods.generateUniqueCode();
+                                            String code = Methods.generateReferralCode(uid);
 
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
                                             if (account == null) {

@@ -18,6 +18,7 @@ public class SpManager {
     public static String KEY_IS_NOTIFICATION_ENABLED = "notification";
     public static String KEY_FCM_TOKEN = "fcm_token";
     public static String KEY_FCM_NEW_TOKEN = "fcm_new_token";
+    public static String KEY_MY_REFER_CODE = "refer";
 
 
     // Initialize SharedPreferences

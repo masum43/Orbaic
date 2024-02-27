@@ -260,14 +260,14 @@ public class LoginLayout extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
-            firebaseAuthWithGoogle(account.getIdToken());
+            firebaseAuthWithGoogle(account.getIdToken(), account);
         } catch (ApiException e) {
             System.out.println(e.getMessage());
             Toast.makeText(context, ""+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
+    private void firebaseAuthWithGoogle(String idToken, GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
        /* mAuth.signInAnonymously()
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -307,7 +307,7 @@ public class LoginLayout extends AppCompatActivity {
                                             int b = a.nextInt(9999);
                                             int c = a.nextInt(9999);
                                             String code = String.valueOf(b) + String.valueOf(c);*/
-                                            String code = Methods.generateUniqueCode();
+                                            String code = Methods.generateReferralCode(uid);
 
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
                                             if (account == null){
