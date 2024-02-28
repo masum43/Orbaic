@@ -146,9 +146,12 @@ public class LearnEarnActivity extends AppCompatActivity {
 
             dataChange.showAds();
             if (answer.equals(selectedAnswer)){
+                int totalCorrectAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0);
+                totalCorrectAns++;
                 correctAnsCounter++;
                 Map<String, Object> dataMap = new HashMap<>();
-                dataMap.put("point", String.valueOf(userPoint+1));
+                //dataMap.put("point", String.valueOf(userPoint+1));
+                SpManager.saveInt(SpManager.KEY_CORRECT_ANS, totalCorrectAns);
                 dataMap.put("qz_count", String.valueOf(qzCountInt+1));
                 data.updateDataWithUid(dataMap, "users");
                 String text = "Congratulation!! Your answer is correct";
@@ -276,7 +279,7 @@ public class LearnEarnActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        count.cancel();
+        if (count != null) count.cancel();
         //finish();
     }
 
@@ -346,8 +349,8 @@ public class LearnEarnActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String point = Objects.requireNonNull(snapshot.child("point").getValue()).toString();
-                userPoint = Double.parseDouble(point);
+                /*String point = Objects.requireNonNull(snapshot.child("point").getValue()).toString();
+                userPoint = Double.parseDouble(point);*/
                 String qzCount = "0";
                 if (snapshot.hasChild("qz_count")) {
                     qzCount = Objects.requireNonNull(snapshot.child("qz_count").getValue()).toString();
