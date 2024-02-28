@@ -11,12 +11,12 @@ import org.json.JSONArray
 import java.util.Locale
 
 fun Number.roundTo(
-    numFractionDigits: Int = 4
+    numFractionDigits: Int = 6
 ) = "%.${numFractionDigits}f".format(this, Locale.ENGLISH).toDouble()
 
 
 fun String.roundTo(
-    numFractionDigits: Int = 4
+    numFractionDigits: Int = 6
 ) = "%.${numFractionDigits}f".format(this.toDouble(), Locale.ENGLISH)
 
 

@@ -33,6 +33,7 @@ class NewHomeViewModel : ViewModel() {
     private val _userData = MutableLiveData<User?>()
     val userData: LiveData<User?> get() = _userData
 
+
     fun fetchData() {
         viewModelScope.launch {
             mAuth.currentUser?.uid?.let { userId ->
@@ -50,6 +51,49 @@ class NewHomeViewModel : ViewModel() {
             }
         }
     }
+
+    fun giveUserMiningReferQuizPoint(token: Double,
+                                     onSuccess: () -> Unit,
+                                     onFailure: () -> Unit) {
+        viewModelScope.launch {
+            mAuth.currentUser?.uid?.let { userId ->
+                try {
+                    val snapshot = withContext(Dispatchers.IO) {
+                        rootRef.child("users").child(userId).get().await()
+                    }
+                    val user = snapshot.getValue(User::class.java)
+
+                    if (user != null) {
+                        val currentPoints = user.point.toDoubleOrNull() ?: 0.0
+                        val newPoints = currentPoints + token
+
+                        // Update the user's points atomically
+                        val hashMap: HashMap<String, Any> = HashMap()
+                        hashMap["point"] = newPoints.toString()
+                        hashMap["extra3"] = Constants.STATE_MINING_FINISHED.toString()
+                        rootRef.child("users").child(userId).updateChildren(hashMap)
+                            .addOnSuccessListener {
+                                Log.d("giveUserPoint", "User points updated successfully")
+                                onSuccess.invoke()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e("giveUserPoint", "Failed to update user points: ${e.message}", e)
+                                onFailure.invoke()
+                            }
+                    } else {
+                        Log.e("giveUserPoint", "User data is null")
+                        onFailure.invoke()
+                    }
+                } catch (e: Exception) {
+                    Log.e("giveUserPoint", "Error fetching user data: ${e.message}", e)
+                    onFailure.invoke()
+                }
+            }
+        }
+    }
+
+
+
 
     private val countdownStateFlow: MutableStateFlow<CountdownState> = MutableStateFlow(CountdownState.Idle)
     private var countdownJob: Job? = null
@@ -92,7 +136,7 @@ class NewHomeViewModel : ViewModel() {
 
         }
     }
-    fun getCountdownStateFlow(): Flow<CountdownState> {
+    fun getMiningCountdownStateFlow(): Flow<CountdownState> {
         return countdownStateFlow
     }
     fun stopMiningCountdown() {
@@ -158,17 +202,18 @@ class NewHomeViewModel : ViewModel() {
     val teamListLiveData: LiveData<List<Team>> = _teamListLiveData
 
 
-    val onMiningDataList = mutableListOf<Team>()
+    val myTeamMinerList = mutableListOf<Team>()
 
     fun getMyTeam() {
         viewModelScope.launch {
             try {
                 val teamList = mutableListOf<Team>()
-
                 val ref = FirebaseDatabase.getInstance().getReference("referralUser")
                     .child(mAuth.uid ?: "")
                 ref.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        teamList.clear()
+                        myTeamMinerList.clear()
                         for (dataSnapshot in snapshot.children) {
                             val data = dataSnapshot.getValue(ReferralDataRecive::class.java)
                             val miningStatus = data?.status?.checkMiningStatusTeam()
@@ -177,11 +222,10 @@ class NewHomeViewModel : ViewModel() {
                         }
 
                         teamList.sortBy { it.userName }
-                        val sortedTeamList = teamList.take(5)
 
                         for (miningData in teamList) {
                             if (miningData.miningStatus == Constants.STATUS_ON) {
-                                onMiningDataList.add(miningData)
+                                myTeamMinerList.add(miningData)
                             }
                         }
 

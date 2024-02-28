@@ -1,6 +1,10 @@
 package com.orbaic.miner.homeNew
 
 import android.util.Log
+import com.orbaic.miner.common.Config
+import com.orbaic.miner.common.Constants
+import com.orbaic.miner.common.SpManager
+import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 data class User(
@@ -66,54 +70,72 @@ data class User(
 
     suspend fun isMiningWithin24Hours(): TimeStatus {
         if (miningStartTime.isEmpty()) {
-            return TimeStatus(0, "Mining start time is empty.")
+            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is empty.")
         }
 
         val serverTime = getServerTime()
         val currentTime = System.currentTimeMillis()
-        val timeDifference = abs(currentTime - serverTime)
+        val diffBetweenCurrentAndServerTime = abs(currentTime - serverTime)
 
-        // Convert time difference to days, hours, minutes, and seconds
-        val days = timeDifference / (1000 * 60 * 60 * 24)
-        val hours = (timeDifference / (1000 * 60 * 60)) % 24
-        val minutes = (timeDifference / (1000 * 60)) % 60
-        val seconds = (timeDifference / 1000) % 60
-
-        // Check if the time difference exceeds 5 minutes
-        if (timeDifference > 5 * 60 * 1000) {
-            return TimeStatus(2, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.")
+        // Check if the time difference exceeds serverAllowedTimeDifference
+        if (diffBetweenCurrentAndServerTime > Config.serverAllowedTimeDifference * 60 * 1000) {
+            val days = diffBetweenCurrentAndServerTime / (1000 * 60 * 60 * 24)
+            val hours = (diffBetweenCurrentAndServerTime / (1000 * 60 * 60)) % 24
+            val minutes = (diffBetweenCurrentAndServerTime / (1000 * 60)) % 60
+            val seconds = (diffBetweenCurrentAndServerTime / 1000) % 60
+            return TimeStatus(Constants.STATE_MINING_DATE_DIFF_SERVER, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.")
         }
 
-        if (timeDifference <= 0) {
-            return TimeStatus(0, "Mining start time is not within 24 hours.")
+        if (diffBetweenCurrentAndServerTime <= 0) {
+            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is not within 24 hours.")
         }
 
         val miningStartTimeTimestamp = miningStartTime.toLongOrNull() ?: return TimeStatus(0, "Invalid mining start time format.")
         val diff = abs(serverTime - miningStartTimeTimestamp)
         val diffHours = diff / (1000 * 60 * 60)
-
-        Log.e("isMiningWithin24Hours", "miningStartTimeTimestamp: $miningStartTimeTimestamp")
-        Log.e("isMiningWithin24Hours", "serverTime: $serverTime")
-        Log.e("isMiningWithin24Hours", "currentTime: $currentTime")
-        Log.e("isMiningWithin24Hours", "diff: $diff")
-        Log.e("isMiningWithin24Hours", "diffHours: $diffHours")
-
         return if (diffHours < 24) {
-            TimeStatus(1, "Mining start time is within 24 hours.")
+            TimeStatus(Constants.STATE_MINING_ON_GOING, "Mining start time is within 24 hours.")
         } else {
-            TimeStatus(0, "Mining start time is not within 24 hours.")
+            if (extra3.toInt() == 0) {
+                TimeStatus(Constants.STATE_MINING_POINTS_NOT_GIVEN, "Mining finished but points not given")
+            }
+            else TimeStatus(extra3.toInt(), "Mining finished and points may given or not.")
         }
     }
 
-
+    private val serverTimeValidityDuration = TimeUnit.MINUTES.toMillis(2) // 2 minutes in milliseconds
     private suspend fun getServerTime(): Long {
+        val currentTime = System.currentTimeMillis()
+        val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
+        Log.e("fetchData111", "lastCachedTime: $lastCachedTime")
+        // Check if the cached server time is within the validity duration
+        return if (currentTime - lastCachedTime > serverTimeValidityDuration) {
+            try {
+                val getNetTime = GetServerTime()
+                val newServerTime = getNetTime.getTime()
+                Log.e("fetchData111", "GetServerTime: ")
+                SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
+                newServerTime
+            } catch (e: Exception) {
+                // Handle the exception
+                Log.e("getServerTime", "Error fetching server time: ${e.message}")
+                currentTime // Return current system time as a fallback
+            }
+        } else {
+            // Retrieve the server time from shared preferences
+            lastCachedTime
+        }
+    }
+
+/*    private suspend fun getServerTime(): Long {
         return try {
             val getNetTime = GetServerTime()
+            Log.e("fetchData111", "GetServerTime: ")
             getNetTime.getTime()
         } catch (e: Exception) {
             System.currentTimeMillis()
         }
-    }
+    }*/
 }
 
 data class TimeStatus(val status: Int, val message: String? = null)
