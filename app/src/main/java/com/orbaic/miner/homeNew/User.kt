@@ -22,6 +22,7 @@ data class User(
     var name: String = "",
     var phone: String = "",
     var point: String = "",
+    var referralPoint: String = "",
     var referral: String = "",
     var referralButton: String = "",
     var referredBy: String = "",
@@ -103,13 +104,13 @@ data class User(
         }
     }
 
-    private val serverTimeValidityDuration = TimeUnit.MINUTES.toMillis(2) // 2 minutes in milliseconds
+    // 2 minutes in milliseconds
     private suspend fun getServerTime(): Long {
         val currentTime = System.currentTimeMillis()
         val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
         Log.e("fetchData111", "lastCachedTime: $lastCachedTime")
         // Check if the cached server time is within the validity duration
-        return if (currentTime - lastCachedTime > serverTimeValidityDuration) {
+        return if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
             try {
                 val getNetTime = GetServerTime()
                 val newServerTime = getNetTime.getTime()

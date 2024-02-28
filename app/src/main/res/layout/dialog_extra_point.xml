@@ -54,6 +54,7 @@ team. Bonus rate uncapped"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="-4sp"
             android:text="Ok, got it"
+            android:padding="10dp"
             android:textSize="15sp"
             android:letterSpacing="0.05"
             android:textColor="#fff"/>

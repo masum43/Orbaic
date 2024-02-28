@@ -1,15 +1,17 @@
 package com.orbaic.miner.homeNew
 
-import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -65,9 +67,9 @@ class NewHomeFragment : Fragment() {
     private var tapTargetShowing = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+//        if (result.resultCode == Activity.RESULT_OK) {
 //            fetchData()
-        }
+//        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -86,6 +88,14 @@ class NewHomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+/*        val currentTime = System.currentTimeMillis()
+        val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
+        Log.e("onResume112", "currentTime: $currentTime" )
+        Log.e("onResume112", "lastCachedTime: $lastCachedTime" )
+        if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
+            fetchData()
+        }*/
+
         fetchData()
     }
 
@@ -100,20 +110,31 @@ class NewHomeFragment : Fragment() {
 
 
     private fun fetchData() {
-        Log.e("timeStatus123", "fetchData: calling")
+        Log.e("fetchData2314", "fetchData: calling")
         progressDialog.show()
         viewModel.fetchData()
         viewModel.userData.observe(viewLifecycleOwner) { user ->
             Log.e("user123", "onDataChange: ${user?.name}")
-            binding.aciCoin.text = user?.point?.roundTo()
-            binding.aciCoin.tag = user?.point?.roundTo()
-            binding.tvRate.text = "${Config.hourRate}/h ACI"
+            var point = 0.0
+            var referralPoint = 0.0
+            if (!user?.point.isNullOrEmpty()) {
+                point = user?.point?.toDouble() ?: 0.0
+            }
+            if (!user?.referralPoint.isNullOrEmpty()) {
+                referralPoint = user?.referralPoint?.toDouble() ?: 0.0
+            }
+            val totalPoints = (point + referralPoint).roundTo()
+            binding.aciCoin.text = totalPoints.toString()
+            binding.aciCoin.tag = totalPoints.toString()
+            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+            binding.tvRate.text = "$finalHourRate/h ACI"
             SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
             SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
 
             lifecycleScope.launch {
                 val timeStatus = user?.isMiningWithin24Hours()
                 Log.e("timeStatus123", "fetchData: $timeStatus")
+                SpManager.saveInt(SpManager.KEY_MINER_STATUS, timeStatus?.status ?: Constants.STATE_MINING_ERROR)
                 handleMiningTimeStatus(timeStatus, user?.miningStartTime.toString())
             }
 
@@ -138,6 +159,8 @@ class NewHomeFragment : Fragment() {
             adapterTeam.updateData(sortedTeamList)
             val teamStatus = "${viewModel.myTeamMinerList.size}/${it.size}"
             binding.tvTeamStatus.text = teamStatus
+            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+            binding.tvRate.text = "$finalHourRate/h ACI"
         }
         newsFromWordpressBlog()
     }
@@ -204,8 +227,39 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun startMining() {
-        mobAds.showRewardedVideo()
-        setActiveStatus()
+        val miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED)
+        if (miningStatus == Constants.STATE_MINING_FINISHED) {
+            if (viewModel.myTeamMinerList.isNotEmpty()) {
+                val dialog = Dialog(requireActivity())
+                dialog.setContentView(R.layout.dialog_extra_point)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
+                tvNotice.text = "Your " + viewModel.myTeamMinerList.size + " team member is mining now. So you will get extra : " + 10 * viewModel.myTeamMinerList.size + "%."
+                dialog.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
+                    dialog.dismiss()
+                    mobAds.showRewardedVideo()
+                    setActiveStatus()
+                }
+                dialog.show()
+            }
+            else {
+                mobAds.showRewardedVideo()
+                setActiveStatus()
+            }
+        }
+        else {
+            miningAlreadyRunningWarning()
+        }
+
+    }
+
+    private fun miningAlreadyRunningWarning() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_mining_warning)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.findViewById<View>(R.id.okButton)
+            .setOnClickListener { view: View? -> dialog.dismiss() }
+        dialog.show()
     }
 
     private fun setActiveStatus() {
@@ -289,11 +343,12 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun givePointsAndStartNewMiningSession() {
-        val givenCoin = getGivenCoin()
-        viewModel.giveUserMiningReferQuizPoint(givenCoin,
+//        val givenCoin = getGivenCoin()
+
+        viewModel.giveUserMiningReferQuizPoint(
             onSuccess = {
                 startNewMiningStartSession()
-//                clearGivenCoin()
+                clearGivenCoin()
             },
             onFailure = {
                 errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.")
@@ -305,6 +360,7 @@ class NewHomeFragment : Fragment() {
         stopRippleEffect()
         progressDialog.dismiss()
         showTapTarget()
+        SpManager.saveInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED)
     }
 
 
@@ -404,7 +460,7 @@ class NewHomeFragment : Fragment() {
 
             val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
             Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            val referPointsEarned = prevReferEarnedPoints + 0.045/60 * viewModel.myTeamMinerList.size
+            val referPointsEarned = prevReferEarnedPoints + 0.045/60 * viewModel.myTeamMinerList.size * 0.10
             SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned)
             Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
 
