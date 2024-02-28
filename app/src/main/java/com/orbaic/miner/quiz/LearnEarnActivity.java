@@ -47,7 +47,7 @@ import java.util.Random;
 
 public class LearnEarnActivity extends AppCompatActivity {
 
-    int questionsIndexCount = 0, p = 0, countTime = 100000;
+    int questionsIndexCount = 0, p = 0, countTime = 60000;
     int correctAnsCounter = 0;
 
     double userPoint;
