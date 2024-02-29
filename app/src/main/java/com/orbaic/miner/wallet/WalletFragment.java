@@ -138,7 +138,7 @@ public class WalletFragment extends Fragment {
             dialog.setContentView(R.layout.winning_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
-                dialog.cancel();
+                dialog.dismiss();
             });
             dialog.show();
         });
@@ -157,6 +157,11 @@ public class WalletFragment extends Fragment {
                 String name = snapshot.child("name").getValue().toString();
                 String email = snapshot.child("email").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
+                String referralPoint =  "";
+                if (snapshot.hasChild("referralPoint")) {
+                    referralPoint = snapshot.child("referralPoint").getValue().toString();
+                }
+
                 viewModel.setPoint(Double.parseDouble(point));
                 String qzCountStr = "0";
                 if (snapshot.hasChild("qz_count")) {
@@ -177,8 +182,13 @@ public class WalletFragment extends Fragment {
                 setUpMiningHourProgress(miningHours);
 
                 double Coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(), "%.5f", Coin);
+                String format = String.format(Locale.ENGLISH, "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
+
+                double referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0);
+                double referRalCoin = Double.valueOf(referralPoint) + referEarnedPoints;
+                String formatRefCoin = String.format(Locale.ENGLISH, "%.5f", referRalCoin);
+                binding.tvAciCoinRefer.setText("ACI "+ formatRefCoin);
 
                 fetchRewards();
 

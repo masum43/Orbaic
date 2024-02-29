@@ -1,7 +1,11 @@
 package com.orbaic.miner.common
 
+import java.util.concurrent.TimeUnit
+
 object Config {
     var serverAllowedTimeDifference = 30 //minutes
+
+    val serverTimeValidityDuration = TimeUnit.MINUTES.toMillis(2)
 
     var hourRate = 0.045
 

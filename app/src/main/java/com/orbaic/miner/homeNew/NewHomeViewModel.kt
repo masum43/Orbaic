@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.orbaic.miner.ReferralDataRecive
 import com.orbaic.miner.common.Constants
+import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.checkMiningStatusTeam
 import com.orbaic.miner.common.getRewardTokenFromJson
 import com.orbaic.miner.home.MyRewardedTokenItem
@@ -52,8 +53,7 @@ class NewHomeViewModel : ViewModel() {
         }
     }
 
-    fun giveUserMiningReferQuizPoint(token: Double,
-                                     onSuccess: () -> Unit,
+    fun giveUserMiningReferQuizPoint(onSuccess: () -> Unit,
                                      onFailure: () -> Unit) {
         viewModelScope.launch {
             mAuth.currentUser?.uid?.let { userId ->
@@ -64,12 +64,21 @@ class NewHomeViewModel : ViewModel() {
                     val user = snapshot.getValue(User::class.java)
 
                     if (user != null) {
-                        val currentPoints = user.point.toDoubleOrNull() ?: 0.0
-                        val newPoints = currentPoints + token
+                        val miningEarnedCoin = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
+                        val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
+                        val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+
+
+                        val currentPoints = if (user.point.isEmpty()) 0.0 else user.point.toDoubleOrNull() ?: 0.0
+                        val newMiningQuizPoints = currentPoints + miningEarnedCoin + correctQuizAnsCoin
+
+                        val currentReferralPoints = if (user.referralPoint.isEmpty()) 0.0 else user.referralPoint.toDoubleOrNull() ?: 0.0
+                        val newReferralPoints = currentReferralPoints + referEarnedPoints
 
                         // Update the user's points atomically
                         val hashMap: HashMap<String, Any> = HashMap()
-                        hashMap["point"] = newPoints.toString()
+                        hashMap["point"] = newMiningQuizPoints.toString()
+                        hashMap["referralPoint"] = newReferralPoints.toString()
                         hashMap["extra3"] = Constants.STATE_MINING_FINISHED.toString()
                         rootRef.child("users").child(userId).updateChildren(hashMap)
                             .addOnSuccessListener {

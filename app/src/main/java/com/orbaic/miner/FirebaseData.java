@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 public class FirebaseData {
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     private FirebaseDatabase firebaseDatabase;
 
     ArrayList<FirebaseUserData> list = new ArrayList<FirebaseUserData>();
@@ -156,12 +158,15 @@ public class FirebaseData {
     //tomal
     public void updateDataWithUid(Map<String, Object> value, String pathName){
         mAuth = FirebaseAuth.getInstance();
-        DatabaseReference userDataref = FirebaseDatabase.getInstance().getReference(pathName).child(mAuth.getUid());
-        userDataref.updateChildren(value).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println(unused);
-            }
-        });
+        currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DatabaseReference userDataRef = FirebaseDatabase.getInstance().getReference(pathName).child(currentUser.getUid());
+            userDataRef.updateChildren(value).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    System.out.println(unused);
+                }
+            });
+        }
     }
 }
