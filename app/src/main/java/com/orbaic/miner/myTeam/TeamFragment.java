@@ -192,7 +192,7 @@ public class TeamFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String point = snapshot.child("point").getValue().toString();
                 double bonusPoint = Double.parseDouble(point) + 3;
-                myRef.child("point").setValue(bonusPoint);
+                myRef.child("point").setValue(String.valueOf(bonusPoint));
             }
 
             @Override
@@ -227,7 +227,7 @@ public class TeamFragment extends Fragment {
         map.put("referredBy", userId);
         map.put("referredByCode", enteredReferralCode);
         double bonusPoint = viewModel.getPoint() + 3; // add point on current user
-        map.put("point", bonusPoint);
+        map.put("point", String.valueOf(bonusPoint));
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myRef.child(mAuth.getUid()).updateChildren(map)

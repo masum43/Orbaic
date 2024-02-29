@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -54,6 +55,19 @@ class NewHomeViewModel : ViewModel() {
         }
     }
 
+    fun checkEmailVerifyStatus(isEmailNotVerified: () -> Unit) {
+        mAuth.currentUser?.reload()?.addOnSuccessListener {
+            println(mAuth.currentUser?.isEmailVerified)
+            if (!mAuth.currentUser?.isEmailVerified!!) {
+                isEmailNotVerified.invoke()
+            }
+        }
+    }
+
+    fun sendEmailVerification() {
+        mAuth.currentUser?.sendEmailVerification()
+    }
+
     fun giveUserMiningReferQuizPoint(onSuccess: () -> Unit,
                                      onFailure: () -> Unit) {
         viewModelScope.launch {
@@ -70,10 +84,19 @@ class NewHomeViewModel : ViewModel() {
                         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
 
 
-                        val currentPoints = if (user.point.isEmpty()) 0.0 else user.point.toDoubleOrNull() ?: 0.0
+                        val currentPoints = when (val userPoint = user.point) {
+                            is String -> userPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userPoint.toDouble()
+                            else -> 0.0
+                        }
+
                         val newMiningQuizPoints = currentPoints + miningEarnedCoin + correctQuizAnsCoin
 
-                        val currentReferralPoints = if (user.referralPoint.isEmpty()) 0.0 else user.referralPoint.toDoubleOrNull() ?: 0.0
+                        val currentReferralPoints = when (val userReferralPoint = user.referralPoint) {
+                            is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userReferralPoint.toDouble()
+                            else -> 0.0
+                        }
                         val newReferralPoints = currentReferralPoints + referEarnedPoints
 
                         // Update the user's points atomically
@@ -316,6 +339,8 @@ class NewHomeViewModel : ViewModel() {
         val myRef: DatabaseReference? = mAuth.currentUser?.uid?.let { rootRef.child("users").child(it) }
         myRef?.updateChildren(hashMap)
     }
+
+
 
 }
 

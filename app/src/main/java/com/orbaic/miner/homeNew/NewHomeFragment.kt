@@ -1,6 +1,9 @@
 package com.orbaic.miner.homeNew
 
+import android.app.ActivityManager
 import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -14,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
+import com.orbaic.miner.LoginLayout
 import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
 import com.orbaic.miner.allNews.AllNewsFragment
@@ -84,6 +89,16 @@ class NewHomeFragment : Fragment() {
         prepareRv()
         initClicks()
         observeCountdownState()
+        checkEmailVerificationStatus()
+    }
+
+    private fun checkEmailVerificationStatus() {
+        viewModel.checkEmailVerifyStatus {
+            dialogShow(
+                "Email verification",
+                "Your email is not verified. Please check your email and verify the mail."
+            )
+        }
     }
 
     override fun onResume() {
@@ -114,15 +129,18 @@ class NewHomeFragment : Fragment() {
         progressDialog.show()
         viewModel.fetchData()
         viewModel.userData.observe(viewLifecycleOwner) { user ->
-            Log.e("user123", "onDataChange: ${user?.name}")
-            var point = 0.0
-            var referralPoint = 0.0
-            if (!user?.point.isNullOrEmpty()) {
-                point = user?.point?.toDouble() ?: 0.0
+            val point = when (val userPoint = user?.point) {
+                is String -> userPoint.toDoubleOrNull() ?: 0.0
+                is Number -> userPoint.toDouble()
+                else -> 0.0
             }
-            if (!user?.referralPoint.isNullOrEmpty()) {
-                referralPoint = user?.referralPoint?.toDouble() ?: 0.0
+
+            val referralPoint = when (val userReferralPoint = user?.referralPoint) {
+                is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
+                is Number -> userReferralPoint.toDouble()
+                else -> 0.0
             }
+
             val totalPoints = (point + referralPoint).roundTo()
             binding.aciCoin.text = totalPoints.toString()
             binding.aciCoin.tag = totalPoints.toString()
@@ -640,4 +658,49 @@ class NewHomeFragment : Fragment() {
                 .show()
         }
     }
+
+
+    private fun dialogShow(title: String, msg: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(title)
+        builder.setMessage(msg)
+        builder.setCancelable(false)
+        builder.setPositiveButton("Verify") { dialogInterface: DialogInterface?, i: Int ->
+            viewModel.checkEmailVerifyStatus {
+                dialogShow(
+                    "Email verification",
+                    "Your email is not verified. Please check your email and verify the mail."
+                )
+            }
+        }
+        builder.setNegativeButton(
+            "Send Email"
+        ) { dialog, which ->
+            viewModel.sendEmailVerification()
+            "Email verification sent. Please check your email".toast()
+        }
+        builder.setNeutralButton(
+            "Cancel"
+        ) { dialog, which ->
+            val mAuth = FirebaseAuth.getInstance()
+            mAuth.signOut()
+            startActivity(Intent(context, LoginLayout::class.java))
+            Toast.makeText(context, "Logout your Account", Toast.LENGTH_SHORT).show()
+            clearAppData()
+        }
+        if (BuildConfig.DEBUG) {
+            builder.create().show();
+        } else {
+            builder.create().show()
+        }
+    }
+
+    private fun clearAppData() {
+        try {
+            (requireActivity().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).clearApplicationUserData()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }

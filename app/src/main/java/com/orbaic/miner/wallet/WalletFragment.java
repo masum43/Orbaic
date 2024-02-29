@@ -156,6 +156,7 @@ public class WalletFragment extends Fragment {
                 String point =  "0";
                 if (snapshot.hasChild("point")) {
                     point = snapshot.child("point").getValue().toString();
+                    if (point.isEmpty()) point = "0";
                 }
 
                 String referralPoint =  "0";
@@ -183,7 +184,8 @@ public class WalletFragment extends Fragment {
                 setUpMiningHourProgress(miningHours);
 
                 double miningEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0);
-                double Coin = Double.valueOf(point) + miningEarnedPoints;
+                double correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0);
+                double Coin = Double.valueOf(point) + miningEarnedPoints + correctQuizAns;
                 String format = String.format(Locale.ENGLISH, "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
 
