@@ -1,6 +1,12 @@
 package com.orbaic.miner.homeNew
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.util.Log
+import androidx.core.content.ContextCompat
+import com.orbaic.miner.MyApp
 import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
 import com.orbaic.miner.common.SpManager
@@ -111,11 +117,37 @@ data class User(
         // Check if the cached server time is within the validity duration
         return if (currentTime - lastCachedTime > serverTimeValidityDuration) {
             try {
-                val getNetTime = GetServerTime()
-                val newServerTime = getNetTime.getTime()
-                Log.e("fetchData111", "GetServerTime: ")
-                SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
-                newServerTime
+                // Initialize the location manager
+                val locationManager = MyApp.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+                // Check if location permissions are granted
+                if (ContextCompat.checkSelfPermission(
+                        MyApp.context,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // Get the last known location from the location manager
+                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+                    // Check if location is available
+                    if (location != null) {
+                        val latitude = location.latitude
+                        val longitude = location.longitude
+
+                        // Pass latitude and longitude to GetServerTime constructor
+                        val getNetTime = GetServerTime(latitude, longitude)
+                        val newServerTime = getNetTime.getTime()
+                        Log.e("fetchData111", "GetServerTime: ")
+                        SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
+                        newServerTime
+                    } else {
+                        Log.e("getServerTime", "Location is null")
+                        currentTime // Return current system time as a fallback
+                    }
+                } else {
+                    Log.e("getServerTime", "Location permission not granted")
+                    currentTime // Return current system time as a fallback
+                }
             } catch (e: Exception) {
                 // Handle the exception
                 Log.e("getServerTime", "Error fetching server time: ${e.message}")
@@ -126,6 +158,30 @@ data class User(
             lastCachedTime
         }
     }
+
+
+    /*    private suspend fun getServerTime(): Long {
+            val currentTime = System.currentTimeMillis()
+            val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
+            Log.e("fetchData111", "lastCachedTime: $lastCachedTime")
+            // Check if the cached server time is within the validity duration
+            return if (currentTime - lastCachedTime > serverTimeValidityDuration) {
+                try {
+                    val getNetTime = GetServerTime()
+                    val newServerTime = getNetTime.getTime()
+                    Log.e("fetchData111", "GetServerTime: ")
+                    SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
+                    newServerTime
+                } catch (e: Exception) {
+                    // Handle the exception
+                    Log.e("getServerTime", "Error fetching server time: ${e.message}")
+                    currentTime // Return current system time as a fallback
+                }
+            } else {
+                // Retrieve the server time from shared preferences
+                lastCachedTime
+            }
+        }*/
 
 /*    private suspend fun getServerTime(): Long {
         return try {
