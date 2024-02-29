@@ -336,8 +336,19 @@ class NewHomeFragment : Fragment() {
             Constants.STATE_MINING_FINISHED -> {
                 startNewMiningStartSession()
             }
-            else -> { // Mining start time is not within 24 hours
-                startNewMiningStartSession()
+            else -> { // Mining error
+                val dialog = Dialog(requireActivity())
+                dialog.setContentView(R.layout.dialog_extra_point)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
+                tvNotice.text = "Network or server issue. Please click on try again"
+                val btn = dialog.findViewById<TextView>(R.id.okButton)
+                btn.text = "Try Again"
+                btn.setOnClickListener { view: View? ->
+                    dialog.dismiss()
+                    fetchData()
+                }
+                dialog.show()
             }
         }
     }

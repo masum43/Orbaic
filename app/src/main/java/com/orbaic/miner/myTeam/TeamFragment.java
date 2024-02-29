@@ -350,7 +350,7 @@ public class TeamFragment extends Fragment {
 
                 }
 
-                String format = String.format(Locale.getDefault(), "%.5f", totalPoint);
+                String format = String.format(Locale.ENGLISH, "%.5f", totalPoint);
                 tvTotalPoint.setText(format + " ACI");
 
                 HorizontalListAdapter adapter = new HorizontalListAdapter(getActivity(), teamList);

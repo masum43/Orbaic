@@ -58,7 +58,7 @@ public class WalletViewModel extends ViewModel {
                 String point = snapshot.child("point").getValue().toString();
 
                 double coin = Double.valueOf(point);
-                String format = String.format(Locale.getDefault(), "%.5f", coin);
+                String format = String.format(Locale.ENGLISH, "%.5f", coin);
                 aciCoinLiveData.postValue("ACI " + format);
                 setPoint(coin);
             }

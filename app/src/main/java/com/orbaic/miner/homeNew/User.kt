@@ -120,29 +120,22 @@ data class User(
             try {
                 // Initialize the location manager
                 val locationManager = MyApp.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-                // Check if location permissions are granted
                 if (ContextCompat.checkSelfPermission(
                         MyApp.context,
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
-                    // Get the last known location from the location manager
-                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-                    // Check if location is available
+                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                     if (location != null) {
                         val latitude = location.latitude
                         val longitude = location.longitude
 
-                        // Pass latitude and longitude to GetServerTime constructor
                         val getNetTime = GetServerTime(latitude, longitude)
                         val newServerTime = getNetTime.getTime()
-                        Log.e("fetchData111", "GetServerTime: ")
                         SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
                         newServerTime
                     } else {
-                        Log.e("getServerTime", "Location is null")
                         currentTime // Return current system time as a fallback
                     }
                 } else {

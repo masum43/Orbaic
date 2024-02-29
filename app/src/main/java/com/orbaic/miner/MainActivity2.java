@@ -51,6 +51,7 @@ import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 

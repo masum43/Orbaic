@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class NewHomeViewModel : ViewModel() {
     private var mAuth = FirebaseAuth.getInstance()
@@ -136,7 +137,7 @@ class NewHomeViewModel : ViewModel() {
                     val minutes = (totalSecondsRemaining % 3600) / 60
                     val seconds = totalSecondsRemaining % 60
 
-                    val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                    val formattedTime = String.format(Locale.ENGLISH,"%02d:%02d:%02d", hours, minutes, seconds)
                     countdownStateFlow.emit(CountdownState.Running(formattedTime))
                 }
 
@@ -187,7 +188,7 @@ class NewHomeViewModel : ViewModel() {
                     val minutes = (totalSecondsRemaining % 3600) / 60
                     val seconds = totalSecondsRemaining % 60
 
-                    val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                    val formattedTime = String.format(Locale.ENGLISH,"%02d:%02d:%02d", hours, minutes, seconds)
                     Log.e("startQuizCountdown", "formattedTime: $formattedTime")
                     quizCountdownStateFlow.emit(CountdownState.Running(formattedTime))
                 }
