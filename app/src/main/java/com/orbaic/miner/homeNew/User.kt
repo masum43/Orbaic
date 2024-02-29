@@ -43,18 +43,19 @@ data class User(
             return TimeStatus(0, "Quiz end time is empty.")
         }
 
-        val serverTime = getServerTime()
+//        val serverTime = getServerTime()
         val currentTime = System.currentTimeMillis()
-        val differenceBetweenServerAndCurrentTime = abs(currentTime - serverTime)
+//        val differenceBetweenServerAndCurrentTime = abs(currentTime - serverTime)
 
         // Check if the time difference exceeds 5 minutes
-        if (differenceBetweenServerAndCurrentTime > 5 * 60 * 1000) {
-            val hours = (differenceBetweenServerAndCurrentTime / (1000 * 60 * 60)) % 24
-            return TimeStatus(2, "Time difference between server and device is too large: $hours hours.")
-        }
+//        if (differenceBetweenServerAndCurrentTime > 5 * 60 * 1000) {
+//            val hours = (differenceBetweenServerAndCurrentTime / (1000 * 60 * 60)) % 24
+//            return TimeStatus(2, "Time difference between server and device is too large: $hours hours.")
+//        }
 
         val quizEndTime = extra1.toLongOrNull() ?: return TimeStatus(0, "Invalid mining end time format.")
-        val timeDifference = quizEndTime - serverTime
+//        val timeDifference = quizEndTime - serverTime
+        val timeDifference = quizEndTime - currentTime
 
 
         if (timeDifference <= 0) {
@@ -64,7 +65,7 @@ data class User(
         val diffHours = timeDifference / (1000 * 60 * 60)
 
         Log.e("isQuizWithin12Hours", "quizEndTimeTimestamp: $quizEndTime")
-        Log.e("isQuizWithin12Hours", "serverTime: $serverTime")
+//        Log.e("isQuizWithin12Hours", "serverTime: $serverTime")
         Log.e("isQuizWithin12Hours", "currentTime: $currentTime")
         Log.e("isQuizWithin12Hours", "timeDifference: $timeDifference")
         Log.e("isQuizWithin12Hours", "diffHours: $diffHours")
