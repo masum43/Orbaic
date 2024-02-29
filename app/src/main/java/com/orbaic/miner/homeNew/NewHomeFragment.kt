@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
 import com.orbaic.miner.LoginLayout
+import com.orbaic.miner.MainActivity2
 import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
 import com.orbaic.miner.allNews.AllNewsFragment
@@ -70,6 +71,7 @@ class NewHomeFragment : Fragment() {
     private val errorDialog by lazy { ErrorDialog(requireActivity()) }
     private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
     private var tapTargetShowing = false
+    private var isDrawerProfileUpdated = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 //        if (result.resultCode == Activity.RESULT_OK) {
@@ -169,6 +171,13 @@ class NewHomeFragment : Fragment() {
 
             miningRewardProgress(user?.mining_count)
             quizRewardProgress(user?.qz_count)
+
+
+            if (!isDrawerProfileUpdated) {
+                isDrawerProfileUpdated = true
+                val mainActivity = activity as MainActivity2?
+                mainActivity?.updateHeader(user?.profile_image, user?.name, user?.email)
+            }
         }
 
         viewModel.getMyTeam()

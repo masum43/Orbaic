@@ -27,6 +27,7 @@ data class User(
     var qz_count: String = "",
     var name: String = "",
     var phone: String = "",
+    var profile_image: String = "",
     var point: Any = "",
     var referralPoint: Any = "",
     var referral: String = "",
