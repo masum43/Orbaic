@@ -19,6 +19,7 @@ public class SpManager {
     public static String KEY_FCM_TOKEN = "fcm_token";
     public static String KEY_FCM_NEW_TOKEN = "fcm_new_token";
     public static String KEY_MY_REFER_CODE = "refer";
+    public static String KEY_QUIZ_COUNT = "quiz_count";
 
 
     // Initialize SharedPreferences
