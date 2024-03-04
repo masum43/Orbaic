@@ -194,6 +194,7 @@ public class WalletFragment extends Fragment {
                 String formatRefCoin = String.format(Locale.ENGLISH, "%.5f", referRalCoin);
                 binding.tvAciCoinRefer.setText("ACI "+ formatRefCoin);
 
+
                 fetchRewards();
 
             }
@@ -208,6 +209,8 @@ public class WalletFragment extends Fragment {
     }
 
     private void setUpQuizProgress(int currentProgress) {
+        int quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0);
+        currentProgress = currentProgress + quizCountEarned;
         binding.tvQuizSummary.setText(currentProgress + "/300");
         int totalProgress = 300;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);

@@ -80,8 +80,9 @@ class NewHomeViewModel : ViewModel() {
 
                     if (user != null) {
                         val miningEarnedCoin = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
-                        val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
                         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+                        val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
+                        val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
 
 
                         val currentPoints = when (val userPoint = user.point) {
@@ -99,11 +100,17 @@ class NewHomeViewModel : ViewModel() {
                         }
                         val newReferralPoints = currentReferralPoints + referEarnedPoints
 
+                        val updatedQuizCount = if (user.qz_count.isNotEmpty()) {
+                            user.qz_count.toInt() + quizCountEarned
+                        } else quizCountEarned
+
+
                         // Update the user's points atomically
                         val hashMap: HashMap<String, Any> = HashMap()
                         hashMap["point"] = newMiningQuizPoints.toString()
                         hashMap["referralPoint"] = newReferralPoints.toString()
                         hashMap["extra3"] = Constants.STATE_MINING_FINISHED.toString()
+                        hashMap["qz_count"] = updatedQuizCount.toString()
                         rootRef.child("users").child(userId).updateChildren(hashMap)
                             .addOnSuccessListener {
                                 Log.d("giveUserPoint", "User points updated successfully")

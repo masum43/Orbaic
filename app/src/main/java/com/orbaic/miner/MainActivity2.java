@@ -41,7 +41,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.orbaic.miner.home.Home;
+import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.homeNew.NewHomeFragment;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
 import com.orbaic.miner.myTeam.TeamFragment;
@@ -51,7 +52,6 @@ import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
-import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
@@ -285,7 +285,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             } else if (id == R.id.menuSettings) {
                 loadFragment(new SettingsFragment());
             } else if (id == R.id.logout) {
-                logout();
+                checkStateForLogOut();
             }
             else {
                 Toast.makeText(MainActivity2.this, "Coming Soon", Toast.LENGTH_SHORT).show();
@@ -307,9 +307,20 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         findViewById(R.id.holdeLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout();
+                checkStateForLogOut();
             }
         });
+    }
+
+    private void checkStateForLogOut() {
+        int miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED);
+        if (miningStatus == Constants.STATE_MINING_ON_GOING) {
+
+        }
+        else {
+            logout();
+        }
+
     }
 
     private void logout() {
@@ -319,7 +330,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         Toast.makeText(MainActivity2.this, "Logout your Account", Toast.LENGTH_SHORT).show();
         clearAppData();
     }
-
 
 
     private void loadFragment(Fragment f) {
