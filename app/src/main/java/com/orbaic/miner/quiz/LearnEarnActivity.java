@@ -146,14 +146,17 @@ public class LearnEarnActivity extends AppCompatActivity {
 
             dataChange.showAds();
             if (answer.equals(selectedAnswer)){
+                correctAnsCounter++;
                 int totalCorrectAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0);
                 totalCorrectAns++;
-                correctAnsCounter++;
-                Map<String, Object> dataMap = new HashMap<>();
-                //dataMap.put("point", String.valueOf(userPoint+1));
-                SpManager.saveInt(SpManager.KEY_CORRECT_ANS, totalCorrectAns);
+                int quizCount = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0);
+                quizCount++;
+                /*Map<String, Object> dataMap = new HashMap<>();
+                dataMap.put("point", String.valueOf(userPoint+1));
                 dataMap.put("qz_count", String.valueOf(qzCountInt+1));
-                data.updateDataWithUid(dataMap, "users");
+                data.updateDataWithUid(dataMap, "users");*/
+                SpManager.saveInt(SpManager.KEY_CORRECT_ANS, totalCorrectAns);
+                SpManager.saveInt(SpManager.KEY_QUIZ_COUNT, quizCount);
                 String text = "Congratulation!! Your answer is correct";
                 String title = "Correct Answer";
                 int total = correctAnsCounter + wrongAnsCounter;
@@ -191,7 +194,7 @@ public class LearnEarnActivity extends AppCompatActivity {
 
         loadQuestion();
 
-        readData();
+        //readData();
     }
 
     private int getRandomNumbers() {
