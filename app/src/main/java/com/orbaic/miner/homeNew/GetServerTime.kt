@@ -1,24 +1,22 @@
 package com.orbaic.miner.homeNew
 
-import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.google.gson.annotations.SerializedName
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class GetServerTime {
+class GetServerTime(private val latitude: Double, private val longitude: Double) {
 
     interface TimeApiService {
-        @GET("Time/current/coordinate?latitude=23.777176&longitude=90.399452")
-        suspend fun getCurrentTime(): Response<TimeResponse>
+        @GET("Time/current/coordinate")
+        suspend fun getCurrentTime(
+            @Query("latitude") latitude: Double,
+            @Query("longitude") longitude: Double
+        ): Response<TimeResponse>
     }
 
     data class TimeResponse(
@@ -33,7 +31,7 @@ class GetServerTime {
             .build()
 
         val service = retrofit.create(TimeApiService::class.java)
-        val response = service.getCurrentTime()
+        val response = service.getCurrentTime(latitude, longitude)
 
         if (response.isSuccessful) {
             val timeResponse = response.body()

@@ -437,7 +437,7 @@ public class LoginLayout extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getUserCountry(context);
             } else {
-                dialogShowing("Location Permission is denied","Orbaic has not user location permission. So that, It is happening");
+                dialogShowing("Location Permission is denied","Orbaic has not user location permission. So that, It is happening. Please uninstall the app and try again or go to settings > App> Orbaic and give manually location permission.");
             }
         }
     }
@@ -447,10 +447,10 @@ public class LoginLayout extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(msg);
         builder.setCancelable(false);
-        builder.setPositiveButton("Back", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                LoginLayout.super.onBackPressed();
+                finishAffinity();
             }
         });
         builder.create().show();

@@ -153,11 +153,13 @@ public class WalletFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("DATA_READ", "readData");
-                String name = snapshot.child("name").getValue().toString();
-                String email = snapshot.child("email").getValue().toString();
-                String point = snapshot.child("point").getValue().toString();
-                String referralPoint =  "";
+                String point =  "0";
+                if (snapshot.hasChild("point")) {
+                    point = snapshot.child("point").getValue().toString();
+                    if (point.isEmpty()) point = "0";
+                }
+
+                String referralPoint =  "0";
                 if (snapshot.hasChild("referralPoint")) {
                     referralPoint = snapshot.child("referralPoint").getValue().toString();
                 }
@@ -181,7 +183,9 @@ public class WalletFragment extends Fragment {
                 viewModel.setMiningHoursCount(miningHours);
                 setUpMiningHourProgress(miningHours);
 
-                double Coin = Double.valueOf(point);
+                double miningEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0);
+                double correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0);
+                double Coin = Double.valueOf(point) + miningEarnedPoints + correctQuizAns;
                 String format = String.format(Locale.ENGLISH, "%.5f", Coin);
                 binding.tvAciCoin.setText("ACI "+ format);
 
@@ -189,6 +193,7 @@ public class WalletFragment extends Fragment {
                 double referRalCoin = Double.valueOf(referralPoint) + referEarnedPoints;
                 String formatRefCoin = String.format(Locale.ENGLISH, "%.5f", referRalCoin);
                 binding.tvAciCoinRefer.setText("ACI "+ formatRefCoin);
+
 
                 fetchRewards();
 
@@ -204,6 +209,8 @@ public class WalletFragment extends Fragment {
     }
 
     private void setUpQuizProgress(int currentProgress) {
+        int quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0);
+        currentProgress = currentProgress + quizCountEarned;
         binding.tvQuizSummary.setText(currentProgress + "/300");
         int totalProgress = 300;
         int progressPercentage = (int) ((float) currentProgress / totalProgress * 100);

@@ -27,6 +27,7 @@ public class SpManager {
     public static String KEY_POINTS_REFER_EARNED = "refer_points_earned";
     public static String KEY_SERVER_TIME = "server_time";
     public static String KEY_MINER_STATUS = "miner_status";
+    public static String KEY_QUIZ_COUNT = "quiz_count";
 
 
     // Initialize SharedPreferences

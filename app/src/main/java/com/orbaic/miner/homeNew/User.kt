@@ -1,6 +1,12 @@
 package com.orbaic.miner.homeNew
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.util.Log
+import androidx.core.content.ContextCompat
+import com.orbaic.miner.MyApp
 import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
 import com.orbaic.miner.common.SpManager
@@ -21,8 +27,9 @@ data class User(
     var qz_count: String = "",
     var name: String = "",
     var phone: String = "",
-    var point: String = "",
-    var referralPoint: String = "",
+    var profile_image: String = "",
+    var point: Any = "",
+    var referralPoint: Any = "",
     var referral: String = "",
     var referralButton: String = "",
     var referredBy: String = "",
@@ -36,18 +43,19 @@ data class User(
             return TimeStatus(0, "Quiz end time is empty.")
         }
 
-        val serverTime = getServerTime()
+//        val serverTime = getServerTime()
         val currentTime = System.currentTimeMillis()
-        val differenceBetweenServerAndCurrentTime = abs(currentTime - serverTime)
+//        val differenceBetweenServerAndCurrentTime = abs(currentTime - serverTime)
 
         // Check if the time difference exceeds 5 minutes
-        if (differenceBetweenServerAndCurrentTime > 5 * 60 * 1000) {
-            val hours = (differenceBetweenServerAndCurrentTime / (1000 * 60 * 60)) % 24
-            return TimeStatus(2, "Time difference between server and device is too large: $hours hours.")
-        }
+//        if (differenceBetweenServerAndCurrentTime > 5 * 60 * 1000) {
+//            val hours = (differenceBetweenServerAndCurrentTime / (1000 * 60 * 60)) % 24
+//            return TimeStatus(2, "Time difference between server and device is too large: $hours hours.")
+//        }
 
         val quizEndTime = extra1.toLongOrNull() ?: return TimeStatus(0, "Invalid mining end time format.")
-        val timeDifference = quizEndTime - serverTime
+//        val timeDifference = quizEndTime - serverTime
+        val timeDifference = quizEndTime - currentTime
 
 
         if (timeDifference <= 0) {
@@ -57,7 +65,7 @@ data class User(
         val diffHours = timeDifference / (1000 * 60 * 60)
 
         Log.e("isQuizWithin12Hours", "quizEndTimeTimestamp: $quizEndTime")
-        Log.e("isQuizWithin12Hours", "serverTime: $serverTime")
+//        Log.e("isQuizWithin12Hours", "serverTime: $serverTime")
         Log.e("isQuizWithin12Hours", "currentTime: $currentTime")
         Log.e("isQuizWithin12Hours", "timeDifference: $timeDifference")
         Log.e("isQuizWithin12Hours", "diffHours: $diffHours")
@@ -70,13 +78,18 @@ data class User(
     }
 
     suspend fun isMiningWithin24Hours(): TimeStatus {
+        Log.e("isMiningWithin24Hours", "miningStartTime: $miningStartTime")
         if (miningStartTime.isEmpty()) {
             return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is empty.")
         }
 
+
         val serverTime = getServerTime()
         val currentTime = System.currentTimeMillis()
         val diffBetweenCurrentAndServerTime = abs(currentTime - serverTime)
+        Log.e("isMiningWithin24Hours", "serverTime: $serverTime")
+        Log.e("isMiningWithin24Hours", "currentTime: $currentTime")
+        Log.e("isMiningWithin24Hours", "diffBetweenCurrentAndServerTime: $diffBetweenCurrentAndServerTime")
 
         // Check if the time difference exceeds serverAllowedTimeDifference
         if (diffBetweenCurrentAndServerTime > Config.serverAllowedTimeDifference * 60 * 1000) {
@@ -94,6 +107,9 @@ data class User(
         val miningStartTimeTimestamp = miningStartTime.toLongOrNull() ?: return TimeStatus(0, "Invalid mining start time format.")
         val diff = abs(serverTime - miningStartTimeTimestamp)
         val diffHours = diff / (1000 * 60 * 60)
+
+        Log.e("isMiningWithin24Hours", "diffHours: $diffHours")
+        Log.e("isMiningWithin24Hours", "extra3: $extra3")
         return if (diffHours < 24) {
             TimeStatus(Constants.STATE_MINING_ON_GOING, "Mining start time is within 24 hours.")
         } else {
@@ -112,11 +128,30 @@ data class User(
         // Check if the cached server time is within the validity duration
         return if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
             try {
-                val getNetTime = GetServerTime()
-                val newServerTime = getNetTime.getTime()
-                Log.e("fetchData111", "GetServerTime: ")
-                SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
-                newServerTime
+                // Initialize the location manager
+                val locationManager = MyApp.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                if (ContextCompat.checkSelfPermission(
+                        MyApp.context,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+
+                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                    if (location != null) {
+                        val latitude = location.latitude
+                        val longitude = location.longitude
+
+                        val getNetTime = GetServerTime(latitude, longitude)
+                        val newServerTime = getNetTime.getTime()
+                        SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
+                        newServerTime
+                    } else {
+                        currentTime // Return current system time as a fallback
+                    }
+                } else {
+                    Log.e("getServerTime", "Location permission not granted")
+                    currentTime // Return current system time as a fallback
+                }
             } catch (e: Exception) {
                 // Handle the exception
                 Log.e("getServerTime", "Error fetching server time: ${e.message}")
@@ -127,6 +162,30 @@ data class User(
             lastCachedTime
         }
     }
+
+
+    /*    private suspend fun getServerTime(): Long {
+            val currentTime = System.currentTimeMillis()
+            val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
+            Log.e("fetchData111", "lastCachedTime: $lastCachedTime")
+            // Check if the cached server time is within the validity duration
+            return if (currentTime - lastCachedTime > serverTimeValidityDuration) {
+                try {
+                    val getNetTime = GetServerTime()
+                    val newServerTime = getNetTime.getTime()
+                    Log.e("fetchData111", "GetServerTime: ")
+                    SpManager.saveLong(SpManager.KEY_SERVER_TIME, newServerTime)
+                    newServerTime
+                } catch (e: Exception) {
+                    // Handle the exception
+                    Log.e("getServerTime", "Error fetching server time: ${e.message}")
+                    currentTime // Return current system time as a fallback
+                }
+            } else {
+                // Retrieve the server time from shared preferences
+                lastCachedTime
+            }
+        }*/
 
 /*    private suspend fun getServerTime(): Long {
         return try {

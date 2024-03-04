@@ -271,7 +271,7 @@ public class Home extends Fragment {
                 long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
 
                 // Display the remaining time as a countdown
-                String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                String remainingTime = String.format(Locale.ENGLISH, "%02d:%02d:%02d", hours, minutes, seconds);
                 // Update a TextView or any other UI element to show the remaining time.
                 tvQuizCountDown.setText(remainingTime);
 
@@ -578,7 +578,7 @@ public class Home extends Fragment {
         int minute = (int) ((timeLeftInMillis / 1000) % 3600) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
-        String timeFormat = String.format(Locale.getDefault(), "%02d:%02d:%02d", hour, minute, seconds);
+        String timeFormat = String.format(Locale.ENGLISH, "%02d:%02d:%02d", hour, minute, seconds);
         hr.setText(timeFormat);
 
     }
@@ -665,7 +665,7 @@ public class Home extends Fragment {
                 // System.out.println(referralStatus);
                 viewModel.setPoint(point);
                 double coin = viewModel.getPoint();
-                String format = String.format(Locale.getDefault(), "%.5f", coin);
+                String format = String.format(Locale.ENGLISH, "%.5f", coin);
                 AciCoin.setText(format);
 
                 if (snapshot.child("referredBy").exists()) {
@@ -706,7 +706,7 @@ public class Home extends Fragment {
 
     private void startOnFun(DataSnapshot snapshot) {
         Log.e("DATA_READ", "startOnFun");
-        String format = String.format(Locale.getDefault(), "%.5f", viewModel.getPoint());
+        String format = String.format(Locale.ENGLISH, "%.5f", viewModel.getPoint());
         AciCoin.setText(format);
 
         //Start - Learn and Earn Enable
@@ -788,7 +788,7 @@ public class Home extends Fragment {
                     coin = coin + ((sleepTime / 1000) * 0.000012);
                     viewModel.setPoint(String.valueOf(coin));
                     data.addMiningPoints(String.valueOf(coin));
-                    String format = String.format(Locale.getDefault(), "%.5f", coin);
+                    String format = String.format(Locale.ENGLISH, "%.5f", coin);
                     Log.e("COIN_UPDATE", "Coin1: " + coin);
                     requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                 }
@@ -808,7 +808,7 @@ public class Home extends Fragment {
                     viewModel.setPoint(String.valueOf(coin));
                     if (coin >= 0) {
                         data.addMiningPoints(String.valueOf(coin));
-                        String format = String.format(Locale.getDefault(), "%.5f", coin);
+                        String format = String.format(Locale.ENGLISH, "%.5f", coin);
                         Log.e("COIN_UPDATE", "Coin2: " + coin);
                         requireActivity().runOnUiThread(() -> AciCoin.setText(format));
                         //System.out.println("finish" + Coin);
@@ -853,7 +853,7 @@ public class Home extends Fragment {
 
                     data.addMiningPoints(String.valueOf(coin));
 
-                    String format = String.format(Locale.getDefault(), "%.5f", coin);
+                    String format = String.format(Locale.ENGLISH, "%.5f", coin);
                     runOnUiThread(() -> AciCoin.setText(format));
                     addPoints();
                 } else {

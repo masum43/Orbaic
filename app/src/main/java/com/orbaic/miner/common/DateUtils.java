@@ -1,6 +1,7 @@
 package com.orbaic.miner.common;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class DateUtils {
     public static String getCurrentDay() {
@@ -10,6 +11,6 @@ public class DateUtils {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         // Format the key as "yyyyMMdd"
-        return String.format("%04d%02d%02d", year, month, day);
+        return String.format(Locale.ENGLISH, "%04d%02d%02d", year, month, day);
     }
 }
