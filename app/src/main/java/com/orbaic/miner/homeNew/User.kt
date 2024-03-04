@@ -80,7 +80,7 @@ data class User(
     suspend fun isMiningWithin24Hours(): TimeStatus {
         Log.e("isMiningWithin24Hours", "miningStartTime: $miningStartTime")
         if (miningStartTime.isEmpty()) {
-            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is empty.")
+            return TimeStatus(Constants.STATE_MINING_FINISHED, "Mining start time is empty.")
         }
 
 

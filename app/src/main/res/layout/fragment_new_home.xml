@@ -37,7 +37,7 @@
                     android:id="@+id/aci_coin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.00000"
+                    tools:text="0.00000"
                     android:textColor="#fff"
                     android:textSize="32sp" />
 

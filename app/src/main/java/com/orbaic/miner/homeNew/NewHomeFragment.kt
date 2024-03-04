@@ -144,7 +144,7 @@ class NewHomeFragment : Fragment() {
             }
 
             val totalPoints = (point + referralPoint).roundTo()
-            binding.aciCoin.text = totalPoints.toString()
+//            binding.aciCoin.text = totalPoints.toString()
             binding.aciCoin.tag = totalPoints.toString()
             val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
             binding.tvRate.text = "$finalHourRate/h ACI"
@@ -360,9 +360,11 @@ class NewHomeFragment : Fragment() {
                 progressDialog.dismiss()
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
+                binding.aciCoin.text = getTotalCoin().toString()
                 givePointsAndStartNewMiningSession()
             }
             Constants.STATE_MINING_FINISHED -> {
+                binding.aciCoin.text = getTotalCoin().toString()
                 startNewMiningStartSession()
             }
             else -> { // Mining error
@@ -463,16 +465,7 @@ class NewHomeFragment : Fragment() {
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        val totalTokens = (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
-        return totalTokens
-    }
-
-    private fun getGivenCoin(): Double {
-        val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
-        val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-        val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        val totalTokens = (earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
-        return totalTokens
+        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
     }
 
     private fun clearGivenCoin() {
@@ -533,7 +526,10 @@ class NewHomeFragment : Fragment() {
         if (quizCountStr.isNullOrEmpty()) {
             return
         }
-        var quizCount: Int = quizCountStr.toInt()
+        var quizCount = 0
+        val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
+        quizCount = quizCountStr.toInt() + quizCountEarned
+
         val maxQuizCount = 300
         if (quizCount > maxQuizCount) quizCount = maxQuizCount
         val percentageQuizCount = (quizCount.toFloat() / maxQuizCount * 100).toInt()
