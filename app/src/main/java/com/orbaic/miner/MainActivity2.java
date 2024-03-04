@@ -1,8 +1,11 @@
 package com.orbaic.miner;
 
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +13,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -42,6 +47,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.common.ErrorDialog;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.homeNew.NewHomeFragment;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
@@ -65,11 +71,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     ImageView btnEditProfile;
     private ConsentInformation consentInformation;
     private boolean isClickable = true;
-
+    private ErrorDialog errorDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        errorDialog = new ErrorDialog(this);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationViewId);
@@ -315,7 +323,23 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     private void checkStateForLogOut() {
         int miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED);
         if (miningStatus == Constants.STATE_MINING_ON_GOING) {
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_logout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            TextView tvNotice = dialog.findViewById(R.id.tvNotice);
+            tvNotice.setText(R.string.warning_logout);
+            LinearLayout holderBg = dialog.findViewById(R.id.holderBg);
+            holderBg.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            dialog.findViewById(R.id.cancelButton).setOnClickListener(view -> {
+                dialog.dismiss();
 
+            });
+            dialog.findViewById(R.id.okButton).setOnClickListener(view -> {
+                dialog.dismiss();
+                logout();
+
+            });
+            dialog.show();
         }
         else {
             logout();
@@ -325,6 +349,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
     private void logout() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("users").child(mAuth.getCurrentUser().getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("miningStartTime", "-1");
+        userRef.updateChildren(hashMap);
+
+        SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, 0.0);
+        SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0);
+        SpManager.saveInt(SpManager.KEY_QUIZ_COUNT, 0);
+        SpManager.saveInt(SpManager.KEY_CORRECT_ANS, 0);
+
         mAuth.signOut();
         startActivity(new Intent(MainActivity2.this, LoginLayout.class));
         Toast.makeText(MainActivity2.this, "Logout your Account", Toast.LENGTH_SHORT).show();
