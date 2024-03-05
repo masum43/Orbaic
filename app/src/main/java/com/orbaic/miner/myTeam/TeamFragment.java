@@ -231,21 +231,15 @@ public class TeamFragment extends Fragment {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myRef.child(mAuth.getUid()).updateChildren(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        etReferByCode.setClickable(false);
-                        etReferByCode.setEnabled(false);
-                        tvSubmit.setVisibility(View.GONE);
-                        showSuccessDialog();
+                .addOnSuccessListener(aVoid -> {
+                    etReferByCode.setClickable(false);
+                    etReferByCode.setEnabled(false);
+                    tvSubmit.setVisibility(View.GONE);
+                    showSuccessDialog();
 
-                    }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Handle the error
-                    }
+                .addOnFailureListener(e -> {
+                    // Handle the error
                 });
     }
 
