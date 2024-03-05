@@ -123,7 +123,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/AdMobAds.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/AdMobAds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/quiz/LearnEarnActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/quiz/LearnEarnActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +230,7 @@
     "DEBUGGABLE_DEVICE": "realme-rmx1991-7a324127",
     "DEBUGGABLE_PROCESS": "com.orbaic.miner",
     "DEBUGGER_ID": "Auto",
-    "ExportApk.ApkPathForOrbaic.app": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/release",
+    "ExportApk.ApkPathForOrbaic.app": "C:\\Users\\USER\\AndroidStudioProjects\\Orbaic\\app\\release",
     "ExportBundle.BundlePathForOrbaic.app": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/release",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -810,7 +812,7 @@
       <option name="project" value="LOCAL" />
       <updated>1703182484484</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

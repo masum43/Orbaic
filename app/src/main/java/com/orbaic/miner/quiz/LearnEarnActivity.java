@@ -112,9 +112,6 @@ public class LearnEarnActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         dataChange.getAdmobStatus().observe(this, admobData -> {
             //Toast.makeText(this, "work", Toast.LENGTH_SHORT).show();
             if (admobData.equals("on")){

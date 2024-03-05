@@ -194,7 +194,12 @@ class NewHomeFragment : Fragment() {
 
     private fun initClicks() {
         binding.mining.setOnClickListener {
-            startMining()
+            if (mobAds.isAdsLoaded) {
+                startMining()
+            }
+            else {
+                "The blockchain is currently facing significant congestion. Please remain patient and try again now.".toast()
+            }
         }
 
         binding.learnAndEarn.setOnClickListener {
