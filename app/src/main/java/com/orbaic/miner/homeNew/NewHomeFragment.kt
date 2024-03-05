@@ -354,7 +354,9 @@ class NewHomeFragment : Fragment() {
                 viewModel.stopQuizCountdown()
                 stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showTimeDiffWithServerError(errorMessage)
+                errorDialog.showTimeDiffWithServerError(errorMessage, onClick = {
+                    requireActivity().finishAffinity()
+                })
                 progressDialog.dismiss()
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
@@ -389,7 +391,9 @@ class NewHomeFragment : Fragment() {
                 clearGivenCoin()
             },
             onFailure = {
-                errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.")
+                errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.", onClick = {
+                    requireActivity().finishAffinity()
+                })
             })
     }
 
@@ -474,6 +478,7 @@ class NewHomeFragment : Fragment() {
     private fun clearGivenCoin() {
         SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+        SpManager.saveInt(SpManager.KEY_QUIZ_COUNT, 0)
         SpManager.saveInt(SpManager.KEY_CORRECT_ANS, 0)
     }
 

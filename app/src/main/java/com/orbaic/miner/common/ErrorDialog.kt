@@ -13,7 +13,7 @@ import com.orbaic.miner.R
 class ErrorDialog(private val activity: Activity) {
     private var dialog: Dialog? = null
 
-    fun showTimeDiffWithServerError(errorMessage: String) {
+    fun showTimeDiffWithServerError(errorMessage: String, onClick : () -> Unit) {
         if (dialog != null && dialog!!.isShowing) {
             return
         }
@@ -28,7 +28,7 @@ class ErrorDialog(private val activity: Activity) {
         tvNotice.text = errorMessage
         holderBg.setBackgroundColor(ContextCompat.getColor(activity, R.color.red))
         dialog!!.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
-            activity.finishAffinity()
+            onClick.invoke()
         }
         dialog!!.show()
     }
