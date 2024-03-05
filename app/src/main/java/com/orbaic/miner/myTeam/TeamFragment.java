@@ -136,10 +136,9 @@ public class TeamFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String userId = dataSnapshot.child("userId").getValue(String.class);
-//                    String name = dataSnapshot.child("name").getValue(String.class);
                     addBonusPointToMyReferralUser(userId);
                     addMeIntoReferralTeam(userId, myName);
-                    updateMyReferCode(userId, desiredReferKey);
+                    updateMyReferCodeAndAddBonusPoint(userId, desiredReferKey);
                 } else {
                     loadingDialog.closeLoadingDialog();
                     Toast.makeText(requireContext(), "Invalid referral code. Please try again.", Toast.LENGTH_SHORT).show();
@@ -190,9 +189,9 @@ public class TeamFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String point = snapshot.child("point").getValue().toString();
+                String point = snapshot.child("referralPoint").getValue().toString();
                 double bonusPoint = Double.parseDouble(point) + 3;
-                myRef.child("point").setValue(String.valueOf(bonusPoint));
+                myRef.child("referralPoint").setValue(String.valueOf(bonusPoint));
             }
 
             @Override
@@ -219,15 +218,16 @@ public class TeamFragment extends Fragment {
         }
     }
 
-    private void updateMyReferCode(String userId, String enteredReferralCode) {
+    private void updateMyReferCodeAndAddBonusPoint(String userId, String enteredReferralCode) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
         Map<String, Object> map = new HashMap<>();
         map.put("referredBy", userId);
         map.put("referredByCode", enteredReferralCode);
-        double bonusPoint = viewModel.getPoint() + 3; // add point on current user
-        map.put("point", String.valueOf(bonusPoint));
+        String myReferralPoint = tvMyReferCode.getTag().toString();
+        double bonusPoint = Double.parseDouble(myReferralPoint) + 3; // add point on current user
+        map.put("referralPoint", String.valueOf(bonusPoint));
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myRef.child(mAuth.getUid()).updateChildren(map)
@@ -262,7 +262,10 @@ public class TeamFragment extends Fragment {
                 Log.e("DATA_READ", "Team: readData");
                 myName = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
+                String referralPoint = snapshot.child("referralPoint").getValue().toString();
                 String referral = snapshot.child("referral").getValue().toString();
+
+                tvMyReferCode.setTag(referralPoint);
 
                 if (snapshot.hasChild("miningStartTime")) {
                     String miningStartTime = snapshot.child("miningStartTime").getValue().toString();

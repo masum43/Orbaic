@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 public class TeamViewModel extends ViewModel {
 
-    private double point = 0.0;
+    private double point;
     private int quizCount = 0;
     private int miningHoursCount = 0;
     private boolean isMyDataRead = false;
