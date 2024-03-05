@@ -102,7 +102,7 @@ public class AdMobAds {
             admobInterstitialAd = null;
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
-            if (!com.orbaic.miner.BuildConfig.DEBUG) {
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
                 intersId = "ca-app-pub-3940256099942544/1033173712";
             }
             InterstitialAd.load(context,intersId, adRequest,
@@ -114,6 +114,36 @@ public class AdMobAds {
                             admobInterstitialAd = ad;
                             button = "ON";
                             //Log.i(TAG, "onAdLoaded");
+                            admobInterstitialAd.setFullScreenContentCallback(
+                                    new FullScreenContentCallback() {
+                                        /** Called when ad showed the full screen content. */
+                                        @Override
+                                        public void onAdShowedFullScreenContent() {
+
+                                        }
+
+                                        /** Called when the ad failed to show full screen content. */
+                                        @Override
+                                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                            System.out.printf(adError.getMessage());
+
+                                            // Don't forget to set the ad reference to null so you
+                                            // don't show the ad a second time.
+                                            admobInterstitialAd = null;
+                                            loadIntersAndRewardedAd();
+                                        }
+
+                                        /** Called when full screen content is dismissed. */
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            // Don't forget to set the ad reference to null so you
+                                            // don't show the ad a second time.
+                                            admobInterstitialAd = null;
+                                            // Preload the next rewarded interstitial ad.
+                                            loadIntersAndRewardedAd();
+                                        }
+
+                                    });
                         }
 
                         @Override
@@ -128,7 +158,7 @@ public class AdMobAds {
         }else{
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
-            if (!com.orbaic.miner.BuildConfig.DEBUG) {
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
                 intersId = "ca-app-pub-3940256099942544/1033173712";
             }
             InterstitialAd.load(context,intersId, adRequest,
@@ -154,8 +184,11 @@ public class AdMobAds {
         }
     }
 
-    public void showRewardedVideo() {
+    public boolean isAdsLoaded() {
+        return admobInterstitialAd != null;
+    }
 
+    public void showRewardedVideo() {
         if (admobInterstitialAd == null) {
             //Log.d("TAG", "The rewarded ad wasn't ready yet.");
             //Toast.makeText(context, "ads not work", Toast.LENGTH_SHORT).show();
@@ -165,38 +198,6 @@ public class AdMobAds {
             //rewardedInterstitialAd.show(getActivity);
             admobInterstitialAd.show(getActivity);
         }
-
-        admobInterstitialAd.setFullScreenContentCallback(
-                new FullScreenContentCallback() {
-                    /** Called when ad showed the full screen content. */
-                    @Override
-                    public void onAdShowedFullScreenContent() {
-
-                    }
-
-                    /** Called when the ad failed to show full screen content. */
-                    @Override
-                    public void onAdFailedToShowFullScreenContent(AdError adError) {
-                        System.out.printf(adError.getMessage());
-
-                        // Don't forget to set the ad reference to null so you
-                        // don't show the ad a second time.
-                        admobInterstitialAd = null;
-                        loadIntersAndRewardedAd();
-                    }
-
-                    /** Called when full screen content is dismissed. */
-                    @Override
-                    public void onAdDismissedFullScreenContent() {
-                        // Don't forget to set the ad reference to null so you
-                        // don't show the ad a second time.
-                        admobInterstitialAd = null;
-                        // Preload the next rewarded interstitial ad.
-                        loadIntersAndRewardedAd();
-                    }
-
-                });
-
     }
 
     public String getButton() {
