@@ -1,6 +1,5 @@
-package com.orbaic.miner;
+package com.orbaic.miner.auth;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,7 +44,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orbaic.miner.FirebaseData;
+import com.orbaic.miner.ForgetPassword;
+import com.orbaic.miner.MainActivity2;
+import com.orbaic.miner.R;
 import com.orbaic.miner.common.Methods;
+import com.orbaic.miner.common.ProgressDialog;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -62,16 +66,18 @@ public class LoginLayout extends AppCompatActivity {
 
     Context context;
     private FirebaseAuth mAuth;
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
     private GoogleSignInClient mGoogleSignInClient;
     private String country = "";
-    private int userTotal = 0;
     LinearLayout facebookImageRegister;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
+
+        progressDialog = new ProgressDialog.Builder(LoginLayout.this).build();
 
         facebookImageRegister = findViewById(R.id.facebookImageRegister);
 
@@ -132,12 +138,12 @@ public class LoginLayout extends AppCompatActivity {
                 Login_password.setError("Please Enter the Password");
                 return;
             }
-            progressDialog = new ProgressDialog(LoginLayout.this);
-            progressDialog.setTitle("Please wait");
-            progressDialog.setMessage("Loading...");
-            progressDialog.create();
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+//            progressDialog = new ProgressDialog(LoginLayout.this);
+//            progressDialog.setTitle("Please wait");
+//            progressDialog.setMessage("Loading...");
+//            progressDialog.create();
+//            progressDialog.setCancelable(false);
+//            progressDialog.show();
             sign_function();
         });
 
@@ -195,10 +201,10 @@ public class LoginLayout extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                         updateUI();
                     } else {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                         Exception exception = task.getException();
                         if (exception != null) {
                             Log.e("LoginIssue", "onComplete: " + exception.getMessage());
@@ -248,11 +254,11 @@ public class LoginLayout extends AppCompatActivity {
             //Toast.makeText(LoginLayout.this,"code successful",Toast.LENGTH_LONG).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-            progressDialog = new ProgressDialog(LoginLayout.this);
-            progressDialog.setTitle("Please wait");
-            progressDialog.setMessage("Loading...");
-            progressDialog.create();
-            progressDialog.setCancelable(false);
+//            progressDialog = new ProgressDialog(LoginLayout.this);
+//            progressDialog.setTitle("Please wait");
+//            progressDialog.setMessage("Loading...");
+//            progressDialog.create();
+//            progressDialog.setCancelable(false);
 //            progressDialog.show();
         }
     }
@@ -268,31 +274,14 @@ public class LoginLayout extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(String idToken, GoogleSignInAccount account) {
+        progressDialog.show();
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-       /* mAuth.signInAnonymously()
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        // Login successful
-                        progressDialog.dismiss();
-                        updateUI();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginLayout.this, "You have no account. To create a new account Please clear App data", Toast.LENGTH_SHORT).show();
-                    }
-                });*/
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             FirebaseUser currentUser = mAuth.getCurrentUser();
-                            //Map<String, Object> userInfo = new HashMap<>();
                             if (currentUser != null) {
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
                                 String uid = currentUser.getUid();
@@ -300,24 +289,16 @@ public class LoginLayout extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (!snapshot.exists()) {
-                                        /*int id = userTotal + 1;
-                                        String userID = String.valueOf(id);*/
-
-                     /*                       Random a = new Random();
-                                            int b = a.nextInt(9999);
-                                            int c = a.nextInt(9999);
-                                            String code = String.valueOf(b) + String.valueOf(c);*/
-                                            String code = Methods.generateReferralCode(uid);
-
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LoginLayout.this);
                                             if (account == null){
                                                 return;
                                             }
-                                            String name = account.getDisplayName();
+                                            insertDataIntoDB("", account.getEmail(), account.getDisplayName(), "");
+
+
+                                           /* String name = account.getDisplayName();
                                             String email = account.getEmail();
 
-                                            /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                            DatabaseReference myRef = database.getReference("users");*/
                                             Map<String, String> map = new HashMap<>();
                                             map.put("point","0");
                                             map.put("phone","0");
@@ -333,29 +314,14 @@ public class LoginLayout extends AppCompatActivity {
                                             map.put("extra1","0");
                                             map.put("extra2","0");
                                             map.put("extra3","0");
-                                            /*if (mAuth.getUid() == null){
-                                                return;
-                                            }*/
-                                            /*FirebaseUser currentUser = mAuth.getCurrentUser();
-                                            if (currentUser != null) {
-                                                currentUser.sendEmailVerification();
-                                            }*/
+
                                             currentUser.sendEmailVerification();
                                             ref.child(uid).setValue(map);
 
                                             progressDialog.dismiss();
                                             Toast.makeText(LoginLayout.this, "New account created successfully", Toast.LENGTH_SHORT).show();
-                                            updateUI();
-/*
-                                        DatabaseReference reference = database.getReference("userId");
-                                        reference.child("totalUserId").setValue(userID)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        updateUI();
-                                                        progressDialog.dismiss();
-                                                    }
-                                                });*/
+                                            updateUI();*/
+
 
                                         } else {
                                             Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();
@@ -363,23 +329,7 @@ public class LoginLayout extends AppCompatActivity {
                                             updateUI();
                                         }
 
-/*                                    System.out.println("work");
-                                    String point = "1";
-                                    for (DataSnapshot userData : snapshot.getChildren()){
-                                        String key = userData.getKey();
-                                        Object value = userData.getValue();
 
-                                        userInfo.put(key, value);
-                                    }
-
-                                    point = String.valueOf(userInfo.get("point"));
-                                    System.out.println(point);
-                                    if (point.equals("1") | point.equals("null")){
-
-                                    }else {
-//                                        Toast.makeText(LoginLayout.this, " You have already an account", Toast.LENGTH_SHORT).show();
-
-                                    }*/
                                     }
 
                                     @Override
@@ -393,20 +343,20 @@ public class LoginLayout extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                            /*if (uid != null){
-                                progressDialog.dismiss();
-                                updateUI();
-                            }else {
-                                Toast.makeText(LoginLayout.this, "Please create a new account", Toast.LENGTH_SHORT).show();
-                            }*/
                         } else {
-
-                            Toast.makeText(LoginLayout.this,"Token Error",Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
-                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginLayout.this,"Token Error",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+    }
+
+    private void updateUI(String name, String referBy) {
+        Intent i = new Intent(LoginLayout.this, MainActivity2.class);
+        i.putExtra("name", name);
+        i.putExtra("referBy", referBy);
+        startActivity(i);
+        finish();
     }
 
     private void updateUI() {
@@ -492,21 +442,78 @@ public class LoginLayout extends AppCompatActivity {
 
     }
 
-    private void idCreate() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("userId");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String id = snapshot.child("totalUserId").getValue().toString();
-                userTotal = Integer.parseInt(id);
-            }
+    private void insertDataIntoDB(String referByUserId, String email, String name, String referredBy) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("users");
+            String uid = currentUser.getUid();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("" + error.getMessage());
+            String code = Methods.generateReferralCode(uid);
 
+            Map<String, String> map = new HashMap<>();
+            map.put("point", "0");
+            map.put("phone", "0");
+            map.put("click", "0");
+            map.put("country", country);
+            map.put("birthdate", "0");
+            map.put("referral", code);
+            map.put("referredBy", referByUserId);
+            map.put("referralButton", "ON");
+            map.put("type", "0");
+            map.put("name", name);
+            map.put("email", email);
+            map.put("id", uid);
+            map.put("extra1", "0");
+            map.put("extra2", "0");
+            map.put("extra3", "0");
+
+            currentUser.sendEmailVerification();
+
+            ref.child(uid).setValue(map).addOnCompleteListener(task1 -> {
+                if (task1.isSuccessful()) {
+                    updateReferKey(name, referredBy, database, uid, code);
+                } else {
+                    progressDialog.dismiss();
+                    Exception exception = task1.getException();
+                    if (exception != null) {
+                        String errorMessage = exception.getMessage();
+                        Log.e("RegistrationError", "task1: " + errorMessage);
+                        Toast.makeText(LoginLayout.this, errorMessage, Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.e("RegistrationError", "Unknown error");
+                        Toast.makeText(LoginLayout.this, "Unknown error", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+
+            });
+        } else {
+            Toast.makeText(LoginLayout.this, "Something went wrong. Try again", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+    private void updateReferKey(String name, String referredBy, FirebaseDatabase database, String uid, String code) {
+        DatabaseReference referKeys = database.getReference("referKeys");
+        Map<String, String> referKeyMap = new HashMap<>();
+        referKeyMap.put("userId", uid);
+        referKeyMap.put("name", name);
+
+        Log.e("RegistrationError", "getUid: " + uid);
+        Log.e("RegistrationError", "code: " + code);
+
+        referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
+            if (task2.isSuccessful()) {
+                progressDialog.dismiss();
+                updateUI(name, referredBy);
+            } else {
+                progressDialog.dismiss();
+                String errorMessage = task2.getException().getMessage();
+                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+                Log.e("RegistrationError", "task2: " + errorMessage);
             }
         });
     }
+
 }

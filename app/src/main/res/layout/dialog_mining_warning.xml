@@ -17,6 +17,7 @@
         android:layout_gravity="center"
         android:src="@drawable/ic_alert"/>
     <TextView
+        android:id="@+id/tvWarning"
         android:layout_gravity="center"
         android:lineSpacingExtra="-4sp"
         android:letterSpacing="0.01"

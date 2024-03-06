@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="My Mining"
+                    android:text="@string/mining_quiz"
                     android:textColor="#777"
                     android:textSize="14sp" />
             </LinearLayout>

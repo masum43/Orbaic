@@ -1,11 +1,9 @@
-package com.orbaic.miner;
+package com.orbaic.miner.auth;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,54 +14,40 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.analytics.FirebaseAnalytics.UserProperty;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.orbaic.miner.common.Constants;
+import com.orbaic.miner.MainActivity2;
+import com.orbaic.miner.R;
 import com.orbaic.miner.common.Methods;
-import com.orbaic.miner.myTeam.GridBindAdapter;
-import com.orbaic.miner.myTeam.Team;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 
 public class UserRegister extends AppCompatActivity {
 
@@ -184,31 +168,12 @@ public class UserRegister extends AppCompatActivity {
 
     }
 
-    private void idCreate() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("userId");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String id = snapshot.child("totalUserId").getValue().toString();
-                userTotal = Integer.parseInt(id);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("" + error.getMessage());
-
-            }
-        });
-    }
-
     private void sign_in() {
         Intent intent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
     }
 
     private void sign_up() {
-
         EditText user_name = findViewById(R.id.user_name_registration);
         EditText register_email = findViewById(R.id.user_email_registration);
         EditText register_password = findViewById(R.id.registration_password);
@@ -219,8 +184,7 @@ public class UserRegister extends AppCompatActivity {
         String name = user_name.getText().toString();
         String referredBy = register_refer.getText().toString();
 
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-        startRegistering("", usersRef, email, password, name, referredBy);
+        startManualRegistering("", email, password, name, referredBy);
 
         /*
         //validate refer code
@@ -256,106 +220,14 @@ public class UserRegister extends AppCompatActivity {
 
     }
 
-    private void startRegistering(String referByUserId, DatabaseReference usersRef, String email, String password, String name, String referredBy) {
+    private void startManualRegistering(String referByUserId, String email, String password, String name, String referredBy) {
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(UserRegister.this, task -> {
                     if (task.isSuccessful()) {
-                        //Toast.makeText(UserRegister.this,"Token Successful",Toast.LENGTH_LONG).show();
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-                        if (currentUser != null) {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference ref = database.getReference("users");
-                            String uid = currentUser.getUid();
-
-//                            Random a = new Random();
-//                            int b = a.nextInt(9999);
-//                            int c = a.nextInt(9999);
-//                            String code = String.valueOf(b) + String.valueOf(c);
-                            String code = Methods.generateReferralCode(uid);
-
-                        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("users");*/
-                            Map<String, String> map = new HashMap<>();
-                            map.put("point", "0");
-                            map.put("phone", "0");
-                            map.put("click", "0");
-                            map.put("country", country);
-                            map.put("birthdate", "0");
-                            map.put("referral", code);
-                            map.put("referredBy", referByUserId);
-                            map.put("referralButton", "ON");
-                            map.put("type", "0");
-                            map.put("name", name);
-                            map.put("email", email);
-                            map.put("id", uid);
-                            map.put("extra1", "0");
-                            map.put("extra2", "0");
-                            map.put("extra3", "0");
-                            /*if (mAuth.getUid() == null) {
-                                Log.e("RegistrationError", "mAuth.getUid() is null");
-                                return;
-                            }*/
-
-
-                            currentUser.sendEmailVerification();
-
-//                        mAuth.getCurrentUser().sendEmailVerification();
-
-
-                            ref.child(uid).setValue(map).addOnCompleteListener(task1 -> {
-                                if (task1.isSuccessful()) {
-                                    progressDialog.dismiss();
-
-                                    DatabaseReference referKeys = database.getReference("referKeys");
-                                    Map<String, String> referKeyMap = new HashMap<>();
-                                    referKeyMap.put("userId", uid);
-                                    referKeyMap.put("name", name);
-
-                                    Log.e("RegistrationError", "getUid: " + uid);
-                                    Log.e("RegistrationError", "code: " + code);
-
-                                    referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
-                                        if (task2.isSuccessful()) {
-                                            updateUI(name, referredBy);
-                                        } else {
-                                            String errorMessage = task2.getException().getMessage();
-                                            Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
-                                            Log.e("RegistrationError", "task2: " + errorMessage);
-                                        }
-                                    });
-
-
-                                } else {
-                                    progressDialog.dismiss();
-                                    Exception exception = task1.getException();
-                                    if (exception != null) {
-                                        String errorMessage = exception.getMessage();
-                                        Log.e("RegistrationError", "task1: " + errorMessage);
-                                        Toast.makeText(UserRegister.this, errorMessage, Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Log.e("RegistrationError", "Unknown error");
-                                        Toast.makeText(UserRegister.this, "Unknown error", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-
-
-                            });
-                        } else {
-                            Toast.makeText(UserRegister.this, "Something went wrong. Try again", Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                        }
-
+                        insertDataIntoDB(referByUserId, email, name, referredBy);
                     } else {
-                        Exception exception = task.getException();
-                        if (exception != null) {
-                            String errorMessage = exception.getMessage();
-                            Toast.makeText(UserRegister.this, errorMessage, Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(UserRegister.this, "Unknown error", Toast.LENGTH_LONG).show();
-                        }
-                        progressDialog.dismiss();
+                        handleCreateUserError(task);
                     }
                 });
 
@@ -382,6 +254,90 @@ public class UserRegister extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });*/
+    }
+
+    private void insertDataIntoDB(String referByUserId, String email, String name, String referredBy) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("users");
+            String uid = currentUser.getUid();
+
+            String code = Methods.generateReferralCode(uid);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("point", "0");
+            map.put("phone", "0");
+            map.put("click", "0");
+            map.put("country", country);
+            map.put("birthdate", "0");
+            map.put("referral", code);
+            map.put("referredBy", referByUserId);
+            map.put("referralButton", "ON");
+            map.put("type", "0");
+            map.put("name", name);
+            map.put("email", email);
+            map.put("id", uid);
+            map.put("extra1", "0");
+            map.put("extra2", "0");
+            map.put("extra3", "0");
+
+            currentUser.sendEmailVerification();
+
+            ref.child(uid).setValue(map).addOnCompleteListener(task1 -> {
+                if (task1.isSuccessful()) {
+                    updateReferKey(name, referredBy, database, uid, code);
+                } else {
+                    progressDialog.dismiss();
+                    Exception exception = task1.getException();
+                    if (exception != null) {
+                        String errorMessage = exception.getMessage();
+                        Log.e("RegistrationError", "task1: " + errorMessage);
+                        Toast.makeText(UserRegister.this, errorMessage, Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.e("RegistrationError", "Unknown error");
+                        Toast.makeText(UserRegister.this, "Unknown error", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+
+            });
+        } else {
+            Toast.makeText(UserRegister.this, "Something went wrong. Try again", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+    private void handleCreateUserError(Task<AuthResult> task) {
+        Exception exception = task.getException();
+        if (exception != null) {
+            String errorMessage = exception.getMessage();
+            Toast.makeText(UserRegister.this, errorMessage, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(UserRegister.this, "Unknown error", Toast.LENGTH_LONG).show();
+        }
+        progressDialog.dismiss();
+    }
+
+    private void updateReferKey(String name, String referredBy, FirebaseDatabase database, String uid, String code) {
+        DatabaseReference referKeys = database.getReference("referKeys");
+        Map<String, String> referKeyMap = new HashMap<>();
+        referKeyMap.put("userId", uid);
+        referKeyMap.put("name", name);
+
+        Log.e("RegistrationError", "getUid: " + uid);
+        Log.e("RegistrationError", "code: " + code);
+
+        referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
+            if (task2.isSuccessful()) {
+                progressDialog.dismiss();
+                updateUI(name, referredBy);
+            } else {
+                String errorMessage = task2.getException().getMessage();
+                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+                Log.e("RegistrationError", "task2: " + errorMessage);
+            }
+        });
     }
 
 
@@ -421,9 +377,15 @@ public class UserRegister extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            /*int id = userTotal + 1;
-                            String userID = String.valueOf(id);*/
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
+                            if (account == null) {
+                                return;
+                            }
+                            EditText register_refer = findViewById(R.id.registration_refer);
+                            String referredBy = register_refer.getText().toString();
+
+                            insertDataIntoDB("", account.getEmail(), account.getDisplayName(), referredBy);
+        /*                    FirebaseUser currentUser = mAuth.getCurrentUser();
                             if (currentUser != null) {
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("users");
@@ -433,10 +395,6 @@ public class UserRegister extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (!snapshot.exists()) {
                                             DatabaseReference referKeys = database.getReference("referKeys");
-//                                            Random a = new Random();
-//                                            int b = a.nextInt(9999);
-//                                            int c = a.nextInt(9999);
-//                                            String code = String.valueOf(b) + String.valueOf(c);
                                             String code = Methods.generateReferralCode(uid);
 
                                             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserRegister.this);
@@ -446,8 +404,6 @@ public class UserRegister extends AppCompatActivity {
                                             String name = account.getDisplayName();
                                             String email = account.getEmail();
 
-                                /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("users");*/
                                             Map<String, String> map = new HashMap<>();
                                             map.put("point", "0");
                                             map.put("phone", "0");
@@ -464,32 +420,19 @@ public class UserRegister extends AppCompatActivity {
                                             map.put("extra1", "0");
                                             map.put("extra2", "0");
                                             map.put("extra3", "0");
-                                /*if (mAuth.getUid() == null){
-                                    return;
-                                }*/
-                                /*FirebaseUser currentUser = mAuth.getCurrentUser();
-                                if (currentUser != null) {
-                                    currentUser.sendEmailVerification();
-                                }*/
 
                                             currentUser.sendEmailVerification();
                                             ref.child(uid).setValue(map);
-
-                                /*DatabaseReference reference = database.getReference("userId");
-                                reference.child("totalUserId").setValue(userID);*/
 
                                             Map<String, String> referKeyMap = new HashMap<>();
                                             referKeyMap.put("userId", uid);
                                             referKeyMap.put("name", name);
 
-                                            Log.e("RegistrationError", "getUid: " + uid);
-                                            Log.e("RegistrationError", "code: " + code);
-
                                             referKeys.child(code).setValue(referKeyMap).addOnCompleteListener(task2 -> {
                                                 if (task2.isSuccessful()) {
-                                                    Toast.makeText(UserRegister.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                                                    progressDialog.dismiss();
-                                                    updateUI(name, "");
+                                                    EditText register_refer = findViewById(R.id.registration_refer);
+                                                    String referredBy = register_refer.getText().toString();
+                                                    updateReferKey(name, referredBy, database, uid, code);
                                                 } else {
                                                     String errorMessage = task2.getException().getMessage();
                                                     Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
@@ -513,7 +456,7 @@ public class UserRegister extends AppCompatActivity {
                                 Toast.makeText(UserRegister.this, "Something went wrong. Try again", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             }
-
+*/
                         } else {
                             Toast.makeText(UserRegister.this, "Token Error", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
