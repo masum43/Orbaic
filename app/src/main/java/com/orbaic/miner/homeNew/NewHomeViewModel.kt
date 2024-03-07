@@ -13,7 +13,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.orbaic.miner.ReferralDataRecive
+import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
+import com.orbaic.miner.common.ResponseState
 import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.checkMiningStatusTeam
 import com.orbaic.miner.common.getRewardTokenFromJson
@@ -24,6 +26,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -54,6 +58,26 @@ class NewHomeViewModel : ViewModel() {
             }
         }
     }
+
+    val userDataFlow: Flow<ResponseState<User?>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val userId = mAuth.currentUser?.uid
+            if (userId != null) {
+                val snapshot = withContext(Dispatchers.IO) {
+                    rootRef.child("users").child(userId).get().await()
+                }
+                val user = snapshot.getValue(User::class.java)
+                emit(ResponseState.Success(user))
+            } else {
+                emit(ResponseState.Error("User not authenticated"))
+            }
+        } catch (e: Exception) {
+            Log.e("userDataFlow", "Error: "+e.localizedMessage)
+            emit(ResponseState.Error(e.localizedMessage))
+        }
+    }.flowOn(Dispatchers.IO)
+
 
     fun checkEmailVerifyStatus(isEmailNotVerified: () -> Unit) {
         mAuth.currentUser?.reload()?.addOnSuccessListener {
@@ -104,6 +128,10 @@ class NewHomeViewModel : ViewModel() {
                             user.qz_count.toInt() + quizCountEarned
                         } else quizCountEarned
 
+                        val updatedMiningCount = if (user.mining_count.isNotEmpty()) {
+                            user.qz_count.toInt() + Config.miningCountReward
+                        } else Config.miningCountReward
+
 
                         // Update the user's points atomically
                         val hashMap: HashMap<String, Any> = HashMap()
@@ -111,6 +139,7 @@ class NewHomeViewModel : ViewModel() {
                         hashMap["referralPoint"] = newReferralPoints.toString()
                         hashMap["extra3"] = Constants.STATE_MINING_FINISHED.toString()
                         hashMap["qz_count"] = updatedQuizCount.toString()
+                        hashMap["mining_count"] = updatedMiningCount.toString()
                         rootRef.child("users").child(userId).updateChildren(hashMap)
                             .addOnSuccessListener {
                                 Log.d("giveUserPoint", "User points updated successfully")

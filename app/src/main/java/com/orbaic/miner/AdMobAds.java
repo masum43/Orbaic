@@ -193,7 +193,6 @@ public class AdMobAds {
             //Log.d("TAG", "The rewarded ad wasn't ready yet.");
             //Toast.makeText(context, "ads not work", Toast.LENGTH_SHORT).show();
             loadIntersAndRewardedAd();
-            return;
         }else{
             //rewardedInterstitialAd.show(getActivity);
             admobInterstitialAd.show(getActivity);

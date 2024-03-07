@@ -14,4 +14,6 @@ object Config {
 
     var quizRewardedTokenCode = "SHIB"
     var quizRewardedBonusToken: Long = 2000
+
+    var miningCountReward: Int = 24
 }

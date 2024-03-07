@@ -29,15 +29,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
-import com.orbaic.miner.auth.LoginLayout
 import com.orbaic.miner.MainActivity2
 import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
 import com.orbaic.miner.allNews.AllNewsFragment
+import com.orbaic.miner.auth.LoginLayout
 import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
 import com.orbaic.miner.common.ErrorDialog
 import com.orbaic.miner.common.ProgressDialog
+import com.orbaic.miner.common.ResponseState
 import com.orbaic.miner.common.RetrofitClient2
 import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.gone
@@ -128,7 +129,74 @@ class NewHomeFragment : Fragment() {
     private fun fetchData() {
         Log.e("fetchData2314", "fetchData: calling")
         progressDialog.show()
-        viewModel.fetchData()
+        lifecycleScope.launch {
+            viewModel.userDataFlow.collect { responseState ->
+                when (responseState) {
+                    is ResponseState.Loading -> {
+                        // Handle loading state
+                    }
+                    is ResponseState.Success -> {
+                        val user = responseState.data
+                        val point = when (val userPoint = user?.point) {
+                            is String -> userPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userPoint.toDouble()
+                            else -> 0.0
+                        }
+
+                        val referralPoint = when (val userReferralPoint = user?.referralPoint) {
+                            is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userReferralPoint.toDouble()
+                            else -> 0.0
+                        }
+
+                        val totalPoints = (point + referralPoint).roundTo()
+                        binding.aciCoin.tag = totalPoints
+                        val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+                        binding.tvRate.text = "$finalHourRate/h ACI"
+                        SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
+                        SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
+
+                        lifecycleScope.launch {
+                            val timeStatus = user?.isMiningWithin24Hours()
+                            Log.e("timeStatus123", "fetchData: $timeStatus")
+                            SpManager.saveInt(SpManager.KEY_MINER_STATUS, timeStatus?.status ?: Constants.STATE_MINING_ERROR)
+                            handleMiningTimeStatus(timeStatus, user?.miningStartTime.toString())
+                        }
+
+                        lifecycleScope.launch {
+                            if (!user?.extra1.isNullOrEmpty()) {
+                                val quizEndTime = user?.extra1?.toLong()
+                                Log.e("quizEndTime", "quizEndTime: $quizEndTime")
+                                val timeStatus = user?.isQuizWithin12Hours()
+                                Log.e("quizEndTime", "timeStatus: $timeStatus")
+                                handleQuizTimeStatus(timeStatus, quizEndTime!!)
+                            }
+
+                        }
+
+                        miningRewardProgress(user?.mining_count)
+                        quizRewardProgress(user?.qz_count)
+
+
+                        if (!isDrawerProfileUpdated) {
+                            isDrawerProfileUpdated = true
+                            val mainActivity = activity as MainActivity2?
+                            mainActivity?.updateHeader(user?.profile_image, user?.name, user?.email)
+                        }
+                    }
+                    is ResponseState.Error -> {
+                        val errorMessage = responseState.errorMessage
+                        errorDialog.showTimeDiffWithServerError(errorMessage.toString() , onClick = {
+                            requireActivity().finishAffinity()
+                        })
+                    }
+                }
+            }
+        }
+
+
+
+/*        viewModel.fetchData()
         viewModel.userData.observe(viewLifecycleOwner) { user ->
             val point = when (val userPoint = user?.point) {
                 is String -> userPoint.toDoubleOrNull() ?: 0.0
@@ -143,7 +211,6 @@ class NewHomeFragment : Fragment() {
             }
 
             val totalPoints = (point + referralPoint).roundTo()
-//            binding.aciCoin.text = totalPoints.toString()
             binding.aciCoin.tag = totalPoints
             val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
             binding.tvRate.text = "$finalHourRate/h ACI"
@@ -177,7 +244,7 @@ class NewHomeFragment : Fragment() {
                 val mainActivity = activity as MainActivity2?
                 mainActivity?.updateHeader(user?.profile_image, user?.name, user?.email)
             }
-        }
+        }*/
 
         viewModel.getMyTeam()
         viewModel.teamListLiveData.observe(viewLifecycleOwner) {
@@ -404,12 +471,10 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun givePointsAndStartNewMiningSession() {
-//        val givenCoin = getGivenCoin()
-
         viewModel.giveUserMiningReferQuizPoint(
             onSuccess = {
-                startNewMiningStartSession()
                 clearGivenCoin()
+                fetchData()
             },
             onFailure = {
                 errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.", onClick = {
@@ -527,10 +592,11 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun miningRewardProgress(miningHoursCountStr: String?) {
-        if (miningHoursCountStr.isNullOrEmpty()) {
-            return
+        var miningHoursCount = 0
+        if (!miningHoursCountStr.isNullOrEmpty()) {
+            miningHoursCount = miningHoursCountStr.toInt()
         }
-        var miningHoursCount: Int = miningHoursCountStr.toInt()
+
         val maxHours = 720
         if (miningHoursCount > maxHours) miningHoursCount = maxHours
         val percentage = (miningHoursCount.toFloat() / maxHours * 100).toInt()
@@ -542,12 +608,12 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun quizRewardProgress(quizCountStr: String?) {
-        if (quizCountStr.isNullOrEmpty()) {
-            return
-        }
         var quizCount = 0
+        if (!quizCountStr.isNullOrEmpty()) {
+            quizCount = quizCountStr.toInt()
+        }
         val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
-        quizCount = quizCountStr.toInt() + quizCountEarned
+        quizCount += quizCountEarned
 
         val maxQuizCount = 300
         if (quizCount > maxQuizCount) quizCount = maxQuizCount
@@ -643,13 +709,17 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun showTapTarget() {
-        Log.e("showTapTarget", "showTapTarget: calling1" )
-        val miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED)
-        Log.e("showTapTarget", "miningStatus: $miningStatus" )
-        if (miningStatus == Constants.STATE_MINING_ON_GOING) return
-        Log.e("showTapTarget", "showTapTarget: calling2" )
+        val isTapShow = SpManager.getBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+        Log.e("isTapShow", "showTapTarget: $isTapShow")
+        if (!isTapShow) {
+            return
+        }
 
-        val tapTargetView = TapTargetView.showFor(requireActivity(),  // `this` is an Activity
+        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, false)
+        val isTapShowNew = SpManager.getBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+        Log.e("isTapShow", "isTapShowNew: $isTapShowNew")
+
+        TapTargetView.showFor(requireActivity(),  // `this` is an Activity
             TapTarget.forView(
                 binding.ivMining,
                 "Start Mining",
@@ -676,6 +746,7 @@ class NewHomeFragment : Fragment() {
                 override fun onTargetClick(view: TapTargetView) {
                     super.onTargetClick(view) // This call is optional
                     runOnUiThread {
+                        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
                         startMining()
                     }
                 }
