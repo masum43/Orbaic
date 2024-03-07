@@ -256,7 +256,10 @@ public class TeamFragment extends Fragment {
                 Log.e("DATA_READ", "Team: readData");
                 myName = snapshot.child("name").getValue().toString();
                 String point = snapshot.child("point").getValue().toString();
-                String referralPoint = snapshot.child("referralPoint").getValue().toString();
+                String referralPoint = "0";
+                if (snapshot.hasChild("referralPoint")) {
+                    referralPoint = snapshot.child("referralPoint").getValue().toString();
+                }
                 String referral = snapshot.child("referral").getValue().toString();
 
                 tvMyReferCode.setTag(referralPoint);

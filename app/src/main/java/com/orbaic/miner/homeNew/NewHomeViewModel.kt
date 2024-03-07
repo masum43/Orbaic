@@ -179,6 +179,7 @@ class NewHomeViewModel : ViewModel() {
     fun getMiningCountdownStateFlow(): Flow<CountdownState> {
         return countdownStateFlow
     }
+
     fun stopMiningCountdown() {
         countdownJob?.cancel()
         countdownStateFlow.value = CountdownState.Idle // Reset the countdown state to Idle

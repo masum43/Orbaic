@@ -29,7 +29,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
-import com.orbaic.miner.LoginLayout
+import com.orbaic.miner.auth.LoginLayout
 import com.orbaic.miner.MainActivity2
 import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
@@ -70,7 +70,6 @@ class NewHomeFragment : Fragment() {
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
     private val errorDialog by lazy { ErrorDialog(requireActivity()) }
     private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
-    private var tapTargetShowing = false
     private var isDrawerProfileUpdated = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -145,7 +144,7 @@ class NewHomeFragment : Fragment() {
 
             val totalPoints = (point + referralPoint).roundTo()
 //            binding.aciCoin.text = totalPoints.toString()
-            binding.aciCoin.tag = totalPoints.toString()
+            binding.aciCoin.tag = totalPoints
             val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
             binding.tvRate.text = "$finalHourRate/h ACI"
             SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
@@ -194,12 +193,7 @@ class NewHomeFragment : Fragment() {
 
     private fun initClicks() {
         binding.mining.setOnClickListener {
-            if (mobAds.isAdsLoaded) {
-                startMining()
-            }
-            else {
-                "The blockchain is currently facing significant congestion. Please remain patient and try again now.".toast()
-            }
+            startMining()
         }
 
         binding.learnAndEarn.setOnClickListener {
@@ -261,28 +255,46 @@ class NewHomeFragment : Fragment() {
     private fun startMining() {
         val miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED)
         if (miningStatus == Constants.STATE_MINING_FINISHED) {
-            if (viewModel.myTeamMinerList.isNotEmpty()) {
-                val dialog = Dialog(requireActivity())
-                dialog.setContentView(R.layout.dialog_extra_point)
-                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
-                tvNotice.text = "Your " + viewModel.myTeamMinerList.size + " team member is mining now. So you will get extra : " + 10 * viewModel.myTeamMinerList.size + "%."
-                dialog.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
-                    dialog.dismiss()
+            if (mobAds.isAdsLoaded) {
+                if (viewModel.myTeamMinerList.isNotEmpty()) {
+                    val dialog = Dialog(requireActivity())
+                    dialog.setContentView(R.layout.dialog_extra_point)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
+                    tvNotice.text = "Your " + viewModel.myTeamMinerList.size + " team member is mining now. So you will get extra : " + 10 * viewModel.myTeamMinerList.size + "%."
+                    dialog.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
+                        dialog.dismiss()
+                        mobAds.showRewardedVideo()
+                        setActiveStatus()
+                    }
+                    dialog.show()
+                }
+                else {
+                    SpManager.saveInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_ON_GOING)
                     mobAds.showRewardedVideo()
                     setActiveStatus()
                 }
-                dialog.show()
             }
             else {
-                mobAds.showRewardedVideo()
-                setActiveStatus()
+                adNotLoadedWarning()
             }
         }
         else {
             miningAlreadyRunningWarning()
         }
 
+    }
+
+    private fun adNotLoadedWarning() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_mining_warning)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
+        tvWarning.text =
+            "The blockchain is currently facing significant congestion. Please remain patient and try again now."
+        dialog.findViewById<View>(R.id.okButton)
+            .setOnClickListener { view: View? -> dialog.dismiss() }
+        dialog.show()
     }
 
     private fun miningAlreadyRunningWarning() {
@@ -324,7 +336,7 @@ class NewHomeFragment : Fragment() {
                 .addOnSuccessListener { unused -> println(unused) }
         }
 
-        fetchData()
+//        fetchData()
 
     }
 
@@ -347,6 +359,7 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun handleMiningTimeStatus(timeStatus: TimeStatus?, miningStartTime: String) {
+        Log.e("fetchData2314", "timeStatus?.status: ${timeStatus?.status}")
         when (timeStatus?.status) {
             Constants.STATE_MINING_ON_GOING -> { // Mining start time is within 24 hours
                 viewModel.startMiningCountdown(miningStartTime.toLong())
@@ -377,12 +390,13 @@ class NewHomeFragment : Fragment() {
                 dialog.setContentView(R.layout.dialog_extra_point)
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
-                tvNotice.text = "Network or server issue. Please click on try again"
+                tvNotice.text = "Network or server issue. Please try after some times or contact with support if problem not solved."
                 val btn = dialog.findViewById<TextView>(R.id.okButton)
-                btn.text = "Try Again"
+                btn.text = "Ok Got It"
                 btn.setOnClickListener { view: View? ->
                     dialog.dismiss()
-                    fetchData()
+                    requireActivity().finishAffinity()
+
                 }
                 dialog.show()
             }
@@ -462,10 +476,10 @@ class NewHomeFragment : Fragment() {
 
     private fun showUpdatedAciCoin() {
         val totalTokens = getTotalCoin()
-        binding.aciCoin.text = totalTokens.toString()
+        binding.aciCoin.text = totalTokens
     }
 
-    private fun getTotalCoin(): Double {
+    private fun getTotalCoin(): String {
         val userPointFromServer = binding.aciCoin.tag.toString()
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
@@ -600,11 +614,42 @@ class NewHomeFragment : Fragment() {
 
     }
 
-    private fun showTapTarget() {
-        if (tapTargetShowing) return
+    private fun showTapTarget2() {
 
-        tapTargetShowing = true
-        TapTargetView.showFor(requireActivity(),  // `this` is an Activity
+        val tapTarget = TapTarget.forView(
+            binding.ivMining,
+            "Start Mining",
+            "Click here to start your mining"
+        ).outerCircleColor(R.color.teal_700) // Specify a color for the outer circle
+        // Add other customization options here...
+
+        val tapTargetView = TapTargetView.showFor(requireActivity(), tapTarget,
+            object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView) {
+                    super.onTargetClick(view)
+                    runOnUiThread {
+                        startMining()
+                    }
+                }
+
+                override fun onTargetDismissed(view: TapTargetView?, userInitiated: Boolean) {
+                    super.onTargetDismissed(view, userInitiated)
+                }
+            })
+
+        tapTargetView?.setOnClickListener {
+            tapTargetView.dismiss(true)
+        }
+    }
+
+    private fun showTapTarget() {
+        Log.e("showTapTarget", "showTapTarget: calling1" )
+        val miningStatus = SpManager.getInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_FINISHED)
+        Log.e("showTapTarget", "miningStatus: $miningStatus" )
+        if (miningStatus == Constants.STATE_MINING_ON_GOING) return
+        Log.e("showTapTarget", "showTapTarget: calling2" )
+
+        val tapTargetView = TapTargetView.showFor(requireActivity(),  // `this` is an Activity
             TapTarget.forView(
                 binding.ivMining,
                 "Start Mining",
@@ -637,7 +682,6 @@ class NewHomeFragment : Fragment() {
 
                 override fun onTargetDismissed(view: TapTargetView?, userInitiated: Boolean) {
                     super.onTargetDismissed(view, userInitiated)
-                    tapTargetShowing = false
                 }
             })
     }

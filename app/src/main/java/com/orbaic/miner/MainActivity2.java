@@ -46,6 +46,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.orbaic.miner.auth.LoginLayout;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.ErrorDialog;
 import com.orbaic.miner.common.SpManager;
@@ -353,12 +354,15 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         DatabaseReference userRef = database.getReference("users").child(mAuth.getCurrentUser().getUid());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("miningStartTime", "-1");
+        hashMap.put("extra3", String.valueOf(Constants.STATE_MINING_POINTS_NOT_GIVEN));
         userRef.updateChildren(hashMap);
 
         SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, 0.0);
         SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0);
         SpManager.saveInt(SpManager.KEY_QUIZ_COUNT, 0);
         SpManager.saveInt(SpManager.KEY_CORRECT_ANS, 0);
+
+        SpManager.clearPreferences();
 
         mAuth.signOut();
         startActivity(new Intent(MainActivity2.this, LoginLayout.class));

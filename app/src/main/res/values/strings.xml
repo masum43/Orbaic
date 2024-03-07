@@ -74,4 +74,5 @@
     <string name="url_faq">https://www.orbaic.com/faq.php</string>
     <string name="refer_boost"><![CDATA[Refer & Boost]]></string>
     <string name="warning_logout">If you proceed with logging out, you\'ll lose your current mining season. However, don\'t worry; you can start a new with a fresh season once you log back into the Orbaic Mining app.</string>
+    <string name="mining_quiz"><![CDATA[Mining & Quiz]]></string>
 </resources>

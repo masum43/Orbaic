@@ -61,14 +61,14 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".UserRegister"
+            android:name=".auth.UserRegister"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginLayout"
+            android:name=".auth.LoginLayout"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
