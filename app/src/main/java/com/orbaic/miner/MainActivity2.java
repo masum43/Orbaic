@@ -2,6 +2,7 @@ package com.orbaic.miner;
 
 import android.app.ActivityManager;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -415,17 +416,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         builder.create().show();
     }
 
+
     private void clearAppData() {
         try {
-            // clearing app data
-            if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
-                ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
-            } else {
-                String packageName = getApplicationContext().getPackageName();
-                Runtime runtime = Runtime.getRuntime();
-                runtime.exec("pm clear " + packageName);
-            }
-
+            ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE))
+                    .clearApplicationUserData();
         } catch (Exception e) {
             e.printStackTrace();
         }
