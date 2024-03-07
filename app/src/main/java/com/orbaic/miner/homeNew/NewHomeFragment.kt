@@ -104,14 +104,6 @@ class NewHomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-/*        val currentTime = System.currentTimeMillis()
-        val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
-        Log.e("onResume112", "currentTime: $currentTime" )
-        Log.e("onResume112", "lastCachedTime: $lastCachedTime" )
-        if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
-            fetchData()
-        }*/
-
         fetchData()
     }
 
