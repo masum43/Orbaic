@@ -829,4 +829,10 @@ class NewHomeFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.stopMiningCountdown()
+        viewModel.stopQuizCountdown()
+    }
+
 }
