@@ -267,6 +267,7 @@ public class UserRegister extends AppCompatActivity {
 
             Map<String, String> map = new HashMap<>();
             map.put("point", "0");
+            map.put("referralPoint", "0");
             map.put("phone", "0");
             map.put("click", "0");
             map.put("country", country);

@@ -352,7 +352,11 @@ class NewHomeFragment : Fragment() {
         tvWarning.text =
             "The blockchain is currently facing significant congestion. Please remain patient and try again now."
         dialog.findViewById<View>(R.id.okButton)
-            .setOnClickListener { view: View? -> dialog.dismiss() }
+            .setOnClickListener {
+                dialog.dismiss()
+                SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+                showTapTarget()
+            }
         dialog.show()
     }
 
@@ -466,7 +470,7 @@ class NewHomeFragment : Fragment() {
         viewModel.giveUserMiningReferQuizPoint(
             onSuccess = {
                 clearGivenCoin()
-                fetchData()
+                startNewMiningStartSession()
             },
             onFailure = {
                 errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.", onClick = {
@@ -487,12 +491,11 @@ class NewHomeFragment : Fragment() {
     private fun observeCountdownState() {
         lifecycleScope.launch {
             viewModel.getMiningCountdownStateFlow().collect { state ->
+                Log.e("remainingTime", "state1122: $state")
                 when (state) {
                     is CountdownState.Running -> {
-                        Log.e("remainingTime", "state: Running")
                         val remainingTime = state.timeRemaining
                         binding.hourFragment.text = remainingTime
-                        Log.e("remainingTime", "observeCountdownState: $remainingTime")
                         calculateAndSavePoints(remainingTime)
                     }
                     is CountdownState.Finished -> {
@@ -502,7 +505,7 @@ class NewHomeFragment : Fragment() {
                     else -> {
                         // Handle other states if needed
                         Log.e("remainingTime", "state: else")
-                        stopRippleEffect()
+//                        stopRippleEffect()
                     }
                 }
             }
@@ -553,28 +556,29 @@ class NewHomeFragment : Fragment() {
 
 
     private fun calculateAndSavePoints(remainingTime: String) {
-        val totalHours = "24:00:00"
+
         val sdf = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
 
         try {
             val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
-            val totalHoursInMillis = sdf.parse(totalHours)?.time ?: 0
+            val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
 
             Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
             Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
 
             val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
             Log.e("calculateAndSavePoints", "hoursGone: $hoursGone")
-            val pointsEarned = hoursGone * 0.045
+            val pointsEarned = hoursGone * Config.hourRate
             SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned)
             Log.e("calculateAndSavePoints", "pointsEarned: $pointsEarned")
 
             val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
             Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            val referPointsEarned = prevReferEarnedPoints + 0.045/60 * viewModel.myTeamMinerList.size * 0.10
+            val referPointsEarned = prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10
             SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned)
             Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
 
             showUpdatedAciCoin()
 
@@ -656,8 +660,8 @@ class NewHomeFragment : Fragment() {
                         255,
                         255
                     )
-                ) //change the logo color while staring animation
-                binding.rippleEffect.startRippleAnimation() //starting the animation
+                )
+                binding.rippleEffect.startRippleAnimation()
             }
         }
     }

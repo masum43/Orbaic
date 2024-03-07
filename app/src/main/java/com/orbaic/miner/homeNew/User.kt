@@ -100,9 +100,9 @@ data class User(
             return TimeStatus(Constants.STATE_MINING_DATE_DIFF_SERVER, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.")
         }
 
-        if (diffBetweenCurrentAndServerTime <= 0) {
-            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is not within 24 hours.")
-        }
+//        if (diffBetweenCurrentAndServerTime <= 0) {
+//            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is not within 24 hours.")
+//        }
 
         val miningStartTimeTimestamp = miningStartTime.toLongOrNull() ?: return TimeStatus(0, "Invalid mining start time format.")
         val diff = abs(serverTime - miningStartTimeTimestamp)

@@ -129,7 +129,7 @@ class NewHomeViewModel : ViewModel() {
                         } else quizCountEarned
 
                         val updatedMiningCount = if (user.mining_count.isNotEmpty()) {
-                            user.qz_count.toInt() + Config.miningCountReward
+                            user.mining_count.toInt() + Config.miningCountReward
                         } else Config.miningCountReward
 
 
@@ -202,6 +202,7 @@ class NewHomeViewModel : ViewModel() {
 
                 countdownStateFlow.emit(CountdownState.Finished)
             }
+
 
         }
     }

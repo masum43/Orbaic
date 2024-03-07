@@ -189,7 +189,10 @@ public class TeamFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String point = snapshot.child("referralPoint").getValue().toString();
+                String point = "0";
+                if (snapshot.hasChild("referralPoint")) {
+                    point = snapshot.child("referralPoint").getValue().toString();
+                }
                 double bonusPoint = Double.parseDouble(point) + 3;
                 myRef.child("referralPoint").setValue(String.valueOf(bonusPoint));
             }
