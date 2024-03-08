@@ -320,6 +320,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 checkStateForLogOut();
             }
         });
+
+        TextView tvVersion = findViewById(R.id.tvVersion);
+        tvVersion.setText("Version: "+ com.orbaic.miner.BuildConfig.VERSION_NAME);
     }
 
     private void checkStateForLogOut() {

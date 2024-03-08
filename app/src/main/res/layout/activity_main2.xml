@@ -41,27 +41,50 @@
       </LinearLayout>
 
       <LinearLayout
-          android:id="@+id/holdeLogout"
-          android:layout_marginBottom="30dp"
-          android:orientation="horizontal"
+          android:id="@+id/holder"
+          android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="bottom">
-         <ImageView
-             android:layout_marginEnd="20dp"
-             android:layout_gravity="start"
-             android:textColor="@color/white"
-             android:background="@drawable/logout_icon"
-             android:padding="10dp"
-             android:textSize="18sp"
-             android:layout_marginStart="30dp"
-             android:layout_width="30dp"
-             android:layout_height="30dp" />
-         <TextView
-             android:textColor="#FF6543"
-             android:layout_width="wrap_content"
+
+         <LinearLayout
+             android:id="@+id/holdeLogout"
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="Log-out"/>
+             android:layout_marginBottom="30dp"
+             android:layout_gravity="bottom"
+             android:gravity="center_vertical"
+             >
+            <ImageView
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="start"
+                android:textColor="@color/white"
+                android:background="@drawable/logout_icon"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:layout_marginStart="30dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:textColor="#FF6543"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log-out"/>
+         </LinearLayout>
+
+         <TextView
+             android:id="@+id/tvVersion"
+             android:textColor="#2196F3"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="end"
+             android:textStyle="bold"
+             android:textSize="12sp"
+             android:fontFamily="@font/poppins_semibold"
+             android:layout_margin="10dp"
+             android:textAlignment="viewEnd"
+             tools:text="Log-out"/>
       </LinearLayout>
 
    </com.google.android.material.navigation.NavigationView>

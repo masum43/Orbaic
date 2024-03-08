@@ -1,5 +1,6 @@
 package com.orbaic.miner.homeNew
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.app.Dialog
 import android.content.Context
@@ -8,8 +9,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -63,8 +66,6 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
-import java.util.Timer
-import kotlin.concurrent.schedule
 
 class NewHomeFragment : Fragment() {
     private lateinit var binding : FragmentNewHomeBinding
@@ -76,10 +77,19 @@ class NewHomeFragment : Fragment() {
     private var isDrawerProfileUpdated = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            fetchData()
-//        }
+        if (result.resultCode == Activity.RESULT_OK) {
+            fetchData()
+        }
     }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                fetchData()
+            } else {
+                showLocationWarning()
+            }
+        }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
@@ -180,7 +190,7 @@ class NewHomeFragment : Fragment() {
                     }
                     is ResponseState.Error -> {
                         val errorMessage = responseState.errorMessage
-                        errorDialog.showTimeDiffWithServerError(errorMessage.toString() , onClick = {
+                        errorDialog.showError(errorMessage.toString() , onClick = {
                             requireActivity().finishAffinity()
                         })
                     }
@@ -259,7 +269,7 @@ class NewHomeFragment : Fragment() {
 
         binding.learnAndEarn.setOnClickListener {
             val intent = Intent(context, QuizStartActivity::class.java)
-            dataFetchActivityLauncher.launch(intent)
+            startActivity(intent)
         }
 
         binding.claimRewardLayout.setOnClickListener { v ->
@@ -437,7 +447,7 @@ class NewHomeFragment : Fragment() {
                 viewModel.stopQuizCountdown()
                 stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showTimeDiffWithServerError(errorMessage, onClick = {
+                errorDialog.showError(errorMessage, onClick = {
                     requireActivity().finishAffinity()
                 })
                 progressDialog.dismiss()
@@ -449,6 +459,9 @@ class NewHomeFragment : Fragment() {
             Constants.STATE_MINING_FINISHED -> {
                 binding.aciCoin.text = getTotalCoin().toString()
                 startNewMiningStartSession()
+            }
+            Constants.STATE_MINING_LOCATION_NOT_GRANTED -> {
+                showLocationWarning()
             }
             else -> { // Mining error
                 val dialog = Dialog(requireActivity())
@@ -468,6 +481,33 @@ class NewHomeFragment : Fragment() {
         }
     }
 
+    private fun showLocationWarning() {
+        errorDialog.showError("Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. After that Click on Check Now. If you need assistance, feel free to reach out to our support team. Thank you!",
+            onClick = {
+                if (it == 1) {
+                    getLocationPermission()
+                }
+                else {
+                    fetchData()
+                }
+        }, "Allow", "Check Now")
+
+/*        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.dialog_extra_point)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
+        tvNotice.text =
+            "Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. If you need assistance, feel free to reach out to our support team. Thank you!"
+        val btn = dialog.findViewById<TextView>(R.id.okButton)
+        btn.text = "Allow"
+        btn.setOnClickListener { view: View? ->
+            dialog.dismiss()
+            getLocationPermission()
+
+        }
+        dialog.show()*/
+    }
+
     private fun givePointsAndStartNewMiningSession() {
         viewModel.giveUserMiningReferQuizPoint(
             onSuccess = {
@@ -475,7 +515,7 @@ class NewHomeFragment : Fragment() {
                 startNewMiningStartSession()
             },
             onFailure = {
-                errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.", onClick = {
+                errorDialog.showError("Something went wrong. Please close the app and try again.", onClick = {
                     requireActivity().finishAffinity()
                 })
             })
@@ -840,5 +880,14 @@ class NewHomeFragment : Fragment() {
         viewModel.stopMiningCountdown()
         viewModel.stopQuizCountdown()
     }
+
+
+    private fun getLocationPermission() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", requireActivity().packageName, null)
+        intent.data = uri
+        requestPermissionLauncher.launch(intent)
+    }
+
 
 }

@@ -387,24 +387,12 @@ public class LoginLayout extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getUserCountry(context);
             } else {
-                dialogShowing("Location Permission is denied","Orbaic has not user location permission. So that, It is happening. Please uninstall the app and try again or go to settings > App> Orbaic and give manually location permission.");
+                Methods.dialogWarningShowing(LoginLayout.this,"Location Permission is denied","Orbaic does not have user location permission. As a result, this issue is occurring. Please uninstall the app and try again, or go to Settings > Apps > Orbaic and manually grant location permission.");
             }
         }
     }
 
-    private void dialogShowing(String title, String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setCancelable(false);
-        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finishAffinity();
-            }
-        });
-        builder.create().show();
-    }
+
 
     public void getUserCountry(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
