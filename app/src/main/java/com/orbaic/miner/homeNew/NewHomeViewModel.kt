@@ -348,7 +348,7 @@ class NewHomeViewModel : ViewModel() {
                 if (!tokenFound) {
                     val rewardedTokenItemFromJson = getRewardTokenFromJson(rewardedTokenCode)
                     rewardedTokenItemFromJson.balance = bonusToken.toString()
-                    myRewardedTokensRef.push()
+                    myRewardedTokensRef.child(rewardedTokenItemFromJson.id.toString())
                         .setValue(rewardedTokenItemFromJson)
                         .addOnSuccessListener {
                             onSuccess.invoke()
