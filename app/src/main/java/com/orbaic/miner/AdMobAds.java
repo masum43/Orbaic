@@ -102,7 +102,7 @@ public class AdMobAds {
             admobInterstitialAd = null;
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
-            if (!com.orbaic.miner.BuildConfig.DEBUG) {
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
                 intersId = "ca-app-pub-3940256099942544/1033173712";
             }
             InterstitialAd.load(context,intersId, adRequest,
@@ -158,7 +158,7 @@ public class AdMobAds {
         }else{
             AdRequest adRequest = new AdRequest.Builder().build();
             String intersId = "ca-app-pub-9323045181924630/7438005611";
-            if (!com.orbaic.miner.BuildConfig.DEBUG) {
+            if (com.orbaic.miner.BuildConfig.DEBUG) {
                 intersId = "ca-app-pub-3940256099942544/1033173712";
             }
             InterstitialAd.load(context,intersId, adRequest,
