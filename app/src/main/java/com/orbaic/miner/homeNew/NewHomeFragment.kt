@@ -63,6 +63,8 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
+import java.util.Timer
+import kotlin.concurrent.schedule
 
 class NewHomeFragment : Fragment() {
     private lateinit var binding : FragmentNewHomeBinding
@@ -564,23 +566,27 @@ class NewHomeFragment : Fragment() {
             val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
             val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
 
-            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
-            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
-
             val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
-            Log.e("calculateAndSavePoints", "hoursGone: $hoursGone")
-            val pointsEarned = hoursGone * Config.hourRate
-            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned)
-            Log.e("calculateAndSavePoints", "pointsEarned: $pointsEarned")
+
+            val pointsEarned = (hoursGone * Config.hourRate).roundTo()
+            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.toDouble())
 
             val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            val referPointsEarned = prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10
-            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned)
-            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
-            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
+            val referPointsEarned = (prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
+            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.toDouble())
+
 
             showUpdatedAciCoin()
+
+            val secondsGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / 1000
+            val minutesGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60)
+//            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
+//            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
+            Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
+            Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
+            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
+            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
 
         } catch (e: Exception) {
             e.printStackTrace()
