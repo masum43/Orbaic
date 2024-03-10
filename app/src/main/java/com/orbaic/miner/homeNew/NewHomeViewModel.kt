@@ -92,30 +92,28 @@ class NewHomeViewModel : ViewModel() {
         mAuth.currentUser?.sendEmailVerification()
     }
 
-    fun giveUserMiningReferQuizPoint(onSuccess: () -> Unit,
+    fun giveUserMiningReferQuizPointOld(onSuccess: () -> Unit,
                                      onFailure: () -> Unit) {
         viewModelScope.launch {
             mAuth.currentUser?.uid?.let { userId ->
                 try {
+                    val miningEarnedCoin = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
+                    val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+                    val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
+                    val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
+
                     val snapshot = withContext(Dispatchers.IO) {
                         rootRef.child("users").child(userId).get().await()
                     }
                     val user = snapshot.getValue(User::class.java)
-
                     if (user != null) {
-                        val miningEarnedCoin = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
-                        val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-                        val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-                        val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
-
-
                         val currentPoints = when (val userPoint = user.point) {
                             is String -> userPoint.toDoubleOrNull() ?: 0.0
                             is Number -> userPoint.toDouble()
                             else -> 0.0
                         }
 
-                        val newMiningQuizPoints = currentPoints + miningEarnedCoin + correctQuizAnsCoin
+                        val newMiningQuizPoints = currentPoints + miningEarnedCoin + (correctQuizAnsCoin * Config.correctQuizReward)
 
                         val currentReferralPoints = when (val userReferralPoint = user.referralPoint) {
                             is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
@@ -149,10 +147,102 @@ class NewHomeViewModel : ViewModel() {
                                 Log.e("giveUserPoint", "Failed to update user points: ${e.message}", e)
                                 onFailure.invoke()
                             }
+
+
+                        //record update
+                        val snapshotRecord = withContext(Dispatchers.IO) {
+                            rootRef.child("records").child(userId).get().await()
+                        }
+                        val record = snapshotRecord.getValue(Record::class.java)
+                        if (record != null) {
+                                val previousTotalMiningPoints = when (val userPoint =
+                                    record.totalMiningPoints) {
+                                    is String -> userPoint.toDoubleOrNull() ?: currentPoints
+                                    is Number -> userPoint.toDouble()
+                                    else -> currentPoints
+                                }
+                                val updatedTotalMiningPoints =
+                                    previousTotalMiningPoints + miningEarnedCoin
+
+
+                                val previousTotalBoostPoints = when (val userPoint =
+                                    record.totalBoostPoints) {
+                                    is String -> userPoint.toDoubleOrNull() ?: currentReferralPoints
+                                    is Number -> userPoint.toDouble()
+                                    else -> currentReferralPoints
+                                }
+                                val updatedTotalBoostPoints =
+                                    previousTotalBoostPoints + referEarnedPoints
+
+
+                                val previousTotalQuizPoints = when (val userPoint =
+                                    record.totalQuizPoints) {
+                                    is String -> userPoint.toDoubleOrNull() ?: 0.0
+                                    is Number -> userPoint.toDouble()
+                                    else -> 0.0
+                                }
+                                val updatedTotalQuizPoints =
+                                    previousTotalQuizPoints + (correctQuizAnsCoin * Config.correctQuizReward)
+
+
+                                val previousTotalQuizCounts = when (val userPoint =
+                                    record.total_qz_count) {
+                                    is String -> userPoint.toIntOrNull()
+                                        ?: if (user.qz_count.isEmpty()) 0 else user.qz_count.toInt()
+
+                                    is Number -> userPoint.toInt()
+                                    else -> if (user.qz_count.isEmpty()) 0 else user.qz_count.toInt()
+                                }
+                                val updatedTotalQuizCounts =
+                                    previousTotalQuizCounts + quizCountEarned
+
+
+                                val previousTotalMiningCounts = when (val userPoint =
+                                    record.total_mining_count) {
+                                    is String -> userPoint.toIntOrNull()
+                                        ?: if (user.mining_count.isEmpty()) 0 else user.mining_count.toInt()
+
+                                    is Number -> userPoint.toInt()
+                                    else -> if (user.mining_count.isEmpty()) 0 else user.mining_count.toInt()
+                                }
+                                val updatedTotalMiningCounts =
+                                    previousTotalMiningCounts + miningEarnedCoin
+
+
+                                val hashMapRecord: HashMap<String, Any> = HashMap()
+                                hashMapRecord["totalMiningPoints"] =
+                                    updatedTotalMiningPoints.toString()
+                                hashMapRecord["totalBoostPoints"] =
+                                    updatedTotalBoostPoints.toString()
+                                hashMapRecord["totalQuizPoints"] = updatedTotalQuizPoints.toString()
+                                hashMapRecord["total_qz_count"] = updatedTotalQuizCounts.toString()
+                                hashMapRecord["total_mining_count"] =
+                                    updatedTotalMiningCounts.toString()
+                                rootRef.child("records").child(userId).updateChildren(hashMapRecord)
+                                    .addOnSuccessListener {
+                                        Log.d("giveUserPoint", "User points updated successfully")
+                                        onSuccess.invoke()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.e(
+                                            "giveUserPoint",
+                                            "Failed to update user points: ${e.message}",
+                                            e
+                                        )
+                                        onFailure.invoke()
+                                    }
+
+                            }
+
                     } else {
                         Log.e("giveUserPoint", "User data is null")
                         onFailure.invoke()
                     }
+
+
+
+
+
                 } catch (e: Exception) {
                     Log.e("giveUserPoint", "Error fetching user data: ${e.message}", e)
                     onFailure.invoke()
@@ -161,6 +251,162 @@ class NewHomeViewModel : ViewModel() {
         }
     }
 
+
+    fun giveUserMiningReferQuizPoint(onSuccess: () -> Unit,
+                                     onFailure: () -> Unit) {
+        viewModelScope.launch {
+            mAuth.currentUser?.uid?.let { userId ->
+                try {
+                    val miningEarnedCoin = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
+                    val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+                    val correctQuizAnsCoin = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
+                    val quizCountEarned = SpManager.getInt(SpManager.KEY_QUIZ_COUNT, 0)
+
+                    val snapshot = withContext(Dispatchers.IO) {
+                        rootRef.child("users").child(userId).get().await()
+                    }
+                    val user = snapshot.getValue(User::class.java)
+                    if (user != null) {
+                        val currentPoints = when (val userPoint = user.point) {
+                            is String -> userPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userPoint.toDouble()
+                            else -> 0.0
+                        }
+
+                        val newMiningQuizPoints = currentPoints + miningEarnedCoin + (correctQuizAnsCoin * Config.correctQuizReward)
+
+                        val currentReferralPoints = when (val userReferralPoint = user.referralPoint) {
+                            is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
+                            is Number -> userReferralPoint.toDouble()
+                            else -> 0.0
+                        }
+                        val newReferralPoints = currentReferralPoints + referEarnedPoints
+
+                        val updatedQuizCount = if (user.qz_count.isNotEmpty()) {
+                            user.qz_count.toInt() + quizCountEarned
+                        } else quizCountEarned
+
+                        val updatedMiningCount = if (user.mining_count.isNotEmpty()) {
+                            user.mining_count.toInt() + Config.miningCountReward
+                        } else Config.miningCountReward
+
+
+                        // Update the user's points
+                        val hashMap: HashMap<String, Any> = HashMap()
+                        hashMap["point"] = newMiningQuizPoints.toString()
+                        hashMap["referralPoint"] = newReferralPoints.toString()
+                        hashMap["extra3"] = Constants.STATE_MINING_FINISHED.toString()
+                        hashMap["qz_count"] = updatedQuizCount.toString()
+                        hashMap["mining_count"] = updatedMiningCount.toString()
+                        rootRef.child("users").child(userId).updateChildren(hashMap)
+                            .addOnSuccessListener {
+                                Log.d("giveUserPoint", "User points updated successfully")
+                                onSuccess.invoke()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e("giveUserPoint", "Failed to update user points: ${e.message}", e)
+                                onFailure.invoke()
+                            }
+
+
+                        //record update
+                        val snapshotRecord = withContext(Dispatchers.IO) {
+                            rootRef.child("records").child(userId).get().await()
+                        }
+                        val record = snapshotRecord.getValue(Record::class.java)
+                        if (record != null) {
+                            val previousTotalMiningPoints = when (val userPoint =
+                                record.totalMiningPoints) {
+                                is String -> userPoint.toDoubleOrNull() ?: currentPoints
+                                is Number -> userPoint.toDouble()
+                                else -> currentPoints
+                            }
+                            val updatedTotalMiningPoints =
+                                previousTotalMiningPoints + miningEarnedCoin
+
+
+                            val previousTotalBoostPoints = when (val userPoint =
+                                record.totalBoostPoints) {
+                                is String -> userPoint.toDoubleOrNull() ?: currentReferralPoints
+                                is Number -> userPoint.toDouble()
+                                else -> currentReferralPoints
+                            }
+                            val updatedTotalBoostPoints =
+                                previousTotalBoostPoints + referEarnedPoints
+
+
+                            val previousTotalQuizPoints = when (val userPoint =
+                                record.totalQuizPoints) {
+                                is String -> userPoint.toDoubleOrNull() ?: 0.0
+                                is Number -> userPoint.toDouble()
+                                else -> 0.0
+                            }
+                            val updatedTotalQuizPoints =
+                                previousTotalQuizPoints + (correctQuizAnsCoin * Config.correctQuizReward)
+
+
+                            val previousTotalQuizCounts = when (val userPoint =
+                                record.total_qz_count) {
+                                is String -> userPoint.toIntOrNull()
+                                    ?: if (user.qz_count.isEmpty()) 0 else user.qz_count.toInt()
+
+                                is Number -> userPoint.toInt()
+                                else -> if (user.qz_count.isEmpty()) 0 else user.qz_count.toInt()
+                            }
+                            val updatedTotalQuizCounts =
+                                previousTotalQuizCounts + quizCountEarned
+
+
+                            val previousTotalMiningCounts = when (val userPoint =
+                                record.total_mining_count) {
+                                is String -> userPoint.toIntOrNull()
+                                    ?: if (user.mining_count.isEmpty()) 0 else user.mining_count.toInt()
+
+                                is Number -> userPoint.toInt()
+                                else -> if (user.mining_count.isEmpty()) 0 else user.mining_count.toInt()
+                            }
+                            val updatedTotalMiningCounts =
+                                previousTotalMiningCounts + Config.miningCountReward
+
+
+                            val hashMapRecord : Map<String, Any?> = mapOf(
+                                "totalMiningPoints" to updatedTotalMiningPoints.toString(),
+                                "totalBoostPoints" to updatedTotalBoostPoints.toString(),
+                                "totalQuizPoints" to updatedTotalQuizPoints.toString(),
+                                "total_qz_count" to updatedTotalQuizCounts.toString(),
+                                "total_mining_count" to updatedTotalMiningCounts.toString()
+                            )
+
+                            rootRef.child("records").child(userId).updateChildren(hashMapRecord)
+
+                        }
+                        else {
+                            val hashMapRecord : Map<String, Any?> = mapOf(
+                                "totalMiningPoints" to (currentPoints + miningEarnedCoin).toString(),
+                                "totalBoostPoints" to referEarnedPoints.toString(),
+                                "totalQuizPoints" to (correctQuizAnsCoin * Config.correctQuizReward).toString(),
+                                "total_qz_count" to updatedQuizCount.toString(),
+                                "total_mining_count" to updatedMiningCount.toString()
+                            )
+                            rootRef.child("records").child(userId).updateChildren(hashMapRecord)
+                        }
+
+                    } else {
+                        Log.e("giveUserPoint", "User data is null")
+                        onFailure.invoke()
+                    }
+
+
+
+
+
+                } catch (e: Exception) {
+                    Log.e("giveUserPoint", "Error fetching user data: ${e.message}", e)
+                    onFailure.invoke()
+                }
+            }
+        }
+    }
 
 
 

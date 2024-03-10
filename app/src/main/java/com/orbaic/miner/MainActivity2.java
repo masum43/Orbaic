@@ -105,6 +105,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         initClicks();
         gdpr();
 
+        pointSeparation();
+
     }
 
     private void refer() {
@@ -509,6 +511,46 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     }
 
     private void initializeMobileAdsSdk() {
+    }
+
+
+
+    private void pointSeparation() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() == null) return;
+        String userId = mAuth.getCurrentUser().getUid();
+
+        DatabaseReference userIdRef = FirebaseDatabase.getInstance().getReference().child("userId").child(userId);
+        userIdRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    DatabaseReference referralUserRef = FirebaseDatabase.getInstance().getReference().child("referralUser").child(userId);
+                    referralUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            long totalCount = dataSnapshot.getChildrenCount();
+                            System.out.println("Total Count: " + totalCount);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // Handle errors, if any
+                            System.err.println("Error reading data: " + databaseError.getMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
     }
 
 
