@@ -129,7 +129,7 @@ class NewHomeViewModel : ViewModel() {
                         } else quizCountEarned
 
                         val updatedMiningCount = if (user.mining_count.isNotEmpty()) {
-                            user.qz_count.toInt() + Config.miningCountReward
+                            user.mining_count.toInt() + Config.miningCountReward
                         } else Config.miningCountReward
 
 
@@ -202,6 +202,7 @@ class NewHomeViewModel : ViewModel() {
 
                 countdownStateFlow.emit(CountdownState.Finished)
             }
+
 
         }
     }
@@ -347,7 +348,7 @@ class NewHomeViewModel : ViewModel() {
                 if (!tokenFound) {
                     val rewardedTokenItemFromJson = getRewardTokenFromJson(rewardedTokenCode)
                     rewardedTokenItemFromJson.balance = bonusToken.toString()
-                    myRewardedTokensRef.push()
+                    myRewardedTokensRef.child(rewardedTokenItemFromJson.id.toString())
                         .setValue(rewardedTokenItemFromJson)
                         .addOnSuccessListener {
                             onSuccess.invoke()

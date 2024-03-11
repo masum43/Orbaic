@@ -1,5 +1,6 @@
 package com.orbaic.miner.homeNew
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.app.Dialog
 import android.content.Context
@@ -8,8 +9,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -74,10 +77,19 @@ class NewHomeFragment : Fragment() {
     private var isDrawerProfileUpdated = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            fetchData()
-//        }
+        if (result.resultCode == Activity.RESULT_OK) {
+            fetchData()
+        }
     }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                fetchData()
+            } else {
+                showLocationWarning()
+            }
+        }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
@@ -105,14 +117,6 @@ class NewHomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-/*        val currentTime = System.currentTimeMillis()
-        val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
-        Log.e("onResume112", "currentTime: $currentTime" )
-        Log.e("onResume112", "lastCachedTime: $lastCachedTime" )
-        if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
-            fetchData()
-        }*/
-
         fetchData()
     }
 
@@ -186,7 +190,7 @@ class NewHomeFragment : Fragment() {
                     }
                     is ResponseState.Error -> {
                         val errorMessage = responseState.errorMessage
-                        errorDialog.showTimeDiffWithServerError(errorMessage.toString() , onClick = {
+                        errorDialog.showError(errorMessage.toString() , onClick = {
                             requireActivity().finishAffinity()
                         })
                     }
@@ -265,7 +269,7 @@ class NewHomeFragment : Fragment() {
 
         binding.learnAndEarn.setOnClickListener {
             val intent = Intent(context, QuizStartActivity::class.java)
-            dataFetchActivityLauncher.launch(intent)
+            startActivity(intent)
         }
 
         binding.claimRewardLayout.setOnClickListener { v ->
@@ -360,7 +364,11 @@ class NewHomeFragment : Fragment() {
         tvWarning.text =
             "The blockchain is currently facing significant congestion. Please remain patient and try again now."
         dialog.findViewById<View>(R.id.okButton)
-            .setOnClickListener { view: View? -> dialog.dismiss() }
+            .setOnClickListener {
+                dialog.dismiss()
+                SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+                showTapTarget()
+            }
         dialog.show()
     }
 
@@ -439,7 +447,7 @@ class NewHomeFragment : Fragment() {
                 viewModel.stopQuizCountdown()
                 stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showTimeDiffWithServerError(errorMessage, onClick = {
+                errorDialog.showError(errorMessage, onClick = {
                     requireActivity().finishAffinity()
                 })
                 progressDialog.dismiss()
@@ -451,6 +459,9 @@ class NewHomeFragment : Fragment() {
             Constants.STATE_MINING_FINISHED -> {
                 binding.aciCoin.text = getTotalCoin().toString()
                 startNewMiningStartSession()
+            }
+            Constants.STATE_MINING_LOCATION_NOT_GRANTED -> {
+                showLocationWarning()
             }
             else -> { // Mining error
                 val dialog = Dialog(requireActivity())
@@ -470,14 +481,41 @@ class NewHomeFragment : Fragment() {
         }
     }
 
+    private fun showLocationWarning() {
+        errorDialog.showError("Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. After that Click on Check Now. If you need assistance, feel free to reach out to our support team. Thank you!",
+            onClick = {
+                if (it == 1) {
+                    getLocationPermission()
+                }
+                else {
+                    fetchData()
+                }
+        }, "Allow", "Check Now")
+
+/*        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.dialog_extra_point)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val tvNotice = dialog.findViewById<TextView>(R.id.tvNotice)
+        tvNotice.text =
+            "Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. If you need assistance, feel free to reach out to our support team. Thank you!"
+        val btn = dialog.findViewById<TextView>(R.id.okButton)
+        btn.text = "Allow"
+        btn.setOnClickListener { view: View? ->
+            dialog.dismiss()
+            getLocationPermission()
+
+        }
+        dialog.show()*/
+    }
+
     private fun givePointsAndStartNewMiningSession() {
         viewModel.giveUserMiningReferQuizPoint(
             onSuccess = {
                 clearGivenCoin()
-                fetchData()
+                startNewMiningStartSession()
             },
             onFailure = {
-                errorDialog.showTimeDiffWithServerError("Something went wrong. Please close the app and try again.", onClick = {
+                errorDialog.showError("Something went wrong. Please close the app and try again.", onClick = {
                     requireActivity().finishAffinity()
                 })
             })
@@ -495,12 +533,11 @@ class NewHomeFragment : Fragment() {
     private fun observeCountdownState() {
         lifecycleScope.launch {
             viewModel.getMiningCountdownStateFlow().collect { state ->
+                Log.e("remainingTime", "state1122: $state")
                 when (state) {
                     is CountdownState.Running -> {
-                        Log.e("remainingTime", "state: Running")
                         val remainingTime = state.timeRemaining
                         binding.hourFragment.text = remainingTime
-                        Log.e("remainingTime", "observeCountdownState: $remainingTime")
                         calculateAndSavePoints(remainingTime)
                     }
                     is CountdownState.Finished -> {
@@ -510,7 +547,7 @@ class NewHomeFragment : Fragment() {
                     else -> {
                         // Handle other states if needed
                         Log.e("remainingTime", "state: else")
-                        stopRippleEffect()
+//                        stopRippleEffect()
                     }
                 }
             }
@@ -561,30 +598,35 @@ class NewHomeFragment : Fragment() {
 
 
     private fun calculateAndSavePoints(remainingTime: String) {
-        val totalHours = "24:00:00"
+
         val sdf = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
 
         try {
             val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
-            val totalHoursInMillis = sdf.parse(totalHours)?.time ?: 0
-
-            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
-            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
+            val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
 
             val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
-            Log.e("calculateAndSavePoints", "hoursGone: $hoursGone")
-            val pointsEarned = hoursGone * 0.045
-            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned)
-            Log.e("calculateAndSavePoints", "pointsEarned: $pointsEarned")
+
+            val pointsEarned = (hoursGone * Config.hourRate).roundTo()
+            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.toDouble())
 
             val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            val referPointsEarned = prevReferEarnedPoints + 0.045/60 * viewModel.myTeamMinerList.size * 0.10
-            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned)
-            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+            val referPointsEarned = (prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
+            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.toDouble())
+
 
             showUpdatedAciCoin()
+
+            val secondsGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / 1000
+            val minutesGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60)
+//            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
+//            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
+            Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
+            Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
+            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
+            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -664,8 +706,8 @@ class NewHomeFragment : Fragment() {
                         255,
                         255
                     )
-                ) //change the logo color while staring animation
-                binding.rippleEffect.startRippleAnimation() //starting the animation
+                )
+                binding.rippleEffect.startRippleAnimation()
             }
         }
     }
@@ -832,5 +874,20 @@ class NewHomeFragment : Fragment() {
             e.printStackTrace()
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.stopMiningCountdown()
+        viewModel.stopQuizCountdown()
+    }
+
+
+    private fun getLocationPermission() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", requireActivity().packageName, null)
+        intent.data = uri
+        requestPermissionLauncher.launch(intent)
+    }
+
 
 }

@@ -390,7 +390,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="50/300"
+                    tools:text="0/300"
                     android:textColor="#fff"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -430,7 +430,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="0/720"
+                    tools:text="0/720"
                     android:textColor="#fff"
                     android:textSize="18sp" />
             </LinearLayout>

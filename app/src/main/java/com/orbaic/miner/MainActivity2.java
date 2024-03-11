@@ -320,6 +320,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 checkStateForLogOut();
             }
         });
+
+        TextView tvVersion = findViewById(R.id.tvVersion);
+        tvVersion.setText("Version: "+ com.orbaic.miner.BuildConfig.VERSION_NAME);
     }
 
     private void checkStateForLogOut() {
@@ -355,8 +358,15 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         DatabaseReference userRef = database.getReference("users").child(mAuth.getCurrentUser().getUid());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("miningStartTime", "-1");
-        hashMap.put("extra3", String.valueOf(Constants.STATE_MINING_POINTS_NOT_GIVEN));
+        hashMap.put("extra3", String.valueOf(Constants.STATE_MINING_FINISHED));
         userRef.updateChildren(hashMap);
+
+        String referralByUserId = SpManager.getString(SpManager.KEY_REFERRED_BY_UID, "");
+        if (!referralByUserId.isEmpty()) {
+            DatabaseReference ref = database.getReference("referralUser")
+                    .child(referralByUserId).child(mAuth.getCurrentUser().getUid());
+            ref.child("status").setValue("-1");
+        }
 
         SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, 0.0);
         SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0);

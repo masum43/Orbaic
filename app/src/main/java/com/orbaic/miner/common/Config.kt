@@ -7,6 +7,7 @@ object Config {
 
     val serverTimeValidityDuration = TimeUnit.MINUTES.toMillis(2)
 
+    val totalHours = "24:00:00"
     var hourRate = 0.045
 
     var miningRewardedTokenCode = "SHIB"

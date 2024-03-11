@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.auth.LoginLayout;
+import com.orbaic.miner.common.SpManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,6 +45,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progressBar);
+
+        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
 
         // Initialize ActivityResultLauncher for requesting permissions
         requestPermissionLauncher = registerForActivityResult(

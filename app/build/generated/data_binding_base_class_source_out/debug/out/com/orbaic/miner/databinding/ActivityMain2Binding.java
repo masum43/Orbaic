@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -27,14 +28,23 @@ public final class ActivityMain2Binding implements ViewBinding {
   public final LinearLayout holdeLogout;
 
   @NonNull
+  public final LinearLayout holder;
+
+  @NonNull
   public final NavigationView navigationViewId;
 
+  @NonNull
+  public final TextView tvVersion;
+
   private ActivityMain2Binding(@NonNull DrawerLayout rootView, @NonNull DrawerLayout drawerLayout,
-      @NonNull LinearLayout holdeLogout, @NonNull NavigationView navigationViewId) {
+      @NonNull LinearLayout holdeLogout, @NonNull LinearLayout holder,
+      @NonNull NavigationView navigationViewId, @NonNull TextView tvVersion) {
     this.rootView = rootView;
     this.drawerLayout = drawerLayout;
     this.holdeLogout = holdeLogout;
+    this.holder = holder;
     this.navigationViewId = navigationViewId;
+    this.tvVersion = tvVersion;
   }
 
   @Override
@@ -72,14 +82,26 @@ public final class ActivityMain2Binding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.holder;
+      LinearLayout holder = ViewBindings.findChildViewById(rootView, id);
+      if (holder == null) {
+        break missingId;
+      }
+
       id = R.id.navigationViewId;
       NavigationView navigationViewId = ViewBindings.findChildViewById(rootView, id);
       if (navigationViewId == null) {
         break missingId;
       }
 
-      return new ActivityMain2Binding((DrawerLayout) rootView, drawerLayout, holdeLogout,
-          navigationViewId);
+      id = R.id.tvVersion;
+      TextView tvVersion = ViewBindings.findChildViewById(rootView, id);
+      if (tvVersion == null) {
+        break missingId;
+      }
+
+      return new ActivityMain2Binding((DrawerLayout) rootView, drawerLayout, holdeLogout, holder,
+          navigationViewId, tvVersion);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

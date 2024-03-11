@@ -13,7 +13,7 @@ import com.orbaic.miner.R
 class ErrorDialog(private val activity: Activity) {
     private var dialog: Dialog? = null
 
-    fun showTimeDiffWithServerError(errorMessage: String, onClick : () -> Unit) {
+    fun showError(errorMessage: String, onClick : (Int) -> Unit, okButtonText: String = "Ok, got it", checkButtonText: String = "") {
         if (dialog != null && dialog!!.isShowing) {
             return
         }
@@ -25,10 +25,27 @@ class ErrorDialog(private val activity: Activity) {
         dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val holderBg = dialog!!.findViewById<LinearLayout>(R.id.holderBg)
         val tvNotice = dialog!!.findViewById<TextView>(R.id.tvNotice)
+        val okButton = dialog!!.findViewById<TextView>(R.id.okButton)
+        val checkButton = dialog!!.findViewById<TextView>(R.id.checkButton)
+        if (checkButtonText.isNotEmpty()) {
+            checkButton.text = checkButtonText
+            checkButton.show()
+        }
+        else {
+            checkButton.gone()
+        }
+
         tvNotice.text = errorMessage
+        okButton.text = okButtonText
         holderBg.setBackgroundColor(ContextCompat.getColor(activity, R.color.red))
-        dialog!!.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
-            onClick.invoke()
+        okButton.setOnClickListener { view: View? ->
+            dialog!!.dismiss()
+            onClick.invoke(1)
+        }
+
+        checkButton.setOnClickListener {
+            dialog!!.dismiss()
+            onClick.invoke(2)
         }
         dialog!!.show()
     }
@@ -38,4 +55,7 @@ class ErrorDialog(private val activity: Activity) {
             dialog!!.dismiss()
         }
     }
+
+
+
 }

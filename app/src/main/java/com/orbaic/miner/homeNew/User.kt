@@ -83,6 +83,13 @@ data class User(
             return TimeStatus(Constants.STATE_MINING_FINISHED, "Mining start time is empty.")
         }
 
+        if (ContextCompat.checkSelfPermission(
+                MyApp.context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return TimeStatus(Constants.STATE_MINING_LOCATION_NOT_GRANTED, "Location permission not granted.")
+        }
 
         val serverTime = getServerTime()
         val currentTime = System.currentTimeMillis()
@@ -100,9 +107,9 @@ data class User(
             return TimeStatus(Constants.STATE_MINING_DATE_DIFF_SERVER, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.")
         }
 
-        if (diffBetweenCurrentAndServerTime <= 0) {
-            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is not within 24 hours.")
-        }
+//        if (diffBetweenCurrentAndServerTime <= 0) {
+//            return TimeStatus(Constants.STATE_MINING_ERROR, "Mining start time is not within 24 hours.")
+//        }
 
         val miningStartTimeTimestamp = miningStartTime.toLongOrNull() ?: return TimeStatus(0, "Invalid mining start time format.")
         val diff = abs(serverTime - miningStartTimeTimestamp)
@@ -129,13 +136,13 @@ data class User(
         return if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
             try {
                 // Initialize the location manager
-                val locationManager = MyApp.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
                 if (ContextCompat.checkSelfPermission(
                         MyApp.context,
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
 
+                    val locationManager = MyApp.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
                     val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                     if (location != null) {
                         val latitude = location.latitude

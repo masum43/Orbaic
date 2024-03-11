@@ -16,4 +16,5 @@ public class Constants {
     public static final int STATE_MINING_POINTS_GIVEN = 3;
     public static final int STATE_MINING_POINTS_NOT_GIVEN = 4;
     public static final int STATE_MINING_FINISHED = 5;
+    public static final int STATE_MINING_LOCATION_NOT_GRANTED= 6;
 }

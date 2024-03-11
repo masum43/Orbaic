@@ -1,6 +1,8 @@
 package com.orbaic.miner.common;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -53,4 +55,18 @@ public class Methods {
 //        String uniqueCode = String.format("%d%05d", currentTimeMillis, randomPart);
 //        return uniqueCode.substring(0, 8); // Take the first 8 digits
 //    }
+
+    public static void dialogWarningShowing(Activity activity, String title, String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setCancelable(false);
+        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                activity.finishAffinity();
+            }
+        });
+        builder.create().show();
+    }
 }
