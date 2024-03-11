@@ -33,9 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.orbaic.miner.HorizontalListAdapter;
 import com.orbaic.miner.R;
 import com.orbaic.miner.TeamMembersFragment;
+import com.orbaic.miner.common.Config;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.Loading;
 import com.orbaic.miner.common.SpManager;
+import com.orbaic.miner.homeNew.Record;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -138,6 +140,7 @@ public class TeamFragment extends Fragment {
                     String userId = dataSnapshot.child("userId").getValue(String.class);
                     addBonusPointToMyReferralUser(userId);
                     addMeIntoReferralTeam(userId, myName);
+                    updateReferPointInReferralRecord(userId);
                     updateMyReferCodeAndAddBonusPoint(userId, desiredReferKey);
                 } else {
                     loadingDialog.closeLoadingDialog();
@@ -193,7 +196,7 @@ public class TeamFragment extends Fragment {
                 if (snapshot.hasChild("referralPoint")) {
                     point = snapshot.child("referralPoint").getValue().toString();
                 }
-                double bonusPoint = Double.parseDouble(point) + 3;
+                double bonusPoint = Double.parseDouble(point) + Config.INSTANCE.getReferBonusReward();
                 myRef.child("referralPoint").setValue(String.valueOf(bonusPoint));
             }
 
@@ -218,7 +221,49 @@ public class TeamFragment extends Fragment {
                     }
                 }
             });
+
         }
+    }
+
+    private void updateReferPointInReferralRecord(String userId) {
+        DatabaseReference recordRef = database.getReference("records");
+        recordRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Record record = snapshot.getValue(Record.class);
+                    if (record != null) {
+                        double previousTotalMiningPoints = 0;
+                        String previousTotalMiningPointsStr = (String) record.getTotalRefPoints();
+                        if (!previousTotalMiningPointsStr.isEmpty()) {
+                            previousTotalMiningPoints = Double.parseDouble(previousTotalMiningPointsStr);
+                        }
+
+                        double updatedTotalReferPoints =
+                                previousTotalMiningPoints + Config.INSTANCE.getReferBonusReward();
+                        Map<String, Object> hashMapRecord = new HashMap<>();
+                        hashMapRecord.put("totalRefPoints", String.valueOf(updatedTotalReferPoints));
+                        recordRef.child(userId).updateChildren(hashMapRecord);
+                    }
+                    else {
+                        Map<String, Object> hashMapRecord = new HashMap<>();
+                        hashMapRecord.put("totalRefPoints", String.valueOf(Config.INSTANCE.getReferBonusReward()));
+                        recordRef.child(userId).updateChildren(hashMapRecord);
+                    }
+                }
+                else {
+                    Map<String, Object> hashMapRecord = new HashMap<>();
+                    hashMapRecord.put("totalRefPoints", String.valueOf(Config.INSTANCE.getReferBonusReward()));
+                    recordRef.child(userId).updateChildren(hashMapRecord);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void updateMyReferCodeAndAddBonusPoint(String userId, String enteredReferralCode) {
@@ -229,7 +274,7 @@ public class TeamFragment extends Fragment {
         map.put("referredBy", userId);
         map.put("referredByCode", enteredReferralCode);
         String myReferralPoint = tvMyReferCode.getTag().toString();
-        double bonusPoint = Double.parseDouble(myReferralPoint) + 3; // add point on current user
+        double bonusPoint = Double.parseDouble(myReferralPoint) + Config.INSTANCE.getReferBonusReward(); // add point on current user
         map.put("referralPoint", String.valueOf(bonusPoint));
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -395,7 +440,7 @@ public class TeamFragment extends Fragment {
     private void showSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle("Success!");
-        builder.setMessage("Your referral code was successful, and you've been credited with 3 ACI tokens. Please verify your balance.");
+        builder.setMessage("Your referral code was successful, and you've been credited with "+Config.INSTANCE.getReferBonusReward()+" ACI tokens. Please verify your balance.");
 
         builder.setPositiveButton("OK", (dialog, which) -> {
             dialog.dismiss();

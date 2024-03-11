@@ -17,4 +17,8 @@ object Config {
     var quizRewardedBonusToken: Long = 2000
 
     var miningCountReward: Int = 24
+
+
+    var correctQuizReward: Int = 1
+    var referBonusReward: Int = 3
 }
