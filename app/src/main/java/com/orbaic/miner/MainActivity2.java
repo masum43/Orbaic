@@ -48,6 +48,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.auth.LoginLayout;
+import com.orbaic.miner.common.Config;
 import com.orbaic.miner.common.Constants;
 import com.orbaic.miner.common.ErrorDialog;
 import com.orbaic.miner.common.SpManager;
@@ -60,6 +61,7 @@ import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
@@ -516,11 +518,18 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
 
 
     private void pointSeparation() {
+        boolean isPointSeparated = SpManager.getBoolean(SpManager.KEY_POINT_SEPARATED, false);
+        Log.e("isPointSeparated", "isPointSeparated: "+ isPointSeparated);
+        if (isPointSeparated) return;
+
+
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() == null) return;
         String userId = mAuth.getCurrentUser().getUid();
+        FirebaseDatabase database =  FirebaseDatabase.getInstance();
 
-        DatabaseReference userIdRef = FirebaseDatabase.getInstance().getReference().child("userId").child(userId);
+        DatabaseReference userIdRef = database.getReference().child("userId").child(userId);
         userIdRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -530,7 +539,44 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             long totalCount = dataSnapshot.getChildrenCount();
-                            System.out.println("Total Count: " + totalCount);
+                            DatabaseReference myRef = database.getReference("users").child(userId);
+                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String point = snapshot.child("point").getValue().toString();
+                                    String referralPoint = "0";
+                                    if (snapshot.hasChild("referralPoint")) {
+                                        referralPoint = snapshot.child("referralPoint").getValue().toString();
+                                    }
+
+                                    double minusPoint = totalCount * Config.INSTANCE.getReferBonusReward();
+                                    double pointDouble = Double.parseDouble(point);
+                                    double updatedPoint =  pointDouble - minusPoint;
+                                    if (updatedPoint <= 0) {
+                                        updatedPoint = pointDouble;
+                                    }
+
+                                    double referralPointDouble = Double.parseDouble(referralPoint) + minusPoint;
+
+                                    HashMap<String, Object> hashMap = new HashMap<>();
+                                    hashMap.put("point", String.valueOf(updatedPoint));
+                                    hashMap.put("referralPoint", String.valueOf(referralPointDouble));
+                                    myRef.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                userIdRef.setValue(true);
+                                                SpManager.saveBoolean(SpManager.KEY_POINT_SEPARATED, true);
+                                            }
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
                         }
 
@@ -541,16 +587,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                         }
                     });
                 }
+                else {
+                    SpManager.saveBoolean(SpManager.KEY_POINT_SEPARATED, true);
+                    Log.e("isPointSeparated", "isPointSeparated: true");
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("isPointSeparated", "isPointSeparated: "+ isPointSeparated);
             }
         });
-
-
-
     }
 
 
