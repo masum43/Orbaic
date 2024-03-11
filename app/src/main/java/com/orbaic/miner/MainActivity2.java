@@ -543,7 +543,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    String point = snapshot.child("point").getValue().toString();
+                                    //String point = snapshot.child("point").getValue().toString();
+                                    String point = "0";
+                                    if (snapshot.hasChild("point")) {
+                                        point = snapshot.child("point").getValue().toString();
+                                    }
                                     String referralPoint = "0";
                                     if (snapshot.hasChild("referralPoint")) {
                                         referralPoint = snapshot.child("referralPoint").getValue().toString();
