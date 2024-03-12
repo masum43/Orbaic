@@ -73,7 +73,8 @@ class NewHomeFragment : Fragment() {
     private val adapterTeam by lazy { MyTeamAdapter() }
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
     private val errorDialog by lazy { ErrorDialog(requireActivity()) }
-    private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
+    //private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
+    private lateinit var mobAds: AdMobAds
     private var isDrawerProfileUpdated = false
 
     private val dataFetchActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -91,6 +92,10 @@ class NewHomeFragment : Fragment() {
             }
         }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mobAds = AdMobAds(requireContext(), requireActivity())
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -357,19 +362,21 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun adNotLoadedWarning() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.dialog_mining_warning)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
-        tvWarning.text =
-            "The blockchain is currently facing significant congestion. Please remain patient and try again now."
-        dialog.findViewById<View>(R.id.okButton)
-            .setOnClickListener {
-                dialog.dismiss()
-                SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
-                showTapTarget()
-            }
-        dialog.show()
+        if (isAdded) {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.dialog_mining_warning)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
+            tvWarning.text =
+                "The blockchain is currently facing significant congestion. Please remain patient and try again now."
+            dialog.findViewById<View>(R.id.okButton)
+                .setOnClickListener {
+                    dialog.dismiss()
+                    SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+                    showTapTarget()
+                }
+            dialog.show()
+        }
     }
 
     private fun miningAlreadyRunningWarning() {
@@ -581,8 +588,15 @@ class NewHomeFragment : Fragment() {
         binding.aciCoin.text = totalTokens
     }
 
-    private fun getTotalCoin(): String {
+    /*private fun getTotalCoin(): String {
         val userPointFromServer = binding.aciCoin.tag.toString()
+        val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
+        val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+        val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
+        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
+    }*/
+    private fun getTotalCoin(): String {
+        val userPointFromServer = binding.aciCoin.tag.toString().replace(",", ".")
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
