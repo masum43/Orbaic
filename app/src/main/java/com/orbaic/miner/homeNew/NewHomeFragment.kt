@@ -368,7 +368,7 @@ class NewHomeFragment : Fragment() {
             requireContext()
         }
 
-        val dialog = Dialog(MyApp.context)
+        val dialog = Dialog(dialogContext)
         dialog.apply {
             setContentView(R.layout.dialog_mining_warning)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
