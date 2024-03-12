@@ -104,7 +104,7 @@ data class User(
             val hours = (diffBetweenCurrentAndServerTime / (1000 * 60 * 60)) % 24
             val minutes = (diffBetweenCurrentAndServerTime / (1000 * 60)) % 60
             val seconds = (diffBetweenCurrentAndServerTime / 1000) % 60
-            return TimeStatus(Constants.STATE_MINING_DATE_DIFF_SERVER, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.")
+            return TimeStatus(Constants.STATE_MINING_DATE_DIFF_SERVER, "Time difference between server and device is too large: $days days, $hours hours, $minutes minutes, $seconds seconds.\n\nOr if you fix your time just now but still the error showing then click on Clear Data.")
         }
 
 //        if (diffBetweenCurrentAndServerTime <= 0) {
@@ -131,7 +131,7 @@ data class User(
     private suspend fun getServerTime(): Long {
         val currentTime = System.currentTimeMillis()
         val lastCachedTime = SpManager.getLong(SpManager.KEY_SERVER_TIME, 0)
-        Log.e("fetchData111", "lastCachedTime: $lastCachedTime")
+        Log.e("isMiningWithin24Hours", "lastCachedTime: $lastCachedTime")
         // Check if the cached server time is within the validity duration
         return if (currentTime - lastCachedTime > Config.serverTimeValidityDuration) {
             try {
