@@ -362,19 +362,21 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun adNotLoadedWarning() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.dialog_mining_warning)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
-        tvWarning.text =
-            "The blockchain is currently facing significant congestion. Please remain patient and try again now."
-        dialog.findViewById<View>(R.id.okButton)
-            .setOnClickListener {
-                dialog.dismiss()
-                SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
-                showTapTarget()
-            }
-        dialog.show()
+        if (isAdded) {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.dialog_mining_warning)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
+            tvWarning.text =
+                "The blockchain is currently facing significant congestion. Please remain patient and try again now."
+            dialog.findViewById<View>(R.id.okButton)
+                .setOnClickListener {
+                    dialog.dismiss()
+                    SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
+                    showTapTarget()
+                }
+            dialog.show()
+        }
     }
 
     private fun miningAlreadyRunningWarning() {
