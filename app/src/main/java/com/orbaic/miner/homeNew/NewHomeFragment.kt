@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
 import com.orbaic.miner.MainActivity2
+import com.orbaic.miner.MyApp
 import com.orbaic.miner.R
 import com.orbaic.miner.TeamMembersFragment
 import com.orbaic.miner.allNews.AllNewsFragment
@@ -56,7 +57,9 @@ import com.orbaic.miner.quiz.QuizStartActivity
 import com.orbaic.miner.wordpress.PostAdapter2
 import com.unity3d.services.core.properties.ClientProperties
 import com.vungle.ads.internal.util.ThreadUtil.runOnUiThread
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,10 +95,6 @@ class NewHomeFragment : Fragment() {
             }
         }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mobAds = AdMobAds(requireContext(), requireActivity())
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -104,6 +103,7 @@ class NewHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SpManager.init(requireContext())
+        mobAds = AdMobAds(requireContext(), requireActivity())
         MobileAds.initialize(requireContext()) { mobAds.loadIntersAndRewardedAd() }
         prepareRv()
         initClicks()
@@ -362,19 +362,24 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun adNotLoadedWarning() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.dialog_mining_warning)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val tvWarning = dialog.findViewById<TextView>(R.id.tvWarning)
-        tvWarning.text =
-            "The blockchain is currently facing significant congestion. Please remain patient and try again now."
-        dialog.findViewById<View>(R.id.okButton)
-            .setOnClickListener {
-                dialog.dismiss()
+        val dialogContext = if (!isAdded) {
+            MyApp.context ?: runBlocking { delay(1000); requireContext() }
+        } else {
+            requireContext()
+        }
+
+        val dialog = Dialog(dialogContext)
+        dialog.apply {
+            setContentView(R.layout.dialog_mining_warning)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            findViewById<TextView>(R.id.tvWarning)?.text = "The blockchain is currently facing significant congestion. Please remain patient and try again now."
+            findViewById<View>(R.id.okButton)?.setOnClickListener {
+                dismiss()
                 SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
                 showTapTarget()
             }
-        dialog.show()
+            show()
+        }
     }
 
     private fun miningAlreadyRunningWarning() {
@@ -452,9 +457,15 @@ class NewHomeFragment : Fragment() {
                 viewModel.stopQuizCountdown()
                 stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showError(errorMessage, onClick = {
-                    requireActivity().finishAffinity()
-                })
+                errorDialog.showError(errorMessage,  onClick = {
+                    if (it == 1) {
+                        requireActivity().finishAffinity()
+                    }
+                    else {
+                        clearAppData(requireContext())
+                    }
+
+                },  "Ok, got it", "Clear Data")
                 progressDialog.dismiss()
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
@@ -899,6 +910,26 @@ class NewHomeFragment : Fragment() {
         val uri = Uri.fromParts("package", requireActivity().packageName, null)
         intent.data = uri
         requestPermissionLauncher.launch(intent)
+    }
+
+    fun clearAppData(context: Context) {
+        try {
+            val packageManager = context.packageManager
+            val packageName = context.packageName
+
+            // Clear application data
+            val clearData = Runtime.getRuntime().exec("pm clear $packageName")
+            clearData.waitFor()
+
+            // Restart the application
+            val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+            launchIntent?.let {
+                it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(it)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 

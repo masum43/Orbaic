@@ -152,7 +152,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userId = "";
-                String point = "";
+                String point = "0";
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Log.e("addIntoReferTeam", "userSnapshot: " + userSnapshot);
                     userId = userSnapshot.getKey();

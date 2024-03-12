@@ -11,22 +11,11 @@ import org.json.JSONArray
 import java.text.DecimalFormat
 import java.util.Locale
 
-/*
-fun Number.roundTo(
-    numFractionDigits: Int = 6
-) = "%.${numFractionDigits}f".format(this, Locale.ENGLISH).toDouble()
-*/
 
 fun Number.roundTo(numFractionDigits: Int = 6): String {
     val roundedValue = String.format(Locale.ENGLISH, "%.${numFractionDigits}f", this)
     return DecimalFormat("#.${"#".repeat(numFractionDigits)}").format(roundedValue.toDouble())
 }
-
-
-
-/*fun String.roundTo(
-    numFractionDigits: Int = 6
-) = "%.${numFractionDigits}f".format(this.toDouble(), Locale.ENGLISH)*/
 
 
 fun String.toast(length: Int = 0) = Toast.makeText(MyApp.context, this, length).show()
