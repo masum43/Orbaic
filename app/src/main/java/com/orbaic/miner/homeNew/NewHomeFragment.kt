@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -47,6 +48,7 @@ import com.orbaic.miner.common.RetrofitClient2
 import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.gone
 import com.orbaic.miner.common.invisible
+import com.orbaic.miner.common.parseNumber
 import com.orbaic.miner.common.roundTo
 import com.orbaic.miner.common.show
 import com.orbaic.miner.common.toast
@@ -104,7 +106,7 @@ class NewHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         SpManager.init(requireContext())
         mobAds = AdMobAds(requireContext(), requireActivity())
-        MobileAds.initialize(requireContext()) { mobAds.loadIntersAndRewardedAd() }
+        if (!mobAds.isAdsLoaded) mobAds.loadIntersAndRewardedAd()
         prepareRv()
         initClicks()
         observeCountdownState()
@@ -123,6 +125,7 @@ class NewHomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fetchData()
+
     }
 
     private fun prepareRv() {
@@ -159,8 +162,10 @@ class NewHomeFragment : Fragment() {
                         }
 
                         val totalPoints = (point + referralPoint).roundTo()
-                        binding.aciCoin.tag = totalPoints
-                        val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+                        SpManager.saveString(SpManager.KEY_POINTS_FROM_SERVER, totalPoints)
+//                        viewModel.setPoint(totalPoints.toDouble())
+//                        binding.aciCoin.tag = totalPoints
+                        val finalHourRate = (Config.hourRate.parseNumber() + Config.hourRate.parseNumber() * 0.10 * viewModel.myTeamMinerList.size).roundTo()
                         binding.tvRate.text = "$finalHourRate/h ACI"
                         SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
                         SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
@@ -204,64 +209,13 @@ class NewHomeFragment : Fragment() {
         }
 
 
-
-/*        viewModel.fetchData()
-        viewModel.userData.observe(viewLifecycleOwner) { user ->
-            val point = when (val userPoint = user?.point) {
-                is String -> userPoint.toDoubleOrNull() ?: 0.0
-                is Number -> userPoint.toDouble()
-                else -> 0.0
-            }
-
-            val referralPoint = when (val userReferralPoint = user?.referralPoint) {
-                is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
-                is Number -> userReferralPoint.toDouble()
-                else -> 0.0
-            }
-
-            val totalPoints = (point + referralPoint).roundTo()
-            binding.aciCoin.tag = totalPoints
-            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
-            binding.tvRate.text = "$finalHourRate/h ACI"
-            SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
-            SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
-
-            lifecycleScope.launch {
-                val timeStatus = user?.isMiningWithin24Hours()
-                Log.e("timeStatus123", "fetchData: $timeStatus")
-                SpManager.saveInt(SpManager.KEY_MINER_STATUS, timeStatus?.status ?: Constants.STATE_MINING_ERROR)
-                handleMiningTimeStatus(timeStatus, user?.miningStartTime.toString())
-            }
-
-            lifecycleScope.launch {
-                if (!user?.extra1.isNullOrEmpty()) {
-                    val quizEndTime = user?.extra1?.toLong()
-                    Log.e("quizEndTime", "quizEndTime: $quizEndTime")
-                    val timeStatus = user?.isQuizWithin12Hours()
-                    Log.e("quizEndTime", "timeStatus: $timeStatus")
-                    handleQuizTimeStatus(timeStatus, quizEndTime!!)
-                }
-
-            }
-
-            miningRewardProgress(user?.mining_count)
-            quizRewardProgress(user?.qz_count)
-
-
-            if (!isDrawerProfileUpdated) {
-                isDrawerProfileUpdated = true
-                val mainActivity = activity as MainActivity2?
-                mainActivity?.updateHeader(user?.profile_image, user?.name, user?.email)
-            }
-        }*/
-
         viewModel.getMyTeam()
         viewModel.teamListLiveData.observe(viewLifecycleOwner) {
             val sortedTeamList = it.take(5)
             adapterTeam.updateData(sortedTeamList)
             val teamStatus = "${viewModel.myTeamMinerList.size}/${it.size}"
             binding.tvTeamStatus.text = teamStatus
-            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+            val finalHourRate = (Config.hourRate.parseNumber() + Config.hourRate.parseNumber() * 0.10 * viewModel.myTeamMinerList.size).roundTo()
             binding.tvRate.text = "$finalHourRate/h ACI"
         }
         newsFromWordpressBlog()
@@ -452,21 +406,47 @@ class NewHomeFragment : Fragment() {
                 errorDialog.dismissDialog()
                 progressDialog.dismiss()
             }
-            Constants.STATE_MINING_DATE_DIFF_SERVER -> { // Time difference between server and device
-                viewModel.stopMiningCountdown()
-                viewModel.stopQuizCountdown()
-                stopRippleEffect()
-                val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showError(errorMessage,  onClick = {
-                    if (it == 1) {
-                        requireActivity().finishAffinity()
-                    }
-                    else {
-                        clearAppData(requireContext())
-                    }
 
-                },  "Ok, got it", "Clear Data")
-                progressDialog.dismiss()
+            Constants.STATE_MINING_DATE_DIFF_SERVER -> { // Time difference between server and device
+                if (com.orbaic.miner.BuildConfig.DEBUG) {
+          /*          viewModel.startMiningCountdown(miningStartTime.toLong())
+                    startRippleEffect()
+                    errorDialog.dismissDialog()
+                    progressDialog.dismiss()*/
+
+                    viewModel.stopMiningCountdown()
+                    viewModel.stopQuizCountdown()
+                    stopRippleEffect()
+                    val errorMessage = timeStatus.message ?: "Unknown error"
+                    errorDialog.showError(errorMessage,  onClick = {
+                        if (it == 1) {
+                            requireActivity().finishAffinity()
+                        }
+                        else {
+                            clearAppData(requireContext())
+                        }
+
+                    },  "Ok, got it", "Clear Data")
+                    progressDialog.dismiss()
+
+                }
+                else {
+                    viewModel.stopMiningCountdown()
+                    viewModel.stopQuizCountdown()
+                    stopRippleEffect()
+                    val errorMessage = timeStatus.message ?: "Unknown error"
+                    errorDialog.showError(errorMessage,  onClick = {
+                        if (it == 1) {
+                            requireActivity().finishAffinity()
+                        }
+                        else {
+                            clearAppData(requireContext())
+                        }
+
+                    },  "Ok, got it", "Clear Data")
+                    progressDialog.dismiss()
+                }
+
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
                 binding.aciCoin.text = getTotalCoin().toString()
@@ -594,6 +574,7 @@ class NewHomeFragment : Fragment() {
 
     private fun showUpdatedAciCoin() {
         val totalTokens = getTotalCoin()
+        Log.e("showUpdatedAciCoin", "totalTokens: $totalTokens")
         binding.aciCoin.text = totalTokens
     }
 
@@ -602,14 +583,17 @@ class NewHomeFragment : Fragment() {
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
+        return (userPointFromServer.parseNumber() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
     }*/
     private fun getTotalCoin(): String {
-        val userPointFromServer = binding.aciCoin.tag.toString().replace(",", ".")
+//        val userPointFromServer = binding.aciCoin.tag.toString()
+//        val userPointFromServer = viewModel.getPoint().toString()
+        val userPointFromServer = SpManager.getString(SpManager.KEY_POINTS_FROM_SERVER, "0")
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
+        Log.e("showUpdatedAciCoin", "userPointFromServer: $userPointFromServer")
+        return (userPointFromServer.parseNumber() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
     }
 
     private fun clearGivenCoin() {
@@ -625,35 +609,30 @@ class NewHomeFragment : Fragment() {
         val sdf = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
 
-        try {
-            val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
-            val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
+        val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
+        val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
 
-            val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
+        val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
 
-            val pointsEarned = (hoursGone * Config.hourRate).roundTo()
-            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.toDouble())
+        val pointsEarned = (hoursGone * Config.hourRate.parseNumber()).roundTo()
+        SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.parseNumber())
 
-            val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-            val referPointsEarned = (prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
-            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.toDouble())
+        val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+        val referPointsEarned = (prevReferEarnedPoints + Config.hourRate.parseNumber()/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
+        SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.parseNumber())
 
 
-            showUpdatedAciCoin()
+        showUpdatedAciCoin()
 
-            val secondsGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / 1000
-            val minutesGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60)
-//            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
-//            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
-            Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
-            Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
-            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
-            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
+       /* val secondsGone: Double = (totalHoursInMillis.parseNumber() - remainingTimeInMillis.parseNumber()) / 1000
+        val minutesGone: Double = (totalHoursInMillis.parseNumber() - remainingTimeInMillis.parseNumber()) / (1000 * 60)
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
+        Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
+        Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
+        Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+        Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")*/
+
     }
 
     private fun miningRewardProgress(miningHoursCountStr: String?) {
@@ -931,6 +910,5 @@ class NewHomeFragment : Fragment() {
             e.printStackTrace()
         }
     }
-
 
 }

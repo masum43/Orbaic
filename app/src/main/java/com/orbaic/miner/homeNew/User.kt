@@ -123,7 +123,7 @@ data class User(
             if (extra3.toInt() == 0) {
                 TimeStatus(Constants.STATE_MINING_POINTS_NOT_GIVEN, "Mining finished but points not given")
             }
-            else TimeStatus(extra3.toInt(), "Mining finished and points may given or not.")
+            else TimeStatus(extra3.toInt(), if (extra3.toInt() == Constants.STATE_MINING_FINISHED) "Mining finished" else "Mining finished but points not given")
         }
     }
 

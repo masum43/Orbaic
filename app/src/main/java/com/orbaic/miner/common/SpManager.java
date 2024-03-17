@@ -29,6 +29,7 @@ public class SpManager {
     public static String KEY_MINER_STATUS = "miner_status";
     public static String KEY_QUIZ_COUNT = "quiz_count";
     public static String KEY_POINT_SEPARATED = "point_sep";
+    public static String KEY_POINTS_FROM_SERVER = "point_server";
 
 
     // Initialize SharedPreferences

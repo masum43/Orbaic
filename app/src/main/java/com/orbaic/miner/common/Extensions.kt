@@ -8,13 +8,17 @@ import com.orbaic.miner.MyApp
 import com.orbaic.miner.R
 import com.orbaic.miner.home.MyRewardedTokenItem
 import org.json.JSONArray
-import java.text.DecimalFormat
 import java.util.Locale
 
 
-fun Number.roundTo(numFractionDigits: Int = 6): String {
-    val roundedValue = String.format(Locale.ENGLISH, "%.${numFractionDigits}f", this)
-    return DecimalFormat("#.${"#".repeat(numFractionDigits)}").format(roundedValue.toDouble())
+fun Number.roundTo(): String {
+    return String.format(Locale.ENGLISH, "%.5f", this)
+    /*    val roundedValue = String.format(Locale.ENGLISH, "%.${numFractionDigits}f", this)
+    return DecimalFormat("#.${"#".repeat(numFractionDigits)}").format(roundedValue.toDouble())*/
+}
+
+fun String.parseNumber(): Double {
+    return this.replace(",", ".").toDouble()
 }
 
 

@@ -40,6 +40,16 @@ class NewHomeViewModel : ViewModel() {
     private val _userData = MutableLiveData<User?>()
     val userData: LiveData<User?> get() = _userData
 
+/*    private var points : Double = 0.0
+
+    fun setPoint(point: Double) {
+        points = point
+    }
+
+    fun getPoint(): Double{
+        return points
+    }*/
+
 
     fun fetchData() {
         viewModelScope.launch {

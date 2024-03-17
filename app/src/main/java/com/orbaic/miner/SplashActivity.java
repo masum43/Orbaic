@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,10 +41,16 @@ public class SplashActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
+    private AdMobAds mobAds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mobAds = new AdMobAds(this, this);
+        MobileAds.initialize(this);
+        mobAds.loadIntersAndRewardedAd();
+
         progressBar = findViewById(R.id.progressBar);
 
         SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
