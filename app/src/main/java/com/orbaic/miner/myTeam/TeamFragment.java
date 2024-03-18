@@ -141,6 +141,7 @@ public class TeamFragment extends Fragment {
                     addBonusPointToMyReferralUser(userId);
                     addMeIntoReferralTeam(userId, myName);
                     updateReferPointInReferralRecord(userId);
+                    updateReferPointInMyRecord();
                     updateMyReferCodeAndAddBonusPoint(userId, desiredReferKey);
                 } else {
                     loadingDialog.closeLoadingDialog();
@@ -223,6 +224,48 @@ public class TeamFragment extends Fragment {
             });
 
         }
+    }
+
+    private void updateReferPointInMyRecord() {
+        String userId = mAuth.getCurrentUser().getUid();
+        DatabaseReference recordRef = database.getReference("records");
+        recordRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Record record = snapshot.getValue(Record.class);
+                    if (record != null) {
+                        double previousTotalMiningPoints = 0;
+                        String previousTotalMiningPointsStr = (String) record.getTotalRefPoints();
+                        if (!previousTotalMiningPointsStr.isEmpty()) {
+                            previousTotalMiningPoints = Double.parseDouble(previousTotalMiningPointsStr);
+                        }
+
+                        double updatedTotalReferPoints =
+                                previousTotalMiningPoints + Config.INSTANCE.getReferBonusReward();
+                        Map<String, Object> hashMapRecord = new HashMap<>();
+                        hashMapRecord.put("totalRefPoints", String.valueOf(updatedTotalReferPoints));
+                        recordRef.child(userId).updateChildren(hashMapRecord);
+                    }
+                    else {
+                        Map<String, Object> hashMapRecord = new HashMap<>();
+                        hashMapRecord.put("totalRefPoints", String.valueOf(Config.INSTANCE.getReferBonusReward()));
+                        recordRef.child(userId).updateChildren(hashMapRecord);
+                    }
+                }
+                else {
+                    Map<String, Object> hashMapRecord = new HashMap<>();
+                    hashMapRecord.put("totalRefPoints", String.valueOf(Config.INSTANCE.getReferBonusReward()));
+                    recordRef.child(userId).updateChildren(hashMapRecord);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void updateReferPointInReferralRecord(String userId) {
