@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background_light"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                         android:gravity="start"
                         android:inputType="textMultiLine"
                         android:padding="15dp"
-                        android:text="SGFCCjhbbbsd231321sdsdj543vvJASJhgjhas"
+                        tools:text="SGFCCjhbbbsd231321sdsdj543vvJASJhgjhas"
                         android:textColor="#66ffffff"
                         android:textSize="13sp" />
 
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:hint="type here.."
+                        tools:text="Asaduzzaman"
                         android:letterSpacing="0.05"
                         android:textColor="#fff"
                         android:textColorHint="#80FFFFFF"
@@ -152,10 +152,11 @@
 
                     <EditText
                         android:id="@+id/phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
+                        tools:text="01612345678"
                         android:background="@null"
                         android:inputType="phone"
                         android:textColor="#fff"
@@ -188,7 +189,8 @@
 
                     <TextView
                         android:id="@+id/emailAddress_profile"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        tools:text="example@gmail.com"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="-4dp"
