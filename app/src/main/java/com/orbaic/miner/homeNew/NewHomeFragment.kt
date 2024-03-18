@@ -77,8 +77,9 @@ class NewHomeFragment : Fragment() {
     private val viewModel: NewHomeViewModel by viewModels()
     private val adapterTeam by lazy { MyTeamAdapter() }
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
-    private val errorDialog by lazy { ErrorDialog(requireActivity()) }
+    //private val errorDialog by lazy { ErrorDialog(requireActivity()) }
     //private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
+    private lateinit var errorDialog: ErrorDialog
     private lateinit var mobAds: AdMobAds
     private var isDrawerProfileUpdated = false
 
@@ -105,6 +106,7 @@ class NewHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SpManager.init(requireContext())
+        errorDialog = ErrorDialog(requireActivity())
         mobAds = AdMobAds(requireContext(), requireActivity())
         if (!mobAds.isAdsLoaded) mobAds.loadIntersAndRewardedAd()
         prepareRv()
