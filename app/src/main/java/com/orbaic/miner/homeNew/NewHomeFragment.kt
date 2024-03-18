@@ -408,44 +408,20 @@ class NewHomeFragment : Fragment() {
             }
 
             Constants.STATE_MINING_DATE_DIFF_SERVER -> { // Time difference between server and device
-                if (com.orbaic.miner.BuildConfig.DEBUG) {
-          /*          viewModel.startMiningCountdown(miningStartTime.toLong())
-                    startRippleEffect()
-                    errorDialog.dismissDialog()
-                    progressDialog.dismiss()*/
+                viewModel.stopMiningCountdown()
+                viewModel.stopQuizCountdown()
+                stopRippleEffect()
+                val errorMessage = timeStatus.message ?: "Unknown error"
+                errorDialog.showError(errorMessage,  onClick = {
+                    if (it == 1) {
+                        requireActivity().finishAffinity()
+                    }
+                    else {
+                        clearAppData(requireContext())
+                    }
 
-                    viewModel.stopMiningCountdown()
-                    viewModel.stopQuizCountdown()
-                    stopRippleEffect()
-                    val errorMessage = timeStatus.message ?: "Unknown error"
-                    errorDialog.showError(errorMessage,  onClick = {
-                        if (it == 1) {
-                            requireActivity().finishAffinity()
-                        }
-                        else {
-                            clearAppData(requireContext())
-                        }
-
-                    },  "Ok, got it", "Clear Data")
-                    progressDialog.dismiss()
-
-                }
-                else {
-                    viewModel.stopMiningCountdown()
-                    viewModel.stopQuizCountdown()
-                    stopRippleEffect()
-                    val errorMessage = timeStatus.message ?: "Unknown error"
-                    errorDialog.showError(errorMessage,  onClick = {
-                        if (it == 1) {
-                            requireActivity().finishAffinity()
-                        }
-                        else {
-                            clearAppData(requireContext())
-                        }
-
-                    },  "Ok, got it", "Clear Data")
-                    progressDialog.dismiss()
-                }
+                },  "Ok, got it", "Clear Data")
+                progressDialog.dismiss()
 
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
