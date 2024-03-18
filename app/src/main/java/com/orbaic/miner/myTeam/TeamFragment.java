@@ -94,7 +94,7 @@ public class TeamFragment extends Fragment {
                     Toast.makeText(requireContext(), "Failed to get your data. Please check internet connection or try again.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String referBy = etReferByCode.getText().toString();
+                String referBy = etReferByCode.getText().toString().trim();
                 if (referBy.isEmpty() || referBy.equals(tvMyReferCode.getText().toString())) {
                     Toast.makeText(requireContext(), "Please enter valid refer code", Toast.LENGTH_SHORT).show();
                     return;
@@ -302,13 +302,15 @@ public class TeamFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("DATA_READ", "Team: readData");
-                myName = snapshot.child("name").getValue().toString();
-                String point = snapshot.child("point").getValue().toString();
+                if (snapshot.hasChild("name")) {
+                    myName = snapshot.child("name").getValue().toString();
+                }
+                //String point = snapshot.child("point").getValue().toString();
                 String referralPoint = "0";
                 if (snapshot.hasChild("referralPoint")) {
                     referralPoint = snapshot.child("referralPoint").getValue().toString();
                 }
-                String referral = snapshot.child("referral").getValue().toString();
+                //String referral = snapshot.child("referral").getValue().toString();
 
                 tvMyReferCode.setTag(referralPoint);
 
@@ -319,7 +321,7 @@ public class TeamFragment extends Fragment {
                 else {
                     viewModel.setMiningStartTime("-1");
                 }
-                viewModel.setPoint(Double.parseDouble(point));
+                //viewModel.setPoint(Double.parseDouble(point));
                 viewModel.setMyDataRead(true);
 
 
@@ -347,8 +349,10 @@ public class TeamFragment extends Fragment {
                     }
 
                 }
-
-                String myReferCode = snapshot.child("referral").getValue().toString();
+                String myReferCode = "";
+                if (snapshot.hasChild("referral")) {
+                    myReferCode = snapshot.child("referral").getValue().toString();
+                }
                 tvMyReferCode.setText(myReferCode);
 
 
