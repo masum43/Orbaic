@@ -414,39 +414,42 @@ class NewHomeViewModel : ViewModel() {
     private var countdownJob: Job? = null
     fun startMiningCountdown(miningStartTimeMillis: Long) {
         viewModelScope.launch {
-            countdownStateFlow.emit(CountdownState.Idle)
-            val miningEndTimeMillis = miningStartTimeMillis + (24 * 60 * 60 * 1000)
-            val currentTimeMillis = System.currentTimeMillis()
-            val timeDifference = miningEndTimeMillis - currentTimeMillis
+            withContext(Dispatchers.IO) {
+                countdownStateFlow.emit(CountdownState.Idle)
+                val miningEndTimeMillis = miningStartTimeMillis + (24 * 60 * 60 * 1000)
+                val currentTimeMillis = System.currentTimeMillis()
+                val timeDifference = miningEndTimeMillis - currentTimeMillis
 
-            Log.e("remainingTime", "miningStartTimeMillis: $miningStartTimeMillis")
-            Log.e("remainingTime", "miningEndTimeMillis: $miningEndTimeMillis")
-            Log.e("remainingTime", "currentTimeMillis: $currentTimeMillis")
-            Log.e("remainingTime", "timeDifference: $timeDifference")
+                Log.e("remainingTime", "miningStartTimeMillis: $miningStartTimeMillis")
+                Log.e("remainingTime", "miningEndTimeMillis: $miningEndTimeMillis")
+                Log.e("remainingTime", "currentTimeMillis: $currentTimeMillis")
+                Log.e("remainingTime", "timeDifference: $timeDifference")
 
-            if (timeDifference <= 0) {
-                countdownStateFlow.emit(CountdownState.Finished)
-                return@launch
-            }
-
-            countdownJob?.cancel()
-            countdownJob = viewModelScope.launch {
-                var remainingTimeMillis = timeDifference
-                while (remainingTimeMillis > 0) {
-                    val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
-                    delay(delayMillis)
-                    remainingTimeMillis -= delayMillis
-
-                    val totalSecondsRemaining = remainingTimeMillis / 1000
-                    val hours = totalSecondsRemaining / 3600
-                    val minutes = (totalSecondsRemaining % 3600) / 60
-                    val seconds = totalSecondsRemaining % 60
-
-                    val formattedTime = String.format(Locale.ENGLISH,"%02d:%02d:%02d", hours, minutes, seconds)
-                    countdownStateFlow.emit(CountdownState.Running(formattedTime))
+                if (timeDifference <= 0) {
+                    countdownStateFlow.emit(CountdownState.Finished)
+                    return@withContext
                 }
 
-                countdownStateFlow.emit(CountdownState.Finished)
+                countdownJob?.cancel()
+                countdownJob = viewModelScope.launch {
+                    var remainingTimeMillis = timeDifference
+                    while (remainingTimeMillis > 0) {
+                        val delayMillis = kotlin.math.min(remainingTimeMillis, 1000L)
+                        delay(delayMillis)
+                        remainingTimeMillis -= delayMillis
+
+                        val totalSecondsRemaining = remainingTimeMillis / 1000
+                        val hours = totalSecondsRemaining / 3600
+                        val minutes = (totalSecondsRemaining % 3600) / 60
+                        val seconds = totalSecondsRemaining % 60
+
+                        val formattedTime = String.format(Locale.ENGLISH,"%02d:%02d:%02d", hours, minutes, seconds)
+                        countdownStateFlow.emit(CountdownState.Running(formattedTime))
+                    }
+
+                    countdownStateFlow.emit(CountdownState.Finished)
+                }
+
             }
 
 
