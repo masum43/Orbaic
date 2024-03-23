@@ -6,7 +6,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -28,9 +27,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
 import com.orbaic.miner.MainActivity2
@@ -72,6 +71,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 
+
 class NewHomeFragment : Fragment() {
     private lateinit var binding : FragmentNewHomeBinding
     private val viewModel: NewHomeViewModel by viewModels()
@@ -109,11 +109,41 @@ class NewHomeFragment : Fragment() {
         errorDialog = ErrorDialog(requireActivity())
         mobAds = AdMobAds(requireContext(), requireActivity())
         if (!mobAds.isAdsLoaded) mobAds.loadIntersAndRewardedAd()
+        viewModel.updateTokenInDatabaseIfNeed()
         prepareRv()
         initClicks()
         observeCountdownState()
         checkEmailVerificationStatus()
+
+//        findOldUsers()
     }
+
+/*    private fun findOldUsers() {
+        var counter = 0
+        val rootRef = FirebaseDatabase.getInstance().reference
+        rootRef.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    for (mSnap in snapshot.children) {
+//                        val user = mSnap.getValue(User::class.java)
+                        val userId = mSnap.child("id").value.toString();
+                        if (userId.length < 10) {
+                            Log.e("OLD_USERS", "key: ${mSnap.key}, id: $userId")
+                            counter++
+                        }
+                    }
+                    Log.e("OLD_USERS", "total old users: $counter")
+                } catch (e: Exception) {
+                    Log.e("OLD_USERS", "Error processing data: ${e.message}")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("OLD_USERS", "Database operation cancelled: ${error.message}")
+            }
+        })
+    }*/
+
 
     private fun checkEmailVerificationStatus() {
         viewModel.checkEmailVerifyStatus {
@@ -297,14 +327,14 @@ class NewHomeFragment : Fragment() {
                     dialog.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
                         dialog.dismiss()
                         mobAds.showRewardedVideo()
-                        setActiveStatus()
+                        viewModel.setActiveStatus()
                     }
                     dialog.show()
                 }
                 else {
                     SpManager.saveInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_ON_GOING)
                     mobAds.showRewardedVideo()
-                    setActiveStatus()
+                    viewModel.setActiveStatus()
                 }
             }
             else {
@@ -347,39 +377,9 @@ class NewHomeFragment : Fragment() {
         dialog.show()
     }
 
-    private fun setActiveStatus() {
-        val mAuth = FirebaseAuth.getInstance()
-        val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference("users").child(mAuth.uid!!)
-        val now = System.currentTimeMillis()
-        val hashMap = HashMap<String, Any>()
-        hashMap["miningStartTime"] = now.toString()
-        hashMap["extra3"] = Constants.STATE_MINING_POINTS_NOT_GIVEN.toString()
-        userRef.updateChildren(hashMap)
 
-        val referralByUserId = SpManager.getString(SpManager.KEY_REFERRED_BY_UID, "")
-        if (referralByUserId.isNotEmpty()) {
-            val ref = database.getReference("referralUser")
-                .child(referralByUserId).child(mAuth.uid!!)
-            ref.child("status").setValue(now.toString())
-        }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val now2 = Instant.now()
-            val plus24Hours = now2.plusSeconds((24 * 60 * 60).toLong()) // Adding 24 hours in seconds
-            //            Instant plus24Hours = now2.plusSeconds(5 * 60); // for testing
-            val utcTime = DateTimeFormatter
-                .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                .withZone(ZoneOffset.UTC)
-                .format(plus24Hours)
-            val reference = FirebaseDatabase.getInstance().getReference("usersToken")
-            reference.child(mAuth.uid!!).child("timestamp").setValue(utcTime)
-                .addOnSuccessListener { unused -> println(unused) }
-        }
 
-//        fetchData()
-
-    }
 
     private fun handleQuizTimeStatus(timeStatus: TimeStatus?, quizEndTime: Long) {
         when (timeStatus?.status) {

@@ -138,12 +138,7 @@ public class LoginLayout extends AppCompatActivity {
                 Login_password.setError("Please Enter the Password");
                 return;
             }
-//            progressDialog = new ProgressDialog(LoginLayout.this);
-//            progressDialog.setTitle("Please wait");
-//            progressDialog.setMessage("Loading...");
-//            progressDialog.create();
-//            progressDialog.setCancelable(false);
-//            progressDialog.show();
+
             sign_function();
         });
 
@@ -251,15 +246,8 @@ public class LoginLayout extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            //Toast.makeText(LoginLayout.this,"code successful",Toast.LENGTH_LONG).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-//            progressDialog = new ProgressDialog(LoginLayout.this);
-//            progressDialog.setTitle("Please wait");
-//            progressDialog.setMessage("Loading...");
-//            progressDialog.create();
-//            progressDialog.setCancelable(false);
-//            progressDialog.show();
         }
     }
 
