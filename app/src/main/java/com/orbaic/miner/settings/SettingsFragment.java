@@ -91,12 +91,21 @@ public class SettingsFragment extends Fragment {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String mName = snapshot.child("name").getValue().toString();
+                String mName = "";
+                if (snapshot.hasChild("name")) {
+                    mName = snapshot.child("name").getValue().toString();
+                }
                 binding.tvName.setText(mName);
-                String myReferCode = snapshot.child("referral").getValue().toString();
+
+                String myReferCode = "";
+                if (snapshot.hasChild("referral")) {
+                    myReferCode = snapshot.child("referral").getValue().toString();
+                }
                 binding.tvMyReferCode.setText(myReferCode);
+
                 String uid = mAuth.getUid();
                 binding.tvUserId.setText(uid);
+
                 if (snapshot.hasChild("profile_image")) {
                     String profile_image = snapshot.child("profile_image").getValue().toString();
                     Glide.with(requireContext()).load(profile_image).into(binding.ivProfile);
