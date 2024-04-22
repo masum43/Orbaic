@@ -27,9 +27,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
 import com.orbaic.miner.MainActivity2
@@ -47,6 +47,7 @@ import com.orbaic.miner.common.RetrofitClient2
 import com.orbaic.miner.common.SpManager
 import com.orbaic.miner.common.gone
 import com.orbaic.miner.common.invisible
+import com.orbaic.miner.common.parseNumber
 import com.orbaic.miner.common.roundTo
 import com.orbaic.miner.common.show
 import com.orbaic.miner.common.toast
@@ -70,13 +71,15 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 
+
 class NewHomeFragment : Fragment() {
     private lateinit var binding : FragmentNewHomeBinding
     private val viewModel: NewHomeViewModel by viewModels()
     private val adapterTeam by lazy { MyTeamAdapter() }
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
-    private val errorDialog by lazy { ErrorDialog(requireActivity()) }
+    //private val errorDialog by lazy { ErrorDialog(requireActivity()) }
     //private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
+    private lateinit var errorDialog: ErrorDialog
     private lateinit var mobAds: AdMobAds
     private var isDrawerProfileUpdated = false
 
@@ -103,13 +106,44 @@ class NewHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SpManager.init(requireContext())
+        errorDialog = ErrorDialog(requireActivity())
         mobAds = AdMobAds(requireContext(), requireActivity())
-        MobileAds.initialize(requireContext()) { mobAds.loadIntersAndRewardedAd() }
+        if (!mobAds.isAdsLoaded) mobAds.loadIntersAndRewardedAd()
+        viewModel.updateTokenInDatabaseIfNeed()
         prepareRv()
         initClicks()
         observeCountdownState()
         checkEmailVerificationStatus()
+
+//        findOldUsers()
     }
+
+/*    private fun findOldUsers() {
+        var counter = 0
+        val rootRef = FirebaseDatabase.getInstance().reference
+        rootRef.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    for (mSnap in snapshot.children) {
+//                        val user = mSnap.getValue(User::class.java)
+                        val userId = mSnap.child("id").value.toString();
+                        if (userId.length < 10) {
+                            Log.e("OLD_USERS", "key: ${mSnap.key}, id: $userId")
+                            counter++
+                        }
+                    }
+                    Log.e("OLD_USERS", "total old users: $counter")
+                } catch (e: Exception) {
+                    Log.e("OLD_USERS", "Error processing data: ${e.message}")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("OLD_USERS", "Database operation cancelled: ${error.message}")
+            }
+        })
+    }*/
+
 
     private fun checkEmailVerificationStatus() {
         viewModel.checkEmailVerifyStatus {
@@ -123,6 +157,7 @@ class NewHomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fetchData()
+
     }
 
     private fun prepareRv() {
@@ -159,8 +194,10 @@ class NewHomeFragment : Fragment() {
                         }
 
                         val totalPoints = (point + referralPoint).roundTo()
-                        binding.aciCoin.tag = totalPoints
-                        val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+                        SpManager.saveString(SpManager.KEY_POINTS_FROM_SERVER, totalPoints)
+//                        viewModel.setPoint(totalPoints.toDouble())
+//                        binding.aciCoin.tag = totalPoints
+                        val finalHourRate = (Config.hourRate.parseNumber() + Config.hourRate.parseNumber() * 0.10 * viewModel.myTeamMinerList.size).roundTo()
                         binding.tvRate.text = "$finalHourRate/h ACI"
                         SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
                         SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
@@ -204,64 +241,13 @@ class NewHomeFragment : Fragment() {
         }
 
 
-
-/*        viewModel.fetchData()
-        viewModel.userData.observe(viewLifecycleOwner) { user ->
-            val point = when (val userPoint = user?.point) {
-                is String -> userPoint.toDoubleOrNull() ?: 0.0
-                is Number -> userPoint.toDouble()
-                else -> 0.0
-            }
-
-            val referralPoint = when (val userReferralPoint = user?.referralPoint) {
-                is String -> userReferralPoint.toDoubleOrNull() ?: 0.0
-                is Number -> userReferralPoint.toDouble()
-                else -> 0.0
-            }
-
-            val totalPoints = (point + referralPoint).roundTo()
-            binding.aciCoin.tag = totalPoints
-            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
-            binding.tvRate.text = "$finalHourRate/h ACI"
-            SpManager.saveString(SpManager.KEY_MY_REFER_CODE, user?.referral)
-            SpManager.saveString(SpManager.KEY_REFERRED_BY_UID, user?.referredBy)
-
-            lifecycleScope.launch {
-                val timeStatus = user?.isMiningWithin24Hours()
-                Log.e("timeStatus123", "fetchData: $timeStatus")
-                SpManager.saveInt(SpManager.KEY_MINER_STATUS, timeStatus?.status ?: Constants.STATE_MINING_ERROR)
-                handleMiningTimeStatus(timeStatus, user?.miningStartTime.toString())
-            }
-
-            lifecycleScope.launch {
-                if (!user?.extra1.isNullOrEmpty()) {
-                    val quizEndTime = user?.extra1?.toLong()
-                    Log.e("quizEndTime", "quizEndTime: $quizEndTime")
-                    val timeStatus = user?.isQuizWithin12Hours()
-                    Log.e("quizEndTime", "timeStatus: $timeStatus")
-                    handleQuizTimeStatus(timeStatus, quizEndTime!!)
-                }
-
-            }
-
-            miningRewardProgress(user?.mining_count)
-            quizRewardProgress(user?.qz_count)
-
-
-            if (!isDrawerProfileUpdated) {
-                isDrawerProfileUpdated = true
-                val mainActivity = activity as MainActivity2?
-                mainActivity?.updateHeader(user?.profile_image, user?.name, user?.email)
-            }
-        }*/
-
         viewModel.getMyTeam()
         viewModel.teamListLiveData.observe(viewLifecycleOwner) {
             val sortedTeamList = it.take(5)
             adapterTeam.updateData(sortedTeamList)
             val teamStatus = "${viewModel.myTeamMinerList.size}/${it.size}"
             binding.tvTeamStatus.text = teamStatus
-            val finalHourRate = (Config.hourRate + Config.hourRate * 0.10 * viewModel.myTeamMinerList.size).roundTo()
+            val finalHourRate = (Config.hourRate.parseNumber() + Config.hourRate.parseNumber() * 0.10 * viewModel.myTeamMinerList.size).roundTo()
             binding.tvRate.text = "$finalHourRate/h ACI"
         }
         newsFromWordpressBlog()
@@ -341,14 +327,14 @@ class NewHomeFragment : Fragment() {
                     dialog.findViewById<View>(R.id.okButton).setOnClickListener { view: View? ->
                         dialog.dismiss()
                         mobAds.showRewardedVideo()
-                        setActiveStatus()
+                        viewModel.setActiveStatus()
                     }
                     dialog.show()
                 }
                 else {
                     SpManager.saveInt(SpManager.KEY_MINER_STATUS, Constants.STATE_MINING_ON_GOING)
                     mobAds.showRewardedVideo()
-                    setActiveStatus()
+                    viewModel.setActiveStatus()
                 }
             }
             else {
@@ -391,39 +377,9 @@ class NewHomeFragment : Fragment() {
         dialog.show()
     }
 
-    private fun setActiveStatus() {
-        val mAuth = FirebaseAuth.getInstance()
-        val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference("users").child(mAuth.uid!!)
-        val now = System.currentTimeMillis()
-        val hashMap = HashMap<String, Any>()
-        hashMap["miningStartTime"] = now.toString()
-        hashMap["extra3"] = Constants.STATE_MINING_POINTS_NOT_GIVEN.toString()
-        userRef.updateChildren(hashMap)
 
-        val referralByUserId = SpManager.getString(SpManager.KEY_REFERRED_BY_UID, "")
-        if (referralByUserId.isNotEmpty()) {
-            val ref = database.getReference("referralUser")
-                .child(referralByUserId).child(mAuth.uid!!)
-            ref.child("status").setValue(now.toString())
-        }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val now2 = Instant.now()
-            val plus24Hours = now2.plusSeconds((24 * 60 * 60).toLong()) // Adding 24 hours in seconds
-            //            Instant plus24Hours = now2.plusSeconds(5 * 60); // for testing
-            val utcTime = DateTimeFormatter
-                .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                .withZone(ZoneOffset.UTC)
-                .format(plus24Hours)
-            val reference = FirebaseDatabase.getInstance().getReference("usersToken")
-            reference.child(mAuth.uid!!).child("timestamp").setValue(utcTime)
-                .addOnSuccessListener { unused -> println(unused) }
-        }
 
-//        fetchData()
-
-    }
 
     private fun handleQuizTimeStatus(timeStatus: TimeStatus?, quizEndTime: Long) {
         when (timeStatus?.status) {
@@ -452,6 +408,7 @@ class NewHomeFragment : Fragment() {
                 errorDialog.dismissDialog()
                 progressDialog.dismiss()
             }
+
             Constants.STATE_MINING_DATE_DIFF_SERVER -> { // Time difference between server and device
                 viewModel.stopMiningCountdown()
                 viewModel.stopQuizCountdown()
@@ -467,6 +424,7 @@ class NewHomeFragment : Fragment() {
 
                 },  "Ok, got it", "Clear Data")
                 progressDialog.dismiss()
+
             }
             Constants.STATE_MINING_POINTS_NOT_GIVEN -> {
                 binding.aciCoin.text = getTotalCoin().toString()
@@ -594,6 +552,7 @@ class NewHomeFragment : Fragment() {
 
     private fun showUpdatedAciCoin() {
         val totalTokens = getTotalCoin()
+        Log.e("showUpdatedAciCoin", "totalTokens: $totalTokens")
         binding.aciCoin.text = totalTokens
     }
 
@@ -602,14 +561,17 @@ class NewHomeFragment : Fragment() {
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
+        return (userPointFromServer.parseNumber() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
     }*/
     private fun getTotalCoin(): String {
-        val userPointFromServer = binding.aciCoin.tag.toString().replace(",", ".")
+//        val userPointFromServer = binding.aciCoin.tag.toString()
+//        val userPointFromServer = viewModel.getPoint().toString()
+        val userPointFromServer = SpManager.getString(SpManager.KEY_POINTS_FROM_SERVER, "0")
         val earnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_EARNED, 0.0)
         val referEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
         val correctQuizAns = SpManager.getInt(SpManager.KEY_CORRECT_ANS, 0)
-        return (userPointFromServer.toDouble() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
+        Log.e("showUpdatedAciCoin", "userPointFromServer: $userPointFromServer")
+        return (userPointFromServer.parseNumber() + earnedPoints + referEarnedPoints + correctQuizAns).roundTo()
     }
 
     private fun clearGivenCoin() {
@@ -625,35 +587,30 @@ class NewHomeFragment : Fragment() {
         val sdf = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
 
-        try {
-            val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
-            val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
+        val remainingTimeInMillis = sdf.parse(remainingTime)?.time ?: 0
+        val totalHoursInMillis = sdf.parse(Config.totalHours)?.time ?: 0
 
-            val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
+        val hoursGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60 * 60)
 
-            val pointsEarned = (hoursGone * Config.hourRate).roundTo()
-            SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.toDouble())
+        val pointsEarned = (hoursGone * Config.hourRate.parseNumber()).roundTo()
+        SpManager.saveDouble(SpManager.KEY_POINTS_EARNED, pointsEarned.parseNumber())
 
-            val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
-            val referPointsEarned = (prevReferEarnedPoints + Config.hourRate/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
-            SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.toDouble())
+        val prevReferEarnedPoints = SpManager.getDouble(SpManager.KEY_POINTS_REFER_EARNED, 0.0)
+        val referPointsEarned = (prevReferEarnedPoints + Config.hourRate.parseNumber()/3600 * viewModel.myTeamMinerList.size * 0.10).roundTo()
+        SpManager.saveDouble(SpManager.KEY_POINTS_REFER_EARNED, referPointsEarned.parseNumber())
 
 
-            showUpdatedAciCoin()
+        showUpdatedAciCoin()
 
-            val secondsGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / 1000
-            val minutesGone: Double = (totalHoursInMillis.toDouble() - remainingTimeInMillis.toDouble()) / (1000 * 60)
-//            Log.e("calculateAndSavePoints", "totalHoursInMillis: $totalHoursInMillis")
-//            Log.e("calculateAndSavePoints", "remainingTimeInMillis: $remainingTimeInMillis")
-            Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
-            Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
-            Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
-            Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
-            Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")
+       /* val secondsGone: Double = (totalHoursInMillis.parseNumber() - remainingTimeInMillis.parseNumber()) / 1000
+        val minutesGone: Double = (totalHoursInMillis.parseNumber() - remainingTimeInMillis.parseNumber()) / (1000 * 60)
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        Log.e("calculateAndSavePoints", "gone: hour: $hoursGone, min: $minutesGone, sec: $secondsGone")
+        Log.e("calculateAndSavePoints", "miningPointsEarned: $pointsEarned")
+        Log.e("calculateAndSavePoints", "prevReferEarnedPoints: $prevReferEarnedPoints")
+        Log.e("calculateAndSavePoints", "referPointsEarned: $referPointsEarned")
+        Log.e("calculateAndSavePoints", "-------------------------------------------------------------------")*/
+
     }
 
     private fun miningRewardProgress(miningHoursCountStr: String?) {
@@ -931,6 +888,5 @@ class NewHomeFragment : Fragment() {
             e.printStackTrace()
         }
     }
-
 
 }

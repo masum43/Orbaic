@@ -1,17 +1,19 @@
 package com.orbaic.miner.homeNew
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.orbaic.miner.ReferralDataRecive
 import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
@@ -31,6 +33,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class NewHomeViewModel : ViewModel() {
@@ -39,6 +44,16 @@ class NewHomeViewModel : ViewModel() {
 
     private val _userData = MutableLiveData<User?>()
     val userData: LiveData<User?> get() = _userData
+
+/*    private var points : Double = 0.0
+
+    fun setPoint(point: Double) {
+        points = point
+    }
+
+    fun getPoint(): Double{
+        return points
+    }*/
 
 
     fun fetchData() {
@@ -628,6 +643,73 @@ class NewHomeViewModel : ViewModel() {
     }
 
 
+    fun updateTokenInDatabaseIfNeed() {
+        if (mAuth.currentUser != null) {
+            val fcmToken = SpManager.getString(SpManager.KEY_FCM_TOKEN, "")
+            val fcmNewToken = SpManager.getString(SpManager.KEY_FCM_NEW_TOKEN, "")
+            if (fcmToken.isEmpty() || fcmNewToken != fcmToken) {
+                setToken()
+            }
+        }
+    }
+
+    fun setActiveStatus() {
+        val userRef = mAuth.currentUser?.uid?.let { rootRef.child("users").child(it) }
+        val now = System.currentTimeMillis()
+        val hashMap = HashMap<String, Any>()
+        hashMap["miningStartTime"] = now.toString()
+        hashMap["extra3"] = Constants.STATE_MINING_POINTS_NOT_GIVEN.toString()
+        userRef?.updateChildren(hashMap)
+
+        val referralByUserId = SpManager.getString(SpManager.KEY_REFERRED_BY_UID, "")
+        if (referralByUserId.isNotEmpty()) {
+            val ref = mAuth.currentUser?.uid?.let {
+                rootRef.child("referralUser")
+                    .child(referralByUserId).child(it)
+            }
+            ref?.child("status")?.setValue(now.toString())
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val now2 = Instant.now()
+            val plus24Hours = now2.plusSeconds((24 * 60 * 60).toLong()) // Adding 24 hours in seconds
+            //            Instant plus24Hours = now2.plusSeconds(5 * 60); // for testing
+            val utcTime = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                .withZone(ZoneOffset.UTC)
+                .format(plus24Hours)
+            val reference = rootRef.child("usersToken")
+            mAuth.currentUser?.uid?.let {
+                reference.child(it).child("timestamp").setValue(utcTime)
+                    .addOnSuccessListener { unused -> println(unused) }
+            }
+        }
+    }
+
+    private fun setToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task: Task<String?> ->
+                if (task.isSuccessful && task.result != null) {
+                    val token = task.result
+                    // Handle the token, you can print or use it as needed
+                    println("FCM Token: $token")
+                    val userId = mAuth.currentUser!!.uid
+                    Log.e("userId", "updateTokenInDatabase: $userId")
+                    val tokensRef =
+                        FirebaseDatabase.getInstance().getReference("usersToken")
+                    tokensRef.child(userId).child("fcmToken").setValue(token)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                SpManager.saveString(SpManager.KEY_FCM_TOKEN, token)
+                                SpManager.saveString(SpManager.KEY_FCM_NEW_TOKEN, token)
+                            }
+                        }
+                } else {
+                    // Handle the error
+                    println("Error fetching FCM token: " + task.exception)
+                }
+            }
+    }
 
 }
 

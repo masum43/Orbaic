@@ -138,12 +138,7 @@ public class LoginLayout extends AppCompatActivity {
                 Login_password.setError("Please Enter the Password");
                 return;
             }
-//            progressDialog = new ProgressDialog(LoginLayout.this);
-//            progressDialog.setTitle("Please wait");
-//            progressDialog.setMessage("Loading...");
-//            progressDialog.create();
-//            progressDialog.setCancelable(false);
-//            progressDialog.show();
+
             sign_function();
         });
 
@@ -251,15 +246,8 @@ public class LoginLayout extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            //Toast.makeText(LoginLayout.this,"code successful",Toast.LENGTH_LONG).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-//            progressDialog = new ProgressDialog(LoginLayout.this);
-//            progressDialog.setTitle("Please wait");
-//            progressDialog.setMessage("Loading...");
-//            progressDialog.create();
-//            progressDialog.setCancelable(false);
-//            progressDialog.show();
         }
     }
 
@@ -294,34 +282,6 @@ public class LoginLayout extends AppCompatActivity {
                                                 return;
                                             }
                                             insertDataIntoDB("", account.getEmail(), account.getDisplayName(), "");
-
-
-                                           /* String name = account.getDisplayName();
-                                            String email = account.getEmail();
-
-                                            Map<String, String> map = new HashMap<>();
-                                            map.put("point","0");
-                                            map.put("phone","0");
-                                            map.put("click","0");
-                                            map.put("country",country);
-                                            map.put("birthdate","0");
-                                            map.put("referral",code);
-                                            map.put("referralButton","ON");
-                                            map.put("type","0");
-                                            map.put("name",name);
-                                            map.put("email",email);
-                                            map.put("id",uid);
-                                            map.put("extra1","0");
-                                            map.put("extra2","0");
-                                            map.put("extra3","0");
-
-                                            currentUser.sendEmailVerification();
-                                            ref.child(uid).setValue(map);
-
-                                            progressDialog.dismiss();
-                                            Toast.makeText(LoginLayout.this, "New account created successfully", Toast.LENGTH_SHORT).show();
-                                            updateUI();*/
-
 
                                         } else {
                                             Toast.makeText(LoginLayout.this,"You have successfully logged into your account",Toast.LENGTH_LONG).show();

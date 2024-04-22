@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -142,7 +143,7 @@ public class Profile extends Fragment {
 
 
     private void readFirebaseData() {
-        DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
+        /*DatabaseReference myRef = firebaseDatabase.getReference("users").child(mAuth.getUid());
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -166,7 +167,31 @@ public class Profile extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        });*/
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DatabaseReference myRef = firebaseDatabase.getReference("users").child(currentUser.getUid());
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        String mName = snapshot.child("name").getValue(String.class);
+                        String mPhone = snapshot.child("phone").getValue(String.class);
+                        String email = snapshot.child("email").getValue(String.class);
+
+                        id.setText(currentUser.getUid());
+                        Username.setText(mName != null ? mName : "");
+                        phone.setText(mPhone != null ? mPhone : "");
+                        emailName.setText(email != null ? email : "");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle error if needed
+                }
+            });
+        }
     }
 
     @Override
