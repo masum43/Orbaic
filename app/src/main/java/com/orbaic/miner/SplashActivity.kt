@@ -1,183 +1,185 @@
-package com.orbaic.miner;
+package com.orbaic.miner
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.MobileAds
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.orbaic.miner.auth.LoginLayout
+import com.orbaic.miner.common.CustomDialog
+import com.orbaic.miner.common.SpManager
+import java.util.Timer
+import java.util.TimerTask
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.orbaic.miner.auth.LoginLayout;
-import com.orbaic.miner.common.SpManager;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class SplashActivity extends AppCompatActivity {
-
-
-    Timer timer = new Timer();
-
-    int versionCode;
-    ProgressBar progressBar;
-    private ActivityResultLauncher<String> requestPermissionLauncher;
-
-    private AdMobAds mobAds;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mobAds = new AdMobAds(this, this);
-        MobileAds.initialize(this);
-        mobAds.loadIntersAndRewardedAd();
-
-        progressBar = findViewById(R.id.progressBar);
-
-        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true);
+class SplashActivity : AppCompatActivity() {
+    var timer = Timer()
+    var versionCode = 0
+    var progressBar: ProgressBar? = null
+    private var requestPermissionLauncher: ActivityResultLauncher<String>? = null
+    private var mobAds: AdMobAds? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        mobAds = AdMobAds(this, this)
+        MobileAds.initialize(this)
+        mobAds!!.loadIntersAndRewardedAd()
+        progressBar = findViewById(R.id.progressBar)
+        SpManager.saveBoolean(SpManager.KEY_IS_TAP_TARGET_SHOW, true)
 
         // Initialize ActivityResultLauncher for requesting permissions
         requestPermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    dataRead();
-                }
-        );
-
-        if (isNotificationPermissionGranted()) {
-            dataRead();
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean? -> dataRead() }
+        if (isNotificationPermissionGranted) {
+            dataRead()
+        } else {
+            askNotificationPermission()
         }
-        else {
-            askNotificationPermission();
-        }
-
-
-
-
-
-
     }
 
-    private void updateNotice() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Update Notification");
-        builder.setMessage("We update our app. Please update the app from Play Store");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Update", (dialogInterface, i) -> {
-            final String appPackageName = getPackageName();
+    private fun updateNotice() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Update Notification")
+        builder.setMessage("We update our app. Please update the app from Play Store")
+        builder.setCancelable(false)
+        builder.setPositiveButton("Update") { dialogInterface: DialogInterface?, i: Int ->
+            val appPackageName = packageName
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            } catch (android.content.ActivityNotFoundException anfe) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW, Uri.parse(
+                            "market://details?id=$appPackageName"
+                        )
+                    )
+                )
+            } catch (anfe: ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW, Uri.parse(
+                            "https://play.google.com/store/apps/details?id=$appPackageName"
+                        )
+                    )
+                )
             }
-        });
-        builder.create().show();
-    }
-
-    private void dataRead() {
-        if (!isNetworkConnected()){
-            internetConnectionLost();
-            return;
         }
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference("app");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String code = snapshot.child("appVersion").getValue().toString();
-                System.out.println(code);
-                versionCode = Integer.parseInt(code);
-
-                startTimerTask();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                if (error.getCode() == DatabaseError.NETWORK_ERROR || error.getCode() == DatabaseError.DISCONNECTED) {
-                    // Show dialog for no internet or network issue
-                    internetConnectionLost();
-                }
-                else
-                {
-                    Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        });
-
+        builder.create().show()
     }
 
-    private void startTimerTask() {
-        TimerTask timerTask1 = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (isNetworkConnected()) {
-                            int appVersionCode = BuildConfig.VERSION_CODE;
-                            if( versionCode > appVersionCode) {
-                                updateNotice();
-                                progressBar.setVisibility(View.GONE);
-                                return;
-                            }else {
-                                progressBar.setVisibility(View.GONE);
-                                navigateToNextActivity();
+    private fun dataRead() {
+        if (!isNetworkConnected) {
+            internetConnectionLost()
+            return
+        }
+        val firebaseDatabase = FirebaseDatabase.getInstance()
+        val reference = firebaseDatabase.getReference("app")
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val code = snapshot.child("appVersion").value.toString()
+                val isShowNotice = snapshot.child("isShowNotice").getValue(
+                    Boolean::class.java
+                )!!
+                val isNoticeCancelable = snapshot.child("isNoticeCancelable").getValue(
+                    Boolean::class.java
+                )!!
+                val notice = snapshot.child("notice").getValue(
+                    String::class.java
+                )
+                versionCode = code.toInt()
+                if (isShowNotice) {
+                    showMaintenanceDialog(notice!!, isNoticeCancelable)
+                } else {
+                    startTimerTask()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                if (error.code == DatabaseError.NETWORK_ERROR || error.code == DatabaseError.DISCONNECTED) {
+                    // Show dialog for no internet or network issue
+                    internetConnectionLost()
+                } else {
+                    Toast.makeText(this@SplashActivity, error.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun showMaintenanceDialog(notice: String, isCancelable: Boolean) {
+        val customDialog = CustomDialog(this)
+        customDialog.showMaintenanceDialog(notice, onClick = {
+            if (isCancelable) {
+                startTimerTask()
+            }
+            else {
+                finishAffinity()
+            }
+        });
+    }
+
+    private fun startTimerTask() {
+        val timerTask1: TimerTask = object : TimerTask() {
+            override fun run() {
+                runOnUiThread(object : Runnable {
+                    override fun run() {
+                        if (isNetworkConnected) {
+                            val appVersionCode = BuildConfig.VERSION_CODE
+                            if (versionCode > appVersionCode) {
+                                updateNotice()
+                                progressBar!!.visibility = View.GONE
+                                return
+                            } else {
+                                progressBar!!.visibility = View.GONE
+                                navigateToNextActivity()
                             }
-                        }else {
-                            Toast.makeText(SplashActivity.this,"Please Check Internet Connection", Toast.LENGTH_LONG).show();
-                            internetConnectionLost();
-                            progressBar.setVisibility(View.GONE);
+                        } else {
+                            Toast.makeText(
+                                this@SplashActivity,
+                                "Please Check Internet Connection",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            internetConnectionLost()
+                            progressBar!!.visibility = View.GONE
                         }
                     }
-                });
+                })
             }
-        };
-        timer.schedule(timerTask1,2000);
+        }
+        timer.schedule(timerTask1, 2000)
     }
 
-    private void navigateToNextActivity() {
-        Intent intent = new Intent(SplashActivity.this, LoginLayout.class);
-        startActivity(intent);
-        finish();
+    private fun navigateToNextActivity() {
+        val intent = Intent(this@SplashActivity, LoginLayout::class.java)
+        startActivity(intent)
+        finish()
     }
 
-    private void internetConnectionLost() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("No Internet");
-        builder.setMessage("No Internet connection. Please check your Internet");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finishAffinity();
-            }
-        });
-        builder.create().show();
+    private fun internetConnectionLost() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("No Internet")
+        builder.setMessage("No Internet connection. Please check your Internet")
+        builder.setCancelable(false)
+        builder.setPositiveButton("Exit") { dialogInterface, i -> finishAffinity() }
+        builder.create().show()
     }
 
-/*    private boolean internetConnectionCheck() {
+    private val isNetworkConnected: Boolean
+        /*    private boolean internetConnectionCheck() {
         try {
             String cmd = "ping -c 1 google.com";
             return (Runtime.getRuntime().exec(cmd).waitFor() == 0);
@@ -188,38 +190,36 @@ public class SplashActivity extends AppCompatActivity {
             return false;
         }
 
-    }*/
-
-    private boolean isNetworkConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-            return activeNetwork != null && activeNetwork.isConnected();
+    }*/private get() {
+            val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (connectivityManager != null) {
+                val activeNetwork = connectivityManager.activeNetworkInfo
+                return activeNetwork != null && activeNetwork.isConnected
+            }
+            return false
         }
-        return false;
-    }
 
-    private void askNotificationPermission() {
+    private fun askNotificationPermission() {
         // This is only necessary for API level >= 33 (TIRAMISU)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
                 // FCM SDK (and your app) can post notifications.
             } else {
                 // Directly ask for the permission
-                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
+                requestPermissionLauncher!!.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }
 
-    private boolean isNotificationPermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 33) {
+    private val isNotificationPermissionGranted: Boolean
+        private get() = if (Build.VERSION.SDK_INT >= 33) {
             // For Android 13 (or later), check the notification permission
-            return ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED;
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED
         } else {
             // For versions older than Android 13, assume permission is granted
-            return true;
+            true
         }
-    }
 }

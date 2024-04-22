@@ -10,7 +10,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -28,8 +27,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.messaging.FirebaseMessaging
 import com.orbaic.miner.AdMobAds
 import com.orbaic.miner.BuildConfig
 import com.orbaic.miner.MainActivity2
@@ -40,7 +37,7 @@ import com.orbaic.miner.allNews.AllNewsFragment
 import com.orbaic.miner.auth.LoginLayout
 import com.orbaic.miner.common.Config
 import com.orbaic.miner.common.Constants
-import com.orbaic.miner.common.ErrorDialog
+import com.orbaic.miner.common.CustomDialog
 import com.orbaic.miner.common.ProgressDialog
 import com.orbaic.miner.common.ResponseState
 import com.orbaic.miner.common.RetrofitClient2
@@ -65,9 +62,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 
@@ -79,7 +73,7 @@ class NewHomeFragment : Fragment() {
     private val progressDialog by lazy { ProgressDialog.Builder(requireContext()).build() }
     //private val errorDialog by lazy { ErrorDialog(requireActivity()) }
     //private val mobAds by lazy { AdMobAds(requireContext(), requireActivity()) }
-    private lateinit var errorDialog: ErrorDialog
+    private lateinit var customDialog: CustomDialog
     private lateinit var mobAds: AdMobAds
     private var isDrawerProfileUpdated = false
 
@@ -106,7 +100,7 @@ class NewHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SpManager.init(requireContext())
-        errorDialog = ErrorDialog(requireActivity())
+        customDialog = CustomDialog(requireActivity())
         mobAds = AdMobAds(requireContext(), requireActivity())
         if (!mobAds.isAdsLoaded) mobAds.loadIntersAndRewardedAd()
         viewModel.updateTokenInDatabaseIfNeed()
@@ -232,7 +226,7 @@ class NewHomeFragment : Fragment() {
                     }
                     is ResponseState.Error -> {
                         val errorMessage = responseState.errorMessage
-                        errorDialog.showError(errorMessage.toString() , onClick = {
+                        customDialog.showErrorDialog(errorMessage.toString() , onClick = {
                             requireActivity().finishAffinity()
                         })
                     }
@@ -405,7 +399,7 @@ class NewHomeFragment : Fragment() {
             Constants.STATE_MINING_ON_GOING -> { // Mining start time is within 24 hours
                 viewModel.startMiningCountdown(miningStartTime.toLong())
                 startRippleEffect()
-                errorDialog.dismissDialog()
+                customDialog.dismissDialog()
                 progressDialog.dismiss()
             }
 
@@ -414,7 +408,7 @@ class NewHomeFragment : Fragment() {
                 viewModel.stopQuizCountdown()
                 stopRippleEffect()
                 val errorMessage = timeStatus.message ?: "Unknown error"
-                errorDialog.showError(errorMessage,  onClick = {
+                customDialog.showErrorDialog(errorMessage,  onClick = {
                     if (it == 1) {
                         requireActivity().finishAffinity()
                     }
@@ -456,7 +450,7 @@ class NewHomeFragment : Fragment() {
     }
 
     private fun showLocationWarning() {
-        errorDialog.showError("Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. After that Click on Check Now. If you need assistance, feel free to reach out to our support team. Thank you!",
+        customDialog.showErrorDialog("Location permission is required to use Orbaic effectively. Please grant location permission by clicking below Allow button then Permission > Location > Allow only while using the app. After that Click on Check Now. If you need assistance, feel free to reach out to our support team. Thank you!",
             onClick = {
                 if (it == 1) {
                     getLocationPermission()
@@ -489,14 +483,14 @@ class NewHomeFragment : Fragment() {
                 startNewMiningStartSession()
             },
             onFailure = {
-                errorDialog.showError("Something went wrong. Please close the app and try again.", onClick = {
+                customDialog.showErrorDialog("Something went wrong. Please close the app and try again.", onClick = {
                     requireActivity().finishAffinity()
                 })
             })
     }
 
     private fun startNewMiningStartSession() {
-        errorDialog.dismissDialog()
+        customDialog.dismissDialog()
         stopRippleEffect()
         progressDialog.dismiss()
         showTapTarget()

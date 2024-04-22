@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -50,7 +49,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orbaic.miner.auth.LoginLayout;
 import com.orbaic.miner.common.Config;
 import com.orbaic.miner.common.Constants;
-import com.orbaic.miner.common.ErrorDialog;
+import com.orbaic.miner.common.CustomDialog;
 import com.orbaic.miner.common.SpManager;
 import com.orbaic.miner.homeNew.NewHomeFragment;
 import com.orbaic.miner.interfaces.NavigationDrawerInterface;
@@ -61,7 +60,6 @@ import com.orbaic.miner.support.SupportFragment;
 import com.orbaic.miner.wallet.WalletFragment;
 
 import java.util.HashMap;
-import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationDrawerInterface {
 
@@ -75,13 +73,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
     ImageView btnEditProfile;
     private ConsentInformation consentInformation;
     private boolean isClickable = true;
-    private ErrorDialog errorDialog;
+    private CustomDialog customDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        errorDialog = new ErrorDialog(this);
+        customDialog = new CustomDialog(this);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationViewId);
