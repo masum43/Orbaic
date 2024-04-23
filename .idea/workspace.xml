@@ -130,24 +130,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85ab9893-d850-4a8b-9b89-14af3c4b3aee" name="Changes" comment="notice board">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/SplashActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/release/release/release/app-release.aab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/orbaic/miner/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/orbaic/miner/BuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/release/app-release.aab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/MainActivity2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/MainActivity2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/SplashActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/ErrorDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/CustomDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/SplashActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/SplashActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/CustomDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/common/CustomDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/orbaic/miner/homeNew/NewHomeViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_extra_point.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_extra_point.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,11 +212,9 @@
     </option>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="EXPORT_PRIVATE_KEY" value="false" />
     <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/Key/key.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
-    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -236,6 +234,10 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="2KzoCcUs2TMvwykdF6CjsJcKkJC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -253,7 +255,7 @@
     "DEBUGGABLE_PROCESS": "com.orbaic.miner",
     "DEBUGGER_ID": "Auto",
     "ExportApk.ApkPathForOrbaic.app": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/release",
-    "ExportBundle.BundlePathForOrbaic.app": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/release",
+    "ExportBundle.BundlePathForOrbaic.app": "C:\\Users\\USER\\AndroidStudioProjects\\Orbaic\\app\\release\\release",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -268,7 +270,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "masum",
     "last_directory_selection": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/src/main/res/drawable",
-    "last_opened_file_path": "/Users/masum/Development/StudioProjects/temp/Orbaic/app/src/main/java/com/orbaic/miner/homeNew",
+    "last_opened_file_path": "C:/Users/USER/AndroidStudioProjects/Orbaic/app/release/release",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -834,7 +836,7 @@
       <option name="project" value="LOCAL" />
       <updated>1703182484484</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

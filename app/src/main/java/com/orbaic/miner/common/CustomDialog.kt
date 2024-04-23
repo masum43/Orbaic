@@ -4,10 +4,12 @@ import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.Html
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import com.orbaic.miner.R
 
 class CustomDialog(private val activity: Activity) {
@@ -72,7 +74,7 @@ class CustomDialog(private val activity: Activity) {
             checkButton.gone()
         }
 
-        tvNotice.text = message
+        tvNotice.text = HtmlCompat.fromHtml(message, HtmlCompat.FROM_HTML_MODE_LEGACY);
         okButton.text = okButtonText
         okButton.setOnClickListener { view: View? ->
             dialog!!.dismiss()

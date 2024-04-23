@@ -468,7 +468,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
                 .build();
 
         ConsentRequestParameters params;
-        if (BuildConfig.DEBUG) {
+        if (com.orbaic.miner.BuildConfig.DEBUG) {
             params = new ConsentRequestParameters.Builder()
                     .setConsentDebugSettings(debugSettings)
                     .build();
@@ -479,7 +479,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationDrawer
         }
 
         consentInformation = UserMessagingPlatform.getConsentInformation(this);
-        if (BuildConfig.DEBUG) {
+        if (com.orbaic.miner.BuildConfig.DEBUG) {
             consentInformation.reset();
         }
 

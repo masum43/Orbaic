@@ -752,7 +752,7 @@ class NewHomeFragment : Fragment() {
                 .textTypeface(Typeface.SANS_SERIF) // Specify a typeface for the text
                 .dimColor(R.color.black) // If set, will dim behind the view with 30% opacity of the given color
                 .drawShadow(true) // Whether to draw a drop shadow or not
-                .cancelable(BuildConfig.DEBUG) // true only in debug mode
+                .cancelable(com.orbaic.miner.BuildConfig.DEBUG) // true only in debug mode
                 .tintTarget(true) // Whether to tint the target view's color
                 .transparentTarget(false) // Specify whether the target is transparent (displays the content underneath)
                 //                        .icon(Drawable)                     // Specify a custom drawable to draw as the target
@@ -834,7 +834,7 @@ class NewHomeFragment : Fragment() {
             Toast.makeText(context, "Logout your Account", Toast.LENGTH_SHORT).show()
             clearAppData()
         }
-        if (BuildConfig.DEBUG) {
+        if (com.orbaic.miner.BuildConfig.DEBUG) {
             builder.create().show();
         } else {
             builder.create().show()

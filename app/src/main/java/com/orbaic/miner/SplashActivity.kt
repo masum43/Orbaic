@@ -133,12 +133,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startTimerTask() {
+        progressBar!!.visibility = View.VISIBLE
         val timerTask1: TimerTask = object : TimerTask() {
             override fun run() {
                 runOnUiThread(object : Runnable {
                     override fun run() {
                         if (isNetworkConnected) {
-                            val appVersionCode = BuildConfig.VERSION_CODE
+                            val appVersionCode = com.orbaic.miner.BuildConfig.VERSION_CODE
                             if (versionCode > appVersionCode) {
                                 updateNotice()
                                 progressBar!!.visibility = View.GONE
